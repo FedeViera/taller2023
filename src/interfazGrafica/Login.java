@@ -67,7 +67,6 @@ public class Login extends javax.swing.JFrame {
         panelLogin.add(imgFondoMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 250, 670));
 
         tituloUsuario.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        tituloUsuario.setForeground(new java.awt.Color(0, 0, 0));
         tituloUsuario.setText("USUARIO:");
         panelLogin.add(tituloUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 130, 50));
 
@@ -91,7 +90,6 @@ public class Login extends javax.swing.JFrame {
         panelLogin.add(separadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 440, 30));
 
         tituloContraseña.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        tituloContraseña.setForeground(new java.awt.Color(0, 0, 0));
         tituloContraseña.setText("CONTRASEÑA:");
         panelLogin.add(tituloContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 190, 50));
 
@@ -109,8 +107,8 @@ public class Login extends javax.swing.JFrame {
 
         botonEntrar.setBackground(new java.awt.Color(55, 208, 193));
         botonEntrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonEntrar.setForeground(new java.awt.Color(0, 0, 0));
         botonEntrar.setText("ENTRAR");
+        botonEntrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEntrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
