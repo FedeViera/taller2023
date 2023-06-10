@@ -43,6 +43,8 @@ public class Administrador extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelAdministrador.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdministrador.setMinimumSize(new java.awt.Dimension(1030, 670));
+        panelAdministrador.setPreferredSize(new java.awt.Dimension(1030, 670));
         panelAdministrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         banner.setBackground(new java.awt.Color(38, 56, 63));
