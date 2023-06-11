@@ -217,26 +217,32 @@ public class Administrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Boton GENERAR CURSO cambia el color al pasar por encima
     private void generarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarCursoMouseEntered
         generarCurso.setBackground(new Color(55,208,193));
     }//GEN-LAST:event_generarCursoMouseEntered
 
+    //Boton GENERAR CURSO cambia el color al salir encima
     private void generarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarCursoMouseExited
         generarCurso.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_generarCursoMouseExited
 
+    //Boton GENERAR ADSCRIPTOR cambia el color al pasar por encima
     private void generarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarAdscriptorMouseEntered
         generarAdscriptor.setBackground(new Color(55,208,193));
     }//GEN-LAST:event_generarAdscriptorMouseEntered
 
+    //Boton GENERAR ADSCRIPTOR cambia el color al salir encima
     private void generarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarAdscriptorMouseExited
         generarAdscriptor.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_generarAdscriptorMouseExited
 
+    //Al presionar boton GENERAR CURSO cambia de pestaña a la 0
     private void generarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarCursoMouseClicked
         panelPestañas.setSelectedIndex(0);
     }//GEN-LAST:event_generarCursoMouseClicked
 
+    //Al presionar boton GENERAR ADSCRIPTOR cambia de pestaña a la 1
     private void generarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarAdscriptorMouseClicked
         panelPestañas.setSelectedIndex(1);
     }//GEN-LAST:event_generarAdscriptorMouseClicked

@@ -155,7 +155,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoUsuarioActionPerformed
 
+    // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
+        
+        //Guarda la posición del Panel Login para abrir el otro en las mismas coordenadas
         int x = getLocation().x;
         int y = getLocation().y;
         this.setVisible(false);
@@ -165,6 +168,7 @@ public class Login extends javax.swing.JFrame {
         admin.setLocation(x, y);
     }//GEN-LAST:event_botonEntrarActionPerformed
 
+    //Espacio para ingresar usuario (guarda temporalmente lo que escribió el usuario)
     private void textoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoUsuarioMousePressed
         if(textoUsuario.getText().equals("Ingrese su usuario")){
             textoUsuario.setText("");
@@ -176,6 +180,7 @@ public class Login extends javax.swing.JFrame {
         }     
     }//GEN-LAST:event_textoUsuarioMousePressed
 
+    //Espacio para ingresar contraseña (guarda temporalmente lo que escribió el usuario)
     private void textoContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseñaMousePressed
         if(String.valueOf(textoContraseña.getPassword()).equals("************")) {
             textoContraseña.setText("");
@@ -195,10 +200,12 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_botonEntrarKeyPressed
 
+    //Al pasar el mouse por encima del boton ENTRAR cambia el color
     private void botonEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseEntered
         botonEntrar.setBackground(new Color(55,208,193));
     }//GEN-LAST:event_botonEntrarMouseEntered
 
+    //Al quitar el mouse por encima del boton ENTRAR vuelve al color original
     private void botonEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseExited
         botonEntrar.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_botonEntrarMouseExited

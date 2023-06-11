@@ -16,13 +16,15 @@ public class InterfazTaller2 {
      */
     public static void main(String[] args) {
         
-        //Estan los 2 solo para prueba (luego utilziaremos solo el Login y desde ahi llamamos a las otros JFrames.
-        //Login
+        //Estan los 2 solo para prueba (luego utilziaremos solo el Login y desde ahi llamamos a las otros JFrames)
+        
+        //Mostrar Login
+        
         /*Login sesion = new Login();
         sesion.setVisible(true);
         sesion.setLocationRelativeTo(null);*/
         
-        //Admin
+        //Mostrar Admin
         Administrador admin = new Administrador();
         admin.setVisible(true);
         admin.setLocationRelativeTo(null);
