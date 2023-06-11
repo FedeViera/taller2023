@@ -19,7 +19,7 @@ public class Administrador extends javax.swing.JFrame {
      */
     public Administrador() {
         initComponents();
-        this.setTitle("SDFA - Portafolio Docente");
+        this.setTitle("SDFA - Panel Administrador");
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage());
     }
 
@@ -65,16 +65,16 @@ public class Administrador extends javax.swing.JFrame {
         bannerLayout.setHorizontalGroup(
             bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bannerLayout.createSequentialGroup()
-                .addContainerGap(656, Short.MAX_VALUE)
+                .addContainerGap(652, Short.MAX_VALUE)
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(19, 19, 19))
         );
         bannerLayout.setVerticalGroup(
             bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bannerLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));

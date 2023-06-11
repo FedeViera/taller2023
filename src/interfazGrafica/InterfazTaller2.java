@@ -15,10 +15,17 @@ public class InterfazTaller2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login sesion = new Login();
-        sesion.setVisible(true);
-        sesion.setLocationRelativeTo(null);
         
+        //Estan los 2 solo para prueba (luego utilziaremos solo el Login y desde ahi llamamos a las otros JFrames.
+        //Login
+        /*Login sesion = new Login();
+        sesion.setVisible(true);
+        sesion.setLocationRelativeTo(null);*/
+        
+        //Admin
+        Administrador admin = new Administrador();
+        admin.setVisible(true);
+        admin.setLocationRelativeTo(null);
    
         
     }
