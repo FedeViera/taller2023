@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-//v1
+//Taller 1v1
 
 /**
  *
