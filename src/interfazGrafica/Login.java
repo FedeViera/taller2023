@@ -100,6 +100,16 @@ public class Login extends javax.swing.JFrame {
                 textoContraseñaMousePressed(evt);
             }
         });
+        textoContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoContraseñaActionPerformed(evt);
+            }
+        });
+        textoContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textoContraseñaKeyPressed(evt);
+            }
+        });
         panelLogin.add(textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 440, 50));
 
         separadorContraseña.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,6 +219,22 @@ public class Login extends javax.swing.JFrame {
     private void botonEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseExited
         botonEntrar.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_botonEntrarMouseExited
+
+    private void textoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoContraseñaActionPerformed
+
+    private void textoContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseñaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        int x = getLocation().x;
+        int y = getLocation().y;
+        this.setVisible(false);
+        Administrador admin = new Administrador();
+        admin.setVisible(true);
+        admin.setLocationRelativeTo(null); 
+        admin.setLocation(x, y);
+    }
+    }//GEN-LAST:event_textoContraseñaKeyPressed
 
     /**
      * @param args the command line arguments

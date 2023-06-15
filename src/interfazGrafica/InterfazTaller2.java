@@ -20,14 +20,14 @@ public class InterfazTaller2 {
         
         //Mostrar Login
         
-        /*Login sesion = new Login();
+        Login sesion = new Login();
         sesion.setVisible(true);
-        sesion.setLocationRelativeTo(null);*/
+        sesion.setLocationRelativeTo(null);
         
         //Mostrar Admin
-        Administrador admin = new Administrador();
+        /*Administrador admin = new Administrador();
         admin.setVisible(true);
-        admin.setLocationRelativeTo(null);
+        admin.setLocationRelativeTo(null);*/
    
         
     }
