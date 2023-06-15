@@ -15,8 +15,7 @@ public class InterfazTaller2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        //Estan los 2 solo para prueba (luego utilziaremos solo el Login y desde ahi llamamos a las otros JFrames)
+       
         
         //Mostrar Login
         
