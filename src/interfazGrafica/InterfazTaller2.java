@@ -16,7 +16,7 @@ public class InterfazTaller2 {
      */
     public static void main(String[] args) {
        
-        
+        //COMENTARIO
         //Mostrar Login
         
         Login sesion = new Login();
