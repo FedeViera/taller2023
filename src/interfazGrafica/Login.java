@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
 
         panelLogin = new javax.swing.JPanel();
         imgMaleta = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        textoPortafolioDocente = new javax.swing.JLabel();
         imgFondoMaleta = new javax.swing.JLabel();
         tituloUsuario = new javax.swing.JLabel();
         textoUsuario = new javax.swing.JTextField();
@@ -56,10 +56,10 @@ public class Login extends javax.swing.JFrame {
         imgMaleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maletaBlanca.png"))); // NOI18N
         panelLogin.add(imgMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, -1, 130));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("PORTAFOLIO DOCENTE");
-        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 220, 40));
+        textoPortafolioDocente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        textoPortafolioDocente.setForeground(new java.awt.Color(255, 255, 255));
+        textoPortafolioDocente.setText("PORTAFOLIO DOCENTE");
+        panelLogin.add(textoPortafolioDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 220, 40));
 
         imgFondoMaleta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         imgFondoMaleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gradient-background-768x1024-10974.jpg"))); // NOI18N
@@ -279,12 +279,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton botonEntrar;
     private javax.swing.JLabel imgFondoMaleta;
     private javax.swing.JLabel imgMaleta;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JSeparator separadorContraseña;
     private javax.swing.JSeparator separadorUsuario;
     private javax.swing.JPasswordField textoContraseña;
+    private javax.swing.JLabel textoPortafolioDocente;
     private javax.swing.JTextField textoUsuario;
     private javax.swing.JLabel tituloContraseña;
     private javax.swing.JLabel tituloUsuario;
