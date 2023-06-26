@@ -7,7 +7,7 @@ package interfazGrafica;
 
 /**
  *
- * @author Federico
+ * @author SDFA
  */
 public class InterfazTaller2 {
 
