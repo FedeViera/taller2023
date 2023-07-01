@@ -22,6 +22,7 @@ public class InterfazTaller2 {
         Login sesion = new Login();
         sesion.setVisible(true);
         sesion.setLocationRelativeTo(null);
+        /// sdjaskfjks
         
         //Mostrar Admin
         /*Administrador admin = new Administrador();
