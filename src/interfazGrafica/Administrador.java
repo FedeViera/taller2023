@@ -36,15 +36,13 @@ public class Administrador extends javax.swing.JFrame {
         banner = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         cerrarSesion = new javax.swing.JLabel();
-        generarCurso = new javax.swing.JPanel();
-        tituloGenerarCurso = new javax.swing.JLabel();
-        generarAdscriptor = new javax.swing.JPanel();
-        tituloGenerarAdscriptor = new javax.swing.JLabel();
         panelPestañas = new javax.swing.JTabbedPane();
         pestaña1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        botonGenerarCurso = new javax.swing.JButton();
+        botonGenerarAdscriptor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -94,85 +92,6 @@ public class Administrador extends javax.swing.JFrame {
         );
 
         panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
-
-        generarCurso.setBackground(new java.awt.Color(55, 208, 193));
-        generarCurso.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        generarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        generarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                generarCursoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                generarCursoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                generarCursoMouseExited(evt);
-            }
-        });
-
-        tituloGenerarCurso.setBackground(new java.awt.Color(51, 51, 51));
-        tituloGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 17)); // NOI18N
-        tituloGenerarCurso.setForeground(new java.awt.Color(51, 51, 51));
-        tituloGenerarCurso.setText("Generar curso");
-
-        javax.swing.GroupLayout generarCursoLayout = new javax.swing.GroupLayout(generarCurso);
-        generarCurso.setLayout(generarCursoLayout);
-        generarCursoLayout.setHorizontalGroup(
-            generarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generarCursoLayout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addComponent(tituloGenerarCurso)
-                .addGap(55, 55, 55))
-        );
-        generarCursoLayout.setVerticalGroup(
-            generarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(generarCursoLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(tituloGenerarCurso)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        panelAdministrador.add(generarCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 240, 90));
-
-        generarAdscriptor.setBackground(new java.awt.Color(55, 208, 193));
-        generarAdscriptor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        generarAdscriptor.setForeground(new java.awt.Color(153, 153, 153));
-        generarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        generarAdscriptor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                generarAdscriptorMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                generarAdscriptorMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                generarAdscriptorMouseExited(evt);
-            }
-        });
-
-        tituloGenerarAdscriptor.setBackground(new java.awt.Color(0, 0, 0));
-        tituloGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 17)); // NOI18N
-        tituloGenerarAdscriptor.setForeground(new java.awt.Color(51, 51, 51));
-        tituloGenerarAdscriptor.setText("Generar cuenta adscriptor");
-
-        javax.swing.GroupLayout generarAdscriptorLayout = new javax.swing.GroupLayout(generarAdscriptor);
-        generarAdscriptor.setLayout(generarAdscriptorLayout);
-        generarAdscriptorLayout.setHorizontalGroup(
-            generarAdscriptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(generarAdscriptorLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(tituloGenerarAdscriptor)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        generarAdscriptorLayout.setVerticalGroup(
-            generarAdscriptorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(generarAdscriptorLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(tituloGenerarAdscriptor)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        panelAdministrador.add(generarAdscriptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 240, 90));
 
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
         pestaña1.setForeground(new java.awt.Color(0, 0, 0));
@@ -229,40 +148,68 @@ public class Administrador extends javax.swing.JFrame {
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 790, 590));
 
+        botonGenerarCurso.setBackground(new java.awt.Color(55, 208, 193));
+        botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGenerarCurso.setText("Generar Curso");
+        botonGenerarCurso.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonGenerarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonGenerarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGenerarCursoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGenerarCursoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGenerarCursoMouseExited(evt);
+            }
+        });
+        botonGenerarCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarCursoActionPerformed(evt);
+            }
+        });
+        botonGenerarCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGenerarCursoKeyPressed(evt);
+            }
+        });
+        panelAdministrador.add(botonGenerarCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 240, 60));
+
+        botonGenerarAdscriptor.setBackground(new java.awt.Color(55, 208, 193));
+        botonGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGenerarAdscriptor.setText("Generar Adscriptor");
+        botonGenerarAdscriptor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonGenerarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGenerarAdscriptor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonGenerarAdscriptor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGenerarAdscriptorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGenerarAdscriptorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGenerarAdscriptorMouseExited(evt);
+            }
+        });
+        botonGenerarAdscriptor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarAdscriptorActionPerformed(evt);
+            }
+        });
+        botonGenerarAdscriptor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGenerarAdscriptorKeyPressed(evt);
+            }
+        });
+        panelAdministrador.add(botonGenerarAdscriptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 60));
+
         getContentPane().add(panelAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    //Boton GENERAR CURSO cambia el color al pasar por encima
-    private void generarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarCursoMouseEntered
-        generarCurso.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_generarCursoMouseEntered
-
-    //Boton GENERAR CURSO cambia el color al salir encima
-    private void generarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarCursoMouseExited
-        generarCurso.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_generarCursoMouseExited
-
-    //Boton GENERAR ADSCRIPTOR cambia el color al pasar por encima
-    private void generarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarAdscriptorMouseEntered
-        generarAdscriptor.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_generarAdscriptorMouseEntered
-
-    //Boton GENERAR ADSCRIPTOR cambia el color al salir encima
-    private void generarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarAdscriptorMouseExited
-        generarAdscriptor.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_generarAdscriptorMouseExited
-
-    //Al presionar boton GENERAR CURSO cambia de pestaña a la 0
-    private void generarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarCursoMouseClicked
-        panelPestañas.setSelectedIndex(0);
-    }//GEN-LAST:event_generarCursoMouseClicked
-
-    //Al presionar boton GENERAR ADSCRIPTOR cambia de pestaña a la 1
-    private void generarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarAdscriptorMouseClicked
-        panelPestañas.setSelectedIndex(1);
-    }//GEN-LAST:event_generarAdscriptorMouseClicked
 
     private void cerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionMouseClicked
         int x = getLocation().x;
@@ -273,6 +220,46 @@ public class Administrador extends javax.swing.JFrame {
         login.setLocationRelativeTo(null);
         login.setLocation(x, y);
     }//GEN-LAST:event_cerrarSesionMouseClicked
+
+    private void botonGenerarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseClicked
+        panelPestañas.setSelectedIndex(0);
+    }//GEN-LAST:event_botonGenerarCursoMouseClicked
+
+    private void botonGenerarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseEntered
+        botonGenerarCurso.setBackground(new Color(55,208,193));
+    }//GEN-LAST:event_botonGenerarCursoMouseEntered
+
+    private void botonGenerarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseExited
+        botonGenerarCurso.setBackground(new Color(45,196,181));
+    }//GEN-LAST:event_botonGenerarCursoMouseExited
+
+    private void botonGenerarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarCursoActionPerformed
+
+    }//GEN-LAST:event_botonGenerarCursoActionPerformed
+
+    private void botonGenerarCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarCursoKeyPressed
+
+    }//GEN-LAST:event_botonGenerarCursoKeyPressed
+
+    private void botonGenerarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseClicked
+        panelPestañas.setSelectedIndex(1);
+    }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
+
+    private void botonGenerarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGenerarAdscriptorMouseEntered
+
+    private void botonGenerarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGenerarAdscriptorMouseExited
+
+    private void botonGenerarAdscriptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGenerarAdscriptorActionPerformed
+
+    private void botonGenerarAdscriptorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGenerarAdscriptorKeyPressed
 
     /**
      * @param args the command line arguments
@@ -316,9 +303,9 @@ public class Administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel banner;
+    private javax.swing.JButton botonGenerarAdscriptor;
+    private javax.swing.JButton botonGenerarCurso;
     private javax.swing.JLabel cerrarSesion;
-    private javax.swing.JPanel generarAdscriptor;
-    private javax.swing.JPanel generarCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel panelAdministrador;
@@ -326,7 +313,5 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
     private javax.swing.JLabel titulo;
-    private javax.swing.JLabel tituloGenerarAdscriptor;
-    private javax.swing.JLabel tituloGenerarCurso;
     // End of variables declaration//GEN-END:variables
 }
