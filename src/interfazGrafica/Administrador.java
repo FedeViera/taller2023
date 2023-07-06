@@ -95,7 +95,7 @@ public class Administrador extends javax.swing.JFrame {
 
         panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
 
-        generarCurso.setBackground(new java.awt.Color(45, 196, 181));
+        generarCurso.setBackground(new java.awt.Color(55, 208, 193));
         generarCurso.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         generarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         generarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,19 +110,19 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        tituloGenerarCurso.setBackground(new java.awt.Color(0, 0, 0));
+        tituloGenerarCurso.setBackground(new java.awt.Color(51, 51, 51));
         tituloGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 17)); // NOI18N
-        tituloGenerarCurso.setForeground(new java.awt.Color(0, 0, 0));
+        tituloGenerarCurso.setForeground(new java.awt.Color(51, 51, 51));
         tituloGenerarCurso.setText("Generar curso");
 
         javax.swing.GroupLayout generarCursoLayout = new javax.swing.GroupLayout(generarCurso);
         generarCurso.setLayout(generarCursoLayout);
         generarCursoLayout.setHorizontalGroup(
             generarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(generarCursoLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generarCursoLayout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(tituloGenerarCurso)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(55, 55, 55))
         );
         generarCursoLayout.setVerticalGroup(
             generarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,8 +134,9 @@ public class Administrador extends javax.swing.JFrame {
 
         panelAdministrador.add(generarCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 240, 90));
 
-        generarAdscriptor.setBackground(new java.awt.Color(45, 196, 181));
+        generarAdscriptor.setBackground(new java.awt.Color(55, 208, 193));
         generarAdscriptor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        generarAdscriptor.setForeground(new java.awt.Color(153, 153, 153));
         generarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         generarAdscriptor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -151,7 +152,7 @@ public class Administrador extends javax.swing.JFrame {
 
         tituloGenerarAdscriptor.setBackground(new java.awt.Color(0, 0, 0));
         tituloGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 17)); // NOI18N
-        tituloGenerarAdscriptor.setForeground(new java.awt.Color(0, 0, 0));
+        tituloGenerarAdscriptor.setForeground(new java.awt.Color(51, 51, 51));
         tituloGenerarAdscriptor.setText("Generar cuenta adscriptor");
 
         javax.swing.GroupLayout generarAdscriptorLayout = new javax.swing.GroupLayout(generarAdscriptor);
@@ -269,7 +270,7 @@ public class Administrador extends javax.swing.JFrame {
         this.setVisible(false);
         Login login = new Login();
         login.setVisible(true);
-        login.setLocationRelativeTo(null); 
+        login.setLocationRelativeTo(null);
         login.setLocation(x, y);
     }//GEN-LAST:event_cerrarSesionMouseClicked
 
