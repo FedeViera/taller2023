@@ -19,9 +19,9 @@ public class InterfazTaller2 {
         //COMENTARIO
         //Mostrar Login
         
-        Login sesion = new Login();
-        sesion.setVisible(true);
-        sesion.setLocationRelativeTo(null);
+        Login login = new Login();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
         /// sdjaskfjks
         
         //Mostrar Admin

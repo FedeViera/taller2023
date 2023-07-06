@@ -35,6 +35,7 @@ public class Administrador extends javax.swing.JFrame {
         panelAdministrador = new javax.swing.JPanel();
         banner = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
+        cerrarSesion = new javax.swing.JLabel();
         generarCurso = new javax.swing.JPanel();
         tituloGenerarCurso = new javax.swing.JLabel();
         generarAdscriptor = new javax.swing.JPanel();
@@ -60,21 +61,36 @@ public class Administrador extends javax.swing.JFrame {
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setText("Panel Administrador");
 
+        cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion.png"))); // NOI18N
+        cerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarSesionMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout bannerLayout = new javax.swing.GroupLayout(banner);
         banner.setLayout(bannerLayout);
         bannerLayout.setHorizontalGroup(
             bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bannerLayout.createSequentialGroup()
-                .addContainerGap(652, Short.MAX_VALUE)
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+            .addGroup(bannerLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 428, Short.MAX_VALUE)
+                .addComponent(cerrarSesion)
+                .addGap(55, 55, 55))
         );
         bannerLayout.setVerticalGroup(
             bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bannerLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bannerLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bannerLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
@@ -95,7 +111,7 @@ public class Administrador extends javax.swing.JFrame {
         });
 
         tituloGenerarCurso.setBackground(new java.awt.Color(0, 0, 0));
-        tituloGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        tituloGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 17)); // NOI18N
         tituloGenerarCurso.setForeground(new java.awt.Color(0, 0, 0));
         tituloGenerarCurso.setText("Generar curso");
 
@@ -104,16 +120,16 @@ public class Administrador extends javax.swing.JFrame {
         generarCursoLayout.setHorizontalGroup(
             generarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(generarCursoLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(55, 55, 55)
                 .addComponent(tituloGenerarCurso)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         generarCursoLayout.setVerticalGroup(
             generarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generarCursoLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+            .addGroup(generarCursoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(tituloGenerarCurso)
-                .addGap(24, 24, 24))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         panelAdministrador.add(generarCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 240, 90));
@@ -247,6 +263,16 @@ public class Administrador extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(1);
     }//GEN-LAST:event_generarAdscriptorMouseClicked
 
+    private void cerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionMouseClicked
+        int x = getLocation().x;
+        int y = getLocation().y;
+        this.setVisible(false);
+        Login login = new Login();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null); 
+        login.setLocation(x, y);
+    }//GEN-LAST:event_cerrarSesionMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +315,7 @@ public class Administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel banner;
+    private javax.swing.JLabel cerrarSesion;
     private javax.swing.JPanel generarAdscriptor;
     private javax.swing.JPanel generarCurso;
     private javax.swing.JLabel jLabel1;

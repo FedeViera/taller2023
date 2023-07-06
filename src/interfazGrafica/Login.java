@@ -178,28 +178,28 @@ public class Login extends javax.swing.JFrame {
         admin.setLocation(x, y);
     }//GEN-LAST:event_botonEntrarActionPerformed
 
-    //Espacio para ingresar usuario (guarda temporalmente lo que escribió el usuario)
+    //Espacio para ingresar usuario (NO SE USA ESTA COMENTADO* guarda temporalmente lo que escribió el usuario)
     private void textoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoUsuarioMousePressed
-        if(textoUsuario.getText().equals("Ingrese su usuario")){
+        /*if(textoUsuario.getText().equals("Ingrese su usuario")){
             textoUsuario.setText("");
             textoUsuario.setForeground(Color.black);
         }
         if(String.valueOf(textoContraseña.getPassword()).isEmpty()) {
             textoContraseña.setText("************");
             textoContraseña.setForeground(Color.gray);
-        }     
+        }*/     
     }//GEN-LAST:event_textoUsuarioMousePressed
 
-    //Espacio para ingresar contraseña (guarda temporalmente lo que escribió el usuario)
+    //Espacio para ingresar contraseña (NO SE USA ESTA COMENTADO* guarda temporalmente lo que escribió el usuario)
     private void textoContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseñaMousePressed
-        if(String.valueOf(textoContraseña.getPassword()).equals("************")) {
+        /*if(String.valueOf(textoContraseña.getPassword()).equals("************")) {
             textoContraseña.setText("");
             textoContraseña.setForeground(Color.gray);
         }
         if(textoUsuario.getText().isEmpty()) {
            textoUsuario.setText("Ingrese su usuario");
            textoUsuario.setForeground(Color.black); 
-        }
+        }*/
     }//GEN-LAST:event_textoContraseñaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
