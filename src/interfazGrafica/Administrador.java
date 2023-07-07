@@ -221,16 +221,17 @@ public class Administrador extends javax.swing.JFrame {
         login.setLocation(x, y);
     }//GEN-LAST:event_cerrarSesionMouseClicked
 
+   
     private void botonGenerarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseClicked
         panelPestañas.setSelectedIndex(0);
     }//GEN-LAST:event_botonGenerarCursoMouseClicked
 
     private void botonGenerarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseEntered
-        botonGenerarCurso.setBackground(new Color(55,208,193));
+            botonGenerarCurso.setBackground(new Color(55,208,193));
     }//GEN-LAST:event_botonGenerarCursoMouseEntered
 
     private void botonGenerarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseExited
-        botonGenerarCurso.setBackground(new Color(45,196,181));
+            botonGenerarCurso.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_botonGenerarCursoMouseExited
 
     private void botonGenerarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarCursoActionPerformed
@@ -238,7 +239,8 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGenerarCursoActionPerformed
 
     private void botonGenerarCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarCursoKeyPressed
-
+        
+        
     }//GEN-LAST:event_botonGenerarCursoKeyPressed
 
     private void botonGenerarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseClicked
@@ -246,11 +248,11 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
 
     private void botonGenerarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseEntered
-        // TODO add your handling code here:
+        botonGenerarAdscriptor.setBackground(new Color(55,208,193));
     }//GEN-LAST:event_botonGenerarAdscriptorMouseEntered
 
     private void botonGenerarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseExited
-        // TODO add your handling code here:
+        botonGenerarAdscriptor.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_botonGenerarAdscriptorMouseExited
 
     private void botonGenerarAdscriptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorActionPerformed
