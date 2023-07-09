@@ -54,17 +54,17 @@ public class Login extends javax.swing.JFrame {
         panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgMaleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maletaBlanca.png"))); // NOI18N
-        panelLogin.add(imgMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, -1, 130));
+        panelLogin.add(imgMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 220, -1, 130));
 
         textoPortafolioDocente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         textoPortafolioDocente.setForeground(new java.awt.Color(255, 255, 255));
         textoPortafolioDocente.setText("PORTAFOLIO DOCENTE");
-        panelLogin.add(textoPortafolioDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 220, 40));
+        panelLogin.add(textoPortafolioDocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 370, 220, 40));
 
         imgFondoMaleta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         imgFondoMaleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gradient-background-768x1024-10974.jpg"))); // NOI18N
         imgFondoMaleta.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        panelLogin.add(imgFondoMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 250, 670));
+        panelLogin.add(imgFondoMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 250, 670));
 
         tituloUsuario.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         tituloUsuario.setText("USUARIO:");
@@ -120,6 +120,8 @@ public class Login extends javax.swing.JFrame {
         botonEntrar.setText("ENTRAR");
         botonEntrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEntrar.setFocusPainted(false);
+        botonEntrar.setFocusable(false);
         botonEntrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,7 +164,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoUsuarioActionPerformed
-        // TODO add your handling code here:
+        String nombreUsuario = textoUsuario.getText();
     }//GEN-LAST:event_textoUsuarioActionPerformed
 
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
@@ -173,6 +175,7 @@ public class Login extends javax.swing.JFrame {
         int y = getLocation().y;
         this.setVisible(false);
         Administrador admin = new Administrador();
+        admin.bienvenidaUsuario(textoUsuario.getText()); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
         admin.setVisible(true);
         admin.setLocationRelativeTo(null); 
         admin.setLocation(x, y);

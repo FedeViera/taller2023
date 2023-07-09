@@ -6,6 +6,7 @@ package interfazGrafica;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,154 +34,56 @@ public class Administrador extends javax.swing.JFrame {
     private void initComponents() {
 
         panelAdministrador = new javax.swing.JPanel();
+        bienvenidaUsuario = new javax.swing.JLabel();
         banner = new javax.swing.JPanel();
-        titulo = new javax.swing.JLabel();
-        cerrarSesion = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        botonGenerarAdscriptor = new javax.swing.JButton();
+        botonGenerarCurso = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
         panelPestañas = new javax.swing.JTabbedPane();
         pestaña1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        botonGenerarCurso = new javax.swing.JButton();
-        botonGenerarAdscriptor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelAdministrador.setBackground(new java.awt.Color(255, 255, 255));
         panelAdministrador.setMinimumSize(new java.awt.Dimension(1030, 670));
         panelAdministrador.setPreferredSize(new java.awt.Dimension(1030, 670));
         panelAdministrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        banner.setBackground(new java.awt.Color(38, 56, 63));
+        bienvenidaUsuario.setFont(new java.awt.Font("Gadugi", 3, 18)); // NOI18N
+        bienvenidaUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        panelAdministrador.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 220, 40));
 
-        titulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        titulo.setForeground(new java.awt.Color(255, 255, 255));
-        titulo.setText("Panel Administrador");
-
-        cerrarSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion.png"))); // NOI18N
-        cerrarSesion.setToolTipText("");
-        cerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cerrarSesionMouseClicked(evt);
-            }
-        });
+        banner.setBackground(new java.awt.Color(28, 100, 208));
 
         javax.swing.GroupLayout bannerLayout = new javax.swing.GroupLayout(banner);
         banner.setLayout(bannerLayout);
         bannerLayout.setHorizontalGroup(
             bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bannerLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
-                .addComponent(cerrarSesion)
-                .addGap(49, 49, 49))
+            .addGap(0, 950, Short.MAX_VALUE)
         );
         bannerLayout.setVerticalGroup(
             bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bannerLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(bannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cerrarSesion)
-                    .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addGap(0, 80, Short.MAX_VALUE)
         );
 
-        panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 110));
+        panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 950, 80));
 
-        pestaña1.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña1.setForeground(new java.awt.Color(0, 0, 0));
-        pestaña1.setToolTipText("");
+        jPanel1.setBackground(new java.awt.Color(38, 56, 63));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("PANEL GENERAR CURSO");
-
-        javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
-        pestaña1.setLayout(pestaña1Layout);
-        pestaña1Layout.setHorizontalGroup(
-            pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(259, 259, 259)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(190, Short.MAX_VALUE))
-        );
-        pestaña1Layout.setVerticalGroup(
-            pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
-        );
-
-        panelPestañas.addTab("tab1", pestaña1);
-
-        pestaña2.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña2.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("PANEL GENERAR CUENTA ADSCRIPTOR");
-
-        javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
-        pestaña2.setLayout(pestaña2Layout);
-        pestaña2Layout.setHorizontalGroup(
-            pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2Layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
-        );
-        pestaña2Layout.setVerticalGroup(
-            pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña2Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(292, Short.MAX_VALUE))
-        );
-
-        panelPestañas.addTab("tab2", pestaña2);
-
-        panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 790, 590));
-
-        botonGenerarCurso.setBackground(new java.awt.Color(55, 208, 193));
-        botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGenerarCurso.setText("Generar Curso");
-        botonGenerarCurso.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonGenerarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        botonGenerarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonGenerarCursoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonGenerarCursoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonGenerarCursoMouseExited(evt);
-            }
-        });
-        botonGenerarCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGenerarCursoActionPerformed(evt);
-            }
-        });
-        botonGenerarCurso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonGenerarCursoKeyPressed(evt);
-            }
-        });
-        panelAdministrador.add(botonGenerarCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 240, 60));
-
-        botonGenerarAdscriptor.setBackground(new java.awt.Color(55, 208, 193));
+        botonGenerarAdscriptor.setBackground(new java.awt.Color(38, 56, 63));
         botonGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGenerarAdscriptor.setForeground(new java.awt.Color(255, 255, 255));
         botonGenerarAdscriptor.setText("Generar Adscriptor");
-        botonGenerarAdscriptor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonGenerarAdscriptor.setBorder(null);
         botonGenerarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGenerarAdscriptor.setFocusPainted(false);
+        botonGenerarAdscriptor.setFocusable(false);
         botonGenerarAdscriptor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonGenerarAdscriptor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -203,65 +106,187 @@ public class Administrador extends javax.swing.JFrame {
                 botonGenerarAdscriptorKeyPressed(evt);
             }
         });
-        panelAdministrador.add(botonGenerarAdscriptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 60));
 
-        getContentPane().add(panelAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 670));
+        botonGenerarCurso.setBackground(new java.awt.Color(38, 56, 63));
+        botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGenerarCurso.setForeground(new java.awt.Color(255, 255, 255));
+        botonGenerarCurso.setText("Generar Curso");
+        botonGenerarCurso.setBorder(null);
+        botonGenerarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGenerarCurso.setFocusPainted(false);
+        botonGenerarCurso.setFocusable(false);
+        botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonGenerarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGenerarCursoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGenerarCursoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGenerarCursoMouseExited(evt);
+            }
+        });
+        botonGenerarCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarCursoActionPerformed(evt);
+            }
+        });
+        botonGenerarCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGenerarCursoKeyPressed(evt);
+            }
+        });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA-gris-chico.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonGenerarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonGenerarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(410, Short.MAX_VALUE))
+        );
+
+        panelAdministrador.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
+
+        pestaña1.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña1.setForeground(new java.awt.Color(0, 0, 0));
+        pestaña1.setToolTipText("");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("PANEL GENERAR CURSO");
+
+        javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
+        pestaña1.setLayout(pestaña1Layout);
+        pestaña1Layout.setHorizontalGroup(
+            pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña1Layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(360, Short.MAX_VALUE))
+        );
+        pestaña1Layout.setVerticalGroup(
+            pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña1Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
+        );
+
+        panelPestañas.addTab("tab1", pestaña1);
+
+        pestaña2.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña2.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("PANEL GENERAR CUENTA ADSCRIPTOR");
+
+        javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
+        pestaña2.setLayout(pestaña2Layout);
+        pestaña2Layout.setHorizontalGroup(
+            pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2Layout.createSequentialGroup()
+                .addContainerGap(355, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
+        );
+        pestaña2Layout.setVerticalGroup(
+            pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña2Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(272, Short.MAX_VALUE))
+        );
+
+        panelPestañas.addTab("tab2", pestaña2);
+
+        panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarSesionMouseClicked
-        int x = getLocation().x;
-        int y = getLocation().y;
-        this.setVisible(false);
-        Login login = new Login();
-        login.setVisible(true);
-        login.setLocationRelativeTo(null);
-        login.setLocation(x, y);
-    }//GEN-LAST:event_cerrarSesionMouseClicked
+    private void botonGenerarCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarCursoKeyPressed
 
-   
-    private void botonGenerarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseClicked
-        panelPestañas.setSelectedIndex(0);
-    }//GEN-LAST:event_botonGenerarCursoMouseClicked
-
-    private void botonGenerarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseEntered
-            botonGenerarCurso.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_botonGenerarCursoMouseEntered
-
-    private void botonGenerarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseExited
-            botonGenerarCurso.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_botonGenerarCursoMouseExited
+    }//GEN-LAST:event_botonGenerarCursoKeyPressed
 
     private void botonGenerarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarCursoActionPerformed
 
     }//GEN-LAST:event_botonGenerarCursoActionPerformed
 
-    private void botonGenerarCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarCursoKeyPressed
-        
-        
-    }//GEN-LAST:event_botonGenerarCursoKeyPressed
+    private void botonGenerarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseExited
+        //botonGenerarCurso.setBackground(new Color(45,196,181));
+    }//GEN-LAST:event_botonGenerarCursoMouseExited
 
-    private void botonGenerarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseClicked
-        panelPestañas.setSelectedIndex(1);
-    }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
+    private void botonGenerarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseEntered
+        //botonGenerarCurso.setBackground(new Color(55,208,193));
+    }//GEN-LAST:event_botonGenerarCursoMouseEntered
 
-    private void botonGenerarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseEntered
-        botonGenerarAdscriptor.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_botonGenerarAdscriptorMouseEntered
-
-    private void botonGenerarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseExited
-        botonGenerarAdscriptor.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_botonGenerarAdscriptorMouseExited
-
-    private void botonGenerarAdscriptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonGenerarAdscriptorActionPerformed
+    private void botonGenerarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseClicked
+        panelPestañas.setSelectedIndex(0);
+        //cambiarColorBoton(botonGenerarCurso);
+    }//GEN-LAST:event_botonGenerarCursoMouseClicked
 
     private void botonGenerarAdscriptorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGenerarAdscriptorKeyPressed
 
+    private void botonGenerarAdscriptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGenerarAdscriptorActionPerformed
+
+    private void botonGenerarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseExited
+        //botonGenerarAdscriptor.setBackground(new Color(45,196,181));
+    }//GEN-LAST:event_botonGenerarAdscriptorMouseExited
+
+    private void botonGenerarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseEntered
+        //botonGenerarAdscriptor.setBackground(new Color(55,208,193));
+    }//GEN-LAST:event_botonGenerarAdscriptorMouseEntered
+
+    private void botonGenerarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseClicked
+        panelPestañas.setSelectedIndex(1);
+        //cambiarColorBoton(botonGenerarAdscriptor);
+    }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
+
+     
+    //Metodo para cambiar el nombre en la bienvenida
+    public void bienvenidaUsuario(String nombreUsuario) {
+    bienvenidaUsuario.setText("Bienvenido/a " + nombreUsuario);
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -304,15 +329,17 @@ public class Administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel banner;
+    private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonGenerarAdscriptor;
     private javax.swing.JButton botonGenerarCurso;
-    private javax.swing.JLabel cerrarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
-    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
