@@ -41,6 +41,7 @@ public class Administrador extends javax.swing.JFrame {
         botonGenerarCurso = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
+        botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestaña1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -111,11 +112,13 @@ public class Administrador extends javax.swing.JFrame {
         botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonGenerarCurso.setForeground(new java.awt.Color(255, 255, 255));
         botonGenerarCurso.setText("Generar Curso");
+        botonGenerarCurso.setToolTipText("");
         botonGenerarCurso.setBorder(null);
         botonGenerarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGenerarCurso.setFocusPainted(false);
         botonGenerarCurso.setFocusable(false);
-        botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGenerarCurso.setIconTextGap(10);
         botonGenerarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonGenerarCursoMouseClicked(evt);
@@ -140,6 +143,40 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA-gris-chico.png"))); // NOI18N
 
+        botonCerrarSesion.setBackground(new java.awt.Color(38, 56, 63));
+        botonCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        botonCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Contacts.png"))); // NOI18N
+        botonCerrarSesion.setText("Cerrar Sesion");
+        botonCerrarSesion.setBorder(null);
+        botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCerrarSesion.setFocusPainted(false);
+        botonCerrarSesion.setFocusable(false);
+        botonCerrarSesion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonCerrarSesion.setIconTextGap(10);
+        botonCerrarSesion.setMargin(new java.awt.Insets(2, 14, 2, 20));
+        botonCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCerrarSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonCerrarSesionMouseExited(evt);
+            }
+        });
+        botonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarSesionActionPerformed(evt);
+            }
+        });
+        botonCerrarSesion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonCerrarSesionKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,6 +189,7 @@ public class Administrador extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(botonCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,8 +200,10 @@ public class Administrador extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonGenerarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(410, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
+                .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelAdministrador.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
@@ -255,7 +295,10 @@ public class Administrador extends javax.swing.JFrame {
 
     private void botonGenerarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseClicked
         panelPestañas.setSelectedIndex(0);
-        //cambiarColorBoton(botonGenerarCurso);
+        botonGenerarCurso.setBackground(new Color(255, 255, 255)); 
+        botonGenerarCurso.setForeground(new Color(0,0,0));
+        botonGenerarAdscriptor.setBackground(new Color(38,56,63)); 
+        botonGenerarAdscriptor.setForeground(new Color(255,255,255));  
     }//GEN-LAST:event_botonGenerarCursoMouseClicked
 
     private void botonGenerarAdscriptorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorKeyPressed
@@ -276,9 +319,44 @@ public class Administrador extends javax.swing.JFrame {
 
     private void botonGenerarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseClicked
         panelPestañas.setSelectedIndex(1);
-        //cambiarColorBoton(botonGenerarAdscriptor);
+        botonGenerarAdscriptor.setBackground(new Color(255, 255, 255)); 
+        botonGenerarAdscriptor.setForeground(new Color(0,0,0));
+        botonGenerarCurso.setBackground(new Color(38,56,63)); 
+        botonGenerarCurso.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
 
+    private void botonCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarSesionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCerrarSesionMouseClicked
+
+    private void botonCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarSesionMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCerrarSesionMouseEntered
+
+    private void botonCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarSesionMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCerrarSesionMouseExited
+
+    private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
+        int x = getLocation().x;
+        int y = getLocation().y;
+        this.setVisible(false);
+        Login login = new Login();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null); 
+        login.setLocation(x, y);
+    }//GEN-LAST:event_botonCerrarSesionActionPerformed
+
+    private void botonCerrarSesionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonCerrarSesionKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCerrarSesionKeyPressed
+
+    private void cambiarEstadoBoton(JButton botonSeleccionado, JButton botonDeseleccionado) {
+        botonSeleccionado.setBackground(new Color(255, 255, 255));
+        botonSeleccionado.setForeground(new Color(0, 0, 0));
+        botonDeseleccionado.setBackground(new Color(38, 56, 63));
+        botonDeseleccionado.setForeground(new Color(255, 255, 255));
+    }
      
     //Metodo para cambiar el nombre en la bienvenida
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -330,6 +408,7 @@ public class Administrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
+    private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonGenerarAdscriptor;
     private javax.swing.JButton botonGenerarCurso;
     private javax.swing.JLabel jLabel1;
