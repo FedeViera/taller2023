@@ -36,11 +36,11 @@ public class Administrador extends javax.swing.JFrame {
         panelAdministrador = new javax.swing.JPanel();
         bienvenidaUsuario = new javax.swing.JLabel();
         banner = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        panelOpciones = new javax.swing.JPanel();
         botonGenerarAdscriptor = new javax.swing.JButton();
         botonGenerarCurso = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        separador = new javax.swing.JSeparator();
+        logoSDFA = new javax.swing.JLabel();
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestaña1 = new javax.swing.JPanel();
@@ -58,7 +58,7 @@ public class Administrador extends javax.swing.JFrame {
 
         bienvenidaUsuario.setFont(new java.awt.Font("Gadugi", 3, 18)); // NOI18N
         bienvenidaUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        panelAdministrador.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 220, 40));
+        panelAdministrador.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 470, 40));
 
         banner.setBackground(new java.awt.Color(28, 100, 208));
 
@@ -75,17 +75,19 @@ public class Administrador extends javax.swing.JFrame {
 
         panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 950, 80));
 
-        jPanel1.setBackground(new java.awt.Color(38, 56, 63));
+        panelOpciones.setBackground(new java.awt.Color(38, 56, 63));
 
         botonGenerarAdscriptor.setBackground(new java.awt.Color(38, 56, 63));
         botonGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonGenerarAdscriptor.setForeground(new java.awt.Color(255, 255, 255));
-        botonGenerarAdscriptor.setText("Generar Adscriptor");
+        botonGenerarAdscriptor.setText("    Generar Adscriptor");
         botonGenerarAdscriptor.setBorder(null);
         botonGenerarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGenerarAdscriptor.setFocusPainted(false);
         botonGenerarAdscriptor.setFocusable(false);
-        botonGenerarAdscriptor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonGenerarAdscriptor.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonGenerarAdscriptor.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGenerarAdscriptor.setIconTextGap(10);
         botonGenerarAdscriptor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonGenerarAdscriptorMouseClicked(evt);
@@ -111,12 +113,13 @@ public class Administrador extends javax.swing.JFrame {
         botonGenerarCurso.setBackground(new java.awt.Color(38, 56, 63));
         botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonGenerarCurso.setForeground(new java.awt.Color(255, 255, 255));
-        botonGenerarCurso.setText("Generar Curso");
+        botonGenerarCurso.setText("     Generar Curso");
         botonGenerarCurso.setToolTipText("");
         botonGenerarCurso.setBorder(null);
         botonGenerarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGenerarCurso.setFocusPainted(false);
         botonGenerarCurso.setFocusable(false);
+        botonGenerarCurso.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         botonGenerarCurso.setIconTextGap(10);
         botonGenerarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,9 +144,9 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA-gris-chico.png"))); // NOI18N
+        logoSDFA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA-gris-chico.png"))); // NOI18N
 
-        botonCerrarSesion.setBackground(new java.awt.Color(38, 56, 63));
+        botonCerrarSesion.setBackground(new java.awt.Color(52, 80, 86));
         botonCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         botonCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Contacts.png"))); // NOI18N
@@ -177,27 +180,31 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(botonGenerarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
+        panelOpciones.setLayout(panelOpcionesLayout);
+        panelOpcionesLayout.setHorizontalGroup(
+            panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(botonCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelOpcionesLayout.createSequentialGroup()
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelOpcionesLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logoSDFA, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botonGenerarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelOpcionesLayout.setVerticalGroup(
+            panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoSDFA, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonGenerarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -206,7 +213,7 @@ public class Administrador extends javax.swing.JFrame {
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelAdministrador.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
+        panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
         pestaña1.setForeground(new java.awt.Color(0, 0, 0));
@@ -360,7 +367,7 @@ public class Administrador extends javax.swing.JFrame {
      
     //Metodo para cambiar el nombre en la bienvenida
     public void bienvenidaUsuario(String nombreUsuario) {
-    bienvenidaUsuario.setText("Bienvenido/a " + nombreUsuario);
+    bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
     }
 
     
@@ -413,12 +420,12 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton botonGenerarCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
+    private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
+    private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }
