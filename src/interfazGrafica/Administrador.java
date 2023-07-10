@@ -77,9 +77,9 @@ public class Administrador extends javax.swing.JFrame {
 
         panelOpciones.setBackground(new java.awt.Color(38, 56, 63));
 
-        botonGenerarAdscriptor.setBackground(new java.awt.Color(38, 56, 63));
+        botonGenerarAdscriptor.setBackground(new java.awt.Color(52, 80, 86));
         botonGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGenerarAdscriptor.setForeground(new java.awt.Color(255, 255, 255));
+        botonGenerarAdscriptor.setForeground(new java.awt.Color(204, 204, 204));
         botonGenerarAdscriptor.setText("    Generar Adscriptor");
         botonGenerarAdscriptor.setBorder(null);
         botonGenerarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -110,9 +110,9 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        botonGenerarCurso.setBackground(new java.awt.Color(38, 56, 63));
+        botonGenerarCurso.setBackground(new java.awt.Color(52, 80, 86));
         botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGenerarCurso.setForeground(new java.awt.Color(255, 255, 255));
+        botonGenerarCurso.setForeground(new java.awt.Color(204, 204, 204));
         botonGenerarCurso.setText("     Generar Curso");
         botonGenerarCurso.setToolTipText("");
         botonGenerarCurso.setBorder(null);
@@ -304,7 +304,7 @@ public class Administrador extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(0);
         botonGenerarCurso.setBackground(new Color(255, 255, 255)); 
         botonGenerarCurso.setForeground(new Color(0,0,0));
-        botonGenerarAdscriptor.setBackground(new Color(38,56,63)); 
+        botonGenerarAdscriptor.setBackground(new Color(52,80,86)); 
         botonGenerarAdscriptor.setForeground(new Color(255,255,255));  
     }//GEN-LAST:event_botonGenerarCursoMouseClicked
 
@@ -328,7 +328,7 @@ public class Administrador extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(1);
         botonGenerarAdscriptor.setBackground(new Color(255, 255, 255)); 
         botonGenerarAdscriptor.setForeground(new Color(0,0,0));
-        botonGenerarCurso.setBackground(new Color(38,56,63)); 
+        botonGenerarCurso.setBackground(new Color(52,80,86)); 
         botonGenerarCurso.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
 
@@ -357,13 +357,6 @@ public class Administrador extends javax.swing.JFrame {
     private void botonCerrarSesionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonCerrarSesionKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
-
-    private void cambiarEstadoBoton(JButton botonSeleccionado, JButton botonDeseleccionado) {
-        botonSeleccionado.setBackground(new Color(255, 255, 255));
-        botonSeleccionado.setForeground(new Color(0, 0, 0));
-        botonDeseleccionado.setBackground(new Color(38, 56, 63));
-        botonDeseleccionado.setForeground(new Color(255, 255, 255));
-    }
      
     //Metodo para cambiar el nombre en la bienvenida
     public void bienvenidaUsuario(String nombreUsuario) {
