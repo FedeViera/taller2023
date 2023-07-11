@@ -307,10 +307,9 @@ public class Administrador extends javax.swing.JFrame {
         pestaña0.setLayout(pestaña0Layout);
         pestaña0Layout.setHorizontalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+            .addGroup(pestaña0Layout.createSequentialGroup()
+                .addContainerGap(287, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pestaña0Layout.setVerticalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

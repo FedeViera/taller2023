@@ -38,7 +38,7 @@ String pass = "";
     public String username = "root";
 
     // Clave de usuario
-    public String password = "";
+    public String password = "0123";
 
     public Connection conectarMySQL() {
         Connection conn = null;
