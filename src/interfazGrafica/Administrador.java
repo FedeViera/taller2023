@@ -42,6 +42,7 @@ public class Administrador extends javax.swing.JFrame {
         botonGestionCuentas = new javax.swing.JButton();
         botonGestionCursos = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
+        botonGestionActividades = new javax.swing.JButton();
         botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestaña0 = new javax.swing.JPanel();
@@ -50,6 +51,8 @@ public class Administrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        pestaña4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -183,6 +186,39 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
+        botonGestionActividades.setBackground(new java.awt.Color(52, 80, 86));
+        botonGestionActividades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGestionActividades.setForeground(new java.awt.Color(204, 204, 204));
+        botonGestionActividades.setText("    Gestión de Actividades");
+        botonGestionActividades.setBorder(null);
+        botonGestionActividades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGestionActividades.setFocusPainted(false);
+        botonGestionActividades.setFocusable(false);
+        botonGestionActividades.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonGestionActividades.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGestionActividades.setIconTextGap(10);
+        botonGestionActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGestionActividadesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGestionActividadesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGestionActividadesMouseExited(evt);
+            }
+        });
+        botonGestionActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGestionActividadesActionPerformed(evt);
+            }
+        });
+        botonGestionActividades.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGestionActividadesKeyPressed(evt);
+            }
+        });
+
         botonGestionEvaluaciones.setBackground(new java.awt.Color(52, 80, 86));
         botonGestionEvaluaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonGestionEvaluaciones.setForeground(new java.awt.Color(204, 204, 204));
@@ -234,6 +270,7 @@ public class Administrador extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonGestionCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
@@ -248,8 +285,10 @@ public class Administrador extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(botonGestionCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(botonGestionActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -314,8 +353,8 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
-        jLabel3.setText("PANEL GESTION DE EVALUACIONES");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga_1.jpeg"))); // NOI18N
+        jLabel3.setText("PANEL GESTION DE ACTIVIDADES");
 
         javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
         pestaña2.setLayout(pestaña2Layout);
@@ -335,6 +374,32 @@ public class Administrador extends javax.swing.JFrame {
         );
 
         panelPestañas.addTab("tab3", pestaña2);
+
+        pestaña4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
+        jLabel4.setText("PANEL GESTION DE EVALUACIONES");
+
+        javax.swing.GroupLayout pestaña4Layout = new javax.swing.GroupLayout(pestaña4);
+        pestaña4.setLayout(pestaña4Layout);
+        pestaña4Layout.setHorizontalGroup(
+            pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña4Layout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+        pestaña4Layout.setVerticalGroup(
+            pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña4Layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+
+        panelPestañas.addTab("tab4", pestaña4);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -375,6 +440,8 @@ public class Administrador extends javax.swing.JFrame {
         botonGestionCuentas.setForeground(new Color(0,0,0));
         botonGestionCursos.setBackground(new Color(52,80,86)); 
         botonGestionCursos.setForeground(new Color(255,255,255));  
+        botonGestionActividades.setBackground(new Color(52,80,86)); 
+        botonGestionActividades.setForeground(new Color(255,255,255));
         botonGestionEvaluaciones.setBackground(new Color(52,80,86)); 
         botonGestionEvaluaciones.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_botonGestionCuentasMouseClicked
@@ -402,6 +469,8 @@ public class Administrador extends javax.swing.JFrame {
         botonGestionCursos.setForeground(new Color(0,0,0));
         botonGestionCuentas.setBackground(new Color(52,80,86)); 
         botonGestionCuentas.setForeground(new Color(255,255,255));
+        botonGestionActividades.setBackground(new Color(52,80,86)); 
+        botonGestionActividades.setForeground(new Color(255,255,255));
         botonGestionEvaluaciones.setBackground(new Color(52,80,86)); 
         botonGestionEvaluaciones.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_botonGestionCursosMouseClicked
@@ -433,14 +502,44 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
 
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
-    private void botonGestionEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseClicked
+    private void botonGestionActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseClicked
         panelPestañas.setSelectedIndex(2);
-        botonGestionEvaluaciones.setBackground(new Color(255, 255, 255)); 
-        botonGestionEvaluaciones.setForeground(new Color(0,0,0));
+        botonGestionActividades.setBackground(new Color(255, 255, 255)); 
+        botonGestionActividades.setForeground(new Color(0,0,0));
         botonGestionCuentas.setBackground(new Color(52,80,86)); 
         botonGestionCuentas.setForeground(new Color(255,255,255));
         botonGestionCursos.setBackground(new Color(52,80,86)); 
         botonGestionCursos.setForeground(new Color(255,255,255));
+        botonGestionEvaluaciones.setBackground(new Color(52,80,86)); 
+        botonGestionEvaluaciones.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_botonGestionActividadesMouseClicked
+
+    private void botonGestionActividadesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionActividadesMouseEntered
+
+    private void botonGestionActividadesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionActividadesMouseExited
+
+    private void botonGestionActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionActividadesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionActividadesActionPerformed
+
+    private void botonGestionActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionActividadesKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionActividadesKeyPressed
+
+    private void botonGestionEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseClicked
+        panelPestañas.setSelectedIndex(3);
+        botonGestionEvaluaciones.setBackground(new Color(255, 255, 255)); 
+        botonGestionEvaluaciones.setForeground(new Color(0,0,0));
+        botonGestionCursos.setBackground(new Color(52,80,86)); 
+        botonGestionCursos.setForeground(new Color(255,255,255));  
+        botonGestionActividades.setBackground(new Color(52,80,86)); 
+        botonGestionActividades.setForeground(new Color(255,255,255));
+        botonGestionCuentas.setBackground(new Color(52,80,86)); 
+        botonGestionCuentas.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_botonGestionEvaluacionesMouseClicked
 
     private void botonGestionEvaluacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseEntered
@@ -510,12 +609,14 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
+    private javax.swing.JButton botonGestionActividades;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JButton botonGestionEvaluaciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
@@ -523,6 +624,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel pestaña0;
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
+    private javax.swing.JPanel pestaña4;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,7 +11,7 @@ import interfazGrafica.Login;
  *
  * @author SDFA
  */
-public class InterfazTaller2 {
+public class Interfaz {
 
     /**
      * @param args the command line arguments
