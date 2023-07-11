@@ -238,6 +238,12 @@ public class Login extends javax.swing.JFrame {
             docente.setVisible(true);
             docente.setLocationRelativeTo(null);
             docente.setLocation(x, y);
+        } else if (usuario.equals("3")){
+            Adscripto adscripto = new Adscripto();
+            adscripto.bienvenidaUsuario(usuario);
+            adscripto.setVisible(true);
+            adscripto.setLocationRelativeTo(null);
+            adscripto.setLocation(x, y);
         } else {
             // Manejar el caso en que el usuario no sea ni Administrador ni Docente
             JOptionPane.showMessageDialog(null, "El usuario no existe, intente con otro usuario", "Error", JOptionPane.ERROR_MESSAGE);
