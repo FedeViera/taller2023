@@ -51,7 +51,7 @@ public class Administrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        pestaña4 = new javax.swing.JPanel();
+        pestaña3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -307,16 +307,17 @@ public class Administrador extends javax.swing.JFrame {
         pestaña0.setLayout(pestaña0Layout);
         pestaña0Layout.setHorizontalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña0Layout.createSequentialGroup()
-                .addContainerGap(287, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
+                .addContainerGap(213, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
         pestaña0Layout.setVerticalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pestaña0Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(136, 136, 136)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         panelPestañas.addTab("tab1", pestaña0);
@@ -374,31 +375,31 @@ public class Administrador extends javax.swing.JFrame {
 
         panelPestañas.addTab("tab3", pestaña2);
 
-        pestaña4.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
         jLabel4.setText("PANEL GESTION DE EVALUACIONES");
 
-        javax.swing.GroupLayout pestaña4Layout = new javax.swing.GroupLayout(pestaña4);
-        pestaña4.setLayout(pestaña4Layout);
-        pestaña4Layout.setHorizontalGroup(
-            pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pestaña3Layout = new javax.swing.GroupLayout(pestaña3);
+        pestaña3.setLayout(pestaña3Layout);
+        pestaña3Layout.setHorizontalGroup(
+            pestaña3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3Layout.createSequentialGroup()
                 .addContainerGap(176, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
-        pestaña4Layout.setVerticalGroup(
-            pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña4Layout.createSequentialGroup()
+        pestaña3Layout.setVerticalGroup(
+            pestaña3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña3Layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(211, Short.MAX_VALUE))
         );
 
-        panelPestañas.addTab("tab4", pestaña4);
+        panelPestañas.addTab("tab4", pestaña3);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -623,7 +624,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel pestaña0;
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
-    private javax.swing.JPanel pestaña4;
+    private javax.swing.JPanel pestaña3;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }
