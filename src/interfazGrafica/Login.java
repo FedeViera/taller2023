@@ -46,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         separadorContraseña = new javax.swing.JSeparator();
         botonEntrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -149,6 +150,12 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA.png"))); // NOI18N
         panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Número: 1 o 2 - no precisa contraseña");
+        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 400, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,40 +176,16 @@ public class Login extends javax.swing.JFrame {
 
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
-        
-        //Guarda la posición del Panel Login para abrir el otro en las mismas coordenadas
-        int x = getLocation().x;
-        int y = getLocation().y;
-        this.setVisible(false);
-        Administrador admin = new Administrador();
-        admin.bienvenidaUsuario(textoUsuario.getText()); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
-        admin.setVisible(true);
-        admin.setLocationRelativeTo(null); 
-        admin.setLocation(x, y);
+        abrirVentanaCorrespondiente();
     }//GEN-LAST:event_botonEntrarActionPerformed
 
-    //Espacio para ingresar usuario (NO SE USA ESTA COMENTADO* guarda temporalmente lo que escribió el usuario)
+    
     private void textoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoUsuarioMousePressed
-        /*if(textoUsuario.getText().equals("Ingrese su usuario")){
-            textoUsuario.setText("");
-            textoUsuario.setForeground(Color.black);
-        }
-        if(String.valueOf(textoContraseña.getPassword()).isEmpty()) {
-            textoContraseña.setText("************");
-            textoContraseña.setForeground(Color.gray);
-        }*/     
+            
     }//GEN-LAST:event_textoUsuarioMousePressed
 
-    //Espacio para ingresar contraseña (NO SE USA ESTA COMENTADO* guarda temporalmente lo que escribió el usuario)
     private void textoContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseñaMousePressed
-        /*if(String.valueOf(textoContraseña.getPassword()).equals("************")) {
-            textoContraseña.setText("");
-            textoContraseña.setForeground(Color.gray);
-        }
-        if(textoUsuario.getText().isEmpty()) {
-           textoUsuario.setText("Ingrese su usuario");
-           textoUsuario.setForeground(Color.black); 
-        }*/
+        
     }//GEN-LAST:event_textoContraseñaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
@@ -227,19 +210,42 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoContraseñaActionPerformed
 
+    //AL PRESIONAR ENTER EN EL CAMPO DE CONTRASEÑA LEVANTA METODO abrirVentanaCorrespondiente()
     private void textoContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseñaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        abrirVentanaCorrespondiente();
+        }
+    }//GEN-LAST:event_textoContraseñaKeyPressed
+
+    //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
+    private void abrirVentanaCorrespondiente() {
+        // Guarda la posición del Panel Login para abrir el otro en las mismas coordenadas
         int x = getLocation().x;
         int y = getLocation().y;
         this.setVisible(false);
-        Administrador admin = new Administrador();
-        admin.bienvenidaUsuario(textoUsuario.getText()); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
-        admin.setVisible(true);
-        admin.setLocationRelativeTo(null); 
-        admin.setLocation(x, y);
-    }
-    }//GEN-LAST:event_textoContraseñaKeyPressed
 
+        String usuario = textoUsuario.getText(); // Obtener el contenido de la casilla de usuario
+
+        if (usuario.equals("1")) {
+            Administrador admin = new Administrador();
+            admin.bienvenidaUsuario(usuario); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
+            admin.setVisible(true);
+            admin.setLocationRelativeTo(null);
+            admin.setLocation(x, y);
+        } else if (usuario.equals("2")) {
+            Docente docente = new Docente();
+            docente.bienvenidaUsuario(usuario);
+            docente.setVisible(true);
+            docente.setLocationRelativeTo(null);
+            docente.setLocation(x, y);
+        } else {
+            // Manejar el caso en que el usuario no sea ni Administrador ni Docente
+            JOptionPane.showMessageDialog(null, "El usuario no existe, intente con otro usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            this.setVisible(true);
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -283,6 +289,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton botonEntrar;
     private javax.swing.JLabel imgFondoMaleta;
     private javax.swing.JLabel imgMaleta;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JSeparator separadorContraseña;
