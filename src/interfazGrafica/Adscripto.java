@@ -557,7 +557,7 @@ public class Adscripto extends javax.swing.JFrame {
      
     //Metodo para cambiar el nombre en la bienvenida
     public void bienvenidaUsuario(String nombreUsuario) {
-    bienvenidaUsuario.setText("Bienvenido/a Docente " + nombreUsuario);
+    bienvenidaUsuario.setText("Bienvenido/a Adscripto " + nombreUsuario);
     }
 
     

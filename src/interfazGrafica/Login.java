@@ -153,7 +153,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Número: 1 o 2 - no precisa contraseña");
+        jLabel1.setText("Número: 1, 2 o 3 - no precisa contraseña");
         panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 400, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
