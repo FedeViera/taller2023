@@ -233,6 +233,7 @@ public class Login extends javax.swing.JFrame {
         int y = getLocation().y;
         this.setVisible(false);
         Administrador admin = new Administrador();
+        admin.bienvenidaUsuario(textoUsuario.getText()); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
         admin.setVisible(true);
         admin.setLocationRelativeTo(null); 
         admin.setLocation(x, y);

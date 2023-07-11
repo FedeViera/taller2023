@@ -37,16 +37,19 @@ public class Administrador extends javax.swing.JFrame {
         bienvenidaUsuario = new javax.swing.JLabel();
         banner = new javax.swing.JPanel();
         panelOpciones = new javax.swing.JPanel();
-        botonGenerarAdscriptor = new javax.swing.JButton();
-        botonGenerarCurso = new javax.swing.JButton();
-        separador = new javax.swing.JSeparator();
         logoSDFA = new javax.swing.JLabel();
+        separador = new javax.swing.JSeparator();
+        botonGestionCuentas = new javax.swing.JButton();
+        botonGestionCursos = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
+        botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
-        pestaña1 = new javax.swing.JPanel();
+        pestaña0 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        pestaña2 = new javax.swing.JPanel();
+        pestaña1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        pestaña2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -77,74 +80,74 @@ public class Administrador extends javax.swing.JFrame {
 
         panelOpciones.setBackground(new java.awt.Color(38, 56, 63));
 
-        botonGenerarAdscriptor.setBackground(new java.awt.Color(52, 80, 86));
-        botonGenerarAdscriptor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGenerarAdscriptor.setForeground(new java.awt.Color(204, 204, 204));
-        botonGenerarAdscriptor.setText("    Generar Adscriptor");
-        botonGenerarAdscriptor.setBorder(null);
-        botonGenerarAdscriptor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonGenerarAdscriptor.setFocusPainted(false);
-        botonGenerarAdscriptor.setFocusable(false);
-        botonGenerarAdscriptor.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonGenerarAdscriptor.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonGenerarAdscriptor.setIconTextGap(10);
-        botonGenerarAdscriptor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonGenerarAdscriptorMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonGenerarAdscriptorMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonGenerarAdscriptorMouseExited(evt);
-            }
-        });
-        botonGenerarAdscriptor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGenerarAdscriptorActionPerformed(evt);
-            }
-        });
-        botonGenerarAdscriptor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonGenerarAdscriptorKeyPressed(evt);
-            }
-        });
-
-        botonGenerarCurso.setBackground(new java.awt.Color(52, 80, 86));
-        botonGenerarCurso.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGenerarCurso.setForeground(new java.awt.Color(204, 204, 204));
-        botonGenerarCurso.setText("     Generar Curso");
-        botonGenerarCurso.setToolTipText("");
-        botonGenerarCurso.setBorder(null);
-        botonGenerarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonGenerarCurso.setFocusPainted(false);
-        botonGenerarCurso.setFocusable(false);
-        botonGenerarCurso.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonGenerarCurso.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonGenerarCurso.setIconTextGap(10);
-        botonGenerarCurso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonGenerarCursoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonGenerarCursoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonGenerarCursoMouseExited(evt);
-            }
-        });
-        botonGenerarCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGenerarCursoActionPerformed(evt);
-            }
-        });
-        botonGenerarCurso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonGenerarCursoKeyPressed(evt);
-            }
-        });
-
         logoSDFA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA-gris-chico.png"))); // NOI18N
+
+        botonGestionCuentas.setBackground(new java.awt.Color(52, 80, 86));
+        botonGestionCuentas.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGestionCuentas.setForeground(new java.awt.Color(204, 204, 204));
+        botonGestionCuentas.setText("    Gestión de Cuentas");
+        botonGestionCuentas.setToolTipText("");
+        botonGestionCuentas.setBorder(null);
+        botonGestionCuentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGestionCuentas.setFocusPainted(false);
+        botonGestionCuentas.setFocusable(false);
+        botonGestionCuentas.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonGestionCuentas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGestionCuentas.setIconTextGap(10);
+        botonGestionCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGestionCuentasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGestionCuentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGestionCuentasMouseExited(evt);
+            }
+        });
+        botonGestionCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGestionCuentasActionPerformed(evt);
+            }
+        });
+        botonGestionCuentas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGestionCuentasKeyPressed(evt);
+            }
+        });
+
+        botonGestionCursos.setBackground(new java.awt.Color(52, 80, 86));
+        botonGestionCursos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGestionCursos.setForeground(new java.awt.Color(204, 204, 204));
+        botonGestionCursos.setText("    Gestión de Cursos");
+        botonGestionCursos.setBorder(null);
+        botonGestionCursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGestionCursos.setFocusPainted(false);
+        botonGestionCursos.setFocusable(false);
+        botonGestionCursos.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonGestionCursos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGestionCursos.setIconTextGap(10);
+        botonGestionCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGestionCursosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGestionCursosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGestionCursosMouseExited(evt);
+            }
+        });
+        botonGestionCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGestionCursosActionPerformed(evt);
+            }
+        });
+        botonGestionCursos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGestionCursosKeyPressed(evt);
+            }
+        });
 
         botonCerrarSesion.setBackground(new java.awt.Color(52, 80, 86));
         botonCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -180,14 +183,44 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
+        botonGestionEvaluaciones.setBackground(new java.awt.Color(52, 80, 86));
+        botonGestionEvaluaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGestionEvaluaciones.setForeground(new java.awt.Color(204, 204, 204));
+        botonGestionEvaluaciones.setText("    Gestión de Evaluaciones");
+        botonGestionEvaluaciones.setBorder(null);
+        botonGestionEvaluaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGestionEvaluaciones.setFocusPainted(false);
+        botonGestionEvaluaciones.setFocusable(false);
+        botonGestionEvaluaciones.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonGestionEvaluaciones.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGestionEvaluaciones.setIconTextGap(10);
+        botonGestionEvaluaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGestionEvaluacionesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGestionEvaluacionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGestionEvaluacionesMouseExited(evt);
+            }
+        });
+        botonGestionEvaluaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGestionEvaluacionesActionPerformed(evt);
+            }
+        });
+        botonGestionEvaluaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGestionEvaluacionesKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(botonCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelOpcionesLayout.createSequentialGroup()
@@ -195,8 +228,13 @@ public class Administrador extends javax.swing.JFrame {
                         .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logoSDFA, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(botonGenerarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonGestionCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonGestionCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,67 +244,97 @@ public class Administrador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonGenerarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonGestionCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(botonGenerarAdscriptor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
+                .addComponent(botonGestionCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
-        pestaña1.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña1.setForeground(new java.awt.Color(0, 0, 0));
-        pestaña1.setToolTipText("");
+        pestaña0.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña0.setForeground(new java.awt.Color(0, 0, 0));
+        pestaña0.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("PANEL GENERAR CURSO");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/lacalle.jpg"))); // NOI18N
+        jLabel1.setText("PANEL GESTION DE CUENTAS");
+
+        javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
+        pestaña0.setLayout(pestaña0Layout);
+        pestaña0Layout.setHorizontalGroup(
+            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
+                .addContainerGap(223, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64))
+        );
+        pestaña0Layout.setVerticalGroup(
+            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña0Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(151, Short.MAX_VALUE))
+        );
+
+        panelPestañas.addTab("tab1", pestaña0);
+
+        pestaña1.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
+        jLabel2.setText("PANEL GESTION DE CURROS");
 
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
         pestaña1Layout.setHorizontalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(259, 259, 259)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(360, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1Layout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
         );
         pestaña1Layout.setVerticalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addGap(138, 138, 138)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
-        panelPestañas.addTab("tab1", pestaña1);
+        panelPestañas.addTab("tab2", pestaña1);
 
         pestaña2.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña2.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("PANEL GENERAR CUENTA ADSCRIPTOR");
+        jLabel3.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
+        jLabel3.setText("PANEL GESTION DE EVALUACIONES");
 
         javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
         pestaña2.setLayout(pestaña2Layout);
         pestaña2Layout.setHorizontalGroup(
             pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2Layout.createSequentialGroup()
-                .addContainerGap(355, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         pestaña2Layout.setVerticalGroup(
             pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pestaña2Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addGap(138, 138, 138)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
-        panelPestañas.addTab("tab2", pestaña2);
+        panelPestañas.addTab("tab3", pestaña2);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -284,53 +352,57 @@ public class Administrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonGenerarCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarCursoKeyPressed
+    private void botonGestionCuentasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionCuentasKeyPressed
 
-    }//GEN-LAST:event_botonGenerarCursoKeyPressed
+    }//GEN-LAST:event_botonGestionCuentasKeyPressed
 
-    private void botonGenerarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarCursoActionPerformed
+    private void botonGestionCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionCuentasActionPerformed
 
-    }//GEN-LAST:event_botonGenerarCursoActionPerformed
+    }//GEN-LAST:event_botonGestionCuentasActionPerformed
 
-    private void botonGenerarCursoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseExited
+    private void botonGestionCuentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseExited
         //botonGenerarCurso.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_botonGenerarCursoMouseExited
+    }//GEN-LAST:event_botonGestionCuentasMouseExited
 
-    private void botonGenerarCursoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseEntered
+    private void botonGestionCuentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseEntered
         //botonGenerarCurso.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_botonGenerarCursoMouseEntered
+    }//GEN-LAST:event_botonGestionCuentasMouseEntered
 
-    private void botonGenerarCursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarCursoMouseClicked
+    private void botonGestionCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseClicked
         panelPestañas.setSelectedIndex(0);
-        botonGenerarCurso.setBackground(new Color(255, 255, 255)); 
-        botonGenerarCurso.setForeground(new Color(0,0,0));
-        botonGenerarAdscriptor.setBackground(new Color(52,80,86)); 
-        botonGenerarAdscriptor.setForeground(new Color(255,255,255));  
-    }//GEN-LAST:event_botonGenerarCursoMouseClicked
+        botonGestionCuentas.setBackground(new Color(255, 255, 255)); 
+        botonGestionCuentas.setForeground(new Color(0,0,0));
+        botonGestionCursos.setBackground(new Color(52,80,86)); 
+        botonGestionCursos.setForeground(new Color(255,255,255));  
+        botonGestionEvaluaciones.setBackground(new Color(52,80,86)); 
+        botonGestionEvaluaciones.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_botonGestionCuentasMouseClicked
 
-    private void botonGenerarAdscriptorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorKeyPressed
+    private void botonGestionCursosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionCursosKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonGenerarAdscriptorKeyPressed
+    }//GEN-LAST:event_botonGestionCursosKeyPressed
 
-    private void botonGenerarAdscriptorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorActionPerformed
+    private void botonGestionCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionCursosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonGenerarAdscriptorActionPerformed
+    }//GEN-LAST:event_botonGestionCursosActionPerformed
 
-    private void botonGenerarAdscriptorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseExited
+    private void botonGestionCursosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseExited
         //botonGenerarAdscriptor.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_botonGenerarAdscriptorMouseExited
+    }//GEN-LAST:event_botonGestionCursosMouseExited
 
-    private void botonGenerarAdscriptorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseEntered
+    private void botonGestionCursosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseEntered
         //botonGenerarAdscriptor.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_botonGenerarAdscriptorMouseEntered
+    }//GEN-LAST:event_botonGestionCursosMouseEntered
 
-    private void botonGenerarAdscriptorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGenerarAdscriptorMouseClicked
+    private void botonGestionCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseClicked
         panelPestañas.setSelectedIndex(1);
-        botonGenerarAdscriptor.setBackground(new Color(255, 255, 255)); 
-        botonGenerarAdscriptor.setForeground(new Color(0,0,0));
-        botonGenerarCurso.setBackground(new Color(52,80,86)); 
-        botonGenerarCurso.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_botonGenerarAdscriptorMouseClicked
+        botonGestionCursos.setBackground(new Color(255, 255, 255)); 
+        botonGestionCursos.setForeground(new Color(0,0,0));
+        botonGestionCuentas.setBackground(new Color(52,80,86)); 
+        botonGestionCuentas.setForeground(new Color(255,255,255));
+        botonGestionEvaluaciones.setBackground(new Color(52,80,86)); 
+        botonGestionEvaluaciones.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_botonGestionCursosMouseClicked
 
     private void botonCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarSesionMouseClicked
         // TODO add your handling code here:
@@ -357,6 +429,32 @@ public class Administrador extends javax.swing.JFrame {
     private void botonCerrarSesionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonCerrarSesionKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
+
+    private void botonGestionEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseClicked
+        panelPestañas.setSelectedIndex(2);
+        botonGestionEvaluaciones.setBackground(new Color(255, 255, 255)); 
+        botonGestionEvaluaciones.setForeground(new Color(0,0,0));
+        botonGestionCuentas.setBackground(new Color(52,80,86)); 
+        botonGestionCuentas.setForeground(new Color(255,255,255));
+        botonGestionCursos.setBackground(new Color(52,80,86)); 
+        botonGestionCursos.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_botonGestionEvaluacionesMouseClicked
+
+    private void botonGestionEvaluacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionEvaluacionesMouseEntered
+
+    private void botonGestionEvaluacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionEvaluacionesMouseExited
+
+    private void botonGestionEvaluacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionEvaluacionesActionPerformed
+
+    private void botonGestionEvaluacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionEvaluacionesKeyPressed
      
     //Metodo para cambiar el nombre en la bienvenida
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -409,14 +507,17 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
-    private javax.swing.JButton botonGenerarAdscriptor;
-    private javax.swing.JButton botonGenerarCurso;
+    private javax.swing.JButton botonGestionCuentas;
+    private javax.swing.JButton botonGestionCursos;
+    private javax.swing.JButton botonGestionEvaluaciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
+    private javax.swing.JPanel pestaña0;
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
     private javax.swing.JSeparator separador;
