@@ -47,6 +47,8 @@ public class Login extends javax.swing.JFrame {
         botonEntrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        verPswd = new javax.swing.JLabel();
+        ocultarPswd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -156,6 +158,22 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Número: 1, 2 o 3 - no precisa contraseña");
         panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 400, -1));
 
+        verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
+        verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verPswdMouseClicked(evt);
+            }
+        });
+        panelLogin.add(verPswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, -1, -1));
+
+        ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
+        ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ocultarPswdMouseClicked(evt);
+            }
+        });
+        panelLogin.add(ocultarPswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, -1, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,6 +234,18 @@ public class Login extends javax.swing.JFrame {
         abrirVentanaCorrespondiente();
         }
     }//GEN-LAST:event_textoContraseñaKeyPressed
+
+    private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
+        verPswd.setVisible(false);
+        ocultarPswd.setVisible(true);
+        textoContraseña.setEchoChar((char) 0);       
+    }//GEN-LAST:event_verPswdMouseClicked
+
+    private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
+        verPswd.setVisible(true);
+        ocultarPswd.setVisible(false);
+        textoContraseña.setEchoChar('●');
+    }//GEN-LAST:event_ocultarPswdMouseClicked
 
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
     private void abrirVentanaCorrespondiente() {
@@ -297,6 +327,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel imgMaleta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JSeparator separadorContraseña;
     private javax.swing.JSeparator separadorUsuario;
@@ -305,5 +336,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField textoUsuario;
     private javax.swing.JLabel tituloContraseña;
     private javax.swing.JLabel tituloUsuario;
+    private javax.swing.JLabel verPswd;
     // End of variables declaration//GEN-END:variables
 }
