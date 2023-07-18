@@ -19,13 +19,13 @@ public class Conexion
                       
 String url = "jdbc:mysql://localhost:3306/";
 String user = "root";
-String pass = "";
+String pass = "0123";
 
    // Librería de MySQL
     public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "ppruebaw";
+    public String database = "prueba1";
 
     // Host 127.0.0.1
     public String hostname = "root";
@@ -40,7 +40,7 @@ String pass = "";
     public String username = "root";
 
     // Clave de usuario
-    public String password = "";
+    public String password = "0123";
     
      Connection conn = null;
      
