@@ -592,7 +592,33 @@ public class Administrador extends javax.swing.JFrame
 
     private void botonAgregarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarDocenteActionPerformed
 
-        Docente docente = new Docente();
+         Connection connection = null;
+try {
+    String url = "jdbc:mysql://localhost:3306/prueba";
+    String username = "root";
+    String password = "";
+    connection = DriverManager.getConnection(url, username, password);
+} catch (SQLException e) {
+    e.printStackTrace();
+}        
+
+String sql = "INSERT INTO docente (Cedula_Doc, Nombre_Doc, Cont_Doc, Asignatura_Doc) VALUES (?, ?, ?, ?)";
+                 try {
+                     PreparedStatement statement = connection.prepareStatement(sql);
+                   
+                     /* Se suplantan por los signos de preguntas  segun el orden (orden consulta ej1: y el Datos 0 ) */
+                     statement.setInt(1, 0); // Reguistro 1
+                     statement.setString(2, "Agustin Tuduri"); //Registro 2
+                     statement.setString(3, "pass21");//Registro 3
+                     statement.setString(4, "Mat");// Reguistro 4 
+                    
+                     statement.executeUpdate();
+
+                     statement.close();
+                    
+                 } catch (SQLException ex) {
+                     java.util.logging.Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                 }
         
                 
         // TODO add your handling code here:

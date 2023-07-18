@@ -25,7 +25,7 @@ String pass = "0123";
     public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "prueba1";
+    public String database = "prueba";
 
     // Host 127.0.0.1
     public String hostname = "root";
@@ -40,7 +40,7 @@ String pass = "0123";
     public String username = "root";
 
     // Clave de usuario
-    public String password = "0123";
+    public String password = "";
     
      Connection conn = null;
      
