@@ -6,12 +6,12 @@ package Clases;
 
 /**
  *
- * @author Agustin Tuduri
+ * @author Sidorf
  */
-public class Administrador extends Usuario 
+public class Adscriptos extends Usuario
 {
-
-    public Administrador(int id_usurio, String nom_usuario, String cont_usuario) {
+    
+    public Adscriptos(int id_usurio, String nom_usuario, String cont_usuario) {
         super(id_usurio, nom_usuario, cont_usuario);
     }
     

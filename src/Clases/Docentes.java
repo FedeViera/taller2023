@@ -6,15 +6,14 @@ package Clases;
 
 /**
  *
- * @author Agustin Tuduri
+ * @author Sidorf
  */
-public class Docente extends Usuario
+public class Docentes extends Usuario
 {
-
-    private String asignatura;  
+     private String asignatura;  
 
     
-    public Docente(String asignatura, int id_usurio, String nom_usuario, String cont_usuario) {
+    public Docentes( int id_usurio, String nom_usuario, String cont_usuario, String asignatura) {
         super(id_usurio, nom_usuario, cont_usuario);
         
 
@@ -22,7 +21,8 @@ public class Docente extends Usuario
     }
 
 
-    public String getAsignatura() {
+    public String getAsignatura() 
+    {
         return asignatura;
     }
     

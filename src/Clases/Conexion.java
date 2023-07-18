@@ -4,9 +4,11 @@
  */
 package Clases;
 
+//import com.mysql.cj.xdevapi.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.*;
 
 /**
  *
@@ -23,10 +25,10 @@ String pass = "";
     public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "prueba";
+    public String database = "ppruebaw";
 
-    // Host
-    public String hostname = "localhost";
+    // Host 127.0.0.1
+    public String hostname = "root";
 
     // Puerto
     public String port = "3306";
@@ -38,10 +40,15 @@ String pass = "";
     public String username = "root";
 
     // Clave de usuario
-    public String password = "0123";
-
-    public Connection conectarMySQL() {
-        Connection conn = null;
+    public String password = "";
+    
+     Connection conn = null;
+     
+     Statement st=null;
+     
+    public Connection conectarMySQL() 
+    {
+       
 
         try {
             Class.forName(driver);

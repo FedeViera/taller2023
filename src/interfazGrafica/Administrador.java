@@ -4,24 +4,45 @@
  */
 package interfazGrafica;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.DriverManager;
+
+
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import Clases.Docentes;
+import Clases.Conexion;
+import java.lang.System.Logger;
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+
 /**
  *
  * @author SDFA
  */
-public class Administrador extends javax.swing.JFrame {
-
+public class Administrador extends javax.swing.JFrame 
+{
+       
+             Conexion con=new Conexion();
+             Connection cn = con.conectarMySQL();
+       
     /**
      * Creates new form Login
      */
+    
     public Administrador() {
         initComponents();
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage()); //Logo de la ventana
+        
+        
+  
     }
 
     /**
@@ -45,14 +66,16 @@ public class Administrador extends javax.swing.JFrame {
         botonGestionActividades = new javax.swing.JButton();
         botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
-        pestaña0 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         pestaña1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         pestaña2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         pestaña3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        pestaña0 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -63,7 +86,6 @@ public class Administrador extends javax.swing.JFrame {
         panelAdministrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bienvenidaUsuario.setFont(new java.awt.Font("Gadugi", 3, 18)); // NOI18N
-        bienvenidaUsuario.setForeground(new java.awt.Color(0, 0, 0));
         panelAdministrador.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 470, 40));
 
         banner.setBackground(new java.awt.Color(28, 100, 208));
@@ -294,49 +316,31 @@ public class Administrador extends javax.swing.JFrame {
 
         panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
-        pestaña0.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña0.setForeground(new java.awt.Color(0, 0, 0));
-        pestaña0.setToolTipText("");
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/lacalle.jpg"))); // NOI18N
-        jLabel1.setText("PANEL GESTION DE CUENTAS");
-
-        javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
-        pestaña0.setLayout(pestaña0Layout);
-        pestaña0Layout.setHorizontalGroup(
-            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
-                .addContainerGap(213, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
-        );
-        pestaña0Layout.setVerticalGroup(
-            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña0Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
-        );
-
-        panelPestañas.addTab("tab1", pestaña0);
-
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
         jLabel2.setText("PANEL GESTION DE CURROS");
 
+        jButton2.setText("Agregar Docente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
         pestaña1Layout.setHorizontalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE)
+                .addGroup(pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pestaña1Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton2)))
                 .addGap(125, 125, 125))
         );
         pestaña1Layout.setVerticalGroup(
@@ -344,7 +348,9 @@ public class Administrador extends javax.swing.JFrame {
             .addGroup(pestaña1Layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(87, 87, 87))
         );
 
         panelPestañas.addTab("tab2", pestaña1);
@@ -400,6 +406,46 @@ public class Administrador extends javax.swing.JFrame {
         );
 
         panelPestañas.addTab("tab4", pestaña3);
+
+        pestaña0.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña0.setToolTipText("");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/lacalle.jpg"))); // NOI18N
+        jLabel1.setText("PANEL GESTION DE CUENTAS");
+
+        jButton1.setText("Agregar Docente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
+        pestaña0.setLayout(pestaña0Layout);
+        pestaña0Layout.setHorizontalGroup(
+            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
+                .addContainerGap(215, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+            .addGroup(pestaña0Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pestaña0Layout.setVerticalGroup(
+            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña0Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButton1)
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
+
+        panelPestañas.addTab("tab1", pestaña0);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -557,6 +603,44 @@ public class Administrador extends javax.swing.JFrame {
     private void botonGestionEvaluacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGestionEvaluacionesKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        Docente docente=new Docente();
+        
+                
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+Connection connection = null;
+try {
+    String url = "jdbc:mysql://localhost:3306/prueba";
+    String username = "root";
+    String password = "";
+    connection = DriverManager.getConnection(url, username, password);
+} catch (SQLException e) {
+    e.printStackTrace();
+}        
+
+String sql = "INSERT INTO docente (Cedula_Doc, Nombre_Doc, Cont_Doc, Asignatura_Doc) VALUES (?, ?, ?, ?)";
+                 try {
+                     PreparedStatement statement = connection.prepareStatement(sql);
+                   
+                     /* Se suplantan por los signos de preguntas  segun el orden (orden consulta ej1: y el Datos 0 ) */
+                     statement.setInt(1, 0); // Reguistro 1
+                     statement.setString(2, "Agustin Tuduri"); //Registro 2
+                     statement.setString(3, "pass21");//Registro 3
+                     statement.setString(4, "Mat");// Reguistro 4 
+                    
+                     statement.executeUpdate();
+
+                     statement.close();
+                    
+                 } catch (SQLException ex) {
+                     java.util.logging.Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+    }//GEN-LAST:event_jButton2ActionPerformed
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -613,6 +697,8 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JButton botonGestionEvaluaciones;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
