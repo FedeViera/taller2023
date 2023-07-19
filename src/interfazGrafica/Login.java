@@ -23,6 +23,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setTitle("SDFA - Portafolio Docente");
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage());
+        verPswd.setVisible(false);
     }
 
     /**
@@ -45,8 +46,10 @@ public class Login extends javax.swing.JFrame {
         textoContraseña = new javax.swing.JPasswordField();
         separadorContraseña = new javax.swing.JSeparator();
         botonEntrar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        verPswd = new javax.swing.JLabel();
+        ocultarPswd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -147,14 +150,30 @@ public class Login extends javax.swing.JFrame {
         });
         panelLogin.add(botonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 170, 60));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA.png"))); // NOI18N
-        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA.png"))); // NOI18N
+        panelLogin.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Número: 1, 2 o 3 - no precisa contraseña");
         panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 400, -1));
+
+        verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
+        verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verPswdMouseClicked(evt);
+            }
+        });
+        panelLogin.add(verPswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, 30, 30));
+
+        ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
+        ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ocultarPswdMouseClicked(evt);
+            }
+        });
+        panelLogin.add(ocultarPswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,6 +235,18 @@ public class Login extends javax.swing.JFrame {
         abrirVentanaCorrespondiente();
         }
     }//GEN-LAST:event_textoContraseñaKeyPressed
+
+    private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
+        ocultarPswd.setVisible(false);
+        verPswd.setVisible(true);
+        textoContraseña.setEchoChar((char) 0);
+    }//GEN-LAST:event_ocultarPswdMouseClicked
+
+    private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
+        ocultarPswd.setVisible(true);
+        verPswd.setVisible(false);
+        textoContraseña.setEchoChar('●');
+    }//GEN-LAST:event_verPswdMouseClicked
 
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
     private void abrirVentanaCorrespondiente() {
@@ -296,7 +327,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel imgFondoMaleta;
     private javax.swing.JLabel imgMaleta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JSeparator separadorContraseña;
     private javax.swing.JSeparator separadorUsuario;
@@ -305,5 +337,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField textoUsuario;
     private javax.swing.JLabel tituloContraseña;
     private javax.swing.JLabel tituloUsuario;
+    private javax.swing.JLabel verPswd;
     // End of variables declaration//GEN-END:variables
 }
