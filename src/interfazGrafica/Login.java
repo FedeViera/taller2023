@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 //Taller 1v1
 
 /**
@@ -196,6 +198,9 @@ public class Login extends javax.swing.JFrame {
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
         abrirVentanaCorrespondiente();
+        
+        /*Clases.Validacion validar = new Clases.Validacion();  //NO ANDA BICHAR QUE ESTA MAL
+        validar.validarUsuario(textoUsuario, textoContraseña);*/
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
@@ -208,7 +213,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_textoContraseñaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
-        
+        abrirVentanaCorrespondiente();
+        /*Clases.Validacion validar = new Clases.Validacion();  //NO ANDA BICHAR QUE ESTA MAL
+        validar.validarUsuario(textoUsuario, textoContraseña);*/
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEntrarKeyPressed
@@ -249,12 +256,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_verPswdMouseClicked
 
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
-    private void abrirVentanaCorrespondiente() {
+    public void abrirVentanaCorrespondiente() {
         // Guarda la posición del Panel Login para abrir el otro en las mismas coordenadas
         int x = getLocation().x;
         int y = getLocation().y;
         this.setVisible(false);
-
+        
         String usuario = textoUsuario.getText(); // Obtener el contenido de la casilla de usuario
 
         if (usuario.equals("1")) {

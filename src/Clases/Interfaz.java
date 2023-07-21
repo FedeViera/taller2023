@@ -20,8 +20,8 @@ public class Interfaz {
        
         //COMENTARIO
         //Mostrar Login
-       Conexion cx=new Conexion();
-       cx.conectarMySQL();
+        Conexion cx=new Conexion();
+        cx.conectarMySQL();
        
         Login login = new Login();
         login.setVisible(true);
