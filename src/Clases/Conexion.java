@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.*;
+import java.sql.Statement;
+
 
 /**
  *
@@ -31,7 +33,7 @@ String pass = "0123";
     public String database = "prueba1";
 
     // Host 127.0.0.1
-    public String hostname = "root";
+    public String hostname = "localhost";
 
     // Puerto
     public String port = "3306";
@@ -51,11 +53,12 @@ String pass = "0123";
      
     public Connection conectarMySQL() 
     {
-       
-
+        
+        
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
+            conn.setCatalog(database);
             System.out.print("Conexion establecida");
         } 
         catch (ClassNotFoundException | SQLException e) {

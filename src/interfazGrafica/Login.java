@@ -4,12 +4,22 @@
  */
 package interfazGrafica;
 
+import java.sql.Connection;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import Clases.Conexion;
+import java.sql.Statement;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+
 //Taller 1v1
 
 /**
@@ -197,10 +207,61 @@ public class Login extends javax.swing.JFrame {
 
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
-        abrirVentanaCorrespondiente();
+        //abrirVentanaCorrespondiente();
+        String usuario = textoUsuario.getText();
+        String contraseña = new String(textoContraseña.getPassword());
         
-        /*Clases.Validacion validar = new Clases.Validacion();  //NO ANDA BICHAR QUE ESTA MAL
-        validar.validarUsuario(textoUsuario, textoContraseña);*/
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        if(conn != null){
+            try{
+                Statement statement = (Statement) conn.createStatement();
+                String query = "SELECT * FROM Usuarios WHERE ingresoUsuario='" + usuario + "' AND ingresoContrasenia='" + contraseña + "'"; 
+                ResultSet resultSet = statement.executeQuery(query);
+                
+                int x = getLocation().x;
+                int y = getLocation().y;
+                this.setVisible(false);
+                if(resultSet.next()){
+                    String cargo = resultSet.getString("cargo");
+                    //Abrir ventana correspondiente
+                    if ("administrador".equals(cargo)) {
+                        Administrador admin = new Administrador();
+                        admin.bienvenidaUsuario(usuario); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
+                        admin.setVisible(true);
+                        admin.setLocationRelativeTo(null);
+                        admin.setLocation(x, y);
+                    } else if ("docente".equals(cargo)) {
+                        Docente docente = new Docente();
+                        docente.bienvenidaUsuario(usuario);
+                        docente.setVisible(true);
+                        docente.setLocationRelativeTo(null);
+                        docente.setLocation(x, y);
+                    } else if("adscripto".equals(cargo)) {
+                        Adscripto adscripto = new Adscripto();
+                        adscripto.bienvenidaUsuario(usuario);
+                        adscripto.setVisible(true);
+                        adscripto.setLocationRelativeTo(null);
+                        adscripto.setLocation(x, y);
+                    }else {
+                        // Cargo desconocido o inválido
+                        JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    //Datos incorectos
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos", "Login Error", JOptionPane.ERROR_MESSAGE);  
+                }
+                
+                resultSet.close();
+                statement.close();
+                conn.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
+        }   
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
@@ -209,13 +270,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_textoUsuarioMousePressed
 
     private void textoContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseñaMousePressed
-        
+      
     }//GEN-LAST:event_textoContraseñaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
-        abrirVentanaCorrespondiente();
-        /*Clases.Validacion validar = new Clases.Validacion();  //NO ANDA BICHAR QUE ESTA MAL
-        validar.validarUsuario(textoUsuario, textoContraseña);*/
+        //abrirVentanaCorrespondiente();
+        
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEntrarKeyPressed
