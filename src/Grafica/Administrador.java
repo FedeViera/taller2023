@@ -8,7 +8,7 @@ package Grafica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
-
+import Persistencia.ConsultasSQL;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -67,8 +67,22 @@ public class Administrador extends javax.swing.JFrame
         botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestaña0 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        botonAgregarDocente = new javax.swing.JButton();
+        pestañaOpcionesCuentas = new javax.swing.JTabbedPane();
+        agregar = new javax.swing.JPanel();
+        correo = new javax.swing.JLabel();
+        textoCorreo = new javax.swing.JTextField();
+        contrasenia = new javax.swing.JLabel();
+        textoContrasenia = new javax.swing.JPasswordField();
+        cargo = new javax.swing.JLabel();
+        opcionesCargo = new javax.swing.JComboBox<>();
+        botonAgregar = new javax.swing.JButton();
+        modificar = new javax.swing.JPanel();
+        eliminar = new javax.swing.JPanel();
+        observar = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCuentas = new javax.swing.JTable();
+        botonActualizar = new javax.swing.JButton();
         pestaña1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
@@ -315,42 +329,221 @@ public class Administrador extends javax.swing.JFrame
 
         panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
-        pestaña0.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña0.setBackground(new java.awt.Color(38, 56, 63));
         pestaña0.setToolTipText("");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/lacalle.jpg"))); // NOI18N
-        jLabel1.setText("PANEL GESTION DE CUENTAS");
+        pestañaOpcionesCuentas.setBackground(new java.awt.Color(255, 255, 255));
+        pestañaOpcionesCuentas.setForeground(new java.awt.Color(0, 0, 0));
+        pestañaOpcionesCuentas.setToolTipText("");
+        pestañaOpcionesCuentas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        botonAgregarDocente.setText("Agregar Docente");
-        botonAgregarDocente.addActionListener(new java.awt.event.ActionListener() {
+        agregar.setBackground(new java.awt.Color(255, 255, 255));
+
+        correo.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        correo.setForeground(new java.awt.Color(0, 0, 0));
+        correo.setText("Correo");
+
+        textoCorreo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        textoCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarDocenteActionPerformed(evt);
+                textoCorreoActionPerformed(evt);
             }
         });
+
+        contrasenia.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        contrasenia.setForeground(new java.awt.Color(0, 0, 0));
+        contrasenia.setText("Contraseña");
+
+        cargo.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        cargo.setForeground(new java.awt.Color(0, 0, 0));
+        cargo.setText("Cargo");
+
+        opcionesCargo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        opcionesCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Adscripto", "Docente" }));
+        opcionesCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionesCargoActionPerformed(evt);
+            }
+        });
+
+        botonAgregar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout agregarLayout = new javax.swing.GroupLayout(agregar);
+        agregar.setLayout(agregarLayout);
+        agregarLayout.setHorizontalGroup(
+            agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(agregarLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(agregarLayout.createSequentialGroup()
+                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(agregarLayout.createSequentialGroup()
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(agregarLayout.createSequentialGroup()
+                                .addComponent(cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(agregarLayout.createSequentialGroup()
+                                .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        agregarLayout.setVerticalGroup(
+            agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(agregarLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pestañaOpcionesCuentas.addTab("Agregar", agregar);
+
+        modificar.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout modificarLayout = new javax.swing.GroupLayout(modificar);
+        modificar.setLayout(modificarLayout);
+        modificarLayout.setHorizontalGroup(
+            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        modificarLayout.setVerticalGroup(
+            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pestañaOpcionesCuentas.addTab("Modificar", modificar);
+
+        javax.swing.GroupLayout eliminarLayout = new javax.swing.GroupLayout(eliminar);
+        eliminar.setLayout(eliminarLayout);
+        eliminarLayout.setHorizontalGroup(
+            eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        eliminarLayout.setVerticalGroup(
+            eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pestañaOpcionesCuentas.addTab("Eliminar", eliminar);
+
+        observar.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Cuentas registradas:");
+
+        tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Cargo", "Usuario", "Contraseña"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaCuentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaCuentas);
+        if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
+            tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        botonActualizar.setText("Actualizar");
+        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonActualizarMouseClicked(evt);
+            }
+        });
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout observarLayout = new javax.swing.GroupLayout(observar);
+        observar.setLayout(observarLayout);
+        observarLayout.setHorizontalGroup(
+            observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(observarLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        observarLayout.setVerticalGroup(
+            observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(observarLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pestañaOpcionesCuentas.addTab("Ver Usuarios", observar);
 
         javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
         pestaña0.setLayout(pestaña0Layout);
         pestaña0Layout.setHorizontalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
             .addGroup(pestaña0Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(botonAgregarDocente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(pestañaOpcionesCuentas))
         );
         pestaña0Layout.setVerticalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña0Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(botonAgregarDocente)
-                .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(pestañaOpcionesCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelPestañas.addTab("tab1", pestaña0);
@@ -590,45 +783,52 @@ public class Administrador extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGestionEvaluacionesKeyPressed
 
-    private void botonAgregarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarDocenteActionPerformed
-
-         Connection connection = null;
-try {
-    String url = "jdbc:mysql://localhost:3306/prueba";
-    String username = "root";
-    String password = "";
-    connection = DriverManager.getConnection(url, username, password);
-} catch (SQLException e) {
-    e.printStackTrace();
-}        
-
-String sql = "INSERT INTO docente (Cedula_Doc, Nombre_Doc, Cont_Doc, Asignatura_Doc) VALUES (?, ?, ?, ?)";
-                 try {
-                     PreparedStatement statement = connection.prepareStatement(sql);
-                   
-                     /* Se suplantan por los signos de preguntas  segun el orden (orden consulta ej1: y el Datos 0 ) */
-                     statement.setInt(1, 0); // Reguistro 1
-                     statement.setString(2, "Agustin Tuduri"); //Registro 2
-                     statement.setString(3, "pass21");//Registro 3
-                     statement.setString(4, "Mat");// Reguistro 4 
-                    
-                     statement.executeUpdate();
-
-                     statement.close();
-                    
-                 } catch (SQLException ex) {
-                     java.util.logging.Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-        
-                
+    private void opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesCargoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregarDocenteActionPerformed
+    }//GEN-LAST:event_opcionesCargoActionPerformed
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        String usuario = textoCorreo.getText();
+        String contrasenia = new String(textoContrasenia.getPassword());
+        String cargo = opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
+
+        // Lógica para validar los datos, si es necesario
+        
+        ConsultasSQL consultasSQL = new ConsultasSQL();
+        consultasSQL.agregarDato(usuario, contrasenia, cargo);
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void mostrarUsuariosEnTabla() {
+        ConsultasSQL consultasSQL = new ConsultasSQL();
+        Object[][] datos = consultasSQL.obtenerUsuarios();
+
+        // Llenar la tabla con los datos obtenidos
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tablaCuentas.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+        for (Object[] fila : datos) {
+            model.addRow(fila);
+        }
+    }
+
+    private void textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCorreoActionPerformed
+        
+    }//GEN-LAST:event_textoCorreoActionPerformed
+
+    
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        mostrarUsuariosEnTabla();
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
+    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonActualizarMouseClicked
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
     bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
     }
 
+    
     
     
     /**
@@ -672,19 +872,29 @@ String sql = "INSERT INTO docente (Cedula_Doc, Nombre_Doc, Cont_Doc, Asignatura_
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel agregar;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
-    private javax.swing.JButton botonAgregarDocente;
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonGestionActividades;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JButton botonGestionEvaluaciones;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel cargo;
+    private javax.swing.JLabel contrasenia;
+    private javax.swing.JLabel correo;
+    private javax.swing.JPanel eliminar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoSDFA;
+    private javax.swing.JPanel modificar;
+    private javax.swing.JPanel observar;
+    private javax.swing.JComboBox<String> opcionesCargo;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
@@ -692,6 +902,10 @@ String sql = "INSERT INTO docente (Cedula_Doc, Nombre_Doc, Cont_Doc, Asignatura_
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
     private javax.swing.JPanel pestaña3;
+    private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
+    private javax.swing.JTable tablaCuentas;
+    private javax.swing.JPasswordField textoContrasenia;
+    private javax.swing.JTextField textoCorreo;
     // End of variables declaration//GEN-END:variables
 }
