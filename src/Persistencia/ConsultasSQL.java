@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import Clases.Conexion;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 
 
 public class ConsultasSQL {
@@ -75,6 +76,28 @@ public class ConsultasSQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void eliminarDato(String id) {
+        Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+
+    if (conn != null) {
+        try {
+            String query = "DELETE FROM Usuarios WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, id);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
+    }
     }
     
     public Object[][] obtenerUsuarios() {
