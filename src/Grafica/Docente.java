@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfazGrafica;
+package Grafica;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author SDFA
  */
-public class Adscripto extends javax.swing.JFrame {
+public class Docente extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public Adscripto() {
+    public Docente() {
         initComponents();
-        this.setTitle("SDFA - Panel Adscripto");
+        this.setTitle("SDFA - Panel Docente");
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage());
     }
 
@@ -66,7 +66,7 @@ public class Adscripto extends javax.swing.JFrame {
         bienvenidaUsuario.setForeground(new java.awt.Color(0, 0, 0));
         panelAdministrador.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 470, 40));
 
-        banner.setBackground(new java.awt.Color(0, 153, 51));
+        banner.setBackground(new java.awt.Color(255, 102, 51));
 
         javax.swing.GroupLayout bannerLayout = new javax.swing.GroupLayout(banner);
         banner.setLayout(bannerLayout);
@@ -301,7 +301,7 @@ public class Adscripto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/lacalle.jpg"))); // NOI18N
-        jLabel1.setText("PANEL CURSOS");
+        jLabel1.setText("PANEL GESTION DE CUENTAS");
 
         javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
         pestaña0.setLayout(pestaña0Layout);
@@ -328,7 +328,7 @@ public class Adscripto extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
-        jLabel2.setText("PANEL ACTIVIDADES");
+        jLabel2.setText("PANEL GESTION DE CURROS");
 
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
@@ -354,7 +354,7 @@ public class Adscripto extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
-        jLabel3.setText("PANEL EVALUACIONES");
+        jLabel3.setText("PANEL GESTION DE EVALUACIONES");
 
         javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
         pestaña2.setLayout(pestaña2Layout);
@@ -380,7 +380,7 @@ public class Adscripto extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga_1.jpeg"))); // NOI18N
-        jLabel4.setText("PANEL INFORMES");
+        jLabel4.setText("PANEL GESTION DE INFORMES");
 
         javax.swing.GroupLayout pestaña4Layout = new javax.swing.GroupLayout(pestaña4);
         pestaña4.setLayout(pestaña4Layout);
@@ -557,7 +557,7 @@ public class Adscripto extends javax.swing.JFrame {
      
     //Metodo para cambiar el nombre en la bienvenida
     public void bienvenidaUsuario(String nombreUsuario) {
-    bienvenidaUsuario.setText("Bienvenido/a Adscripto " + nombreUsuario);
+    bienvenidaUsuario.setText("Bienvenido/a Docente " + nombreUsuario);
     }
 
     
@@ -579,26 +579,14 @@ public class Adscripto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Adscripto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Docente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Adscripto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Docente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Adscripto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Docente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Adscripto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Docente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -607,7 +595,7 @@ public class Adscripto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Adscripto().setVisible(true);
+                new Docente().setVisible(true);
             }
         });
     }

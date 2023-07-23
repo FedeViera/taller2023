@@ -2,21 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfazGrafica;
+package Grafica;
 
-import java.sql.Connection;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import Clases.Conexion;
-import java.sql.Statement;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+
+
+
+import Persistencia.ConsultasSQL;
 
 
 
@@ -54,9 +51,9 @@ public class Login extends javax.swing.JFrame {
         tituloUsuario = new javax.swing.JLabel();
         textoUsuario = new javax.swing.JTextField();
         separadorUsuario = new javax.swing.JSeparator();
-        tituloContraseña = new javax.swing.JLabel();
-        textoContraseña = new javax.swing.JPasswordField();
-        separadorContraseña = new javax.swing.JSeparator();
+        tituloContrasenia = new javax.swing.JLabel();
+        textoContrasenia = new javax.swing.JPasswordField();
+        separadorContrasenia = new javax.swing.JSeparator();
         botonEntrar = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -105,31 +102,31 @@ public class Login extends javax.swing.JFrame {
         separadorUsuario.setForeground(new java.awt.Color(0, 0, 0));
         panelLogin.add(separadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 440, 30));
 
-        tituloContraseña.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        tituloContraseña.setText("CONTRASEÑA:");
-        panelLogin.add(tituloContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 190, 50));
+        tituloContrasenia.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        tituloContrasenia.setText("CONTRASEÑA:");
+        panelLogin.add(tituloContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 190, 50));
 
-        textoContraseña.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        textoContraseña.setBorder(null);
-        textoContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+        textoContrasenia.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        textoContrasenia.setBorder(null);
+        textoContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                textoContraseñaMousePressed(evt);
+                textoContraseniaMousePressed(evt);
             }
         });
-        textoContraseña.addActionListener(new java.awt.event.ActionListener() {
+        textoContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoContraseñaActionPerformed(evt);
+                textoContraseniaActionPerformed(evt);
             }
         });
-        textoContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+        textoContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                textoContraseñaKeyPressed(evt);
+                textoContraseniaKeyPressed(evt);
             }
         });
-        panelLogin.add(textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 440, 50));
+        panelLogin.add(textoContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 440, 50));
 
-        separadorContraseña.setForeground(new java.awt.Color(0, 0, 0));
-        panelLogin.add(separadorContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 440, 30));
+        separadorContrasenia.setForeground(new java.awt.Color(0, 0, 0));
+        panelLogin.add(separadorContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 440, 30));
 
         botonEntrar.setBackground(new java.awt.Color(55, 208, 193));
         botonEntrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -168,8 +165,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("Número: 1, 2 o 3 - no precisa contraseña");
-        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 400, -1));
+        jLabel1.setText("USER: administrador@gmail.com - adscripto@gmail.com - docente@gmail.com / PASS: 123)");
+        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 790, -1));
 
         verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
         verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -207,61 +204,7 @@ public class Login extends javax.swing.JFrame {
 
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
-        //abrirVentanaCorrespondiente();
-        String usuario = textoUsuario.getText();
-        String contraseña = new String(textoContraseña.getPassword());
-        
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        
-        if(conn != null){
-            try{
-                Statement statement = (Statement) conn.createStatement();
-                String query = "SELECT * FROM Usuarios WHERE ingresoUsuario='" + usuario + "' AND ingresoContrasenia='" + contraseña + "'"; 
-                ResultSet resultSet = statement.executeQuery(query);
-                
-                int x = getLocation().x;
-                int y = getLocation().y;
-                this.setVisible(false);
-                if(resultSet.next()){
-                    String cargo = resultSet.getString("cargo");
-                    //Abrir ventana correspondiente
-                    if ("administrador".equals(cargo)) {
-                        Administrador admin = new Administrador();
-                        admin.bienvenidaUsuario(usuario); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
-                        admin.setVisible(true);
-                        admin.setLocationRelativeTo(null);
-                        admin.setLocation(x, y);
-                    } else if ("docente".equals(cargo)) {
-                        Docente docente = new Docente();
-                        docente.bienvenidaUsuario(usuario);
-                        docente.setVisible(true);
-                        docente.setLocationRelativeTo(null);
-                        docente.setLocation(x, y);
-                    } else if("adscripto".equals(cargo)) {
-                        Adscripto adscripto = new Adscripto();
-                        adscripto.bienvenidaUsuario(usuario);
-                        adscripto.setVisible(true);
-                        adscripto.setLocationRelativeTo(null);
-                        adscripto.setLocation(x, y);
-                    }else {
-                        // Cargo desconocido o inválido
-                        JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }else{
-                    //Datos incorectos
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos", "Login Error", JOptionPane.ERROR_MESSAGE);  
-                }
-                
-                resultSet.close();
-                statement.close();
-                conn.close();
-            }catch(SQLException ex){
-                ex.printStackTrace();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
-        }   
+        abrirVentanaCorrespondiente();
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
@@ -269,13 +212,12 @@ public class Login extends javax.swing.JFrame {
             
     }//GEN-LAST:event_textoUsuarioMousePressed
 
-    private void textoContraseñaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseñaMousePressed
+    private void textoContraseniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseniaMousePressed
       
-    }//GEN-LAST:event_textoContraseñaMousePressed
+    }//GEN-LAST:event_textoContraseniaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
-        //abrirVentanaCorrespondiente();
-        
+        abrirVentanaCorrespondiente(); 
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEntrarKeyPressed
@@ -292,59 +234,68 @@ public class Login extends javax.swing.JFrame {
         botonEntrar.setBackground(new Color(45,196,181));
     }//GEN-LAST:event_botonEntrarMouseExited
 
-    private void textoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoContraseñaActionPerformed
+    private void textoContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoContraseniaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoContraseñaActionPerformed
+    }//GEN-LAST:event_textoContraseniaActionPerformed
 
     //AL PRESIONAR ENTER EN EL CAMPO DE CONTRASEÑA LEVANTA METODO abrirVentanaCorrespondiente()
-    private void textoContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseñaKeyPressed
+    private void textoContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseniaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
         abrirVentanaCorrespondiente();
         }
-    }//GEN-LAST:event_textoContraseñaKeyPressed
+    }//GEN-LAST:event_textoContraseniaKeyPressed
 
     private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
         ocultarPswd.setVisible(false);
         verPswd.setVisible(true);
-        textoContraseña.setEchoChar((char) 0);
+        textoContrasenia.setEchoChar((char) 0);
     }//GEN-LAST:event_ocultarPswdMouseClicked
 
     private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
         ocultarPswd.setVisible(true);
         verPswd.setVisible(false);
-        textoContraseña.setEchoChar('●');
+        textoContrasenia.setEchoChar('●');
     }//GEN-LAST:event_verPswdMouseClicked
 
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
     public void abrirVentanaCorrespondiente() {
-        // Guarda la posición del Panel Login para abrir el otro en las mismas coordenadas
-        int x = getLocation().x;
-        int y = getLocation().y;
-        this.setVisible(false);
-        
-        String usuario = textoUsuario.getText(); // Obtener el contenido de la casilla de usuario
+        String usuario = textoUsuario.getText();
+        String contrasenia = new String(textoContrasenia.getPassword());
 
-        if (usuario.equals("1")) {
-            Administrador admin = new Administrador();
-            admin.bienvenidaUsuario(usuario); // Llama al método bienvenidaUsuario() y pasa el nombre de usuario
-            admin.setVisible(true);
-            admin.setLocationRelativeTo(null);
-            admin.setLocation(x, y);
-        } else if (usuario.equals("2")) {
-            Docente docente = new Docente();
-            docente.bienvenidaUsuario(usuario);
-            docente.setVisible(true);
-            docente.setLocationRelativeTo(null);
-            docente.setLocation(x, y);
-        } else if (usuario.equals("3")){
-            Adscripto adscripto = new Adscripto();
-            adscripto.bienvenidaUsuario(usuario);
-            adscripto.setVisible(true);
-            adscripto.setLocationRelativeTo(null);
-            adscripto.setLocation(x, y);
+        ConsultasSQL consultasSQL = new ConsultasSQL();
+        String cargo = consultasSQL.validarUsuarioYContraseña(usuario, contrasenia);
+
+        if (cargo != null) {
+            int x = getLocation().x;
+            int y = getLocation().y;
+            this.setVisible(false);
+
+            if ("administrador".equals(cargo)) {
+                Administrador admin = new Administrador();
+                admin.bienvenidaUsuario(usuario);
+                admin.setVisible(true);
+                admin.setLocationRelativeTo(null);
+                admin.setLocation(x, y);
+            } else if ("docente".equals(cargo)) {
+                Docente docente = new Docente();
+                docente.bienvenidaUsuario(usuario);
+                docente.setVisible(true);
+                docente.setLocationRelativeTo(null);
+                docente.setLocation(x, y);
+            } else if ("adscripto".equals(cargo)) {
+                Adscripto adscripto = new Adscripto();
+                adscripto.bienvenidaUsuario(usuario);
+                adscripto.setVisible(true);
+                adscripto.setLocationRelativeTo(null);
+                adscripto.setLocation(x, y);
+            } else {
+                // Cargo desconocido o inválido
+                JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                this.setVisible(true);
+            }
         } else {
-            // Manejar el caso en que el usuario no sea ni Administrador ni Docente
-            JOptionPane.showMessageDialog(null, "El usuario no existe, intente con otro usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            // Datos incorrectos
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña inválidos", "Login Error", JOptionPane.ERROR_MESSAGE);
             this.setVisible(true);
         }
     }
@@ -397,12 +348,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JSeparator separadorContraseña;
+    private javax.swing.JSeparator separadorContrasenia;
     private javax.swing.JSeparator separadorUsuario;
-    private javax.swing.JPasswordField textoContraseña;
+    private javax.swing.JPasswordField textoContrasenia;
     private javax.swing.JLabel textoPortafolioDocente;
     private javax.swing.JTextField textoUsuario;
-    private javax.swing.JLabel tituloContraseña;
+    private javax.swing.JLabel tituloContrasenia;
     private javax.swing.JLabel tituloUsuario;
     private javax.swing.JLabel verPswd;
     // End of variables declaration//GEN-END:variables

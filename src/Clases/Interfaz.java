@@ -5,7 +5,7 @@
 
 package Clases;
 
-import interfazGrafica.Login;
+import Grafica.Login;
 
 /**
  *
