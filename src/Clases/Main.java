@@ -5,13 +5,13 @@
 
 package Clases;
 
-import Grafica.Login;
+import Grafica.Login_ventana;
 
 /**
  *
  * @author SDFA
  */
-public class Interfaz {
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -23,7 +23,7 @@ public class Interfaz {
         Conexion cx=new Conexion();
         cx.conectarMySQL();
        
-        Login login = new Login();
+        Login_ventana login = new Login_ventana();
         login.setVisible(true);
         login.setLocationRelativeTo(null);
         /// sdjaskfjks

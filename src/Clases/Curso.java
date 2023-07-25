@@ -8,7 +8,7 @@ package Clases;
  *
  * @author Sidorf
  */
-public class Cursos
+public class Curso
 {
     private int id_grupo;
     private String docente_asignado;
@@ -26,7 +26,7 @@ public class Cursos
         return cantidad;
     }
 
-    public Cursos(int id_grupo, String docente_asignado, int cantidad) {
+    public Curso(int id_grupo, String docente_asignado, int cantidad) {
         this.id_grupo = id_grupo;
         this.docente_asignado = docente_asignado;
         this.cantidad = cantidad;

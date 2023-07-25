@@ -10,25 +10,48 @@ package Clases;
  */
 public class Usuario
 {
-    private int id_usurio;
-    private String nom_usuario;
-    private String cont_usuario;
+    private int id_usuario;
+    private String cargo;
+    private String nombre_usuario;
+    private String contrasenia_usuario;
 
-    public int getId_usurio() {
-        return id_usurio;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
-    public String getNom_usuario() {
-        return nom_usuario;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public String getCont_usuario() {
-        return cont_usuario;
+    public String getCargo() {
+        return cargo;
     }
 
-    public Usuario(int id_usurio, String nom_usuario, String cont_usuario) {
-        this.id_usurio = id_usurio;
-        this.nom_usuario = nom_usuario;
-        this.cont_usuario = cont_usuario;
-    }    
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getNombre_usuario() {
+        return nombre_usuario;
+    }
+
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
+    }
+
+    public String getContrasenia_usuario() {
+        return contrasenia_usuario;
+    }
+
+    public void setContrasenia_usuario(String contrasenia_usuario) {
+        this.contrasenia_usuario = contrasenia_usuario;
+    }
+
+    public Usuario(int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
+        this.id_usuario = id_usuario;
+        this.cargo = cargo;
+        this.nombre_usuario = nombre_usuario;
+        this.contrasenia_usuario = contrasenia_usuario;
+    }
+  
 }

@@ -23,12 +23,12 @@ import Persistencia.ConsultasSQL;
  *
  * @author SDFA
  */
-public class Login extends javax.swing.JFrame {
+public class Login_ventana extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login_ventana() {
         initComponents();
         this.setTitle("SDFA - Portafolio Docente");
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage());
@@ -270,20 +270,20 @@ public class Login extends javax.swing.JFrame {
             int y = getLocation().y;
             this.setVisible(false);
 
-            if ("administrador".equals(cargo)) {
-                Administrador admin = new Administrador();
+            if ("Administrador".equals(cargo)) {
+                Administrador_ventana admin = new Administrador_ventana();
                 admin.bienvenidaUsuario(usuario);
                 admin.setVisible(true);
                 admin.setLocationRelativeTo(null);
                 admin.setLocation(x, y);
-            } else if ("docente".equals(cargo)) {
-                Docente docente = new Docente();
+            } else if ("Docente".equals(cargo)) {
+                Docente_ventana docente = new Docente_ventana();
                 docente.bienvenidaUsuario(usuario);
                 docente.setVisible(true);
                 docente.setLocationRelativeTo(null);
                 docente.setLocation(x, y);
-            } else if ("adscripto".equals(cargo)) {
-                Adscripto adscripto = new Adscripto();
+            } else if ("Adscripto".equals(cargo)) {
+                Adscripto_ventana adscripto = new Adscripto_ventana();
                 adscripto.bienvenidaUsuario(usuario);
                 adscripto.setVisible(true);
                 adscripto.setLocationRelativeTo(null);
@@ -318,20 +318,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Login_ventana().setVisible(true);
             }
         });
     }

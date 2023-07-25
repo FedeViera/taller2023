@@ -18,21 +18,26 @@ public class ConsultasSQL {
         Connection conn = conexion.conectarMySQL();
 
         if (conn != null) {
-            try {
-                Statement statement = (Statement) conn.createStatement();
-                String query = "SELECT cargo FROM Usuarios WHERE ingresoUsuario='" + usuario + "' AND ingresoContrasenia='" + contrasenia + "'";
-                ResultSet resultSet = statement.executeQuery(query);
-                if (resultSet.next()) {
-                    cargo = resultSet.getString("cargo");
-                }
-                resultSet.close();
-                statement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+        try {
+            String query = "SELECT cargo FROM Usuarios WHERE ingresoUsuario=? AND ingresoContrasenia=?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2, contrasenia);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                cargo = resultSet.getString("cargo");
             }
+
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        return cargo;
+    }
+    return cargo;
     }
     
     //AGREGAR DATO EN BD
@@ -40,13 +45,17 @@ public class ConsultasSQL {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
-        if (conn != null) {
+            if (conn != null) {
             try {
-                Statement statement = (Statement) conn.createStatement();
-                String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) "+"VALUES ('" + usuario + "', '" + contraseña + "', '" + cargo + "')";
-                statement.executeUpdate(query);
-                
-                statement.close();
+                String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) VALUES (?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, usuario);
+                preparedStatement.setString(2, contraseña);
+                preparedStatement.setString(3, cargo);
+
+                preparedStatement.executeUpdate();
+
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -62,13 +71,16 @@ public class ConsultasSQL {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        if (conn != null) {
+            if (conn != null) {
             try {
-                Statement statement = (Statement) conn.createStatement();
-                String query = "UPDATE Usuarios SET cargo = '" + nuevoCargo + "' WHERE ingresoUsuario = '" + usuario + "'";
-                statement.executeUpdate(query);
-                
-                statement.close();
+                String query = "UPDATE Usuarios SET cargo = ? WHERE ingresoUsuario = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, nuevoCargo);
+                preparedStatement.setString(2, usuario);
+
+                preparedStatement.executeUpdate();
+
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -83,30 +95,31 @@ public class ConsultasSQL {
     Connection conn = conexion.conectarMySQL();
 
     if (conn != null) {
-        try {
-            String query = "DELETE FROM Usuarios WHERE id = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1, id);
+            try {
+                String query = "DELETE FROM Usuarios WHERE id = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, id);
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
 
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
-    }
     }
     
+    //PARA TABLA
     public Object[][] obtenerUsuarios() {
         String query = "SELECT id, cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
         return ejecutarConsulta(query);
     }
 
+    //PARA TABLA
     public Object[][] obtenerOtrosDatos() {
-        // Aquí puedes escribir otras consultas para obtener diferentes datos de la base de datos
         String query = "SELECT campo1, campo2, campo3 FROM OtraTabla";
         return ejecutarConsulta(query);
     }

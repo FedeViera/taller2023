@@ -8,18 +8,14 @@ package Clases;
  *
  * @author Sidorf
  */
-public class Docentes extends Usuario
+public class Docente extends Usuario
 {
      private String asignatura;  
 
-    
-    public Docentes( int id_usurio, String nom_usuario, String cont_usuario, String asignatura) {
-        super(id_usurio, nom_usuario, cont_usuario);
-        
-
+    public Docente(String asignatura, int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
+        super(id_usuario, cargo, nombre_usuario, contrasenia_usuario);
         this.asignatura = asignatura;
     }
-
 
     public String getAsignatura() 
     {

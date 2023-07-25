@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import Clases.Docentes;
+import Clases.Docente;
 import Clases.Conexion;
 import java.lang.System.Logger;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ import java.util.logging.Level;
  *
  * @author SDFA
  */
-public class Administrador extends javax.swing.JFrame 
+public class Administrador_ventana extends javax.swing.JFrame 
 {
        
              Conexion con=new Conexion();
@@ -36,7 +36,7 @@ public class Administrador extends javax.swing.JFrame
      * Creates new form Login
      */
     
-    public Administrador() {
+    public Administrador_ventana() {
         initComponents();
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage()); //Logo de la ventana
@@ -339,6 +339,11 @@ public class Administrador extends javax.swing.JFrame
         pestañaOpcionesCuentas.setForeground(new java.awt.Color(0, 0, 0));
         pestañaOpcionesCuentas.setToolTipText("");
         pestañaOpcionesCuentas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        pestañaOpcionesCuentas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                pestañaOpcionesCuentasStateChanged(evt);
+            }
+        });
 
         agregar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -753,7 +758,7 @@ public class Administrador extends javax.swing.JFrame
         int x = getLocation().x;
         int y = getLocation().y;
         this.setVisible(false);
-        Login login = new Login();
+        Login_ventana login = new Login_ventana();
         login.setVisible(true);
         login.setLocationRelativeTo(null); 
         login.setLocation(x, y);
@@ -828,11 +833,12 @@ public class Administrador extends javax.swing.JFrame
         String usuario = textoCorreo.getText();
         String contrasenia = new String(textoContrasenia.getPassword());
         String cargo = opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
-
-        // Lógica para validar los datos, si es necesario
         
+        // Lógica para validar los datos, si es necesario
         ConsultasSQL consultasSQL = new ConsultasSQL();
         consultasSQL.agregarDato(usuario, contrasenia, cargo);
+
+        //mostrarUsuariosEnTabla(); //Actualizar tabla al agregar usuario
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void mostrarUsuariosEnTabla() {
@@ -844,7 +850,7 @@ public class Administrador extends javax.swing.JFrame
         model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
         for (Object[] fila : datos) {
             model.addRow(fila);
-        }
+    }
     }
 
     private void textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCorreoActionPerformed
@@ -870,6 +876,10 @@ public class Administrador extends javax.swing.JFrame
     private void textoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoIDActionPerformed
+
+    private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
+        mostrarUsuariosEnTabla();
+    }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -896,21 +906,27 @@ public class Administrador extends javax.swing.JFrame
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administrador_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administrador_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administrador_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administrador_ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Administrador().setVisible(true);
+                new Administrador_ventana().setVisible(true);
             }
         });
     }
