@@ -47,15 +47,21 @@ public class ConsultasSQL {
 
             if (conn != null) {
             try {
-                String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) VALUES (?, ?, ?)";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setString(1, usuario);
-                preparedStatement.setString(2, contraseña);
-                preparedStatement.setString(3, cargo);
+                    // Verificar si el usuario ya existe en la base de datos antes de insertarlo
+                    if (!usuarioExiste(conn, usuario)) {
+                        String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) VALUES (?, ?, ?)";
+                        PreparedStatement preparedStatement = conn.prepareStatement(query);
+                        preparedStatement.setString(1, usuario);
+                        preparedStatement.setString(2, contraseña);
+                        preparedStatement.setString(3, cargo);
 
-                preparedStatement.executeUpdate();
+                        preparedStatement.executeUpdate();
 
-                preparedStatement.close();
+                        preparedStatement.close();
+                } else {
+                    // El usuario ya existe, puedes mostrar un mensaje o tomar otra acción apropiada
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
+                }
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -65,6 +71,22 @@ public class ConsultasSQL {
         }
     }
     
+    private boolean usuarioExiste(Connection conn, String usuario) throws SQLException {
+        String query = "SELECT COUNT(*) AS total FROM Usuarios WHERE ingresoUsuario = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, usuario);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        int total = 0;
+        if (resultSet.next()) {
+            total = resultSet.getInt("total");
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return total > 0;
+    }
     //ACTUALIZAR DATO EN BD
     public void actualizarDato(String usuario, String nuevoCargo) {
         // Lógica de conexión a la base de datos, si es necesario

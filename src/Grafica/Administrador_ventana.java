@@ -66,6 +66,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         botonGestionActividades = new javax.swing.JButton();
         botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
+        pestañaBienvenida = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         pestaña0 = new javax.swing.JPanel();
         pestañaOpcionesCuentas = new javax.swing.JTabbedPane();
         agregar = new javax.swing.JPanel();
@@ -332,6 +334,26 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
+        pestañaBienvenida.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dream Team.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+
+        javax.swing.GroupLayout pestañaBienvenidaLayout = new javax.swing.GroupLayout(pestañaBienvenida);
+        pestañaBienvenida.setLayout(pestañaBienvenidaLayout);
+        pestañaBienvenidaLayout.setHorizontalGroup(
+            pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 952, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pestañaBienvenidaLayout.setVerticalGroup(
+            pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+        );
+
+        panelPestañas.addTab("tab5", pestañaBienvenida);
+
         pestaña0.setBackground(new java.awt.Color(38, 56, 63));
         pestaña0.setToolTipText("");
 
@@ -595,7 +617,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
-        jLabel2.setText("PANEL GESTION DE CURROS");
+        jLabel2.setText("PANEL GESTION DE CURSOS");
 
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
@@ -702,7 +724,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseClicked
-        panelPestañas.setSelectedIndex(0);
+        panelPestañas.setSelectedIndex(1);
         botonGestionCuentas.setBackground(new Color(255, 255, 255)); 
         botonGestionCuentas.setForeground(new Color(0,0,0));
         botonGestionCursos.setBackground(new Color(52,80,86)); 
@@ -731,7 +753,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseClicked
-        panelPestañas.setSelectedIndex(1);
+        panelPestañas.setSelectedIndex(2);
         botonGestionCursos.setBackground(new Color(255, 255, 255)); 
         botonGestionCursos.setForeground(new Color(0,0,0));
         botonGestionCuentas.setBackground(new Color(52,80,86)); 
@@ -770,7 +792,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseClicked
-        panelPestañas.setSelectedIndex(2);
+        panelPestañas.setSelectedIndex(3);
         botonGestionActividades.setBackground(new Color(255, 255, 255)); 
         botonGestionActividades.setForeground(new Color(0,0,0));
         botonGestionCuentas.setBackground(new Color(52,80,86)); 
@@ -798,7 +820,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_botonGestionActividadesKeyPressed
 
     private void botonGestionEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseClicked
-        panelPestañas.setSelectedIndex(3);
+        panelPestañas.setSelectedIndex(4);
         botonGestionEvaluaciones.setBackground(new Color(255, 255, 255)); 
         botonGestionEvaluaciones.setForeground(new Color(0,0,0));
         botonGestionCursos.setBackground(new Color(52,80,86)); 
@@ -956,6 +978,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel modificar;
@@ -968,6 +991,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
     private javax.swing.JPanel pestaña3;
+    private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaCuentas;

@@ -328,7 +328,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
-        jLabel2.setText("PANEL GESTION DE CURROS");
+        jLabel2.setText("PANEL GESTION DE CURSOS");
 
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);

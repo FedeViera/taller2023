@@ -442,7 +442,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/imagenes/img/descarga (1).jpeg"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="PANEL GESTION DE CURROS"/>
+                    <Property name="text" type="java.lang.String" value="PANEL GESTION DE CURSOS"/>
                   </Properties>
                 </Component>
               </SubComponents>
