@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 
 public class ConsultasSQL {
     
-    //VALIDAR USUARIO Y CONTRASEÑA
+//VALIDAR USUARIO Y CONTRASEÑA
     public String validarUsuarioYContraseña(String usuario, String contrasenia){
         String cargo = null;
         Conexion conexion = new Conexion();
@@ -40,7 +40,7 @@ public class ConsultasSQL {
     return cargo;
     }
     
-    //AGREGAR DATO EN BD
+//AGREGAR DATO EN BD
     public void agregarDato(String usuario, String contraseña, String cargo) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -67,7 +67,7 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -87,31 +87,38 @@ public class ConsultasSQL {
 
         return total > 0;
     }
-    //ACTUALIZAR DATO EN BD
-    public void actualizarDato(String usuario, String nuevoCargo) {
-        // Lógica de conexión a la base de datos, si es necesario
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
+    
+//ACTUALIZAR DATO EN BD
+    public void actualizarUsuario(String usuario, String nuevaContrasenia, String nuevoCargo) {
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
         
-            if (conn != null) {
+        if (conn != null) {
             try {
-                String query = "UPDATE Usuarios SET cargo = ? WHERE ingresoUsuario = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setString(1, nuevoCargo);
-                preparedStatement.setString(2, usuario);
+                // Verificar si el usuario existe en la base de datos antes de actualizarlo
+                if (usuarioExiste(conn, usuario)) {
+                    String query = "UPDATE Usuarios SET ingresoContrasenia = ?, cargo = ? WHERE ingresoUsuario = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setString(1, nuevaContrasenia);
+                    preparedStatement.setString(2, nuevoCargo);
+                    preparedStatement.setString(3, usuario);
 
-                preparedStatement.executeUpdate();
+                    preparedStatement.executeUpdate();
 
-                preparedStatement.close();
+                    preparedStatement.close();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
+                }
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
+//ELIMINAR DATOS DE LA BD    
     public void eliminarDato(String id) {
         Conexion conexion = new Conexion();
     Connection conn = conexion.conectarMySQL();
@@ -130,23 +137,12 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    //PARA TABLA
-    public Object[][] obtenerUsuarios() {
-        String query = "SELECT id, cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
-        return ejecutarConsulta(query);
-    }
-
-    //PARA TABLA
-    public Object[][] obtenerOtrosDatos() {
-        String query = "SELECT campo1, campo2, campo3 FROM OtraTabla";
-        return ejecutarConsulta(query);
-    }
-
-    //TRAER DATOS DE LA BASE DE DATOS Y MOSTRARLOS EN TABLA
+    
+//TRAER DATOS DE LA BASE DE DATOS Y MOSTRARLOS EN TABLA
     private Object[][] ejecutarConsulta(String query) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -181,10 +177,27 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Connection Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         return datos;
     }
+    
+    
+//OBTENER USUARIOS DE LA BD
+    public Object[][] obtenerUsuarios() {
+        String query = "SELECT id, cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
+        return ejecutarConsulta(query);
+    }
+
+    /*
+    //PARA TABLA
+    public Object[][] obtenerOtrosDatos() {
+        String query = "SELECT campo1, campo2, campo3 FROM OtraTabla";
+        return ejecutarConsulta(query);
+    }
+    */
+
+    
     
     
     

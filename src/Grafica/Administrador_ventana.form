@@ -449,20 +449,20 @@
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="correo" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <Component id="agregar_correo" min="-2" pref="98" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="textoCorreo" min="-2" pref="384" max="-2" attributes="0"/>
+                                          <Component id="agregar_textoCorreo" min="-2" pref="384" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="botonAgregar" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="agregar_botonAgregar" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="cargo" min="-2" pref="151" max="-2" attributes="0"/>
+                                          <Component id="agregar_cargo" min="-2" pref="151" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
+                                          <Component id="agegar_opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="contrasenia" min="-2" pref="151" max="-2" attributes="0"/>
+                                          <Component id="agregar_contrasenia" min="-2" pref="151" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="textoContrasenia" min="-2" pref="343" max="-2" attributes="0"/>
+                                          <Component id="agregar_textoContrasenia" min="-2" pref="343" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -474,28 +474,28 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="correo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="textoCorreo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="agregar_correo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="agregar_textoCorreo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="agregar_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="agregar_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="agregar_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="agegar_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="botonAgregar" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="agregar_botonAgregar" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="correo">
+                        <Component class="javax.swing.JLabel" name="agregar_correo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -506,17 +506,17 @@
                             <Property name="text" type="java.lang.String" value="Correo"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="textoCorreo">
+                        <Component class="javax.swing.JTextField" name="agregar_textoCorreo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="18" style="0"/>
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoCorreoActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_textoCorreoActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="contrasenia">
+                        <Component class="javax.swing.JLabel" name="agregar_contrasenia">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -527,9 +527,9 @@
                             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JPasswordField" name="textoContrasenia">
+                        <Component class="javax.swing.JPasswordField" name="agregar_textoContrasenia">
                         </Component>
-                        <Component class="javax.swing.JLabel" name="cargo">
+                        <Component class="javax.swing.JLabel" name="agregar_cargo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -540,7 +540,7 @@
                             <Property name="text" type="java.lang.String" value="Cargo"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="opcionesCargo">
+                        <Component class="javax.swing.JComboBox" name="agegar_opcionesCargo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="18" style="0"/>
@@ -554,13 +554,13 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opcionesCargoActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agegar_opcionesCargoActionPerformed"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JButton" name="botonAgregar">
+                        <Component class="javax.swing.JButton" name="agregar_botonAgregar">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -568,7 +568,7 @@
                             <Property name="text" type="java.lang.String" value="Agregar"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_botonAgregarActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>
@@ -590,15 +590,156 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                          <Component id="textoModificar" min="-2" pref="255" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="modificar_cargo" min="-2" pref="191" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="modificar_opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="modificar_contrasenia" min="-2" pref="169" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="modificar_textoContrasenia" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="modificar_correo" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                      <Component id="modificar_textoCorreo" min="-2" pref="447" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Component id="modificar_botonModificar" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace pref="343" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="textoModificar" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="modificar_correo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="modificar_textoCorreo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="modificar_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="modificar_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="modificar_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="modificar_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="modificar_botonModificar" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace pref="208" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="textoModificar">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="18" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Ingrese los datos a modificar:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="modificar_correo">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="20" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Correo"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="modificar_textoCorreo">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="18" style="0"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoCorreoActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="modificar_contrasenia">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="20" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Nueva contrase&#xf1;a"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JPasswordField" name="modificar_textoContrasenia">
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="modificar_opcionesCargo">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="18" style="0"/>
+                            </Property>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="3">
+                                <StringItem index="0" value="Administrador"/>
+                                <StringItem index="1" value="Adscripto"/>
+                                <StringItem index="2" value="Docente"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_opcionesCargoActionPerformed"/>
+                          </Events>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="modificar_cargo">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="20" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Seleccione el Cargo"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="modificar_botonModificar">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="20" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Modificar"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_botonModificarActionPerformed"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="eliminar">
                       <Properties>
@@ -716,9 +857,9 @@
                                   <Component id="jLabel5" min="-2" pref="28" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" pref="402" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonActualizar" min="-2" pref="34" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="botonActualizar" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

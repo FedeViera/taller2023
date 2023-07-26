@@ -217,7 +217,7 @@ public class Login_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_textoContraseniaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
-        abrirVentanaCorrespondiente(); 
+
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEntrarKeyPressed
