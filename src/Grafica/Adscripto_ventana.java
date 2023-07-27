@@ -45,6 +45,8 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         botonInformes = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
+        pestañaBienvenida = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         pestaña0 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pestaña1 = new javax.swing.JPanel();
@@ -294,6 +296,30 @@ public class Adscripto_ventana extends javax.swing.JFrame {
 
         panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
+        pestañaBienvenida.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dream Team.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+
+        javax.swing.GroupLayout pestañaBienvenidaLayout = new javax.swing.GroupLayout(pestañaBienvenida);
+        pestañaBienvenida.setLayout(pestañaBienvenidaLayout);
+        pestañaBienvenidaLayout.setHorizontalGroup(
+            pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        pestañaBienvenidaLayout.setVerticalGroup(
+            pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestañaBienvenidaLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        panelPestañas.addTab("tab5", pestañaBienvenida);
+
         pestaña0.setBackground(new java.awt.Color(255, 255, 255));
         pestaña0.setForeground(new java.awt.Color(0, 0, 0));
         pestaña0.setToolTipText("");
@@ -459,16 +485,22 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonEvaluacionesMouseEntered
 
+    private void cambiarEstadoBoton(JButton button, boolean isSelected) {
+        if (isSelected) {
+            button.setBackground(new Color(255, 255, 255));
+            button.setForeground(new Color(0, 0, 0));
+        } else {
+            button.setBackground(new Color(52, 80, 86));
+            button.setForeground(new Color(255, 255, 255));
+        }
+    }
+    
     private void botonEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseClicked
-        panelPestañas.setSelectedIndex(2);
-        botonEvaluaciones.setBackground(new Color(255, 255, 255));
-        botonEvaluaciones.setForeground(new Color(0,0,0));
-        botonCursos.setBackground(new Color(52,80,86));
-        botonCursos.setForeground(new Color(255,255,255));
-        botonActividades.setBackground(new Color(52,80,86));
-        botonActividades.setForeground(new Color(255,255,255));
-        botonInformes.setBackground(new Color(52,80,86));
-        botonInformes.setForeground(new Color(255,255,255));
+        panelPestañas.setSelectedIndex(3);
+        cambiarEstadoBoton(botonEvaluaciones, true);
+        cambiarEstadoBoton(botonCursos, false);
+        cambiarEstadoBoton(botonActividades, false);
+        cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonEvaluacionesMouseClicked
 
     private void botonActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonActividadesKeyPressed
@@ -488,15 +520,11 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonActividadesMouseEntered
 
     private void botonActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActividadesMouseClicked
-        panelPestañas.setSelectedIndex(1);
-        botonActividades.setBackground(new Color(255, 255, 255));
-        botonActividades.setForeground(new Color(0,0,0));
-        botonCursos.setBackground(new Color(52,80,86));
-        botonCursos.setForeground(new Color(255,255,255));
-        botonEvaluaciones.setBackground(new Color(52,80,86));
-        botonEvaluaciones.setForeground(new Color(255,255,255));
-        botonInformes.setBackground(new Color(52,80,86));
-        botonInformes.setForeground(new Color(255,255,255));
+        panelPestañas.setSelectedIndex(2);
+        cambiarEstadoBoton(botonActividades, true);
+        cambiarEstadoBoton(botonCursos, false);
+        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonActividadesMouseClicked
 
     private void botonCursosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonCursosKeyPressed
@@ -516,27 +544,19 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCursosMouseEntered
 
     private void botonCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCursosMouseClicked
-        panelPestañas.setSelectedIndex(0);
-        botonCursos.setBackground(new Color(255, 255, 255));
-        botonCursos.setForeground(new Color(0,0,0));
-        botonActividades.setBackground(new Color(52,80,86));
-        botonActividades.setForeground(new Color(255,255,255));
-        botonEvaluaciones.setBackground(new Color(52,80,86));
-        botonEvaluaciones.setForeground(new Color(255,255,255));
-        botonInformes.setBackground(new Color(52,80,86));
-        botonInformes.setForeground(new Color(255,255,255));
+        panelPestañas.setSelectedIndex(1);
+        cambiarEstadoBoton(botonCursos, true);
+        cambiarEstadoBoton(botonActividades, false);
+        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonCursosMouseClicked
 
     private void botonInformesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInformesMouseClicked
-        panelPestañas.setSelectedIndex(3);
-        botonInformes.setBackground(new Color(255, 255, 255));
-        botonInformes.setForeground(new Color(0,0,0));
-        botonActividades.setBackground(new Color(52,80,86));
-        botonActividades.setForeground(new Color(255,255,255));
-        botonEvaluaciones.setBackground(new Color(52,80,86));
-        botonEvaluaciones.setForeground(new Color(255,255,255));
-        botonCursos.setBackground(new Color(52,80,86));
-        botonCursos.setForeground(new Color(255,255,255));
+        panelPestañas.setSelectedIndex(4);
+        cambiarEstadoBoton(botonInformes, true);
+        cambiarEstadoBoton(botonCursos, false);
+        cambiarEstadoBoton(botonActividades, false);
+        cambiarEstadoBoton(botonEvaluaciones, false);
     }//GEN-LAST:event_botonInformesMouseClicked
 
     private void botonInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInformesMouseEntered
@@ -676,6 +696,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
@@ -684,6 +705,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     private javax.swing.JPanel pestaña1;
     private javax.swing.JPanel pestaña2;
     private javax.swing.JPanel pestaña4;
+    private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
     // End of variables declaration//GEN-END:variables
 }

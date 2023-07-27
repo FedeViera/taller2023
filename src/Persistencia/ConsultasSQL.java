@@ -67,7 +67,7 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -114,7 +114,7 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -137,7 +137,7 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -177,7 +177,7 @@ public class ConsultasSQL {
                 ex.printStackTrace();
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "Fallo al conectar con la BD.", "Error de Conexión", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         return datos;
     }
