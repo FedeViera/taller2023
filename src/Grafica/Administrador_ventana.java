@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import Clases.Docente;
-import Clases.Conexion;
+import Entidades.Docente;
+import Entidades.Conexion;
 import java.lang.System.Logger;
 import java.sql.SQLException;
 import java.util.logging.Level;
