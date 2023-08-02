@@ -39,38 +39,8 @@ public class ConsultasSQL {
     }
     return cargo;
     }
-    
-//AGREGAR DATO EN BD
-    public void agregarDato(String usuario, String contraseña, String cargo) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
 
-            if (conn != null) {
-            try {
-                    // Verificar si el usuario ya existe en la base de datos antes de insertarlo
-                    if (!usuarioExiste(conn, usuario)) {
-                        String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) VALUES (?, ?, ?)";
-                        PreparedStatement preparedStatement = conn.prepareStatement(query);
-                        preparedStatement.setString(1, usuario);
-                        preparedStatement.setString(2, contraseña);
-                        preparedStatement.setString(3, cargo);
-
-                        preparedStatement.executeUpdate();
-
-                        preparedStatement.close();
-                } else {
-                    // El usuario ya existe, puedes mostrar un mensaje o tomar otra acción apropiada
-                    JOptionPane.showMessageDialog(null, "El usuario ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
-                }
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
+//CHEQUEAR SI EL USUARIO EXISTE EN LA BD
     private boolean usuarioExiste(Connection conn, String usuario) throws SQLException {
         String query = "SELECT COUNT(*) AS total FROM Usuarios WHERE ingresoUsuario = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -87,6 +57,38 @@ public class ConsultasSQL {
 
         return total > 0;
     }
+    
+//AGREGAR DATO EN BD
+    public void agregarDato(String usuario, String contraseña, String cargo) {
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+    
+        if (conn != null) {
+            try {
+                // Verifica si el usuario ya existe en la base de datos.
+                if (!usuarioExiste(conn, usuario)) {
+                    String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) VALUES (?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setString(1, usuario);
+                    preparedStatement.setString(2, contraseña);
+                    preparedStatement.setString(3, cargo);
+
+                    preparedStatement.executeUpdate();
+
+                    preparedStatement.close();
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
     
 //ACTUALIZAR DATO EN BD
     public void actualizarUsuario(String usuario, String nuevaContrasenia, String nuevoCargo) {
@@ -118,12 +120,12 @@ public class ConsultasSQL {
         }
     }
 
-//OBTENER ID POR USUARIO 
-    public String obtenerIDUsuarioPorCorreo(String correo) {
+/*//OBTENER ID POR USUARIO 
+    public int obtenerIDUsuarioPorCorreo(String correo) {
     Conexion conexion = new Conexion();
     Connection conn = conexion.conectarMySQL();
 
-    String idUsuario = null;
+    Integer idUsuario = -1;
 
     if (conn != null) {
         try {
@@ -134,7 +136,7 @@ public class ConsultasSQL {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                idUsuario = resultSet.getString("id");
+                idUsuario = resultSet.getInt("id"); // Convertimos el valor a un entero
             }
 
             resultSet.close();
@@ -146,39 +148,37 @@ public class ConsultasSQL {
     } else {
         JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
     }
-
     return idUsuario;
-}
+}*/
     
 //ELIMINAR DATOS DE LA BD    
-    public void eliminarDato(String id) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
+    public void eliminarDato(int id) {
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
 
-        if (conn != null) {
-                try {
-                    String query = "DELETE FROM Usuarios WHERE id = ?";
-                    PreparedStatement preparedStatement = conn.prepareStatement(query);
-                    preparedStatement.setString(1, id);
+    if (conn != null) {
+        try {
+            String query = "DELETE FROM Usuarios WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
 
-                    preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-                    preparedStatement.close();
-                    conn.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-            }
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
     }
-    
+}
     
 //TRAER DATOS DE LA BASE DE DATOS Y MOSTRARLOS EN TABLA
     private Object[][] ejecutarConsulta(String query) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        Object[][] datos = null;
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+    Object[][] datos = null;
 
         if (conn != null) {
             try {
@@ -217,7 +217,7 @@ public class ConsultasSQL {
     
 //OBTENER USUARIOS DE LA BD
     public Object[][] obtenerUsuarios() {
-        String query = "SELECT cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
+        String query = "SELECT id, cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
         return ejecutarConsulta(query);
     }
 

@@ -32,9 +32,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         initComponents();
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage()); //Logo de la ventana
-        
-        
-  
+        verPswd.setVisible(false);
+        verPswd1.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +64,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar_cargo = new javax.swing.JLabel();
         agegar_opcionesCargo = new javax.swing.JComboBox<>();
         agregar_botonAgregar = new javax.swing.JButton();
+        verPswd1 = new javax.swing.JLabel();
+        ocultarPswd1 = new javax.swing.JLabel();
         observar = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -77,6 +78,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificar_cargo = new javax.swing.JLabel();
         modificar_botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
+        verPswd = new javax.swing.JLabel();
+        ocultarPswd = new javax.swing.JLabel();
         pestaña1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
@@ -397,6 +400,20 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
+        verPswd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
+        verPswd1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verPswd1MouseClicked(evt);
+            }
+        });
+
+        ocultarPswd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
+        ocultarPswd1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ocultarPswd1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout agregarLayout = new javax.swing.GroupLayout(agregar);
         agregar.setLayout(agregarLayout);
         agregarLayout.setHorizontalGroup(
@@ -416,8 +433,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                     .addGroup(agregarLayout.createSequentialGroup()
                         .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ocultarPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(verPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         agregarLayout.setVerticalGroup(
             agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,16 +448,20 @@ public class Administrador_ventana extends javax.swing.JFrame
                     .addComponent(agregar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(agregar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ocultarPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(verPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         pestañaOpcionesCuentas.addTab("Agregar", agregar);
@@ -449,28 +474,28 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Cargo", "Usuario", "Contraseña"
+                "ID", "Cargo", "Usuario", "Contraseña"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -483,6 +508,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
         }
 
         modificar_usuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -528,6 +554,20 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
+        verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
+        verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verPswdMouseClicked(evt);
+            }
+        });
+
+        ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
+        ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ocultarPswdMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout observarLayout = new javax.swing.GroupLayout(observar);
         observar.setLayout(observarLayout);
         observarLayout.setHorizontalGroup(
@@ -544,17 +584,22 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(observarLayout.createSequentialGroup()
-                                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(observarLayout.createSequentialGroup()
+                                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(observarLayout.createSequentialGroup()
+                                        .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(observarLayout.createSequentialGroup()
                                 .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 352, Short.MAX_VALUE))))
+                        .addGap(0, 304, Short.MAX_VALUE))))
             .addGroup(observarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -573,8 +618,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                     .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -583,7 +632,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pestañaOpcionesCuentas.addTab("Ver Usuarios", observar);
@@ -870,8 +919,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int filaSeleccionada = tablaCuentas.getSelectedRow();
                 if (filaSeleccionada >= 0) {
-                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 1).toString(); 
-                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 2).toString();
+                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 2).toString(); 
+                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 3).toString();
 
                     modificar_textoUsuario.setText(usuario);
                     modificar_textoContrasenia.setText(contrasenia);
@@ -888,16 +937,12 @@ public class Administrador_ventana extends javax.swing.JFrame
     
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int filaSeleccionada = tablaCuentas.getSelectedRow();
+    
         if (filaSeleccionada >= 0) {
-            String usuario = tablaCuentas.getValueAt(filaSeleccionada, 2).toString(); // Obtenemos el correo del usuario de la tabla
+            int idUsuario = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
             ConsultasSQL consultasSQL = new ConsultasSQL();
-            String idUsuario = consultasSQL.obtenerIDUsuarioPorCorreo(usuario); // Obtener el ID del usuario
-            if (idUsuario != null) {
-                consultasSQL.eliminarDato(idUsuario); // Eliminar el usuario utilizando el ID
-                mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
-            } else {
-                JOptionPane.showMessageDialog(this, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
-            }
+            consultasSQL.eliminarDato(idUsuario); // Eliminar el usuario utilizando el ID
+            mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
         }
@@ -924,6 +969,30 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void modificar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoUsuarioActionPerformed
 
     }//GEN-LAST:event_modificar_textoUsuarioActionPerformed
+
+    private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
+        ocultarPswd.setVisible(true);
+        verPswd.setVisible(false);
+        modificar_textoContrasenia.setEchoChar('●');
+    }//GEN-LAST:event_verPswdMouseClicked
+
+    private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
+        ocultarPswd.setVisible(false);
+        verPswd.setVisible(true);
+        modificar_textoContrasenia.setEchoChar((char) 0);
+    }//GEN-LAST:event_ocultarPswdMouseClicked
+
+    private void verPswd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswd1MouseClicked
+        ocultarPswd1.setVisible(true);
+        verPswd1.setVisible(false);
+        agregar_textoContrasenia.setEchoChar('●');
+    }//GEN-LAST:event_verPswd1MouseClicked
+
+    private void ocultarPswd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswd1MouseClicked
+        ocultarPswd1.setVisible(false);
+        verPswd1.setVisible(true);
+        agregar_textoContrasenia.setEchoChar((char) 0);
+    }//GEN-LAST:event_ocultarPswd1MouseClicked
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -995,6 +1064,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTextField modificar_textoUsuario;
     private javax.swing.JLabel modificar_usuario;
     private javax.swing.JPanel observar;
+    private javax.swing.JLabel ocultarPswd;
+    private javax.swing.JLabel ocultarPswd1;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
@@ -1006,5 +1077,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaCuentas;
+    private javax.swing.JLabel verPswd;
+    private javax.swing.JLabel verPswd1;
     // End of variables declaration//GEN-END:variables
 }
