@@ -118,27 +118,59 @@ public class ConsultasSQL {
         }
     }
 
+//OBTENER ID POR USUARIO 
+    public String obtenerIDUsuarioPorCorreo(String correo) {
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+
+    String idUsuario = null;
+
+    if (conn != null) {
+        try {
+            String query = "SELECT id FROM Usuarios WHERE ingresoUsuario = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, correo);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                idUsuario = resultSet.getString("id");
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+    }
+
+    return idUsuario;
+}
+    
 //ELIMINAR DATOS DE LA BD    
     public void eliminarDato(String id) {
         Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
+        Connection conn = conexion.conectarMySQL();
 
-    if (conn != null) {
-            try {
-                String query = "DELETE FROM Usuarios WHERE id = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setString(1, id);
+        if (conn != null) {
+                try {
+                    String query = "DELETE FROM Usuarios WHERE id = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setString(1, id);
 
-                preparedStatement.executeUpdate();
+                    preparedStatement.executeUpdate();
 
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                    preparedStatement.close();
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
     }
     
     
@@ -185,7 +217,7 @@ public class ConsultasSQL {
     
 //OBTENER USUARIOS DE LA BD
     public Object[][] obtenerUsuarios() {
-        String query = "SELECT id, cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
+        String query = "SELECT cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
         return ejecutarConsulta(query);
     }
 

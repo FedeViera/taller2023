@@ -65,24 +65,18 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar_cargo = new javax.swing.JLabel();
         agegar_opcionesCargo = new javax.swing.JComboBox<>();
         agregar_botonAgregar = new javax.swing.JButton();
-        modificar = new javax.swing.JPanel();
-        textoModificar = new javax.swing.JLabel();
-        modificar_correo = new javax.swing.JLabel();
-        modificar_textoCorreo = new javax.swing.JTextField();
+        observar = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCuentas = new javax.swing.JTable();
+        modificar_usuario = new javax.swing.JLabel();
+        modificar_textoUsuario = new javax.swing.JTextField();
         modificar_contrasenia = new javax.swing.JLabel();
         modificar_textoContrasenia = new javax.swing.JPasswordField();
         modificar_opcionesCargo = new javax.swing.JComboBox<>();
         modificar_cargo = new javax.swing.JLabel();
         modificar_botonModificar = new javax.swing.JButton();
-        eliminar = new javax.swing.JPanel();
         botonEliminar = new javax.swing.JButton();
-        id = new javax.swing.JLabel();
-        textoID = new javax.swing.JTextField();
-        observar = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaCuentas = new javax.swing.JTable();
-        botonActualizar = new javax.swing.JButton();
         pestaña1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
@@ -447,20 +441,58 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         pestañaOpcionesCuentas.addTab("Agregar", agregar);
 
-        modificar.setBackground(new java.awt.Color(255, 255, 255));
+        observar.setBackground(new java.awt.Color(255, 255, 255));
 
-        textoModificar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        textoModificar.setForeground(new java.awt.Color(0, 0, 0));
-        textoModificar.setText("Ingrese los datos a modificar:");
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Cuentas registradas:");
 
-        modificar_correo.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        modificar_correo.setForeground(new java.awt.Color(0, 0, 0));
-        modificar_correo.setText("Correo");
+        tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Cargo", "Usuario", "Contraseña"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        modificar_textoCorreo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        modificar_textoCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaCuentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaCuentas);
+        if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
+            tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        modificar_usuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        modificar_usuario.setForeground(new java.awt.Color(0, 0, 0));
+        modificar_usuario.setText("Usuario");
+
+        modificar_textoUsuario.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        modificar_textoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar_textoCorreoActionPerformed(evt);
+                modificar_textoUsuarioActionPerformed(evt);
             }
         });
 
@@ -488,161 +520,11 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout modificarLayout = new javax.swing.GroupLayout(modificar);
-        modificar.setLayout(modificarLayout);
-        modificarLayout.setHorizontalGroup(
-            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(modificarLayout.createSequentialGroup()
-                .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(modificarLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(textoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(modificarLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(modificarLayout.createSequentialGroup()
-                                .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(modificarLayout.createSequentialGroup()
-                                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(modificar_textoContrasenia))
-                                .addGroup(modificarLayout.createSequentialGroup()
-                                    .addComponent(modificar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(modificar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(343, Short.MAX_VALUE))
-        );
-        modificarLayout.setVerticalGroup(
-            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(modificarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(textoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modificar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
-        );
-
-        pestañaOpcionesCuentas.addTab("Modificar", modificar);
-
-        eliminar.setBackground(new java.awt.Color(255, 255, 255));
-
         botonEliminar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
-            }
-        });
-
-        id.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        id.setForeground(new java.awt.Color(0, 0, 0));
-        id.setText("id");
-
-        textoID.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        textoID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoIDActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout eliminarLayout = new javax.swing.GroupLayout(eliminar);
-        eliminar.setLayout(eliminarLayout);
-        eliminarLayout.setHorizontalGroup(
-            eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(eliminarLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(eliminarLayout.createSequentialGroup()
-                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(445, Short.MAX_VALUE))
-        );
-        eliminarLayout.setVerticalGroup(
-            eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(eliminarLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(330, Short.MAX_VALUE))
-        );
-
-        pestañaOpcionesCuentas.addTab("Eliminar", eliminar);
-
-        observar.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Cuentas registradas:");
-
-        tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Cargo", "Usuario", "Contraseña"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaCuentas.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tablaCuentas);
-        if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
-            tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        botonActualizar.setText("Actualizar");
-        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonActualizarMouseClicked(evt);
-            }
-        });
-        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActualizarActionPerformed(evt);
             }
         });
 
@@ -653,10 +535,30 @@ public class Administrador_ventana extends javax.swing.JFrame
             .addGroup(observarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(observarLayout.createSequentialGroup()
+                        .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(observarLayout.createSequentialGroup()
+                        .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(observarLayout.createSequentialGroup()
+                                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(observarLayout.createSequentialGroup()
+                                .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 352, Short.MAX_VALUE))))
+            .addGroup(observarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         observarLayout.setVerticalGroup(
             observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -664,10 +566,24 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(7, 7, 7)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pestañaOpcionesCuentas.addTab("Ver Usuarios", observar);
@@ -947,6 +863,22 @@ public class Administrador_ventana extends javax.swing.JFrame
         for (Object[] fila : datos) {
             model.addRow(fila);
         }
+
+        // Agregar el MouseListener a la tabla
+        tablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = tablaCuentas.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 1).toString(); 
+                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 2).toString();
+
+                    modificar_textoUsuario.setText(usuario);
+                    modificar_textoContrasenia.setText(contrasenia);
+                }
+            }
+        });  
+        
     }
 
     private void agregar_textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoCorreoActionPerformed
@@ -954,46 +886,44 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_agregar_textoCorreoActionPerformed
 
     
-    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-        mostrarUsuariosEnTabla();
-    }//GEN-LAST:event_botonActualizarActionPerformed
-
-    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
-       
-    }//GEN-LAST:event_botonActualizarMouseClicked
-
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        String id = textoID.getText();
-        ConsultasSQL consultasSQL = new ConsultasSQL();
-        consultasSQL.eliminarDato(id);
-        
+        int filaSeleccionada = tablaCuentas.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            String usuario = tablaCuentas.getValueAt(filaSeleccionada, 2).toString(); // Obtenemos el correo del usuario de la tabla
+            ConsultasSQL consultasSQL = new ConsultasSQL();
+            String idUsuario = consultasSQL.obtenerIDUsuarioPorCorreo(usuario); // Obtener el ID del usuario
+            if (idUsuario != null) {
+                consultasSQL.eliminarDato(idUsuario); // Eliminar el usuario utilizando el ID
+                mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
+            } else {
+                JOptionPane.showMessageDialog(this, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
-
-    private void textoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoIDActionPerformed
-       
-    }//GEN-LAST:event_textoIDActionPerformed
 
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
         mostrarUsuariosEnTabla();
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
-    private void modificar_textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoCorreoActionPerformed
-        
-    }//GEN-LAST:event_modificar_textoCorreoActionPerformed
-
-    private void modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargoActionPerformed
-       
-    }//GEN-LAST:event_modificar_opcionesCargoActionPerformed
-
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
-        String usuario = modificar_textoCorreo.getText();
+        String usuario = modificar_textoUsuario.getText();
         String nuevaContrasenia = new String(modificar_textoContrasenia.getPassword());
         String nuevoCargo = modificar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
-        
-        // Lógica para validar los datos, si es necesario
+
         ConsultasSQL consultasSQL = new ConsultasSQL();
         consultasSQL.actualizarUsuario(usuario, nuevaContrasenia, nuevoCargo);
+        mostrarUsuariosEnTabla();
     }//GEN-LAST:event_modificar_botonModificarActionPerformed
+
+    private void modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargoActionPerformed
+
+    }//GEN-LAST:event_modificar_opcionesCargoActionPerformed
+
+    private void modificar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoUsuarioActionPerformed
+
+    }//GEN-LAST:event_modificar_textoUsuarioActionPerformed
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -1044,15 +974,12 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTextField agregar_textoCorreo;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
-    private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonGestionActividades;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JButton botonGestionEvaluaciones;
-    private javax.swing.JPanel eliminar;
-    private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1060,14 +987,13 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoSDFA;
-    private javax.swing.JPanel modificar;
     private javax.swing.JButton modificar_botonModificar;
     private javax.swing.JLabel modificar_cargo;
     private javax.swing.JLabel modificar_contrasenia;
-    private javax.swing.JLabel modificar_correo;
     private javax.swing.JComboBox<String> modificar_opcionesCargo;
     private javax.swing.JPasswordField modificar_textoContrasenia;
-    private javax.swing.JTextField modificar_textoCorreo;
+    private javax.swing.JTextField modificar_textoUsuario;
+    private javax.swing.JLabel modificar_usuario;
     private javax.swing.JPanel observar;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
@@ -1080,7 +1006,5 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaCuentas;
-    private javax.swing.JTextField textoID;
-    private javax.swing.JLabel textoModificar;
     // End of variables declaration//GEN-END:variables
 }
