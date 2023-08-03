@@ -244,19 +244,31 @@ public class Login_ventana extends javax.swing.JFrame {
         abrirVentanaCorrespondiente();
         }
     }//GEN-LAST:event_textoContraseniaKeyPressed
-
+ 
+    private char echoCharOriginal = '\u2022';
+    private boolean contraseniaVisible = false;
+    
     private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
         ocultarPswd.setVisible(false);
         verPswd.setVisible(true);
-        textoContrasenia.setEchoChar((char) 0);
+        if (!contraseniaVisible) {
+            textoContrasenia.setEchoChar(echoCharOriginal); // Ocultar el texto de la contraseña
+            contraseniaVisible = true;
+        }
     }//GEN-LAST:event_ocultarPswdMouseClicked
 
     private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
         ocultarPswd.setVisible(true);
         verPswd.setVisible(false);
-        textoContrasenia.setEchoChar('●');
+        if (contraseniaVisible) {
+            textoContrasenia.setEchoChar((char) 0); // Mostrar el texto de la contraseña
+            contraseniaVisible = false;
+        }
     }//GEN-LAST:event_verPswdMouseClicked
 
+
+    
+    
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
     public void abrirVentanaCorrespondiente() {
         String usuario = textoUsuario.getText();
