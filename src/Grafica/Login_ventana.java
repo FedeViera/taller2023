@@ -45,6 +45,7 @@ public class Login_ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         panelLogin = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         imgMaleta = new javax.swing.JLabel();
         textoPortafolioDocente = new javax.swing.JLabel();
         imgFondoMaleta = new javax.swing.JLabel();
@@ -65,6 +66,9 @@ public class Login_ventana extends javax.swing.JFrame {
 
         panelLogin.setBackground(new java.awt.Color(255, 255, 255));
         panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/0.jpg"))); // NOI18N
+        panelLogin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 150));
 
         imgMaleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maletaBlanca.png"))); // NOI18N
         panelLogin.add(imgMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 220, -1, 130));
@@ -159,7 +163,7 @@ public class Login_ventana extends javax.swing.JFrame {
         });
         panelLogin.add(botonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 170, 60));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA_1_1.gif"))); // NOI18N
         panelLogin.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -358,6 +362,7 @@ public class Login_ventana extends javax.swing.JFrame {
     private javax.swing.JLabel imgFondoMaleta;
     private javax.swing.JLabel imgMaleta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelLogin;
