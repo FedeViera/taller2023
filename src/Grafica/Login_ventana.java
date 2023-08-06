@@ -163,7 +163,7 @@ public class Login_ventana extends javax.swing.JFrame {
         });
         panelLogin.add(botonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 170, 60));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA_1_1.gif"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA_3.gif"))); // NOI18N
         panelLogin.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
