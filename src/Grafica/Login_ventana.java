@@ -57,7 +57,6 @@ public class Login_ventana extends javax.swing.JFrame {
         separadorContrasenia = new javax.swing.JSeparator();
         botonEntrar = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         verPswd = new javax.swing.JLabel();
         ocultarPswd = new javax.swing.JLabel();
 
@@ -165,12 +164,6 @@ public class Login_ventana extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA_3.gif"))); // NOI18N
         panelLogin.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("USER: administrador@gmail.com - adscripto@gmail.com - docente@gmail.com / PASS: 123)");
-        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 790, -1));
 
         verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
         verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -361,7 +354,6 @@ public class Login_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonEntrar;
     private javax.swing.JLabel imgFondoMaleta;
     private javax.swing.JLabel imgMaleta;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel ocultarPswd;
