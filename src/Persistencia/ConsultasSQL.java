@@ -12,14 +12,14 @@ import java.sql.PreparedStatement;
 public class ConsultasSQL {
     
 //VALIDAR USUARIO Y CONTRASEÑA
-    public String validarUsuarioYContraseña(String usuario, String contrasenia){
-        String cargo = null;
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
+    public String validarUsuarioYContraseña(String usuario, String contrasenia) {
+    String cargo = null;
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
 
-        if (conn != null) {
+    if (conn != null) {
         try {
-            String query = "SELECT cargo FROM Usuarios WHERE ingresoUsuario=? AND ingresoContrasenia=?";
+            String query = "SELECT cargo, nombre, apellido FROM persona WHERE usuario=? AND contrasenia=?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, usuario);
             preparedStatement.setString(2, contrasenia);
@@ -38,11 +38,12 @@ public class ConsultasSQL {
         }
     }
     return cargo;
-    }
+}
+
 
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD
     private boolean usuarioExiste(Connection conn, String usuario) throws SQLException {
-        String query = "SELECT COUNT(*) AS total FROM Usuarios WHERE ingresoUsuario = ?";
+        String query = "SELECT COUNT(*) AS total FROM persona WHERE usuario = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query);
         preparedStatement.setString(1, usuario);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -59,7 +60,7 @@ public class ConsultasSQL {
     }
     
 //AGREGAR DATO EN BD
-    public void agregarDato(String usuario, String contraseña, String cargo) {
+    public void agregarDato(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
     Conexion conexion = new Conexion();
     Connection conn = conexion.conectarMySQL();
     
@@ -67,11 +68,14 @@ public class ConsultasSQL {
             try {
                 // Verifica si el usuario ya existe en la base de datos.
                 if (!usuarioExiste(conn, usuario)) {
-                    String query = "INSERT INTO Usuarios (ingresoUsuario, ingresoContrasenia, cargo) VALUES (?, ?, ?)";
+                    String query = "INSERT INTO persona (cedula, nombre, apellido, usuario, contrasenia, cargo) VALUES (?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
-                    preparedStatement.setString(1, usuario);
-                    preparedStatement.setString(2, contraseña);
-                    preparedStatement.setString(3, cargo);
+                    preparedStatement.setInt(1, cedula);
+                    preparedStatement.setString(2, nombre);
+                    preparedStatement.setString(3, apellido);
+                    preparedStatement.setString(4, usuario);
+                    preparedStatement.setString(5, contrasenia);
+                    preparedStatement.setString(6, cargo);
 
                     preparedStatement.executeUpdate();
 
@@ -99,7 +103,7 @@ public class ConsultasSQL {
             try {
                 // Verificar si el usuario existe en la base de datos antes de actualizarlo
                 if (usuarioExiste(conn, usuario)) {
-                    String query = "UPDATE Usuarios SET ingresoContrasenia = ?, cargo = ? WHERE ingresoUsuario = ?";
+                    String query = "UPDATE persona SET contrasenia = ?, cargo = ? WHERE usuario = ?";
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
                     preparedStatement.setString(1, nuevaContrasenia);
                     preparedStatement.setString(2, nuevoCargo);
@@ -152,15 +156,15 @@ public class ConsultasSQL {
 }*/
     
 //ELIMINAR DATOS DE LA BD    
-    public void eliminarDato(int id) {
+    public void eliminarDato(int cedula) {
     Conexion conexion = new Conexion();
     Connection conn = conexion.conectarMySQL();
 
     if (conn != null) {
         try {
-            String query = "DELETE FROM Usuarios WHERE id = ?";
+            String query = "DELETE FROM persona WHERE cedula = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, cedula);
 
             preparedStatement.executeUpdate();
 
@@ -217,7 +221,7 @@ public class ConsultasSQL {
     
 //OBTENER USUARIOS DE LA BD
     public Object[][] obtenerUsuarios() {
-        String query = "SELECT id, cargo, ingresoUsuario, ingresoContrasenia FROM Usuarios";
+        String query = "SELECT cedula, nombre, apellido, usuario, contrasenia, cargo FROM persona";
         return ejecutarConsulta(query);
     }
 

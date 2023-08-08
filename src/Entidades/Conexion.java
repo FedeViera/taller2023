@@ -30,7 +30,7 @@ String pass = "0123";
     public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "prueba1";
+    public String database = "bd-taller2";
 
     // Host 127.0.0.1
     public String hostname = "localhost";

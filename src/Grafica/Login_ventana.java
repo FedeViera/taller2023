@@ -274,43 +274,39 @@ public class Login_ventana extends javax.swing.JFrame {
         ConsultasSQL consultasSQL = new ConsultasSQL();
         String cargo = consultasSQL.validarUsuarioYContraseña(usuario, contrasenia);
 
-       if (cargo != null) {
-    int x = getLocation().x;
-    int y = getLocation().y;
-    this.setVisible(false);
-    switch (cargo) {
-        case "Administrador":
-            Administrador_ventana admin = new Administrador_ventana();
-            admin.bienvenidaUsuario(usuario);
-            admin.setVisible(true);
-            admin.setLocationRelativeTo(null);
-            admin.setLocation(x, y);
-            break;
-        case "Docente":
-            Docente_ventana docente = new Docente_ventana();
-            docente.bienvenidaUsuario(usuario);
-            docente.setVisible(true);
-            docente.setLocationRelativeTo(null);
-            docente.setLocation(x, y);
-            break;
-        case "Adscripto":
-            Adscripto_ventana adscripto = new Adscripto_ventana();
-            adscripto.bienvenidaUsuario(usuario);
-            adscripto.setVisible(true);
-            adscripto.setLocationRelativeTo(null);
-            adscripto.setLocation(x, y);
-            break;
-        default:
-            // Cargo desconocido o inválido
-            JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
-            this.setVisible(true);
-            break;
-    }
-} else {
-    // Datos incorrectos
-    JOptionPane.showMessageDialog(null, "Usuario o contraseña inválidos", "Login Error", JOptionPane.ERROR_MESSAGE);
-    this.setVisible(true);
-}
+        if (cargo != null) {
+            int x = getLocation().x;
+            int y = getLocation().y;
+            this.setVisible(false);
+            switch (cargo) {
+                case "Administrador":
+                    Administrador_ventana admin = new Administrador_ventana();
+                    admin.bienvenidaUsuario(usuario);
+                    admin.setVisible(true);
+                    admin.setLocationRelativeTo(null);
+                    admin.setLocation(x, y);
+                    break;
+                case "Docente":
+                    Docente_ventana docente = new Docente_ventana();
+                    docente.bienvenidaUsuario(usuario);
+                    docente.setVisible(true);
+                    docente.setLocationRelativeTo(null);
+                    docente.setLocation(x, y);
+                    break;
+                case "Adscripto":
+                    Adscripto_ventana adscripto = new Adscripto_ventana();
+                    adscripto.bienvenidaUsuario(usuario);
+                    adscripto.setVisible(true);
+                    adscripto.setLocationRelativeTo(null);
+                    adscripto.setLocation(x, y);
+                    break;
+                default:
+                    // Cargo desconocido o inválido
+                    JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                    this.setVisible(true);
+                    break;
+            }
+        }
     }
     
     

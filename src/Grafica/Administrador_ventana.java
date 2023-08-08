@@ -56,8 +56,14 @@ public class Administrador_ventana extends javax.swing.JFrame
         pestaña0 = new javax.swing.JPanel();
         pestañaOpcionesCuentas = new javax.swing.JTabbedPane();
         agregar = new javax.swing.JPanel();
-        agregar_correo = new javax.swing.JLabel();
-        agregar_textoCorreo = new javax.swing.JTextField();
+        agregar_cedula = new javax.swing.JLabel();
+        agregar_textoCedula = new javax.swing.JTextField();
+        agregar_nombre = new javax.swing.JLabel();
+        agregar_textoNombre = new javax.swing.JTextField();
+        agregar_apellido = new javax.swing.JLabel();
+        agregar_textoApellido = new javax.swing.JTextField();
+        agregar_usuario = new javax.swing.JLabel();
+        agregar_textoUsuario = new javax.swing.JTextField();
         agregar_contrasenia = new javax.swing.JLabel();
         agregar_textoContrasenia = new javax.swing.JPasswordField();
         agregar_cargo = new javax.swing.JLabel();
@@ -362,14 +368,47 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         agregar.setBackground(new java.awt.Color(255, 255, 255));
 
-        agregar_correo.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        agregar_correo.setForeground(new java.awt.Color(0, 0, 0));
-        agregar_correo.setText("Correo");
+        agregar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_cedula.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_cedula.setText("Cédula");
 
-        agregar_textoCorreo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        agregar_textoCorreo.addActionListener(new java.awt.event.ActionListener() {
+        agregar_textoCedula.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar_textoCorreoActionPerformed(evt);
+                agregar_textoCedulaActionPerformed(evt);
+            }
+        });
+
+        agregar_nombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_nombre.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_nombre.setText("Nombre");
+
+        agregar_textoNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoNombreActionPerformed(evt);
+            }
+        });
+
+        agregar_apellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_apellido.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_apellido.setText("Apellido");
+
+        agregar_textoApellido.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoApellidoActionPerformed(evt);
+            }
+        });
+
+        agregar_usuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_usuario.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_usuario.setText("Usuario");
+
+        agregar_textoUsuario.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoUsuarioActionPerformed(evt);
             }
         });
 
@@ -422,50 +461,71 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar.setLayout(agregarLayout);
         agregarLayout.setHorizontalGroup(
             agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(agregarLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarLayout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(agregarLayout.createSequentialGroup()
-                        .addComponent(agregar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(agregar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(agregarLayout.createSequentialGroup()
-                        .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(agregarLayout.createSequentialGroup()
-                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(368, Short.MAX_VALUE))
+                            .addComponent(agregar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_contrasenia)
+                            .addComponent(agregar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(agregarLayout.createSequentialGroup()
+                                .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarLayout.createSequentialGroup()
+                                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(agregar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(agregar_textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(48, 48, 48)))))
+                .addGap(319, 319, 319))
         );
         agregarLayout.setVerticalGroup(
             agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(agregarLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(agregar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregar_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(agregarLayout.createSequentialGroup()
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(agregar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pestañaOpcionesCuentas.addTab("Agregar", agregar);
@@ -478,28 +538,28 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Cargo", "Usuario", "Contraseña"
+                "Cedula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -513,6 +573,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(4).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(5).setResizable(false);
         }
 
         modificar_usuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -874,15 +936,25 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_agegar_opcionesCargoActionPerformed
 
     private void agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_botonAgregarActionPerformed
-        String usuario = agregar_textoCorreo.getText();
+       
+        Integer cedula = Integer.parseInt(agregar_textoCedula.getText());
+        String nombre = agregar_textoNombre.getText();
+        String apellido = agregar_textoApellido.getText();
+        String usuario = agregar_textoUsuario.getText();
         String contrasenia = new String(agregar_textoContrasenia.getPassword());
         String cargo = agegar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
         
         // Lógica para validar los datos, si es necesario
         ConsultasSQL consultasSQL = new ConsultasSQL();
-        consultasSQL.agregarDato(usuario, contrasenia, cargo);
+        consultasSQL.agregarDato(cedula, nombre, apellido, usuario, contrasenia, cargo);
 
-        //mostrarUsuariosEnTabla();
+        JOptionPane.showMessageDialog(this, cargo+": "+usuario+" agregado con éxito", "Agregado", JOptionPane.WARNING_MESSAGE);
+        // Borra los campos de los JTextField
+        agregar_textoCedula.setText("");
+        agregar_textoNombre.setText("");
+        agregar_textoApellido.setText("");
+        agregar_textoUsuario.setText("");
+        agregar_textoContrasenia.setText("");
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
     private void mostrarUsuariosEnTabla() {
@@ -902,8 +974,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int filaSeleccionada = tablaCuentas.getSelectedRow();
                 if (filaSeleccionada >= 0) {
-                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 2).toString(); 
-                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 3).toString();
+                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 3).toString(); 
+                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 4).toString();
 
                     modificar_textoUsuario.setText(usuario);
                     modificar_textoContrasenia.setText(contrasenia);
@@ -913,18 +985,18 @@ public class Administrador_ventana extends javax.swing.JFrame
         
     }
 
-    private void agregar_textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoCorreoActionPerformed
+    private void agregar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoUsuarioActionPerformed
         
-    }//GEN-LAST:event_agregar_textoCorreoActionPerformed
+    }//GEN-LAST:event_agregar_textoUsuarioActionPerformed
 
     
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int filaSeleccionada = tablaCuentas.getSelectedRow();
     
         if (filaSeleccionada >= 0) {
-            int idUsuario = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
+            int cedula = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
             ConsultasSQL consultasSQL = new ConsultasSQL();
-            consultasSQL.eliminarDato(idUsuario); // Eliminar el usuario utilizando el ID
+            consultasSQL.eliminarDato(cedula); // Eliminar el usuario utilizando el ID
             mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
@@ -978,6 +1050,18 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void agregar_textoContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoContraseniaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agregar_textoContraseniaActionPerformed
+
+    private void agregar_textoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoApellidoActionPerformed
+
+    private void agregar_textoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoNombreActionPerformed
+
+    private void agregar_textoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoCedulaActionPerformed
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -1020,12 +1104,18 @@ public class Administrador_ventana extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agegar_opcionesCargo;
     private javax.swing.JPanel agregar;
+    private javax.swing.JLabel agregar_apellido;
     private javax.swing.JButton agregar_botonAgregar;
     private javax.swing.JLabel agregar_cargo;
+    private javax.swing.JLabel agregar_cedula;
     private javax.swing.JLabel agregar_contrasenia;
-    private javax.swing.JLabel agregar_correo;
+    private javax.swing.JLabel agregar_nombre;
+    private javax.swing.JTextField agregar_textoApellido;
+    private javax.swing.JTextField agregar_textoCedula;
     private javax.swing.JPasswordField agregar_textoContrasenia;
-    private javax.swing.JTextField agregar_textoCorreo;
+    private javax.swing.JTextField agregar_textoNombre;
+    private javax.swing.JTextField agregar_textoUsuario;
+    private javax.swing.JLabel agregar_usuario;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
