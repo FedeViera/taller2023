@@ -1,28 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Grafica;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import Persistencia.Usuario_SQL;
 
 
-
-
-
-import Persistencia.ConsultasSQL;
-
-
-
-//Taller 1v1
-
-/**
- *
- * @author SDFA
- */
 public class Login_ventana extends javax.swing.JFrame {
 
     /**
@@ -271,7 +256,7 @@ public class Login_ventana extends javax.swing.JFrame {
         String usuario = textoUsuario.getText();
         String contrasenia = new String(textoContrasenia.getPassword());
 
-        ConsultasSQL consultasSQL = new ConsultasSQL();
+        Usuario_SQL consultasSQL = new Usuario_SQL();
         String cargo = consultasSQL.validarUsuarioYContraseña(usuario, contrasenia);
 
         if (cargo != null) {

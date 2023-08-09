@@ -1,26 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
+import Persistencia.Usuario_SQL;
 
-/**
- *
- * @author Agustin Tuduri
- */
 public class Usuario
 {
-    private int id_usuario;
+    private int cedula;
     private String cargo;
     private String nombre_usuario;
     private String contrasenia_usuario;
 
+    public Usuario() {
+    }
+
+    
+    
     public int getId_usuario() {
-        return id_usuario;
+        return cedula;
     }
 
     public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+        this.cedula = id_usuario;
     }
 
     public String getCargo() {
@@ -48,10 +46,10 @@ public class Usuario
     }
 
     public Usuario(int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
-        this.id_usuario = id_usuario;
+        this.cedula = id_usuario;
         this.cargo = cargo;
         this.nombre_usuario = nombre_usuario;
         this.contrasenia_usuario = contrasenia_usuario;
     }
-  
+
 }
