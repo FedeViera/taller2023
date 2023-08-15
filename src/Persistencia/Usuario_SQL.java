@@ -14,30 +14,33 @@ public class Usuario_SQL {
     
 //VALIDAR USUARIO Y CONTRASEÑA
     public String validarUsuarioYContraseña(String usuario, String contrasenia) {
-    String cargo = null;
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
+    
+        String cargo = null;
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
 
-    if (conn != null) {
-        try {
-            String query = "SELECT cargo, nombre, apellido FROM usuario WHERE usuario=? AND contrasenia=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1, usuario);
-            preparedStatement.setString(2, contrasenia);
+        if (conn != null) {
+            try {
+                String query = "SELECT cargo, nombre, apellido FROM usuario WHERE usuario=? AND contrasenia=?";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, usuario);
+                preparedStatement.setString(2, contrasenia);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                cargo = resultSet.getString("cargo");
+                if (resultSet.next()) {
+                    cargo = resultSet.getString("cargo");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
+                }
+
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-
-            resultSet.close();
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
-    }
     return cargo;
 }
 
