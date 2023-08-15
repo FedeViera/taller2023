@@ -9,12 +9,11 @@ import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import Entidades.Usuario;
 
-
 public class Usuario_SQL {
-    
+
 //VALIDAR USUARIO Y CONTRASEÑA
     public String validarUsuarioYContraseña(String usuario, String contrasenia) {
-    
+
         String cargo = null;
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -41,9 +40,8 @@ public class Usuario_SQL {
                 ex.printStackTrace();
             }
         }
-    return cargo;
-}
-
+        return cargo;
+    }
 
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD
     private boolean usuarioExiste(Connection conn, Integer cedula) throws SQLException {
@@ -66,8 +64,9 @@ public class Usuario_SQL {
 //AGREGAR DATO EN BD
     public void agregarDato(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
         String cedulaStr = cedula.toString();
-        if (cedulaStr.length() != 8) {
-            JOptionPane.showMessageDialog(null, "La cédula debe tener exactamente 8 caracteres.", "Cédula Inválida", JOptionPane.WARNING_MESSAGE);
+
+        if (!cedulaStr.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(null, "La cédula debe contener exactamente 8 dígitos numéricos.", "Cédula Inválida", JOptionPane.WARNING_MESSAGE);
             return; // Salir del método si la cédula es inválida
         }
 
@@ -90,9 +89,9 @@ public class Usuario_SQL {
                     preparedStatement.executeUpdate();
 
                     preparedStatement.close();
-                    JOptionPane.showMessageDialog(null, "Usuario "+cargo+" agregado exitosamente.", "Agregado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Usuario " + cargo + " agregado exitosamente.", "Agregado correctamente", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "El usuario con cédula "+cedula+" ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El usuario con cédula " + cedula + " ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -104,14 +103,11 @@ public class Usuario_SQL {
         }
     }
 
-    
-    
-    
 //ACTUALIZAR DATO EN BD
     public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo) {
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
-        
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
         if (conn != null) {
             try {
                 // Verificar si el usuario existe en la base de datos antes de actualizarlo
@@ -137,7 +133,7 @@ public class Usuario_SQL {
         }
     }
 
-/*//OBTENER ID POR USUARIO 
+    /*//OBTENER ID POR USUARIO 
     public int obtenerIDUsuarioPorCorreo(String correo) {
     Conexion conexion = new Conexion();
     Connection conn = conexion.conectarMySQL();
@@ -167,35 +163,34 @@ public class Usuario_SQL {
     }
     return idUsuario;
 }*/
-    
 //ELIMINAR DATOS DE LA BD    
     public void eliminarDato(int cedula) {
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
 
-    if (conn != null) {
-        try {
-            String query = "DELETE FROM usuario WHERE cedula = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, cedula);
+        if (conn != null) {
+            try {
+                String query = "DELETE FROM usuario WHERE cedula = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cedula);
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
 
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
     }
-}
-    
+
 //TRAER DATOS DE LA BASE DE DATOS Y MOSTRARLOS EN TABLA
     private Object[][] ejecutarConsulta(String query) {
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
-    Object[][] datos = null;
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        Object[][] datos = null;
 
         if (conn != null) {
             try {
@@ -230,8 +225,7 @@ public class Usuario_SQL {
         }
         return datos;
     }
-    
-    
+
 //OBTENER USUARIOS DE LA BD
     public Object[][] obtenerUsuarios() {
         String query = "SELECT cedula, nombre, apellido, usuario, contrasenia, cargo FROM usuario";
@@ -244,13 +238,5 @@ public class Usuario_SQL {
         String query = "SELECT campo1, campo2, campo3 FROM OtraTabla";
         return ejecutarConsulta(query);
     }
-    */
-
-    
-    
-    
-    
-    
-    
+     */
 }
-
