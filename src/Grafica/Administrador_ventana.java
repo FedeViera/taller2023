@@ -45,7 +45,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         botonGestionCursos = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         botonGestionActividades = new javax.swing.JButton();
-        botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
         pestaña0 = new javax.swing.JPanel();
@@ -248,39 +247,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        botonGestionEvaluaciones.setBackground(new java.awt.Color(52, 80, 86));
-        botonGestionEvaluaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGestionEvaluaciones.setForeground(new java.awt.Color(204, 204, 204));
-        botonGestionEvaluaciones.setText("    Gestión de Evaluaciones");
-        botonGestionEvaluaciones.setBorder(null);
-        botonGestionEvaluaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonGestionEvaluaciones.setFocusPainted(false);
-        botonGestionEvaluaciones.setFocusable(false);
-        botonGestionEvaluaciones.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonGestionEvaluaciones.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonGestionEvaluaciones.setIconTextGap(10);
-        botonGestionEvaluaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonGestionEvaluacionesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonGestionEvaluacionesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonGestionEvaluacionesMouseExited(evt);
-            }
-        });
-        botonGestionEvaluaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGestionEvaluacionesActionPerformed(evt);
-            }
-        });
-        botonGestionEvaluaciones.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonGestionEvaluacionesKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
@@ -299,8 +265,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonGestionCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,9 +280,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addComponent(botonGestionCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(botonGestionActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -795,7 +758,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseClicked
         panelPestañas.setSelectedIndex(1);
-        cambiarEstadoBoton(botonGestionEvaluaciones, false);
         cambiarEstadoBoton(botonGestionCursos, false);
         cambiarEstadoBoton(botonGestionActividades, false);
         cambiarEstadoBoton(botonGestionCuentas, true);
@@ -820,7 +782,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseClicked
         panelPestañas.setSelectedIndex(2);
-        cambiarEstadoBoton(botonGestionEvaluaciones, false);
         cambiarEstadoBoton(botonGestionCursos, true);
         cambiarEstadoBoton(botonGestionActividades, false);
         cambiarEstadoBoton(botonGestionCuentas, false);
@@ -855,7 +816,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void botonGestionActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseClicked
         panelPestañas.setSelectedIndex(3);
         panelPestañas.setSelectedIndex(3);
-        cambiarEstadoBoton(botonGestionEvaluaciones, false);
         cambiarEstadoBoton(botonGestionCursos, false);
         cambiarEstadoBoton(botonGestionActividades, true);
         cambiarEstadoBoton(botonGestionCuentas, false);
@@ -877,32 +837,8 @@ public class Administrador_ventana extends javax.swing.JFrame
      
     }//GEN-LAST:event_botonGestionActividadesKeyPressed
 
-    private void botonGestionEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseClicked
-        panelPestañas.setSelectedIndex(4);
-        cambiarEstadoBoton(botonGestionEvaluaciones, true);
-        cambiarEstadoBoton(botonGestionCursos, false);
-        cambiarEstadoBoton(botonGestionActividades, false);
-        cambiarEstadoBoton(botonGestionCuentas, false);
-    }//GEN-LAST:event_botonGestionEvaluacionesMouseClicked
-
     
     
-    private void botonGestionEvaluacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseEntered
-       
-    }//GEN-LAST:event_botonGestionEvaluacionesMouseEntered
-
-    private void botonGestionEvaluacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseExited
-     
-    }//GEN-LAST:event_botonGestionEvaluacionesMouseExited
-
-    private void botonGestionEvaluacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesActionPerformed
-     
-    }//GEN-LAST:event_botonGestionEvaluacionesActionPerformed
-
-    private void botonGestionEvaluacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesKeyPressed
-     
-    }//GEN-LAST:event_botonGestionEvaluacionesKeyPressed
-
     private void agegar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agegar_opcionesCargoActionPerformed
       
     }//GEN-LAST:event_agegar_opcionesCargoActionPerformed
@@ -1110,7 +1046,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JButton botonGestionActividades;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
-    private javax.swing.JButton botonGestionEvaluaciones;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoSDFA;

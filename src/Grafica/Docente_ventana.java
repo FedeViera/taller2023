@@ -33,7 +33,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         separador = new javax.swing.JSeparator();
         botonCursos = new javax.swing.JButton();
         botonActividades = new javax.swing.JButton();
-        botonEvaluaciones = new javax.swing.JButton();
+        botonInasistencias = new javax.swing.JButton();
         botonInformes = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
@@ -141,36 +141,36 @@ public class Docente_ventana extends javax.swing.JFrame {
             }
         });
 
-        botonEvaluaciones.setBackground(new java.awt.Color(52, 80, 86));
-        botonEvaluaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonEvaluaciones.setForeground(new java.awt.Color(204, 204, 204));
-        botonEvaluaciones.setText("    Evaluaciones");
-        botonEvaluaciones.setBorder(null);
-        botonEvaluaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEvaluaciones.setFocusPainted(false);
-        botonEvaluaciones.setFocusable(false);
-        botonEvaluaciones.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonEvaluaciones.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonEvaluaciones.setIconTextGap(10);
-        botonEvaluaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonInasistencias.setBackground(new java.awt.Color(52, 80, 86));
+        botonInasistencias.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonInasistencias.setForeground(new java.awt.Color(204, 204, 204));
+        botonInasistencias.setText("    Inasistencias");
+        botonInasistencias.setBorder(null);
+        botonInasistencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonInasistencias.setFocusPainted(false);
+        botonInasistencias.setFocusable(false);
+        botonInasistencias.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonInasistencias.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonInasistencias.setIconTextGap(10);
+        botonInasistencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonEvaluacionesMouseClicked(evt);
+                botonInasistenciasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonEvaluacionesMouseEntered(evt);
+                botonInasistenciasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonEvaluacionesMouseExited(evt);
+                botonInasistenciasMouseExited(evt);
             }
         });
-        botonEvaluaciones.addActionListener(new java.awt.event.ActionListener() {
+        botonInasistencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEvaluacionesActionPerformed(evt);
+                botonInasistenciasActionPerformed(evt);
             }
         });
-        botonEvaluaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+        botonInasistencias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonEvaluacionesKeyPressed(evt);
+                botonInasistenciasKeyPressed(evt);
             }
         });
 
@@ -259,7 +259,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEvaluaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonInasistencias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonInformes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
@@ -274,7 +274,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(botonActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(botonEvaluaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonInasistencias, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(botonInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
@@ -403,21 +403,21 @@ public class Docente_ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
 
-    private void botonEvaluacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEvaluacionesKeyPressed
+    private void botonInasistenciasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonInasistenciasKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesKeyPressed
+    }//GEN-LAST:event_botonInasistenciasKeyPressed
 
-    private void botonEvaluacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEvaluacionesActionPerformed
+    private void botonInasistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInasistenciasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesActionPerformed
+    }//GEN-LAST:event_botonInasistenciasActionPerformed
 
-    private void botonEvaluacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseExited
+    private void botonInasistenciasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesMouseExited
+    }//GEN-LAST:event_botonInasistenciasMouseExited
 
-    private void botonEvaluacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseEntered
+    private void botonInasistenciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesMouseEntered
+    }//GEN-LAST:event_botonInasistenciasMouseEntered
 
     private void cambiarEstadoBoton(JButton button, boolean isSelected) {
         if (isSelected) {
@@ -429,13 +429,13 @@ public class Docente_ventana extends javax.swing.JFrame {
         }
     }
     
-    private void botonEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseClicked
+    private void botonInasistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseClicked
         panelPestañas.setSelectedIndex(3);
-        cambiarEstadoBoton(botonEvaluaciones, true);
+        cambiarEstadoBoton(botonInasistencias, true);
         cambiarEstadoBoton(botonCursos, false);
         cambiarEstadoBoton(botonActividades, false);
         cambiarEstadoBoton(botonInformes, false);
-    }//GEN-LAST:event_botonEvaluacionesMouseClicked
+    }//GEN-LAST:event_botonInasistenciasMouseClicked
 
     private void botonActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonActividadesKeyPressed
         // TODO add your handling code here:
@@ -457,7 +457,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(2);
         cambiarEstadoBoton(botonActividades, true);
         cambiarEstadoBoton(botonCursos, false);
-        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInasistencias, false);
         cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonActividadesMouseClicked
 
@@ -481,7 +481,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(1);
         cambiarEstadoBoton(botonCursos, true);
         cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInasistencias, false);
         cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonCursosMouseClicked
 
@@ -490,7 +490,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         cambiarEstadoBoton(botonInformes, true);
         cambiarEstadoBoton(botonCursos, false);
         cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInasistencias, false);
         
     }//GEN-LAST:event_botonInformesMouseClicked
 
@@ -569,7 +569,7 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonActividades;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonCursos;
-    private javax.swing.JButton botonEvaluaciones;
+    private javax.swing.JButton botonInasistencias;
     private javax.swing.JButton botonInformes;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
