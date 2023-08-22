@@ -1,9 +1,5 @@
 package Entidades;
 
-/**
- *
- * @author Sidorf
- */
 public class Administrador extends Usuario
 {
 
