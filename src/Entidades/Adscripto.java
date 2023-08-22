@@ -1,14 +1,15 @@
 package Entidades;
 
-/**
- *
- * @author Sidorf
- */
 public class Adscripto extends Usuario
-{
+{ 
+    private String grado;
+    private String turno;
 
-    public Adscripto(int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
-        super(id_usuario, cargo, nombre_usuario, contrasenia_usuario);
+    public Adscripto(String grado, String turno, int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+        super(cedula, nombre, apellido, usuario, contrasenia, cargo);
+        this.grado = grado;
+        this.turno = turno;
     }
+   
     
 }

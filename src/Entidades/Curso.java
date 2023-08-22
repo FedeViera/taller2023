@@ -6,26 +6,14 @@ package Entidades;
  */
 public class Curso
 {
-    private int id_grupo;
-    private String docente_asignado;
-    private int cantidad;
+    private int id_curso;
+    private String asignatura;
 
-    public int getId_grupo() {
-        return id_grupo;
+    public Curso(int id_curso, String asignatura) {
+        this.id_curso = id_curso;
+        this.asignatura = asignatura;
     }
-
-    public String getDocente_asignado() {
-        return docente_asignado;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public Curso(int id_grupo, String docente_asignado, int cantidad) {
-        this.id_grupo = id_grupo;
-        this.docente_asignado = docente_asignado;
-        this.cantidad = cantidad;
-    }
+    
+    
     
 }

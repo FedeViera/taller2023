@@ -2,16 +2,16 @@ package Entidades;
 
 public class Docente extends Usuario
 {
-     private String asignatura;  
+    private int grado;
+    private String especialidad;
+    private String gradoAcademico;
 
-    public Docente(String asignatura, int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
-        super(id_usuario, cargo, nombre_usuario, contrasenia_usuario);
-        this.asignatura = asignatura;
+    public Docente(int grado, String especialidad, String gradoAcademico, int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+        super(cedula, nombre, apellido, usuario, contrasenia, cargo);
+        this.grado = grado;
+        this.especialidad = especialidad;
+        this.gradoAcademico = gradoAcademico;
     }
-
-    public String getAsignatura() 
-    {
-        return asignatura;
-    }
+    
     
 }
