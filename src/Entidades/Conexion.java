@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package Entidades;
 
 //import com.mysql.cj.xdevapi.Statement;
@@ -24,13 +19,13 @@ public class Conexion
                       
 String url = "jdbc:mysql://localhost:3306/";
 String user = "root";
-String pass = "0123";
+String pass = "";
 
    // Librería de MySQL
     public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "prueba1";
+    public String database = "bd-taller2";
 
     // Host 127.0.0.1
     public String hostname = "localhost";
@@ -45,7 +40,7 @@ String pass = "0123";
     public String username = "root";
 
     // Clave de usuario
-    public String password = "0123";
+    public String password = "";
     
      Connection conn = null;
      

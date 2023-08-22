@@ -1,28 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Grafica;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import Persistencia.Usuario_SQL;
 
 
-
-
-
-import Persistencia.ConsultasSQL;
-
-
-
-//Taller 1v1
-
-/**
- *
- * @author SDFA
- */
 public class Login_ventana extends javax.swing.JFrame {
 
     /**
@@ -45,6 +30,7 @@ public class Login_ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         panelLogin = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         imgMaleta = new javax.swing.JLabel();
         textoPortafolioDocente = new javax.swing.JLabel();
         imgFondoMaleta = new javax.swing.JLabel();
@@ -56,7 +42,6 @@ public class Login_ventana extends javax.swing.JFrame {
         separadorContrasenia = new javax.swing.JSeparator();
         botonEntrar = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         verPswd = new javax.swing.JLabel();
         ocultarPswd = new javax.swing.JLabel();
 
@@ -65,6 +50,9 @@ public class Login_ventana extends javax.swing.JFrame {
 
         panelLogin.setBackground(new java.awt.Color(255, 255, 255));
         panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/0.jpg"))); // NOI18N
+        panelLogin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 150));
 
         imgMaleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maletaBlanca.png"))); // NOI18N
         panelLogin.add(imgMaleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 220, -1, 130));
@@ -159,14 +147,8 @@ public class Login_ventana extends javax.swing.JFrame {
         });
         panelLogin.add(botonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 170, 60));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA_3.gif"))); // NOI18N
         panelLogin.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("USER: administrador@gmail.com - adscripto@gmail.com - docente@gmail.com / PASS: 123)");
-        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 790, -1));
 
         verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
         verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -244,59 +226,71 @@ public class Login_ventana extends javax.swing.JFrame {
         abrirVentanaCorrespondiente();
         }
     }//GEN-LAST:event_textoContraseniaKeyPressed
-
+ 
+    private char echoCharOriginal = '\u2022';
+    private boolean contraseniaVisible = false;
+    
     private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
         ocultarPswd.setVisible(false);
         verPswd.setVisible(true);
-        textoContrasenia.setEchoChar((char) 0);
+        if (!contraseniaVisible) {
+            textoContrasenia.setEchoChar(echoCharOriginal); // Ocultar el texto de la contraseña
+            contraseniaVisible = true;
+        }
     }//GEN-LAST:event_ocultarPswdMouseClicked
 
     private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
         ocultarPswd.setVisible(true);
         verPswd.setVisible(false);
-        textoContrasenia.setEchoChar('●');
+        if (contraseniaVisible) {
+            textoContrasenia.setEchoChar((char) 0); // Mostrar el texto de la contraseña
+            contraseniaVisible = false;
+        }
     }//GEN-LAST:event_verPswdMouseClicked
 
+
+    
+    
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
     public void abrirVentanaCorrespondiente() {
         String usuario = textoUsuario.getText();
         String contrasenia = new String(textoContrasenia.getPassword());
 
-        ConsultasSQL consultasSQL = new ConsultasSQL();
+        Usuario_SQL consultasSQL = new Usuario_SQL();
         String cargo = consultasSQL.validarUsuarioYContraseña(usuario, contrasenia);
 
         if (cargo != null) {
             int x = getLocation().x;
             int y = getLocation().y;
             this.setVisible(false);
-
-            if ("Administrador".equals(cargo)) {
-                Administrador_ventana admin = new Administrador_ventana();
-                admin.bienvenidaUsuario(usuario);
-                admin.setVisible(true);
-                admin.setLocationRelativeTo(null);
-                admin.setLocation(x, y);
-            } else if ("Docente".equals(cargo)) {
-                Docente_ventana docente = new Docente_ventana();
-                docente.bienvenidaUsuario(usuario);
-                docente.setVisible(true);
-                docente.setLocationRelativeTo(null);
-                docente.setLocation(x, y);
-            } else if ("Adscripto".equals(cargo)) {
-                Adscripto_ventana adscripto = new Adscripto_ventana();
-                adscripto.bienvenidaUsuario(usuario);
-                adscripto.setVisible(true);
-                adscripto.setLocationRelativeTo(null);
-                adscripto.setLocation(x, y);
-            } else {
-                // Cargo desconocido o inválido
-                JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
-                this.setVisible(true);
+            switch (cargo) {
+                case "Administrador":
+                    Administrador_ventana admin = new Administrador_ventana();
+                    admin.bienvenidaUsuario(usuario);
+                    admin.setVisible(true);
+                    admin.setLocationRelativeTo(null);
+                    admin.setLocation(x, y);
+                    break;
+                case "Docente":
+                    Docente_ventana docente = new Docente_ventana();
+                    docente.bienvenidaUsuario(usuario);
+                    docente.setVisible(true);
+                    docente.setLocationRelativeTo(null);
+                    docente.setLocation(x, y);
+                    break;
+                case "Adscripto":
+                    Adscripto_ventana adscripto = new Adscripto_ventana();
+                    adscripto.bienvenidaUsuario(usuario);
+                    adscripto.setVisible(true);
+                    adscripto.setLocationRelativeTo(null);
+                    adscripto.setLocation(x, y);
+                    break;
+                default:
+                    // Cargo desconocido o inválido
+                    JOptionPane.showMessageDialog(null, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                    this.setVisible(true);
+                    break;
             }
-        } else {
-            // Datos incorrectos
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña inválidos", "Login Error", JOptionPane.ERROR_MESSAGE);
-            this.setVisible(true);
         }
     }
     
@@ -345,7 +339,7 @@ public class Login_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonEntrar;
     private javax.swing.JLabel imgFondoMaleta;
     private javax.swing.JLabel imgMaleta;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelLogin;

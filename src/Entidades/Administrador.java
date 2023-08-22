@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 /**
@@ -11,9 +7,8 @@ package Entidades;
 public class Administrador extends Usuario
 {
 
-    public Administrador(int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
-        super(id_usuario, cargo, nombre_usuario, contrasenia_usuario);
+    public Administrador(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+        super(cedula, nombre, apellido, usuario, contrasenia, cargo);
     }
-   
     
 }

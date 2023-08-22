@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Grafica;
 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
-import Persistencia.ConsultasSQL;
+import Persistencia.Usuario_SQL;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -33,7 +29,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage()); //Logo de la ventana
         verPswd.setVisible(false);
-        verPswd1.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,26 +45,32 @@ public class Administrador_ventana extends javax.swing.JFrame
         botonGestionCursos = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         botonGestionActividades = new javax.swing.JButton();
-        botonGestionEvaluaciones = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         pestaña0 = new javax.swing.JPanel();
         pestañaOpcionesCuentas = new javax.swing.JTabbedPane();
         agregar = new javax.swing.JPanel();
-        agregar_correo = new javax.swing.JLabel();
-        agregar_textoCorreo = new javax.swing.JTextField();
+        agregar_cedula = new javax.swing.JLabel();
+        agregar_textoCedula = new javax.swing.JTextField();
+        agregar_nombre = new javax.swing.JLabel();
+        agregar_textoNombre = new javax.swing.JTextField();
+        agregar_apellido = new javax.swing.JLabel();
+        agregar_textoApellido = new javax.swing.JTextField();
+        agregar_usuario = new javax.swing.JLabel();
+        agregar_textoUsuario = new javax.swing.JTextField();
         agregar_contrasenia = new javax.swing.JLabel();
         agregar_textoContrasenia = new javax.swing.JPasswordField();
         agregar_cargo = new javax.swing.JLabel();
         agegar_opcionesCargo = new javax.swing.JComboBox<>();
         agregar_botonAgregar = new javax.swing.JButton();
-        verPswd1 = new javax.swing.JLabel();
-        ocultarPswd1 = new javax.swing.JLabel();
-        observar = new javax.swing.JPanel();
+        verPswd = new javax.swing.JLabel();
+        ocultarPswd = new javax.swing.JLabel();
+        ver = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCuentas = new javax.swing.JTable();
+        modificar_cedula = new javax.swing.JLabel();
+        modificar_textoCedula = new javax.swing.JTextField();
         modificar_usuario = new javax.swing.JLabel();
         modificar_textoUsuario = new javax.swing.JTextField();
         modificar_contrasenia = new javax.swing.JLabel();
@@ -78,14 +79,9 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificar_cargo = new javax.swing.JLabel();
         modificar_botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
-        verPswd = new javax.swing.JLabel();
-        ocultarPswd = new javax.swing.JLabel();
         pestaña1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         pestaña3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -251,39 +247,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        botonGestionEvaluaciones.setBackground(new java.awt.Color(52, 80, 86));
-        botonGestionEvaluaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonGestionEvaluaciones.setForeground(new java.awt.Color(204, 204, 204));
-        botonGestionEvaluaciones.setText("    Gestión de Evaluaciones");
-        botonGestionEvaluaciones.setBorder(null);
-        botonGestionEvaluaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonGestionEvaluaciones.setFocusPainted(false);
-        botonGestionEvaluaciones.setFocusable(false);
-        botonGestionEvaluaciones.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonGestionEvaluaciones.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonGestionEvaluaciones.setIconTextGap(10);
-        botonGestionEvaluaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonGestionEvaluacionesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonGestionEvaluacionesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonGestionEvaluacionesMouseExited(evt);
-            }
-        });
-        botonGestionEvaluaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGestionEvaluacionesActionPerformed(evt);
-            }
-        });
-        botonGestionEvaluaciones.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonGestionEvaluacionesKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
@@ -302,8 +265,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonGestionCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,9 +280,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addComponent(botonGestionCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(botonGestionActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(botonGestionEvaluaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -328,24 +288,15 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         pestañaBienvenida.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dream Team.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-
         javax.swing.GroupLayout pestañaBienvenidaLayout = new javax.swing.GroupLayout(pestañaBienvenida);
         pestañaBienvenida.setLayout(pestañaBienvenidaLayout);
         pestañaBienvenidaLayout.setHorizontalGroup(
             pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestañaBienvenidaLayout.setVerticalGroup(
             pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab5", pestañaBienvenida);
@@ -365,20 +316,60 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         agregar.setBackground(new java.awt.Color(255, 255, 255));
 
-        agregar_correo.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        agregar_correo.setForeground(new java.awt.Color(0, 0, 0));
-        agregar_correo.setText("Correo");
+        agregar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_cedula.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_cedula.setText("Cédula");
 
-        agregar_textoCorreo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        agregar_textoCorreo.addActionListener(new java.awt.event.ActionListener() {
+        agregar_textoCedula.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar_textoCorreoActionPerformed(evt);
+                agregar_textoCedulaActionPerformed(evt);
+            }
+        });
+
+        agregar_nombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_nombre.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_nombre.setText("Nombre");
+
+        agregar_textoNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoNombreActionPerformed(evt);
+            }
+        });
+
+        agregar_apellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_apellido.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_apellido.setText("Apellido");
+
+        agregar_textoApellido.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoApellidoActionPerformed(evt);
+            }
+        });
+
+        agregar_usuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        agregar_usuario.setForeground(new java.awt.Color(0, 0, 0));
+        agregar_usuario.setText("Usuario");
+
+        agregar_textoUsuario.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoUsuarioActionPerformed(evt);
             }
         });
 
         agregar_contrasenia.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         agregar_contrasenia.setForeground(new java.awt.Color(0, 0, 0));
         agregar_contrasenia.setText("Contraseña");
+
+        agregar_textoContrasenia.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregar_textoContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_textoContraseniaActionPerformed(evt);
+            }
+        });
 
         agregar_cargo.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         agregar_cargo.setForeground(new java.awt.Color(0, 0, 0));
@@ -400,17 +391,17 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        verPswd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
-        verPswd1.addMouseListener(new java.awt.event.MouseAdapter() {
+        verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
+        verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                verPswd1MouseClicked(evt);
+                verPswdMouseClicked(evt);
             }
         });
 
-        ocultarPswd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
-        ocultarPswd1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
+        ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ocultarPswd1MouseClicked(evt);
+                ocultarPswdMouseClicked(evt);
             }
         });
 
@@ -418,55 +409,76 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar.setLayout(agregarLayout);
         agregarLayout.setHorizontalGroup(
             agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(agregarLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarLayout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(agregarLayout.createSequentialGroup()
-                        .addComponent(agregar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(agregar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(agregarLayout.createSequentialGroup()
-                        .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(agregarLayout.createSequentialGroup()
-                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ocultarPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(verPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(368, Short.MAX_VALUE))
+                            .addComponent(agregar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_contrasenia)
+                            .addComponent(agregar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(agregarLayout.createSequentialGroup()
+                                .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarLayout.createSequentialGroup()
+                                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(agregar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(agregar_textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(48, 48, 48)))))
+                .addGap(319, 319, 319))
         );
         agregarLayout.setVerticalGroup(
             agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(agregarLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(agregar_textoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregar_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(agregarLayout.createSequentialGroup()
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(agregar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ocultarPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(verPswd1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(agegar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pestañaOpcionesCuentas.addTab("Agregar", agregar);
 
-        observar.setBackground(new java.awt.Color(255, 255, 255));
+        ver.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -474,28 +486,28 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Cargo", "Usuario", "Contraseña"
+                "Cedula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -509,7 +521,20 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(4).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        modificar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        modificar_cedula.setForeground(new java.awt.Color(0, 0, 0));
+        modificar_cedula.setText("Cédula");
+
+        modificar_textoCedula.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        modificar_textoCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificar_textoCedulaActionPerformed(evt);
+            }
+        });
 
         modificar_usuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         modificar_usuario.setForeground(new java.awt.Color(0, 0, 0));
@@ -525,6 +550,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificar_contrasenia.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         modificar_contrasenia.setForeground(new java.awt.Color(0, 0, 0));
         modificar_contrasenia.setText("Nueva contraseña");
+
+        modificar_textoContrasenia.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         modificar_opcionesCargo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         modificar_opcionesCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Adscripto", "Docente" }));
@@ -554,88 +581,74 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
-        verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                verPswdMouseClicked(evt);
-            }
-        });
-
-        ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
-        ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ocultarPswdMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout observarLayout = new javax.swing.GroupLayout(observar);
-        observar.setLayout(observarLayout);
-        observarLayout.setHorizontalGroup(
-            observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(observarLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(observarLayout.createSequentialGroup()
-                        .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(observarLayout.createSequentialGroup()
-                        .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(observarLayout.createSequentialGroup()
-                                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(observarLayout.createSequentialGroup()
-                                        .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(observarLayout.createSequentialGroup()
-                                .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 304, Short.MAX_VALUE))))
-            .addGroup(observarLayout.createSequentialGroup()
+        javax.swing.GroupLayout verLayout = new javax.swing.GroupLayout(ver);
+        ver.setLayout(verLayout);
+        verLayout.setHorizontalGroup(
+            verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(verLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(verLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(verLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(verLayout.createSequentialGroup()
+                        .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(verLayout.createSequentialGroup()
+                                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(verLayout.createSequentialGroup()
+                                    .addComponent(modificar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(modificar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(verLayout.createSequentialGroup()
+                                .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(verLayout.createSequentialGroup()
+                                .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 352, Short.MAX_VALUE))))
         );
-        observarLayout.setVerticalGroup(
-            observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(observarLayout.createSequentialGroup()
+        verLayout.setVerticalGroup(
+            verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(verLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(23, 23, 23)
+                .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modificar_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(observarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(verLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        pestañaOpcionesCuentas.addTab("Ver Usuarios", observar);
+        pestañaOpcionesCuentas.addTab("Ver Usuarios", ver);
 
         javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
         pestaña0.setLayout(pestaña0Layout);
@@ -656,78 +669,45 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
-        jLabel2.setText("PANEL GESTION DE CURSOS");
-
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
         pestaña1Layout.setHorizontalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña1Layout.setVerticalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab2", pestaña1);
 
         pestaña2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga_1.jpeg"))); // NOI18N
-        jLabel3.setText("PANEL GESTION DE ACTIVIDADES");
-
         javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
         pestaña2.setLayout(pestaña2Layout);
         pestaña2Layout.setHorizontalGroup(
             pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña2Layout.setVerticalGroup(
             pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña2Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab3", pestaña2);
 
         pestaña3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
-        jLabel4.setText("PANEL GESTION DE EVALUACIONES");
-
         javax.swing.GroupLayout pestaña3Layout = new javax.swing.GroupLayout(pestaña3);
         pestaña3.setLayout(pestaña3Layout);
         pestaña3Layout.setHorizontalGroup(
             pestaña3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña3Layout.setVerticalGroup(
             pestaña3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña3Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab4", pestaña3);
@@ -778,7 +758,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseClicked
         panelPestañas.setSelectedIndex(1);
-        cambiarEstadoBoton(botonGestionEvaluaciones, false);
         cambiarEstadoBoton(botonGestionCursos, false);
         cambiarEstadoBoton(botonGestionActividades, false);
         cambiarEstadoBoton(botonGestionCuentas, true);
@@ -803,7 +782,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseClicked
         panelPestañas.setSelectedIndex(2);
-        cambiarEstadoBoton(botonGestionEvaluaciones, false);
         cambiarEstadoBoton(botonGestionCursos, true);
         cambiarEstadoBoton(botonGestionActividades, false);
         cambiarEstadoBoton(botonGestionCuentas, false);
@@ -838,7 +816,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void botonGestionActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseClicked
         panelPestañas.setSelectedIndex(3);
         panelPestañas.setSelectedIndex(3);
-        cambiarEstadoBoton(botonGestionEvaluaciones, false);
         cambiarEstadoBoton(botonGestionCursos, false);
         cambiarEstadoBoton(botonGestionActividades, true);
         cambiarEstadoBoton(botonGestionCuentas, false);
@@ -860,50 +837,43 @@ public class Administrador_ventana extends javax.swing.JFrame
      
     }//GEN-LAST:event_botonGestionActividadesKeyPressed
 
-    private void botonGestionEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseClicked
-        panelPestañas.setSelectedIndex(4);
-        cambiarEstadoBoton(botonGestionEvaluaciones, true);
-        cambiarEstadoBoton(botonGestionCursos, false);
-        cambiarEstadoBoton(botonGestionActividades, false);
-        cambiarEstadoBoton(botonGestionCuentas, false);
-    }//GEN-LAST:event_botonGestionEvaluacionesMouseClicked
-
     
     
-    private void botonGestionEvaluacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseEntered
-       
-    }//GEN-LAST:event_botonGestionEvaluacionesMouseEntered
-
-    private void botonGestionEvaluacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesMouseExited
-     
-    }//GEN-LAST:event_botonGestionEvaluacionesMouseExited
-
-    private void botonGestionEvaluacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesActionPerformed
-     
-    }//GEN-LAST:event_botonGestionEvaluacionesActionPerformed
-
-    private void botonGestionEvaluacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionEvaluacionesKeyPressed
-     
-    }//GEN-LAST:event_botonGestionEvaluacionesKeyPressed
-
     private void agegar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agegar_opcionesCargoActionPerformed
       
     }//GEN-LAST:event_agegar_opcionesCargoActionPerformed
 
     private void agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_botonAgregarActionPerformed
-        String usuario = agregar_textoCorreo.getText();
-        String contrasenia = new String(agregar_textoContrasenia.getPassword());
-        String cargo = agegar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
-        
-        // Lógica para validar los datos, si es necesario
-        ConsultasSQL consultasSQL = new ConsultasSQL();
-        consultasSQL.agregarDato(usuario, contrasenia, cargo);
+       
+        String cedulaStr = agregar_textoCedula.getText();  // Obtener la cédula como cadena
 
-        //mostrarUsuariosEnTabla();
+        // Intentar convertir la cédula a un número entero
+        try {
+            Integer cedula = Integer.parseInt(cedulaStr);  // Convertir a número entero
+            String nombre = agregar_textoNombre.getText();
+            String apellido = agregar_textoApellido.getText();
+            String usuario = agregar_textoUsuario.getText();
+            String contrasenia = new String(agregar_textoContrasenia.getPassword());
+            String cargo = agegar_opcionesCargo.getSelectedItem().toString(); // Obtener el cargo seleccionado
+
+            // Lógica para validar los datos, si es necesario
+            Usuario_SQL consultasSQL = new Usuario_SQL();
+            consultasSQL.agregarDato(cedula, nombre, apellido, usuario, contrasenia, cargo);
+
+            // Borra los campos de los JTextField
+            agregar_textoCedula.setText("");
+            agregar_textoNombre.setText("");
+            agregar_textoApellido.setText("");
+            agregar_textoUsuario.setText("");
+            agregar_textoContrasenia.setText("");
+        } catch (NumberFormatException ex) {
+            // Mostrar un mensaje de error si la cédula no es un número válido
+            JOptionPane.showMessageDialog(null, "La cédula debe ser un número válido.", "Cédula Inválida", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
     private void mostrarUsuariosEnTabla() {
-        ConsultasSQL consultasSQL = new ConsultasSQL();
+        Usuario_SQL consultasSQL = new Usuario_SQL();
         Object[][] datos = consultasSQL.obtenerUsuarios();
 
         // Llenar la tabla con los datos obtenidos
@@ -919,29 +889,31 @@ public class Administrador_ventana extends javax.swing.JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int filaSeleccionada = tablaCuentas.getSelectedRow();
                 if (filaSeleccionada >= 0) {
-                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 2).toString(); 
-                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 3).toString();
+                    Integer cedula = (Integer) tablaCuentas.getValueAt(filaSeleccionada, 0);
+                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 3).toString(); 
+                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 4).toString();
 
                     modificar_textoUsuario.setText(usuario);
                     modificar_textoContrasenia.setText(contrasenia);
+                    modificar_textoCedula.setText(cedula.toString());
                 }
             }
         });  
         
     }
 
-    private void agregar_textoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoCorreoActionPerformed
+    private void agregar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoUsuarioActionPerformed
         
-    }//GEN-LAST:event_agregar_textoCorreoActionPerformed
+    }//GEN-LAST:event_agregar_textoUsuarioActionPerformed
 
     
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int filaSeleccionada = tablaCuentas.getSelectedRow();
     
         if (filaSeleccionada >= 0) {
-            int idUsuario = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
-            ConsultasSQL consultasSQL = new ConsultasSQL();
-            consultasSQL.eliminarDato(idUsuario); // Eliminar el usuario utilizando el ID
+            int cedula = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
+            Usuario_SQL consultasSQL = new Usuario_SQL();
+            consultasSQL.eliminarDato(cedula); // Eliminar el usuario utilizando el ID
             mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
@@ -950,15 +922,18 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
         mostrarUsuariosEnTabla();
+        modificar_textoContrasenia.setEchoChar((char) 0);
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
+        String cedulaStr = modificar_textoCedula.getText();
+        Integer cedula = Integer.parseInt(cedulaStr); // Convertir la cadena a Integer
         String usuario = modificar_textoUsuario.getText();
         String nuevaContrasenia = new String(modificar_textoContrasenia.getPassword());
         String nuevoCargo = modificar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
 
-        ConsultasSQL consultasSQL = new ConsultasSQL();
-        consultasSQL.actualizarUsuario(usuario, nuevaContrasenia, nuevoCargo);
+        Usuario_SQL consultasSQL = new Usuario_SQL();
+        consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo);
         mostrarUsuariosEnTabla();
     }//GEN-LAST:event_modificar_botonModificarActionPerformed
 
@@ -969,30 +944,47 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void modificar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoUsuarioActionPerformed
 
     }//GEN-LAST:event_modificar_textoUsuarioActionPerformed
-
+   
+    private char echoCharOriginal = '\u2022';
+    private boolean contraseniaVisible = false;
+    
     private void verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswdMouseClicked
         ocultarPswd.setVisible(true);
         verPswd.setVisible(false);
-        modificar_textoContrasenia.setEchoChar('●');
+        if (contraseniaVisible) {
+            agregar_textoContrasenia.setEchoChar((char) 0); // Mostrar el texto de la contraseña
+            contraseniaVisible = false;
+        }
     }//GEN-LAST:event_verPswdMouseClicked
 
     private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
         ocultarPswd.setVisible(false);
         verPswd.setVisible(true);
-        modificar_textoContrasenia.setEchoChar((char) 0);
+        if (!contraseniaVisible) {
+            agregar_textoContrasenia.setEchoChar(echoCharOriginal); // Ocultar el texto de la contraseña
+            contraseniaVisible = true;
+        }
     }//GEN-LAST:event_ocultarPswdMouseClicked
 
-    private void verPswd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPswd1MouseClicked
-        ocultarPswd1.setVisible(true);
-        verPswd1.setVisible(false);
-        agregar_textoContrasenia.setEchoChar('●');
-    }//GEN-LAST:event_verPswd1MouseClicked
+    private void agregar_textoContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoContraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoContraseniaActionPerformed
 
-    private void ocultarPswd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswd1MouseClicked
-        ocultarPswd1.setVisible(false);
-        verPswd1.setVisible(true);
-        agregar_textoContrasenia.setEchoChar((char) 0);
-    }//GEN-LAST:event_ocultarPswd1MouseClicked
+    private void agregar_textoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoApellidoActionPerformed
+
+    private void agregar_textoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoNombreActionPerformed
+
+    private void agregar_textoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar_textoCedulaActionPerformed
+
+    private void modificar_textoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_textoCedulaActionPerformed
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -1035,12 +1027,18 @@ public class Administrador_ventana extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agegar_opcionesCargo;
     private javax.swing.JPanel agregar;
+    private javax.swing.JLabel agregar_apellido;
     private javax.swing.JButton agregar_botonAgregar;
     private javax.swing.JLabel agregar_cargo;
+    private javax.swing.JLabel agregar_cedula;
     private javax.swing.JLabel agregar_contrasenia;
-    private javax.swing.JLabel agregar_correo;
+    private javax.swing.JLabel agregar_nombre;
+    private javax.swing.JTextField agregar_textoApellido;
+    private javax.swing.JTextField agregar_textoCedula;
     private javax.swing.JPasswordField agregar_textoContrasenia;
-    private javax.swing.JTextField agregar_textoCorreo;
+    private javax.swing.JTextField agregar_textoNombre;
+    private javax.swing.JTextField agregar_textoUsuario;
+    private javax.swing.JLabel agregar_usuario;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
@@ -1048,24 +1046,19 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JButton botonGestionActividades;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
-    private javax.swing.JButton botonGestionEvaluaciones;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JButton modificar_botonModificar;
     private javax.swing.JLabel modificar_cargo;
+    private javax.swing.JLabel modificar_cedula;
     private javax.swing.JLabel modificar_contrasenia;
     private javax.swing.JComboBox<String> modificar_opcionesCargo;
+    private javax.swing.JTextField modificar_textoCedula;
     private javax.swing.JPasswordField modificar_textoContrasenia;
     private javax.swing.JTextField modificar_textoUsuario;
     private javax.swing.JLabel modificar_usuario;
-    private javax.swing.JPanel observar;
     private javax.swing.JLabel ocultarPswd;
-    private javax.swing.JLabel ocultarPswd1;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
@@ -1077,7 +1070,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaCuentas;
+    private javax.swing.JPanel ver;
     private javax.swing.JLabel verPswd;
-    private javax.swing.JLabel verPswd1;
     // End of variables declaration//GEN-END:variables
 }

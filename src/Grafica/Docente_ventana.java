@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Grafica;
 
 import java.awt.Color;
@@ -9,10 +5,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author SDFA
- */
 public class Docente_ventana extends javax.swing.JFrame {
 
     /**
@@ -41,20 +33,15 @@ public class Docente_ventana extends javax.swing.JFrame {
         separador = new javax.swing.JSeparator();
         botonCursos = new javax.swing.JButton();
         botonActividades = new javax.swing.JButton();
-        botonEvaluaciones = new javax.swing.JButton();
+        botonInasistencias = new javax.swing.JButton();
         botonInformes = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         pestaña0 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         pestaña1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         pestaña4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -154,36 +141,36 @@ public class Docente_ventana extends javax.swing.JFrame {
             }
         });
 
-        botonEvaluaciones.setBackground(new java.awt.Color(52, 80, 86));
-        botonEvaluaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonEvaluaciones.setForeground(new java.awt.Color(204, 204, 204));
-        botonEvaluaciones.setText("    Evaluaciones");
-        botonEvaluaciones.setBorder(null);
-        botonEvaluaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEvaluaciones.setFocusPainted(false);
-        botonEvaluaciones.setFocusable(false);
-        botonEvaluaciones.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonEvaluaciones.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonEvaluaciones.setIconTextGap(10);
-        botonEvaluaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonInasistencias.setBackground(new java.awt.Color(52, 80, 86));
+        botonInasistencias.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonInasistencias.setForeground(new java.awt.Color(204, 204, 204));
+        botonInasistencias.setText("    Inasistencias");
+        botonInasistencias.setBorder(null);
+        botonInasistencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonInasistencias.setFocusPainted(false);
+        botonInasistencias.setFocusable(false);
+        botonInasistencias.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonInasistencias.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonInasistencias.setIconTextGap(10);
+        botonInasistencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonEvaluacionesMouseClicked(evt);
+                botonInasistenciasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonEvaluacionesMouseEntered(evt);
+                botonInasistenciasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonEvaluacionesMouseExited(evt);
+                botonInasistenciasMouseExited(evt);
             }
         });
-        botonEvaluaciones.addActionListener(new java.awt.event.ActionListener() {
+        botonInasistencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEvaluacionesActionPerformed(evt);
+                botonInasistenciasActionPerformed(evt);
             }
         });
-        botonEvaluaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+        botonInasistencias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonEvaluacionesKeyPressed(evt);
+                botonInasistenciasKeyPressed(evt);
             }
         });
 
@@ -272,7 +259,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEvaluaciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonInasistencias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonInformes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
@@ -287,7 +274,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(botonActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(botonEvaluaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonInasistencias, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(botonInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
@@ -298,24 +285,15 @@ public class Docente_ventana extends javax.swing.JFrame {
 
         pestañaBienvenida.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dream Team.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-
         javax.swing.GroupLayout pestañaBienvenidaLayout = new javax.swing.GroupLayout(pestañaBienvenida);
         pestañaBienvenida.setLayout(pestañaBienvenidaLayout);
         pestañaBienvenidaLayout.setHorizontalGroup(
             pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestañaBienvenidaLayout.setVerticalGroup(
             pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestañaBienvenidaLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab5", pestañaBienvenida);
@@ -324,26 +302,15 @@ public class Docente_ventana extends javax.swing.JFrame {
         pestaña0.setForeground(new java.awt.Color(0, 0, 0));
         pestaña0.setToolTipText("");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/lacalle.jpg"))); // NOI18N
-        jLabel1.setText("PANEL GESTION DE CUENTAS");
-
         javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
         pestaña0.setLayout(pestaña0Layout);
         pestaña0Layout.setHorizontalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña0Layout.setVerticalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña0Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab1", pestaña0);
@@ -351,78 +318,45 @@ public class Docente_ventana extends javax.swing.JFrame {
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
         pestaña1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga (1).jpeg"))); // NOI18N
-        jLabel2.setText("PANEL GESTION DE CURSOS");
-
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
         pestaña1Layout.setHorizontalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña1Layout.setVerticalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab2", pestaña1);
 
         pestaña2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga.jpeg"))); // NOI18N
-        jLabel3.setText("PANEL GESTION DE EVALUACIONES");
-
         javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
         pestaña2.setLayout(pestaña2Layout);
         pestaña2Layout.setHorizontalGroup(
             pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña2Layout.setVerticalGroup(
             pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña2Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab3", pestaña2);
 
         pestaña4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/img/descarga_1.jpeg"))); // NOI18N
-        jLabel4.setText("PANEL GESTION DE INFORMES");
-
         javax.swing.GroupLayout pestaña4Layout = new javax.swing.GroupLayout(pestaña4);
         pestaña4.setLayout(pestaña4Layout);
         pestaña4Layout.setHorizontalGroup(
             pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña4Layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña4Layout.setVerticalGroup(
             pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña4Layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab4", pestaña4);
@@ -469,21 +403,21 @@ public class Docente_ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
 
-    private void botonEvaluacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEvaluacionesKeyPressed
+    private void botonInasistenciasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonInasistenciasKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesKeyPressed
+    }//GEN-LAST:event_botonInasistenciasKeyPressed
 
-    private void botonEvaluacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEvaluacionesActionPerformed
+    private void botonInasistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInasistenciasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesActionPerformed
+    }//GEN-LAST:event_botonInasistenciasActionPerformed
 
-    private void botonEvaluacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseExited
+    private void botonInasistenciasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesMouseExited
+    }//GEN-LAST:event_botonInasistenciasMouseExited
 
-    private void botonEvaluacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseEntered
+    private void botonInasistenciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEvaluacionesMouseEntered
+    }//GEN-LAST:event_botonInasistenciasMouseEntered
 
     private void cambiarEstadoBoton(JButton button, boolean isSelected) {
         if (isSelected) {
@@ -495,13 +429,13 @@ public class Docente_ventana extends javax.swing.JFrame {
         }
     }
     
-    private void botonEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEvaluacionesMouseClicked
+    private void botonInasistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseClicked
         panelPestañas.setSelectedIndex(3);
-        cambiarEstadoBoton(botonEvaluaciones, true);
+        cambiarEstadoBoton(botonInasistencias, true);
         cambiarEstadoBoton(botonCursos, false);
         cambiarEstadoBoton(botonActividades, false);
         cambiarEstadoBoton(botonInformes, false);
-    }//GEN-LAST:event_botonEvaluacionesMouseClicked
+    }//GEN-LAST:event_botonInasistenciasMouseClicked
 
     private void botonActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonActividadesKeyPressed
         // TODO add your handling code here:
@@ -523,7 +457,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(2);
         cambiarEstadoBoton(botonActividades, true);
         cambiarEstadoBoton(botonCursos, false);
-        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInasistencias, false);
         cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonActividadesMouseClicked
 
@@ -547,7 +481,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         panelPestañas.setSelectedIndex(1);
         cambiarEstadoBoton(botonCursos, true);
         cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInasistencias, false);
         cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonCursosMouseClicked
 
@@ -556,7 +490,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         cambiarEstadoBoton(botonInformes, true);
         cambiarEstadoBoton(botonCursos, false);
         cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonEvaluaciones, false);
+        cambiarEstadoBoton(botonInasistencias, false);
         
     }//GEN-LAST:event_botonInformesMouseClicked
 
@@ -635,13 +569,8 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonActividades;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonCursos;
-    private javax.swing.JButton botonEvaluaciones;
+    private javax.swing.JButton botonInasistencias;
     private javax.swing.JButton botonInformes;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;

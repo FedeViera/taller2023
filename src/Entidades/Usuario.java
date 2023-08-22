@@ -1,26 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
+import Persistencia.Usuario_SQL;
 
-/**
- *
- * @author Agustin Tuduri
- */
 public class Usuario
 {
-    private int id_usuario;
+    private int cedula;
+    private String nombre;
+    private String apellido;
+    private String usuario;
+    private String contrasenia;
     private String cargo;
-    private String nombre_usuario;
-    private String contrasenia_usuario;
 
-    public int getId_usuario() {
-        return id_usuario;
+    public int getCedula() {
+        return cedula;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getCargo() {
@@ -31,27 +58,14 @@ public class Usuario
         this.cargo = cargo;
     }
 
-    public String getNombre_usuario() {
-        return nombre_usuario;
-    }
-
-    public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
-    }
-
-    public String getContrasenia_usuario() {
-        return contrasenia_usuario;
-    }
-
-    public void setContrasenia_usuario(String contrasenia_usuario) {
-        this.contrasenia_usuario = contrasenia_usuario;
-    }
-
-    public Usuario(int id_usuario, String cargo, String nombre_usuario, String contrasenia_usuario) {
-        this.id_usuario = id_usuario;
+    public Usuario(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
         this.cargo = cargo;
-        this.nombre_usuario = nombre_usuario;
-        this.contrasenia_usuario = contrasenia_usuario;
     }
-  
+
+   
 }
