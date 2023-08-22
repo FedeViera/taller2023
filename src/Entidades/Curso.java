@@ -1,9 +1,5 @@
 package Entidades;
 
-/**
- *
- * @author Sidorf
- */
 public class Curso
 {
     private int id_curso;

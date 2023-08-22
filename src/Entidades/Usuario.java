@@ -1,4 +1,5 @@
 package Entidades;
+
 import Persistencia.Usuario_SQL;
 
 public class Usuario
