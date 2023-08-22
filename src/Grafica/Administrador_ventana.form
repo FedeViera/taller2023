@@ -397,52 +397,52 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="agregar_botonAgregar" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="agregar_usuario" min="-2" pref="74" max="-2" attributes="0"/>
-                                      <Component id="agregar_contrasenia" min="-2" max="-2" attributes="0"/>
-                                      <Component id="agregar_apellido" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="agregar_nombre" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="agregar_cedula" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="agregar_cargo" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="agegar_opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="agregar_botonAgregar" min="-2" pref="151" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="agregar_textoContrasenia" pref="282" max="32767" attributes="0"/>
-                                              <Component id="agregar_textoUsuario" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="agregar_textoApellido" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="agregar_textoNombre" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="agregar_textoCedula" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="agregar_usuario" min="-2" pref="74" max="-2" attributes="0"/>
+                                              <Component id="agregar_contrasenia" min="-2" max="-2" attributes="0"/>
+                                              <Component id="agregar_apellido" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <Component id="agregar_nombre" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <Component id="agregar_cedula" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <Component id="agregar_cargo" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="agregar_opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
                                               <Group type="102" attributes="0">
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="agregar_textoContrasenia" pref="282" max="32767" attributes="0"/>
+                                                      <Component id="agregar_textoUsuario" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="agregar_textoApellido" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="agregar_textoNombre" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="agregar_textoCedula" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="ocultarPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                                      <Component id="verPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <Group type="102" attributes="0">
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="ocultarPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                                              <Component id="verPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="agregar_grado" min="-2" pref="98" max="-2" attributes="0"/>
+                                                              <Component id="agregar_asignatura" min="-2" pref="115" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="agregar_opcionesAsignatura" min="-2" pref="171" max="-2" attributes="0"/>
+                                                      <Component id="agregar_opcionesGrado" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="agregar_grado" min="-2" pref="98" max="-2" attributes="0"/>
-                                                      <Component id="agregar_especialidad" min="-2" pref="115" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jComboBox2" min="-2" pref="171" max="-2" attributes="0"/>
-                                              <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -460,7 +460,7 @@
                                               <Component id="agregar_textoCedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="agregar_cedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="agregar_grado" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="agregar_opcionesGrado" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
@@ -478,8 +478,8 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="agregar_especialidad" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="jComboBox2" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      <Component id="agregar_asignatura" min="-2" pref="40" max="-2" attributes="0"/>
+                                                      <Component id="agregar_opcionesAsignatura" min="-2" pref="34" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -501,12 +501,12 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="agegar_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="agregar_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="agregar_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="87" max="32767" attributes="0"/>
+                                  <EmptySpace pref="76" max="32767" attributes="0"/>
                                   <Component id="agregar_botonAgregar" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -628,7 +628,7 @@
                             <Property name="text" type="java.lang.String" value="Cargo"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="agegar_opcionesCargo">
+                        <Component class="javax.swing.JComboBox" name="agregar_opcionesCargo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="18" style="0"/>
@@ -642,7 +642,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agegar_opcionesCargoActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_opcionesCargoActionPerformed"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -690,7 +690,28 @@
                             <Property name="text" type="java.lang.String" value="Grado"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="agregar_especialidad">
+                        <Component class="javax.swing.JComboBox" name="agregar_opcionesGrado">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="18" style="0"/>
+                            </Property>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="7">
+                                <StringItem index="0" value="1"/>
+                                <StringItem index="1" value="2"/>
+                                <StringItem index="2" value="3"/>
+                                <StringItem index="3" value="4"/>
+                                <StringItem index="4" value="5"/>
+                                <StringItem index="5" value="6"/>
+                                <StringItem index="6" value="7"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="agregar_asignatura">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -698,10 +719,10 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Especialidad"/>
+                            <Property name="text" type="java.lang.String" value="Asignatura"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox2">
+                        <Component class="javax.swing.JComboBox" name="agregar_opcionesAsignatura">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="18" style="0"/>
@@ -723,29 +744,8 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_opcionesAsignaturaActionPerformed"/>
                           </Events>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox3">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="7">
-                                <StringItem index="0" value="1"/>
-                                <StringItem index="1" value="2"/>
-                                <StringItem index="2" value="3"/>
-                                <StringItem index="3" value="4"/>
-                                <StringItem index="4" value="5"/>
-                                <StringItem index="5" value="6"/>
-                                <StringItem index="6" value="7"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>

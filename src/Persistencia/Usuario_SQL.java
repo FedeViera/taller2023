@@ -62,7 +62,7 @@ public class Usuario_SQL {
     }
 
 //AGREGAR DATO EN BD
-    public void agregarDato(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+    public void agregarDato(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo, String grado, String asignatura) {
         String cedulaStr = cedula.toString();
 
         if (!cedulaStr.matches("\\d{8}")) {
@@ -89,7 +89,32 @@ public class Usuario_SQL {
                     preparedStatement.executeUpdate();
 
                     preparedStatement.close();
-                    JOptionPane.showMessageDialog(null, "Usuario " + cargo + " agregado exitosamente.", "Agregado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    // Insertar en la tabla correspondiente según el cargo
+                    if ("Administrador".equals(cargo)) {
+                        String queryAdmin = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
+                        PreparedStatement preparedStatementAdmin = conn.prepareStatement(queryAdmin);
+                        preparedStatementAdmin.setInt(1, cedula);
+                        preparedStatementAdmin.executeUpdate();
+                        preparedStatementAdmin.close();
+                    } else if ("Adscripto".equals(cargo)) {
+                        String queryAdscripto = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
+                        PreparedStatement preparedStatementAdscripto = conn.prepareStatement(queryAdscripto);
+                        preparedStatementAdscripto.setInt(1, cedula);
+                        preparedStatementAdscripto.setString(2, grado); // Corregido
+                        preparedStatementAdscripto.executeUpdate();
+                        preparedStatementAdscripto.close();
+                    } else if ("Docente".equals(cargo)) {
+                        String queryDocente = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
+                        PreparedStatement preparedStatementDocente = conn.prepareStatement(queryDocente);
+                        preparedStatementDocente.setInt(1, cedula);
+                        preparedStatementDocente.setString(2, grado); // Corregido
+                        preparedStatementDocente.setString(3, asignatura); // Corregido
+                        preparedStatementDocente.executeUpdate();
+                        preparedStatementDocente.close();
+                    }
+                    
+                    JOptionPane.showMessageDialog(null, "" + cargo + " agregado exitosamente.", "Agregado correctamente", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "El usuario con cédula " + cedula + " ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
                 }
