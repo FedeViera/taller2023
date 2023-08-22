@@ -7,4 +7,7 @@ public class Administrador extends Usuario
         super(cedula, nombre, apellido, usuario, contrasenia, cargo);
     }
     
+    
 }
+
+
