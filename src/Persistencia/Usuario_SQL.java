@@ -128,8 +128,27 @@ public class Usuario_SQL {
         }
     }
 
+//CARGO ACTUAL    
+    private String obtenerCargoActual(Connection conn, Integer cedula) throws SQLException {
+        String cargoActual = null;
+
+        String query = "SELECT cargo FROM usuario WHERE cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            cargoActual = resultSet.getString("cargo");
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return cargoActual;
+    }
+    
 //ACTUALIZAR DATO EN BD
-    public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo) {
+    public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo, Integer grado, String asignatura) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
@@ -137,6 +156,9 @@ public class Usuario_SQL {
             try {
                 // Verificar si el usuario existe en la base de datos antes de actualizarlo
                 if (usuarioExiste(conn, cedula)) {
+                    // Obtener el cargo actual del usuario
+                    String cargoActual = obtenerCargoActual(conn, cedula);
+
                     String query = "UPDATE usuario SET contrasenia = ?, cargo = ? WHERE cedula = ?";
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
                     preparedStatement.setString(1, nuevaContrasenia);
@@ -144,8 +166,10 @@ public class Usuario_SQL {
                     preparedStatement.setInt(3, cedula);
 
                     preparedStatement.executeUpdate();
-
                     preparedStatement.close();
+                    
+                    // Mover al usuario a la tabla correspondiente
+                    moverUsuario(conn, cedula, cargoActual, nuevoCargo, grado, asignatura);
                 } else {
                     JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
                 }
@@ -157,6 +181,36 @@ public class Usuario_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    private void moverUsuario(Connection conn, Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
+        // Eliminar al usuario de la tabla actual
+        String deleteQuery = "DELETE FROM " + cargoActual + " WHERE usuario_cedula = ?";
+        PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery);
+        deleteStatement.setInt(1, cedula);
+        deleteStatement.executeUpdate();
+        
+        //System.out.println("Valor de asignatura: " + asignatura);
+
+        // Insertar al usuario en la nueva tabla correspondiente al nuevo cargo
+        if ("Docente".equals(nuevoCargo)) {
+            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, cedula);
+            insertStatement.setInt(2, grado);
+            insertStatement.setString(3, asignatura);
+            insertStatement.executeUpdate();
+        } else if ("Adscripto".equals(nuevoCargo)) {
+            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula, grado) VALUES (?, ?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, cedula);
+            insertStatement.setInt(2, grado);
+            insertStatement.executeUpdate();
+}
+
+    }
+
+    
+
 
     /*//OBTENER ID POR USUARIO 
     public int obtenerIDUsuarioPorCorreo(String correo) {
@@ -188,20 +242,25 @@ public class Usuario_SQL {
     }
     return idUsuario;
 }*/
+    
+    
 //ELIMINAR DATOS DE LA BD    
-    public void eliminarDato(int cedula) {
+    public void eliminarDato(int cedula, String cargo) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
         if (conn != null) {
             try {
-                String query = "DELETE FROM usuario WHERE cedula = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setInt(1, cedula);
+                if ("Administrador".equals(cargo)) {
+                    eliminarAdministrador(conn, cedula);
+                } else if ("Adscripto".equals(cargo)) {
+                    eliminarAdscripto(conn, cedula);
+                } else if ("Docente".equals(cargo)) {
+                    eliminarDocente(conn, cedula);
+                }
 
-                preparedStatement.executeUpdate();
+                eliminarUsuario(conn, cedula);
 
-                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -210,6 +269,41 @@ public class Usuario_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private void eliminarAdministrador(Connection conn, int cedula) throws SQLException {
+        String query = "DELETE FROM administrador WHERE usuario_cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    private void eliminarAdscripto(Connection conn, int cedula) throws SQLException {
+        String query = "DELETE FROM adscripto WHERE usuario_cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    private void eliminarDocente(Connection conn, int cedula) throws SQLException {
+        String query = "DELETE FROM docente WHERE usuario_cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    private void eliminarUsuario(Connection conn, int cedula) throws SQLException {
+        String query = "DELETE FROM usuario WHERE cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    
+    
 
 //TRAER DATOS DE LA BASE DE DATOS Y MOSTRARLOS EN TABLA
     private Object[][] ejecutarConsulta(String query) {
