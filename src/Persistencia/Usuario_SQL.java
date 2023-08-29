@@ -205,7 +205,12 @@ public class Usuario_SQL {
             insertStatement.setInt(1, cedula);
             insertStatement.setInt(2, grado);
             insertStatement.executeUpdate();
-}
+        } else if ("Administrador".equals(nuevoCargo)) {
+            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula) VALUES (?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, cedula);
+            insertStatement.executeUpdate();
+        }
 
     }
 
