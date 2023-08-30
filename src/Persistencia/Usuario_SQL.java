@@ -44,10 +44,11 @@ public class Usuario_SQL {
     }
 
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD
-    private boolean usuarioExiste(Connection conn, Integer cedula) throws SQLException {
-        String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ?";
+    private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
+        String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query);
         preparedStatement.setInt(1, cedula);
+        preparedStatement.setString(2, usuario);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         int total = 0;
@@ -60,6 +61,7 @@ public class Usuario_SQL {
 
         return total > 0;
     }
+
 
 //AGREGAR DATO EN BD
     public void agregarDato(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo, String grado, String asignatura) {
@@ -76,7 +78,7 @@ public class Usuario_SQL {
         if (conn != null) {
             try {
                 // Verificar si el usuario ya existe en la base de datos.
-                if (!usuarioExiste(conn, cedula)) {
+                if (!usuarioExiste(conn, cedula, usuario)) {
                     String query = "INSERT INTO usuario (cedula, nombre, apellido, usuario, contrasenia, cargo) VALUES (?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
                     preparedStatement.setInt(1, cedula);
@@ -116,7 +118,11 @@ public class Usuario_SQL {
                     
                     JOptionPane.showMessageDialog(null, "" + cargo + " agregado exitosamente.", "Agregado correctamente", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "El usuario con cédula " + cedula + " ya existe en la base de datos.", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);
+                    String mensaje = "Ya existe un usuario con ";
+                    if (usuarioExiste(conn, cedula, usuario)) {
+                        mensaje += "la misma cédula: " + cedula + " o nombre de usuario: " + usuario + "\nPor favor Verifique los datos.";
+                    }
+                    JOptionPane.showMessageDialog(null, mensaje, "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);  
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -155,7 +161,7 @@ public class Usuario_SQL {
         if (conn != null) {
             try {
                 // Verificar si el usuario existe en la base de datos antes de actualizarlo
-                if (usuarioExiste(conn, cedula)) {
+                if (usuarioExiste(conn, cedula, null)) {
                     // Obtener el cargo actual del usuario
                     String cargoActual = obtenerCargoActual(conn, cedula);
 
