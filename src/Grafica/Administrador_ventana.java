@@ -1122,7 +1122,13 @@ public class Administrador_ventana extends javax.swing.JFrame
      
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
-    bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
+        bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
+        /*String nombreApellido = obtenerNombreApellido(nombreUsuario);
+        if (nombreApellido != null) {
+            bienvenidaUsuario.setText("Bienvenido/a " + nombreApellido);
+        } else {
+            bienvenidaUsuario.setText("Bienvenido/a " + nombreUsuario);
+        }*/
     }
 
  

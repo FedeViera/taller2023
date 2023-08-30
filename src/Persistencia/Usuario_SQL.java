@@ -361,11 +361,32 @@ public class Usuario_SQL {
         return ejecutarConsulta(query);
     }
 
-    /*
-    //PARA TABLA
-    public Object[][] obtenerOtrosDatos() {
-        String query = "SELECT campo1, campo2, campo3 FROM OtraTabla";
-        return ejecutarConsulta(query);
-    }
-     */
+    //CHEQUEAR PORQUE TIRA ERROR AL TRAER NOMBRE Y APELLIDO AL LABEL BIENVENIDA
+    /*public String obtenerNombreApellido(String usuario) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT nombre, apellido FROM usuario WHERE usuario=?";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, usuario);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    String nombre = resultSet.getString("nombre");
+                    String apellido = resultSet.getString("apellido");
+                    return nombre + " " + apellido;
+                }
+
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null; // Usuario no válido
+    }*/
 }
