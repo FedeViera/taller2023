@@ -148,9 +148,11 @@ public class Login_ventana extends javax.swing.JFrame {
         panelLogin.add(botonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 170, 60));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoSDFA_3.gif"))); // NOI18N
+        logo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelLogin.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 410, 130));
 
         verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
+        verPswd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 verPswdMouseClicked(evt);
@@ -159,6 +161,7 @@ public class Login_ventana extends javax.swing.JFrame {
         panelLogin.add(verPswd, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, 30, 30));
 
         ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
+        ocultarPswd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ocultarPswdMouseClicked(evt);
