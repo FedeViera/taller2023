@@ -881,14 +881,14 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_botonGestionCuentasActionPerformed
 
     private void botonGestionCuentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseExited
-        //botonGenerarCurso.setBackground(new Color(45,196,181));
+  
     }//GEN-LAST:event_botonGestionCuentasMouseExited
 
     private void botonGestionCuentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseEntered
-        //botonGenerarCurso.setBackground(new Color(55,208,193));
+
     }//GEN-LAST:event_botonGestionCuentasMouseEntered
 
-    //CAMBIAR DE COLOR BOTONES AL CLICKEARLOS
+    //CAMBIAR DE COLOR EL BOTON AL CLICKEAR
     private void cambiarEstadoBoton(JButton button, boolean isSelected) {
         if (isSelected) {
             button.setBackground(new Color(255, 255, 255));
@@ -899,7 +899,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
     }
     
-    //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseClicked
         panelPestañas.setSelectedIndex(1);
         cambiarEstadoBoton(botonGestionCursos, false);
@@ -923,7 +922,6 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     }//GEN-LAST:event_botonGestionCursosMouseEntered
 
-    //Cambio de colores al hacer click Cambia a Blanco y muestra otra pestaña del Tabbed Panel
     private void botonGestionCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseClicked
         panelPestañas.setSelectedIndex(2);
         cambiarEstadoBoton(botonGestionCursos, true);
@@ -943,6 +941,7 @@ public class Administrador_ventana extends javax.swing.JFrame
        
     }//GEN-LAST:event_botonCerrarSesionMouseExited
 
+//BOTON CERRAR Y VOLVER AL LOGIN
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
         int x = getLocation().x;
         int y = getLocation().y;
@@ -957,6 +956,7 @@ public class Administrador_ventana extends javax.swing.JFrame
       
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
 
+//Boton Gestion de Actividades
     private void botonGestionActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseClicked
         panelPestañas.setSelectedIndex(3);
         panelPestañas.setSelectedIndex(3);
@@ -980,7 +980,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void botonGestionActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionActividadesKeyPressed
      
     }//GEN-LAST:event_botonGestionActividadesKeyPressed
- 
+
+//DESHABILITA BOTON SI ES NECESARIO
     private void agregar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_opcionesCargoActionPerformed
         String selectedCargo = (String) agregar_opcionesCargo.getSelectedItem();
 
@@ -1001,10 +1002,10 @@ public class Administrador_ventana extends javax.swing.JFrame
             agregar_opcionesAsignatura.setEnabled(false);
             agregar_opcionesGrado.setEnabled(false); 
             break;
-    }
-
+        }
     }//GEN-LAST:event_agregar_opcionesCargoActionPerformed
-    
+
+//BOTON AGREGAR
     private void agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_botonAgregarActionPerformed
        
         String cedulaStr = agregar_textoCedula.getText();  // Obtener la cédula como cadena
@@ -1034,6 +1035,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
+//MOVER USUARIO (Administrador, adscripto o docente)
     private void mostrarUsuariosEnTabla() {
         Usuario_SQL consultasSQL = new Usuario_SQL();
         Object[][] datos = consultasSQL.obtenerUsuarios();
@@ -1083,14 +1085,13 @@ public class Administrador_ventana extends javax.swing.JFrame
                     }
                 }
             });  
-        
         }
 
     private void agregar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoUsuarioActionPerformed
         
     }//GEN-LAST:event_agregar_textoUsuarioActionPerformed
 
-    
+//BOTON ELIMINAR USUARIO
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int filaSeleccionada = tablaCuentas.getSelectedRow();
     
@@ -1106,11 +1107,13 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
+//ACTUALIZAR TABLA AL CAMBIAR PESATAÑA
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
         mostrarUsuariosEnTabla();
         modificar_textoContrasenia.setEchoChar((char) 0);
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
+//BOTON MODIFICAR USUASRIO
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
         String cedulaStr = modificar_textoCedula.getText();
         String nuevoGradoStr = modificar_opcionesGrado.getSelectedItem().toString();
@@ -1133,7 +1136,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void modificar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoUsuarioActionPerformed
 
     }//GEN-LAST:event_modificar_textoUsuarioActionPerformed
-   
+
+//VER/OCULTAR CONTRASEÑA
     private char echoCharOriginal = '\u2022';
     private boolean contraseniaVisible = false;
     
@@ -1187,6 +1191,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         
     }//GEN-LAST:event_modificar_textoBuscarActionPerformed
 
+//BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         String busquedaCedula = modificar_textoBuscar.getText().trim();
         DefaultTableModel model = (DefaultTableModel) tablaCuentas.getModel();
@@ -1202,24 +1207,24 @@ public class Administrador_ventana extends javax.swing.JFrame
                 break; 
             }
         }
-
         if (!encontrado) {
             JOptionPane.showMessageDialog(null, "No se encontró ninguna cédula coincidente.", "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonBuscarActionPerformed
      
-//HACER VISIBLE LA FILA ENCONTRADA
-    private void hacerVisible(JTable table, int rowIndex, int vColIndex) {
+//HACER VISIBLE FILA USUARIO ENCONTRADO
+    private void hacerVisible(JTable table, int fila, int columna) {
         if (!(table.getParent() instanceof javax.swing.JViewport)) {
             return;
         }
         javax.swing.JViewport viewport = (javax.swing.JViewport) table.getParent();
-        java.awt.Rectangle rect = table.getCellRect(rowIndex, vColIndex, true);
+        java.awt.Rectangle rect = table.getCellRect(fila, columna, true);
         java.awt.Point pt = viewport.getViewPosition();
         rect.setLocation(rect.x - pt.x, rect.y - pt.y);
         table.scrollRectToVisible(rect);
     }
-    
+
+//LLENAR CAMPOS CON DATOS DE USUARIO ENCONTRADO
     private void llenarCamposDesdeTabla(int fila) {
         Integer cedula = (Integer) tablaCuentas.getValueAt(fila, 0);
         String usuario = tablaCuentas.getValueAt(fila, 3).toString(); 
@@ -1245,7 +1250,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
         }
     }
-
     
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
