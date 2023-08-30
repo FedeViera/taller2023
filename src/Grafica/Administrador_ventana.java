@@ -531,28 +531,28 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo"
+                "Cedula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -568,6 +568,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(4).setResizable(false);
             tablaCuentas.getColumnModel().getColumn(5).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(6).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(7).setResizable(false);
         }
 
         modificar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -714,11 +716,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                     .addComponent(modificar_grado)
                     .addComponent(modificar_opcionesGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(modificar_asignatura)
-                    .addComponent(modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(modificar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modificar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -992,6 +995,28 @@ public class Administrador_ventana extends javax.swing.JFrame
                         modificar_textoUsuario.setText(usuario);
                         modificar_textoContrasenia.setText(contrasenia);
                         modificar_textoCedula.setText(cedula.toString());
+                        modificar_opcionesCargo.setSelectedItem(cargo); 
+                        
+                        if (cargo.equals("Docente")) {
+                            String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
+                            modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+                            String asignatura = tablaCuentas.getValueAt(filaSeleccionada, 7).toString();
+                            modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
+                            /*modificar_opcionesAsignatura.setEnabled(true);
+                            modificar_opcionesGrado.setEnabled(true);*/
+                        } else if (cargo.equals("Adscripto")) {
+                            String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
+                            modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+                            modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
+                            /*modificar_opcionesGrado.setEnabled(true);
+                            modificar_opcionesAsignatura.setEnabled(false);*/
+                        } else {
+                            // Otro cargo (como Administrador)
+                            modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
+                            modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
+                            /*modificar_opcionesAsignatura.setEnabled(false);
+                            modificar_opcionesGrado.setEnabled(false);*/
+                        }
                     }
                 }
             });  

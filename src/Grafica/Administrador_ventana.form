@@ -855,11 +855,13 @@
                                       <Component id="modificar_opcionesGrado" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="modificar_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="modificar_asignatura" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="modificar_opcionesAsignatura" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="modificar_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="modificar_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="modificar_opcionesAsignatura" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace pref="26" max="32767" attributes="0"/>
                                   <Component id="modificar_botonModificar" min="-2" pref="40" max="-2" attributes="0"/>
@@ -892,17 +894,29 @@
                             <Component class="javax.swing.JTable" name="tablaCuentas">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="6" rowCount="15">
+                                  <Table columnCount="8" rowCount="15">
                                     <Column editable="false" title="Cedula" type="java.lang.Object"/>
                                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
                                     <Column editable="false" title="Apellido" type="java.lang.Object"/>
                                     <Column editable="false" title="Usuario" type="java.lang.Object"/>
                                     <Column editable="false" title="Contrase&#xf1;a" type="java.lang.Object"/>
                                     <Column editable="false" title="Cargo" type="java.lang.Object"/>
+                                    <Column editable="false" title="Grado" type="java.lang.Object"/>
+                                    <Column editable="false" title="Asignatura" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                       <Title/>
                                       <Editor/>

@@ -352,7 +352,28 @@ public class Usuario_SQL {
 
 //OBTENER USUARIOS DE LA BD
     public Object[][] obtenerUsuarios() {
-        String query = "SELECT cedula, nombre, apellido, usuario, contrasenia, cargo FROM usuario";
+        String query = "SELECT\n" +
+"    u.cedula,\n" +
+"    u.nombre,\n" +
+"    u.apellido,\n" +
+"    u.usuario,\n" +
+"    u.contrasenia,\n" +
+"    u.cargo,\n" +
+"    CASE\n" +
+"        WHEN u.cargo = 'Docente' THEN d.grado\n" +
+"        WHEN u.cargo = 'Adscripto' THEN ad.grado\n" +
+"        ELSE NULL\n" +
+"    END AS grado,\n" +
+"    CASE\n" +
+"        WHEN u.cargo = 'Docente' THEN d.asignatura\n" +
+"        ELSE NULL\n" +
+"    END AS asignatura\n" +
+"FROM\n" +
+"    usuario u\n" +
+"LEFT JOIN\n" +
+"    docente d ON u.cedula = d.usuario_cedula\n" +
+"LEFT JOIN\n" +
+"    adscripto ad ON u.cedula = ad.usuario_cedula;";
         return ejecutarConsulta(query);
     }
 
