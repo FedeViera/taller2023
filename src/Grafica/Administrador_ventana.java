@@ -573,18 +573,27 @@ public class Administrador_ventana extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
+        tablaCuentas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tablaCuentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaCuentas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaCuentas);
         if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
             tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(0).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(1).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(2).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(3).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(4).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(4).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(5).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(5).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(6).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(6).setPreferredWidth(50);
             tablaCuentas.getColumnModel().getColumn(7).setResizable(false);
+            tablaCuentas.getColumnModel().getColumn(7).setPreferredWidth(120);
         }
 
         modificar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
