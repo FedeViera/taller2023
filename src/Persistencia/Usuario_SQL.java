@@ -115,8 +115,7 @@ public class Usuario_SQL {
                         preparedStatementDocente.executeUpdate();
                         preparedStatementDocente.close();
                     }
-                    
-                    JOptionPane.showMessageDialog(null, "" + cargo + " agregado exitosamente.", "Agregado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,""+ cargo +": "+nombre+" "+apellido+"\nCI: "+cedula+", fue agregado correctamente.", "Usuario agregado", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     String mensaje = "Ya existe un usuario con ";
                     if (usuarioExiste(conn, cedula, usuario)) {
@@ -176,6 +175,7 @@ public class Usuario_SQL {
                     
                     // Mover al usuario a la tabla correspondiente
                     moverUsuario(conn, cedula, cargoActual, nuevoCargo, grado, asignatura);
+                    JOptionPane.showMessageDialog(null, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
                 }
@@ -271,7 +271,7 @@ public class Usuario_SQL {
                 }
 
                 eliminarUsuario(conn, cedula);
-
+                JOptionPane.showMessageDialog(null, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();

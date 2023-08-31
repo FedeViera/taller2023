@@ -1107,10 +1107,20 @@ public class Administrador_ventana extends javax.swing.JFrame
         if (filaSeleccionada >= 0) {
             int cedula = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
             String cargo = (String) tablaCuentas.getValueAt(filaSeleccionada, 5);
-            Usuario_SQL consultasSQL = new Usuario_SQL();
-            consultasSQL.eliminarDato(cedula, cargo); // Eliminar el usuario utilizando el ID
-            mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
-            JOptionPane.showMessageDialog(this, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
+            
+            int respuesta = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea eliminar el usuario con cedula: "+cedula+"?\nSe eliminaran todos los archivos relacionados a este Usuario",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+            );
+            if (respuesta == JOptionPane.YES_OPTION){
+                Usuario_SQL consultasSQL = new Usuario_SQL();
+                consultasSQL.eliminarDato(cedula, cargo); // Eliminar el usuario utilizando el ID
+                mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
+            }else{
+                System.out.println("Eliminación cancelada.");
+            }   
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
         }
@@ -1122,7 +1132,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificar_textoContrasenia.setEchoChar((char) 0);
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
-//BOTON MODIFICAR USUASRIO
+//BOTON MODIFICAR USUARIOo
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
         int filaSeleccionada = tablaCuentas.getSelectedRow();
         
@@ -1147,13 +1157,13 @@ public class Administrador_ventana extends javax.swing.JFrame
                 Usuario_SQL consultasSQL = new Usuario_SQL();
                 consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
                 mostrarUsuariosEnTabla();
-                JOptionPane.showMessageDialog(this, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
+                
                 // Borra los campos de los JTextField
                 modificar_textoCedula.setText("");
                 modificar_textoUsuario.setText("");
                 modificar_textoContrasenia.setText("");
             } else {
-                System.out.println("Eliminación cancelada.");
+                System.out.println("Modificación cancelada.");
             }   
         } else {
         JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para modificar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
