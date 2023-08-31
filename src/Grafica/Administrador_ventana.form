@@ -370,6 +370,9 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Default Cursor"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="1"/>
                     </Property>
@@ -640,6 +643,9 @@
                                 <StringItem index="2" value="Docente"/>
                               </StringArray>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_opcionesCargoActionPerformed"/>
@@ -664,6 +670,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/imagenes/botonMostrar.png"/>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="verPswdMouseClicked"/>
@@ -673,6 +682,9 @@
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/imagenes/botonOcultar.png"/>
+                            </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -705,6 +717,9 @@
                                 <StringItem index="5" value="6"/>
                                 <StringItem index="6" value="7"/>
                               </StringArray>
+                            </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
                             </Property>
                           </Properties>
                           <AuxValues>
@@ -742,6 +757,9 @@
                                 <StringItem index="10" value="Educaci&#xf3;n F&#xed;sica"/>
                               </StringArray>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_opcionesAsignaturaActionPerformed"/>
@@ -776,60 +794,65 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="cuentasRegistradas" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="cuentasRegistradas" min="-2" pref="185" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="modificar_textoBuscar" min="-2" pref="333" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="botonBuscar" min="-2" pref="113" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="modificar_cedula1" min="-2" pref="182" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="modificar_cargo" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <Component id="modificar_grado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="modificar_botonModificar" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <Component id="botonEliminar" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="modificar_contrasenia" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                                              <Component id="modificar_textoContrasenia" pref="283" max="32767" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="modificar_cedula" min="-2" pref="98" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                                  <Component id="modificar_textoUsuario" pref="333" max="32767" attributes="0"/>
-                                                                  <Component id="modificar_textoCedula" max="32767" attributes="0"/>
-                                                              </Group>
-                                                          </Group>
-                                                      </Group>
-                                                      <Component id="modificar_usuario" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="modificar_contrasenia" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                                      <Component id="modificar_textoContrasenia" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="modificar_cargo" min="-2" pref="141" max="-2" attributes="0"/>
-                                                              <Component id="modificar_grado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                                          <Component id="modificar_asignatura" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="modificar_cedula" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="modificar_textoUsuario" max="32767" attributes="0"/>
+                                                          <Component id="modificar_textoCedula" min="-2" pref="333" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
+                                              <Component id="modificar_usuario" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="modificar_opcionesAsignatura" min="-2" pref="169" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="modificar_opcionesGrado" max="32767" attributes="0"/>
-                                                  <Component id="modificar_opcionesCargo" pref="171" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="modificar_asignatura" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="modificar_opcionesGrado" max="32767" attributes="0"/>
+                                          <Component id="modificar_opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="modificar_botonModificar" min="-2" pref="151" max="-2" attributes="0"/>
+                                              <Component id="botonEliminar" min="-2" pref="151" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="modificar_opcionesAsignatura" min="-2" pref="169" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -840,32 +863,54 @@
                                   <Component id="cuentasRegistradas" min="-2" pref="28" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" min="-2" pref="156" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="modificar_cedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_textoCedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="modificar_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="modificar_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="modificar_grado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="modificar_opcionesGrado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="modificar_asignatura" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="modificar_opcionesAsignatura" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="modificar_botonModificar" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="botonEliminar" min="-2" pref="40" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="modificar_cedula1" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="modificar_textoBuscar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="botonBuscar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="modificar_cedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="modificar_textoCedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="modificar_usuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="modificar_textoUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="modificar_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="modificar_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="modificar_usuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_textoUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_grado" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="modificar_opcionesGrado" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="modificar_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="modificar_asignatura" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="modificar_opcionesAsignatura" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="26" max="32767" attributes="0"/>
-                                  <Component id="modificar_botonModificar" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="botonEliminar" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                  <EmptySpace pref="27" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -892,48 +937,64 @@
                             <Component class="javax.swing.JTable" name="tablaCuentas">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="6" rowCount="15">
-                                    <Column editable="false" title="Cedula" type="java.lang.Object"/>
+                                  <Table columnCount="8" rowCount="15">
+                                    <Column editable="false" title="C&#xe9;dula" type="java.lang.Object"/>
                                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
                                     <Column editable="false" title="Apellido" type="java.lang.Object"/>
                                     <Column editable="false" title="Usuario" type="java.lang.Object"/>
                                     <Column editable="false" title="Contrase&#xf1;a" type="java.lang.Object"/>
                                     <Column editable="false" title="Cargo" type="java.lang.Object"/>
+                                    <Column editable="false" title="Grado" type="java.lang.Object"/>
+                                    <Column editable="false" title="Asignatura" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
+                                <Property name="autoResizeMode" type="int" value="0"/>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="120" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
                                   </TableColumnModel>
+                                </Property>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
                                 </Property>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
@@ -958,6 +1019,10 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="18" style="0"/>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Default Cursor"/>
+                            </Property>
+                            <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoCedulaActionPerformed"/>
@@ -979,6 +1044,10 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="18" style="0"/>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Default Cursor"/>
+                            </Property>
+                            <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoUsuarioActionPerformed"/>
@@ -1014,6 +1083,9 @@
                                 <StringItem index="2" value="Docente"/>
                               </StringArray>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_opcionesCargoActionPerformed"/>
@@ -1039,6 +1111,9 @@
                               <Font name="Dialog" size="20" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Modificar"/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_botonModificarActionPerformed"/>
@@ -1050,6 +1125,9 @@
                               <Font name="Dialog" size="20" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Eliminar"/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarActionPerformed"/>
@@ -1081,6 +1159,9 @@
                                 <StringItem index="5" value="6"/>
                                 <StringItem index="6" value="7"/>
                               </StringArray>
+                            </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
                             </Property>
                           </Properties>
                           <AuxValues>
@@ -1118,6 +1199,9 @@
                                 <StringItem index="10" value="Educaci&#xf3;n F&#xed;sica"/>
                               </StringArray>
                             </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_opcionesAsignaturaActionPerformed"/>
@@ -1125,6 +1209,41 @@
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="modificar_cedula1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="20" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Buscar por c&#xe9;dula"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="modificar_textoBuscar">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="18" style="0"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoBuscarActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="botonBuscar">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="20" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Buscar"/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscarActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
