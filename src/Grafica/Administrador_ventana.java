@@ -1110,7 +1110,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             Usuario_SQL consultasSQL = new Usuario_SQL();
             consultasSQL.eliminarDato(cedula, cargo); // Eliminar el usuario utilizando el ID
             mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
-            JOptionPane.showMessageDialog(this, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
         }
@@ -1124,18 +1124,40 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BOTON MODIFICAR USUASRIO
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
-        String cedulaStr = modificar_textoCedula.getText();
-        String nuevoGradoStr = modificar_opcionesGrado.getSelectedItem().toString();
-        Integer cedula = Integer.parseInt(cedulaStr); // Convertir la cadena a Integer
-        String usuario = modificar_textoUsuario.getText();
-        String nuevaContrasenia = new String(modificar_textoContrasenia.getPassword());
-        String nuevoCargo = modificar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
-        int nuevoGrado = Integer.parseInt(nuevoGradoStr);
-        String nuevaAsignatura = modificar_opcionesAsignatura.getSelectedItem().toString();
+        int filaSeleccionada = tablaCuentas.getSelectedRow();
+        
+        if (filaSeleccionada >= 0){
+            String cedulaStr = modificar_textoCedula.getText();
+            String nuevoGradoStr = modificar_opcionesGrado.getSelectedItem().toString();
+            Integer cedula = Integer.parseInt(cedulaStr); // Convertir la cadena a Integer
+            String usuario = modificar_textoUsuario.getText();
+            String nuevaContrasenia = new String(modificar_textoContrasenia.getPassword());
+            String nuevoCargo = modificar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
+            int nuevoGrado = Integer.parseInt(nuevoGradoStr);
+            String nuevaAsignatura = modificar_opcionesAsignatura.getSelectedItem().toString();
 
-        Usuario_SQL consultasSQL = new Usuario_SQL();
-        consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
-        mostrarUsuariosEnTabla();
+            int respuesta = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea modificar el usuario con cedula: "+cedula+"?\nSe eliminaran todos los archivos relacionados a este Usuario",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+            );
+            
+            if (respuesta == JOptionPane.YES_OPTION) {
+                Usuario_SQL consultasSQL = new Usuario_SQL();
+                consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
+                mostrarUsuariosEnTabla();
+                JOptionPane.showMessageDialog(this, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
+                // Borra los campos de los JTextField
+                modificar_textoCedula.setText("");
+                modificar_textoUsuario.setText("");
+                modificar_textoContrasenia.setText("");
+            } else {
+                System.out.println("Eliminación cancelada.");
+            }   
+        } else {
+        JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para modificar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
+        }     
     }//GEN-LAST:event_modificar_botonModificarActionPerformed
 
     private void modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargoActionPerformed
