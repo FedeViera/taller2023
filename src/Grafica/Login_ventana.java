@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Persistencia.Persistencia_SQL;
+import Entidades.Usuario;
+import Logica.Controlador;
 
 
 public class Login_ventana extends javax.swing.JFrame {
@@ -201,7 +203,7 @@ public class Login_ventana extends javax.swing.JFrame {
     
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
-        //abrirVentanaCorrespondiente();
+
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
@@ -262,17 +264,12 @@ public class Login_ventana extends javax.swing.JFrame {
             contraseniaVisible = false;
         }
     }//GEN-LAST:event_verPswdMouseClicked
-
-
     
-    /*
-    //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
-    public void abrirVentanaCorrespondiente() {
-        String usuario = textoUsuario.getText();
-        String contrasenia = new String(textoContrasenia.getPassword());
-
-        Persistencia_SQL consultasSQL = new Persistencia_SQL();
-        String cargo = consultasSQL.validarUsuarioYContraseña(usuario, contrasenia);
+//Chequeo el usuario y Abre la ventana Correspondiente
+    public void abrirVentanaCorrespondiente(Usuario usuario) {
+        String cargo = usuario.getCargo();
+        String nombre = usuario.getNombre();
+        //String apellido = usuario.getApellido();
 
         if (cargo != null) {
             int x = getLocation().x;
@@ -281,21 +278,21 @@ public class Login_ventana extends javax.swing.JFrame {
             switch (cargo) {
                 case "Administrador":
                     Administrador_ventana admin = new Administrador_ventana();
-                    admin.bienvenidaUsuario(usuario);
+                    admin.bienvenidaUsuario(nombre);
                     admin.setVisible(true);
                     admin.setLocationRelativeTo(null);
                     admin.setLocation(x, y);
                     break;
                 case "Docente":
                     Docente_ventana docente = new Docente_ventana();
-                    docente.bienvenidaUsuario(usuario);
+                    docente.bienvenidaUsuario(nombre);
                     docente.setVisible(true);
                     docente.setLocationRelativeTo(null);
                     docente.setLocation(x, y);
                     break;
                 case "Adscripto":
                     Adscripto_ventana adscripto = new Adscripto_ventana();
-                    adscripto.bienvenidaUsuario(usuario);
+                    adscripto.bienvenidaUsuario(nombre);
                     adscripto.setVisible(true);
                     adscripto.setLocationRelativeTo(null);
                     adscripto.setLocation(x, y);
@@ -308,7 +305,6 @@ public class Login_ventana extends javax.swing.JFrame {
             }
         }
     }
-    */
     
     /**
      * @param args the command line arguments

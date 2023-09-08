@@ -13,7 +13,7 @@ import Logica.Controlador;
 public class Persistencia_SQL {
 
 //VALIDAR USUARIO Y CONTRASEÑA
-    public Usuario obtenerUsuarioYContrasenia(String usuario, String contrasenia) {
+    public Usuario obtenerUsuarioYContrasenia(String usuario, String contrasenia, String nombre, String apellido, String cargo) {
         
         Usuario usuarioTemp = null;
 
@@ -26,7 +26,9 @@ public class Persistencia_SQL {
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setString(1, usuario);
                 preparedStatement.setString(2, contrasenia);
-
+                preparedStatement.setString(3, contrasenia);
+                preparedStatement.setString(4, nombre);
+                preparedStatement.setString(5, apellido);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
