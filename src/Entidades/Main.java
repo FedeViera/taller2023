@@ -20,16 +20,7 @@ public class Main {
         login.setLocationRelativeTo(null);
         /// sdjaskfjks
         
-        Usuario usu = new Usuario();
-        usu.setApellido("pepe");
-        usu.setCedula(44444444);
-        usu.setCargo("Administrador");
-        usu.setContrasenia("sdassa");
-        usu.setNombre("juan");
-        usu.setUsuario("agustin");
-        
-        Controlador cont = new Controlador();
-        cont.validarUsuario(usu);
+  
        
        
         

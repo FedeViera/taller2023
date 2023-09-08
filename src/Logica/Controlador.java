@@ -9,22 +9,22 @@ import javax.swing.JTextField;
 public class Controlador {
     
     
-    public void validarUsuario(Usuario usuario) {
+    public boolean validarUsuario(Usuario usuario) {
         Login_ventana login = new Login_ventana();       
         String nombreUsuario = login.getNombreUsuario();
         String contraseniaUsuario = login.getContraseniaUsuario();
-        
-        System.out.println(nombreUsuario);
-        System.out.println(contraseniaUsuario);
-        
-        /*Usuario usuarioObtenido = obtenerUsuarioYContrasenia(nombreUsuario, contraseniaUsuario);
-       
+
+        // Crear una instancia de Persistencia_SQL
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+
+        Usuario usuarioObtenido = persistencia.obtenerUsuarioYContrasenia(nombreUsuario, contraseniaUsuario);
+
         if (usuarioObtenido != null && nombreUsuario.equals(usuarioObtenido.getUsuario()) && contraseniaUsuario.equals(usuarioObtenido.getContrasenia())) {
             return true;
         } else {
             return false;
-        }*/
     }
+}
     
     public void abrirVentana(Usuario usuario){
         
