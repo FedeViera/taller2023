@@ -1,6 +1,7 @@
 package Entidades;
 
 import Grafica.Login_ventana;
+import Logica.Controlador;
 
 public class Main {
 
@@ -18,6 +19,20 @@ public class Main {
         login.setVisible(true);
         login.setLocationRelativeTo(null);
         /// sdjaskfjks
+        
+        Usuario usu = new Usuario();
+        usu.setApellido("pepe");
+        usu.setCedula(44444444);
+        usu.setCargo("Administrador");
+        usu.setContrasenia("sdassa");
+        usu.setNombre("juan");
+        usu.setUsuario("agustin");
+        
+        Controlador cont = new Controlador();
+        cont.validarUsuario(usu);
+       
+       
+        
         
         //Mostrar Admin
         /*Administrador admin = new Administrador();

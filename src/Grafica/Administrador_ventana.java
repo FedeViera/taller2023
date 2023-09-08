@@ -4,7 +4,7 @@ package Grafica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
-import Persistencia.Usuario_SQL;
+import Persistencia.Persistencia_SQL;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -1030,7 +1030,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             String grado = agregar_opcionesGrado.getSelectedItem().toString();
             String asignatura = agregar_opcionesAsignatura.getSelectedItem().toString();
 
-            Usuario_SQL consultasSQL = new Usuario_SQL();
+            Persistencia_SQL consultasSQL = new Persistencia_SQL();
             consultasSQL.agregarDato(cedula, nombre, apellido, usuario, contrasenia, cargo, grado, asignatura);
 
             // Borra los campos de los JTextField
@@ -1046,7 +1046,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //MOVER USUARIO (Administrador, adscripto o docente)
     private void mostrarUsuariosEnTabla() {
-        Usuario_SQL consultasSQL = new Usuario_SQL();
+        Persistencia_SQL consultasSQL = new Persistencia_SQL();
         Object[][] datos = consultasSQL.obtenerUsuarios();
 
         // Llenar la tabla con los datos obtenidos
@@ -1115,7 +1115,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 JOptionPane.YES_NO_OPTION
             );
             if (respuesta == JOptionPane.YES_OPTION){
-                Usuario_SQL consultasSQL = new Usuario_SQL();
+                Persistencia_SQL consultasSQL = new Persistencia_SQL();
                 consultasSQL.eliminarDato(cedula, cargo); // Eliminar el usuario utilizando el ID
                 mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
             }else{
@@ -1154,7 +1154,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             );
             
             if (respuesta == JOptionPane.YES_OPTION) {
-                Usuario_SQL consultasSQL = new Usuario_SQL();
+                Persistencia_SQL consultasSQL = new Persistencia_SQL();
                 consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
                 mostrarUsuariosEnTabla();
                 

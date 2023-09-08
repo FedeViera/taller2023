@@ -1,6 +1,6 @@
 package Entidades;
 
-import Persistencia.Usuario_SQL;
+import Persistencia.Persistencia_SQL;
 
 public class Usuario
 {
@@ -68,5 +68,9 @@ public class Usuario
         this.cargo = cargo;
     }
 
+    public Usuario() {
+    }
+
+    
    
 }

@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import Persistencia.Usuario_SQL;
+import Persistencia.Persistencia_SQL;
 
 
 public class Login_ventana extends javax.swing.JFrame {
@@ -183,13 +183,25 @@ public class Login_ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoUsuarioActionPerformed
-        String nombreUsuario = textoUsuario.getText();
+        String nombreUsuario = textoUsuario.getText(); 
     }//GEN-LAST:event_textoUsuarioActionPerformed
 
+    String nombreUsuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+    
+    String contraseniaUsuario;
+    public String getContraseniaUsuario() {
+        return contraseniaUsuario;
+    }
+    
     // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
-        abrirVentanaCorrespondiente();
+        //abrirVentanaCorrespondiente();
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
@@ -220,13 +232,13 @@ public class Login_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEntrarMouseExited
 
     private void textoContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoContraseniaActionPerformed
-        // TODO add your handling code here:
+        String contrasenia = new String(textoContrasenia.getPassword());
     }//GEN-LAST:event_textoContraseniaActionPerformed
 
     //AL PRESIONAR ENTER EN EL CAMPO DE CONTRASEÑA LEVANTA METODO abrirVentanaCorrespondiente()
     private void textoContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseniaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        abrirVentanaCorrespondiente();
+        //abrirVentanaCorrespondiente();
         }
     }//GEN-LAST:event_textoContraseniaKeyPressed
  
@@ -253,13 +265,13 @@ public class Login_ventana extends javax.swing.JFrame {
 
 
     
-    
+    /*
     //Chequeo el usuario y Abre la ventana Correspondiente (FALTA VER EL CHEQUEO CON LA BASE DE DATOS)
     public void abrirVentanaCorrespondiente() {
         String usuario = textoUsuario.getText();
         String contrasenia = new String(textoContrasenia.getPassword());
 
-        Usuario_SQL consultasSQL = new Usuario_SQL();
+        Persistencia_SQL consultasSQL = new Persistencia_SQL();
         String cargo = consultasSQL.validarUsuarioYContraseña(usuario, contrasenia);
 
         if (cargo != null) {
@@ -296,7 +308,7 @@ public class Login_ventana extends javax.swing.JFrame {
             }
         }
     }
-    
+    */
     
     /**
      * @param args the command line arguments

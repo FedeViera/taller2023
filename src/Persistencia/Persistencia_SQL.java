@@ -8,19 +8,21 @@ import Entidades.Conexion;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import Entidades.Usuario;
+import Logica.Controlador;
 
-public class Usuario_SQL {
+public class Persistencia_SQL {
 
 //VALIDAR USUARIO Y CONTRASEÑA
-    public String validarUsuarioYContraseña(String usuario, String contrasenia) {
+    public Usuario obtenerUsuarioYContrasenia(String usuario, String contrasenia) {
+        
+        Usuario usuarioTemp = null;
 
-        String cargo = null;
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
         if (conn != null) {
             try {
-                String query = "SELECT cargo, nombre, apellido FROM usuario WHERE usuario=? AND contrasenia=?";
+                String query = "SELECT cedula, nombre, apellido, usuario, contrasenia, cargo FROM usuario WHERE usuario=? AND contrasenia=?";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setString(1, usuario);
                 preparedStatement.setString(2, contrasenia);
@@ -28,9 +30,13 @@ public class Usuario_SQL {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    cargo = resultSet.getString("cargo");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
+                    usuarioTemp = new Usuario();
+                    usuarioTemp.setCedula(Integer.parseInt(resultSet.getString("cedula")));
+                    usuarioTemp.setNombre(resultSet.getString("nombre"));
+                    usuarioTemp.setApellido(resultSet.getString("apellido"));
+                    usuarioTemp.setUsuario(resultSet.getString("usuario"));
+                    usuarioTemp.setContrasenia(resultSet.getString("contrasenia"));
+                    usuarioTemp.setCargo(resultSet.getString("cargo"));
                 }
 
                 resultSet.close();
@@ -38,9 +44,10 @@ public class Usuario_SQL {
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
+                // Aquí debes manejar la excepción apropiadamente (lanzar una excepción personalizada o retornar un valor de error).
             }
         }
-        return cargo;
+        return usuarioTemp;
     }
 
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD
