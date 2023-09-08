@@ -13,6 +13,38 @@ public class Estudiante
         this.apellido = apellido;
         this.edad = edad;
     }
+
+    public int getId_estudiante() {
+        return id_estudiante;
+    }
+
+    public void setId_estudiante(int id_estudiante) {
+        this.id_estudiante = id_estudiante;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
     
     
 }

@@ -10,6 +10,22 @@ public class Docente extends Usuario
         this.grado = grado;
         this.asignatura = asignatura;
     }
+
+    public int getGrado() {
+        return grado;
+    }
+
+    public void setGrado(int grado) {
+        this.grado = grado;
+    }
+
+    public void setAsignatura(String asignatura) {
+        this.asignatura = asignatura;
+    }
+
+    public String getAsignatura() {
+        return asignatura;
+    }
     
     
 }

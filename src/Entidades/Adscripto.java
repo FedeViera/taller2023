@@ -11,6 +11,22 @@ public class Adscripto extends Usuario
         this.turno = turno;
     }
 
+    public void setGrado(int grado) {
+        this.grado = grado;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+    public int getGrado() {
+        return grado;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
     
    
     
