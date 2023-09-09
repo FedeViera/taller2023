@@ -8,12 +8,17 @@ import Entidades.Conexion;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import Entidades.Usuario;
+import Entidades.Administrador;
+import Entidades.Adscripto;
+import Entidades.Docente;
 import Grafica.Login_ventana;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Persistencia_SQL {
 
-//VALIDAR USUARIO Y CONTRASEÑA
+//MAPEAR USUARIO - PARA LOGIN
     public Usuario mapearUsuario(String usuario, String contrasenia) {
         
         Usuario usuarioTemp = null;
@@ -43,12 +48,182 @@ public class Persistencia_SQL {
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                // Aquí debes manejar la excepción apropiadamente (lanzar una excepción personalizada o retornar un valor de error).
+                System.out.println("Ocurrió un error al mapear el usuario para el login.");
             }
         }
         return usuarioTemp;
     }
 
+//MAPEAR ADMINS
+public List<Administrador> mapearAdministradores() {
+    
+    List<Administrador> listaAdministradores = new ArrayList<>();
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+
+    if (conn != null) {
+        try {
+            // Consulta para traer todos los Administradores
+            String query = "SELECT\n" +
+                            "    u.cedula,\n" +
+                            "    u.nombre,\n" +
+                            "    u.apellido,\n" +
+                            "    u.usuario,\n" +
+                            "    u.contrasenia\n" +
+                            "FROM\n" +
+                            "    usuario u\n" +
+                            "INNER JOIN\n" +
+                            "    administrador a ON u.cedula = a.usuario_cedula;";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Administrador admin = new Administrador();
+
+                admin.setCedula(resultSet.getInt("cedula"));
+                admin.setNombre(resultSet.getString("nombre"));
+                admin.setApellido(resultSet.getString("apellido"));
+                admin.setUsuario(resultSet.getString("usuario"));
+                admin.setContrasenia(resultSet.getString("contrasenia"));
+
+                listaAdministradores.add(admin);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Ocurrió un error al mapear los administradores.");
+        }
+    }
+    return listaAdministradores;
+}
+
+//MAPEAR ADSCRIPTOS
+public List<Adscripto> mapearAdscriptos() {
+    
+    List<Adscripto> listaAdscriptos = new ArrayList<>();
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+
+    if (conn != null) {
+        try {
+            // Consulta para traer todos los Adscriptos
+            String query =  "SELECT\n" +
+                            "    u.cedula,\n" +
+                            "    u.nombre,\n" +
+                            "    u.apellido,\n" +
+                            "    u.usuario,\n" +
+                            "    u.contrasenia,\n" +
+                            "    u.cargo,\n" +
+                            "    ad.grado\n" +
+                            "FROM\n" +
+                            "    usuario u\n" +
+                            "INNER JOIN\n" +
+                            "    adscripto ad ON u.cedula = ad.usuario_cedula;";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Adscripto adscriptor = new Adscripto();
+
+                adscriptor.setCedula(resultSet.getInt("cedula"));
+                adscriptor.setNombre(resultSet.getString("nombre"));
+                adscriptor.setApellido(resultSet.getString("apellido"));
+                adscriptor.setUsuario(resultSet.getString("usuario"));
+                adscriptor.setContrasenia(resultSet.getString("contrasenia"));
+                adscriptor.setGrado(resultSet.getInt("grado"));
+
+                listaAdscriptos.add(adscriptor);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Ocurrió un error al mapear los adscriptos.");
+        }
+    }
+    return listaAdscriptos;
+}
+
+
+//MAPEAR DOCENTES
+public List<Docente> mapearDocentes() {
+    
+    List<Docente> listaDocentes = new ArrayList<>();
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+
+    if (conn != null) {
+        try {
+            // Consulta para traer todos los Docentes
+            String query =  "SELECT\n" +
+                            "    u.cedula,\n" +
+                            "    u.nombre,\n" +
+                            "    u.apellido,\n" +
+                            "    u.usuario,\n" +
+                            "    u.contrasenia,\n" +
+                            "    u.cargo,\n" +
+                            "    d.grado,\n" +
+                            "    d.asignatura\n" +
+                            "FROM\n" +
+                            "    usuario u\n" +
+                            "INNER JOIN\n" +
+                            "    docente d ON u.cedula = d.usuario_cedula;";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Docente docente = new Docente();
+
+                docente.setCedula(resultSet.getInt("cedula"));
+                docente.setNombre(resultSet.getString("nombre"));
+                docente.setApellido(resultSet.getString("apellido"));
+                docente.setUsuario(resultSet.getString("usuario"));
+                docente.setContrasenia(resultSet.getString("contrasenia"));
+                docente.setGrado(resultSet.getInt("grado"));
+                docente.setAsignatura(resultSet.getString("asignatura"));
+
+                listaDocentes.add(docente);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Ocurrió un error al mapear los docentes.");
+        }
+    }
+    return listaDocentes;
+}
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD
     private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
         String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";

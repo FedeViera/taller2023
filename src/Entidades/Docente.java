@@ -26,6 +26,9 @@ public class Docente extends Usuario
     public String getAsignatura() {
         return asignatura;
     }
+
+    public Docente() {
+    }
     
     
 }

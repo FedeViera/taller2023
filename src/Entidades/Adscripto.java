@@ -27,6 +27,10 @@ public class Adscripto extends Usuario
         return turno;
     }
 
+    public Adscripto() {
+    }
+
+    
     
    
     

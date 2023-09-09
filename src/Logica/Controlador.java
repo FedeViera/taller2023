@@ -2,10 +2,6 @@ package Logica;
 
 import Persistencia.Persistencia_SQL;
 import Entidades.Usuario;
-import Grafica.Login_ventana;
-import Grafica.Administrador_ventana;
-import Grafica.Adscripto_ventana;
-import Grafica.Docente_ventana;
 import javax.swing.JTextField;
 
 
