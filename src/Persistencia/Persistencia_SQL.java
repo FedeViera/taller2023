@@ -8,15 +8,15 @@ import Entidades.Conexion;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import Entidades.Usuario;
-import Logica.Controlador;
+import Grafica.Login_ventana;
+
 
 public class Persistencia_SQL {
 
 //VALIDAR USUARIO Y CONTRASEÑA
-    public Usuario obtenerUsuarioYContrasenia(String usuario, String contrasenia, String nombre, String apellido, String cargo) {
+    public Usuario mapearUsuario(String usuario, String contrasenia) {
         
         Usuario usuarioTemp = null;
-
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
@@ -26,9 +26,6 @@ public class Persistencia_SQL {
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setString(1, usuario);
                 preparedStatement.setString(2, contrasenia);
-                preparedStatement.setString(3, contrasenia);
-                preparedStatement.setString(4, nombre);
-                preparedStatement.setString(5, apellido);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {

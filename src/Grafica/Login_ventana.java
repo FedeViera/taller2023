@@ -188,12 +188,12 @@ public class Login_ventana extends javax.swing.JFrame {
     
     
     private void textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoUsuarioActionPerformed
-        String nombreUsuario = textoUsuario.getText(); 
+        String nickUsuario = textoUsuario.getText(); 
     }//GEN-LAST:event_textoUsuarioActionPerformed
 
-    String nombreUsuario;
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    String nickUsuario;
+    public String getnickUsuario() {
+        return nickUsuario;
     }
     
     String contraseniaUsuario;
@@ -201,9 +201,63 @@ public class Login_ventana extends javax.swing.JFrame {
         return contraseniaUsuario;
     }
     
-    // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
+// Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
+        // Obtener el nombre de usuario y contraseña ingresados por el usuario
+    String nickUsuario = textoUsuario.getText();
+    String contraseniaUsuario = textoContrasenia.getText(); 
+    // Instancia de la capa lógica
+    Controlador control = new Controlador(); 
+    
+    boolean usuarioValido = control.validarUsuario(nickUsuario, contraseniaUsuario);
 
+    if (usuarioValido) {
+        // Obtener el cargo del usuario
+        String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
+        String nombre = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+        
+        if (cargo != null) {
+            int x = getLocation().x;
+            int y = getLocation().y;
+            this.setVisible(false);
+            switch (cargo) {
+                case "Administrador":
+                    // Abre la ventana de Administrador
+                    Administrador_ventana admin = new Administrador_ventana();
+                    admin.bienvenidaUsuario(nombre);
+                    admin.setVisible(true);
+                    admin.setLocationRelativeTo(null);
+                    admin.setLocation(x, y);
+                    break;
+                case "Docente":
+                    // Abre la ventana de Adscripto
+                    Adscripto_ventana adscripto = new Adscripto_ventana();
+                    adscripto.bienvenidaUsuario(nombre);
+                    adscripto.setVisible(true);
+                    adscripto.setLocationRelativeTo(null);
+                    adscripto.setLocation(x, y);
+                    break;
+                case "Adscripto":
+                    // Abre la ventana de Docente
+                    Docente_ventana docente = new Docente_ventana();
+                    docente.bienvenidaUsuario(nombre);
+                    docente.setVisible(true);
+                    docente.setLocationRelativeTo(null);
+                    docente.setLocation(x, y);
+                    break;
+                default:
+                    // Cargo desconocido o inválido
+                    JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+        } else {
+            // Mostrar un mensaje de error en caso de que no se pueda obtener el cargo del usuario
+            JOptionPane.showMessageDialog(this, "No se pudo obtener el cargo del usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        // Mostrar un mensaje de error en caso de que el usuario no sea válido.
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+    }
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
