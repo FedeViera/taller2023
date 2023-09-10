@@ -38,8 +38,8 @@ public class GestorAdscriptos {
     
     public void cargarAdscriptosDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        List<Adscripto> adscriptosDesdeBD = persistencia.mapearAdscriptos();
-        listaAdscriptos.addAll(adscriptosDesdeBD);
+        listaAdscriptos = persistencia.mapearAdscriptos();
+  
     }
     
     /*//LLAMAR PARA CARGAR ADSCRIPTOS

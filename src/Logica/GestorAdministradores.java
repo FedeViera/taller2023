@@ -39,8 +39,7 @@ public class GestorAdministradores {
     
     public void cargarAdministradoresDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        List<Administrador> administradoresDesdeBD = persistencia.mapearAdministradores();
-        listaAdministradores.addAll(administradoresDesdeBD);
+        listaAdministradores = persistencia.mapearAdministradores();
     }
     
     /*//LLAMAR PARA CARGAR ADMINISTRADORES

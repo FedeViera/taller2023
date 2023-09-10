@@ -39,8 +39,8 @@ public class GestorDocentes {
     
     public void cargarDocentesDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        List<Docente> docentesDesdeBD = persistencia.mapearDocentes();
-        listaDocentes.addAll(docentesDesdeBD);
+        listaDocentes = persistencia.mapearDocentes();
+  
     }
     
     /*//LLAMAR PARA CARGAR DOCENTES
