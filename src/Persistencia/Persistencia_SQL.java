@@ -69,7 +69,8 @@ public List<Administrador> mapearAdministradores() {
                             "    u.nombre,\n" +
                             "    u.apellido,\n" +
                             "    u.usuario,\n" +
-                            "    u.contrasenia\n" +
+                            "    u.contrasenia,\n" +
+                            "    u.cargo\n" +
                             "FROM\n" +
                             "    usuario u\n" +
                             "INNER JOIN\n" +
@@ -86,6 +87,7 @@ public List<Administrador> mapearAdministradores() {
                 admin.setApellido(resultSet.getString("apellido"));
                 admin.setUsuario(resultSet.getString("usuario"));
                 admin.setContrasenia(resultSet.getString("contrasenia"));
+                admin.setCargo(resultSet.getString("cargo"));
 
                 listaAdministradores.add(admin);
             }
@@ -134,6 +136,7 @@ public List<Adscripto> mapearAdscriptos() {
                 adscriptor.setApellido(resultSet.getString("apellido"));
                 adscriptor.setUsuario(resultSet.getString("usuario"));
                 adscriptor.setContrasenia(resultSet.getString("contrasenia"));
+                adscriptor.setCargo(resultSet.getString("cargo"));
                 adscriptor.setGrado(resultSet.getInt("grado"));
 
                 listaAdscriptos.add(adscriptor);
@@ -185,6 +188,7 @@ public List<Docente> mapearDocentes() {
                 docente.setApellido(resultSet.getString("apellido"));
                 docente.setUsuario(resultSet.getString("usuario"));
                 docente.setContrasenia(resultSet.getString("contrasenia"));
+                docente.setCargo(resultSet.getString("cargo"));
                 docente.setGrado(resultSet.getInt("grado"));
                 docente.setAsignatura(resultSet.getString("asignatura"));
 

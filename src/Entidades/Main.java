@@ -1,9 +1,15 @@
 package Entidades;
 
+import Logica.GestorAdministradores;
+import Logica.GestorDocentes;
+import Logica.GestorAdscriptos;
 import Grafica.Login_ventana;
 import Logica.Controlador;
 import Grafica.Administrador_ventana;
-import Entidades.GestorUsuarios;
+import Logica.GestorUsuarios;
+
+import Persistencia.Persistencia_SQL;
+import Logica.GestorAdministradores;
 
 
 public class Main {
@@ -23,11 +29,11 @@ public class Main {
         
         GestorAdministradores gestionarAdministradores = new GestorAdministradores();
         gestionarAdministradores.cargarAdministradoresDesdeBD();
-        //gestionarAdministradores.mostrarAdministradores();
+        gestionarAdministradores.mostrarAdministradores();
         
         GestorDocentes gestionarDocentes = new GestorDocentes();
         gestionarDocentes.cargarDocentesDesdeBD();
-        //gestionarDocentes.mostrarDocentes();
+        gestionarDocentes.mostrarDocentes();
        
         GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
         gestionarAdscriptos.cargarAdscriptosDesdeBD();

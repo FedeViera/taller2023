@@ -1,8 +1,9 @@
-package Entidades;
+package Logica;
 
 import java.util.ArrayList;
 import java.util.List;
 import Persistencia.Persistencia_SQL;
+import Entidades.Docente;
 import Entidades.Docente;
 
 public class GestorDocentes {
@@ -54,6 +55,7 @@ public class GestorDocentes {
             System.out.println("Apellido: " + docente.getApellido());
             System.out.println("Usuario: " + docente.getUsuario());
             System.out.println("Contraseña: " + docente.getContrasenia());
+            System.out.println("Cargo: " + docente.getCargo());
             System.out.println("Grado: " + docente.getGrado());
             System.out.println("Asignatura: " + docente.getAsignatura());
         }

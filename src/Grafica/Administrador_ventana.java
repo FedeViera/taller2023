@@ -10,10 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import Entidades.Docente;
-import Entidades.GestorAdministradores;
-import Entidades.GestorAdscriptos;
-import Entidades.GestorDocentes;
-import Entidades.GestorUsuarios;
+import Logica.GestorAdministradores;
+import Logica.GestorAdscriptos;
+import Logica.GestorDocentes;
+import Logica.GestorUsuarios;
 
 import java.lang.System.Logger;
 import java.util.logging.Level;
@@ -33,8 +33,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 {
    
     private DefaultTableModel model;
-
-    
+       
     
     public Administrador_ventana() {
         initComponents();
@@ -1200,7 +1199,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     
 //BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        JOptionPane.showMessageDialog(this, "HIJO DE REMIL PUTAS");
+        GestorUsuarios gestor = new GestorUsuarios(tablaUsuario);
+        gestor.cargarUsuariosEnTabla();
     }//GEN-LAST:event_botonBuscarActionPerformed
          
 //HACER VISIBLE FILA USUARIO ENCONTRADO

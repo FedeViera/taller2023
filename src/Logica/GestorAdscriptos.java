@@ -1,5 +1,6 @@
-package Entidades;
+package Logica;
 
+import Entidades.Adscripto;
 import java.util.ArrayList;
 import java.util.List;
 import Persistencia.Persistencia_SQL;
@@ -53,6 +54,7 @@ public class GestorAdscriptos {
             System.out.println("Apellido: " + adscripto.getApellido());
             System.out.println("Usuario: " + adscripto.getUsuario());
             System.out.println("Contraseña: " + adscripto.getContrasenia());
+            System.out.println("Cargo: " + adscripto.getCargo());
             System.out.println("Grado: " + adscripto.getGrado());
         }
     }

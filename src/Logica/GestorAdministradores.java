@@ -1,5 +1,6 @@
-package Entidades;
+package Logica;
 
+import Entidades.Administrador;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class GestorAdministradores {
             System.out.println("Apellido: " + administrador.getApellido());
             System.out.println("Usuario: " + administrador.getUsuario());
             System.out.println("Contrasenia: " + administrador.getContrasenia());
+            System.out.println("Cargo: " + administrador.getCargo());
         }
     }
 

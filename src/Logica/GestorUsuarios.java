@@ -1,8 +1,11 @@
-package Entidades;
+package Logica;
 
+import Entidades.Administrador;
+import Entidades.Adscripto;
+import Entidades.Docente;
 import javax.swing.table.DefaultTableModel;
 import Grafica.Administrador_ventana;
-import Entidades.GestorAdministradores;
+import Logica.GestorAdministradores;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class GestorUsuarios {
     }   
     
     public void cargarUsuariosEnTabla() {
+        
         DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
         model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
         
@@ -86,6 +90,9 @@ public class GestorUsuarios {
             model.addRow(fila);
         }
         tablaUsuario.repaint();
+    }
+
+    public GestorUsuarios() {
     }
 
     
