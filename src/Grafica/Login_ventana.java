@@ -8,13 +8,13 @@ import javax.swing.JOptionPane;
 import Persistencia.Persistencia_SQL;
 import Entidades.Usuario;
 import Logica.Controlador;
+import javax.swing.JTable;
 
 
 public class Login_ventana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    private JTable tablaCuentas;
+    
     public Login_ventana() {
         initComponents();
         this.setTitle("SDFA - Portafolio Docente");

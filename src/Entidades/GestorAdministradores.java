@@ -36,15 +36,27 @@ public class GestorAdministradores {
         return null; // Administrador no encontrado
     }
     
-    public void cargarAdscriptosDesdeBD() {
+    public void cargarAdministradoresDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         List<Administrador> administradoresDesdeBD = persistencia.mapearAdministradores();
         listaAdministradores.addAll(administradoresDesdeBD);
     }
     
-    /*
-    GestorAdscriptos gestionarAdscriptos = new GestorAdscripto();
-    gestionarAdscriptos.cargarAdscriptosDesdeBD();*/
+    /*//LLAMAR PARA CARGAR ADMINISTRADORES
+    GestorAdministradores gestionarAdministradores = new GestorAdministradores();
+    gestionarAdministradores.cargarAdministradoresDesdeBD();*/
+    
+    //MOSTRAR ADMINISTRADORES
+    public void mostrarAdministradores() {
+        for (Administrador administrador : listaAdministradores) {
+            System.out.println("Cédula: " + administrador.getCedula());
+            System.out.println("Nombre: " + administrador.getNombre());
+            System.out.println("Apellido: " + administrador.getApellido());
+            System.out.println("Usuario: " + administrador.getUsuario());
+            System.out.println("Contrasenia: " + administrador.getContrasenia());
+        }
+    }
+
 }
 
 

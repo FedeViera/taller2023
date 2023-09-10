@@ -41,9 +41,22 @@ public class GestorAdscriptos {
         listaAdscriptos.addAll(adscriptosDesdeBD);
     }
     
-    /*
-    GestorAdscriptos gestionarAdscriptos = new GestorAdscripto();
+    /*//LLAMAR PARA CARGAR ADSCRIPTOS
+    GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
     gestionarAdscriptos.cargarAdscriptosDesdeBD();*/
+    
+    //MOSTRAR ADSCRIPTOS
+    public void mostrarAdscriptos() {
+        for (Adscripto adscripto : listaAdscriptos) {
+            System.out.println("Cédula: " + adscripto.getCedula());
+            System.out.println("Nombre: " + adscripto.getNombre());
+            System.out.println("Apellido: " + adscripto.getApellido());
+            System.out.println("Usuario: " + adscripto.getUsuario());
+            System.out.println("Contraseña: " + adscripto.getContrasenia());
+            System.out.println("Grado: " + adscripto.getGrado());
+        }
+    }
+
 
     
 }

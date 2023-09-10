@@ -1,9 +1,7 @@
 package Grafica;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.DriverManager;
+import Entidades.Administrador;
+import Entidades.Adscripto;
 import Persistencia.Persistencia_SQL;
 
 import java.awt.Color;
@@ -12,22 +10,25 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import Entidades.Docente;
-import Entidades.Conexion;
+import Entidades.GestorUsuarios;
+
 import java.lang.System.Logger;
-import java.sql.SQLException;
 import java.util.logging.Level;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Administrador_ventana extends javax.swing.JFrame 
 {
-       
-    Conexion con=new Conexion();
-    Connection cn = con.conectarMySQL();
+   
+    private List<Administrador> listaAdministradores;
+    private List<Adscripto> listaAdscriptos;
+    private List<Docente> listaDocentes;
            
     public Administrador_ventana() {
         initComponents();
@@ -76,7 +77,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar_opcionesAsignatura = new javax.swing.JComboBox<>();
         ver_modificar = new javax.swing.JPanel();
         cuentasRegistradas = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JScrollPane();
         tablaCuentas = new javax.swing.JTable();
         modificar_cedula = new javax.swing.JLabel();
         modificar_textoCedula = new javax.swing.JTextField();
@@ -548,17 +549,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -566,34 +556,23 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tablaCuentas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tablaCuentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaCuentas.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tablaCuentas);
+        tabla.setViewportView(tablaCuentas);
         if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
             tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(0).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(1).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(2).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(3).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(4).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(4).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(5).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(5).setPreferredWidth(120);
             tablaCuentas.getColumnModel().getColumn(6).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(6).setPreferredWidth(50);
             tablaCuentas.getColumnModel().getColumn(7).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(7).setPreferredWidth(120);
         }
 
         modificar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -705,14 +684,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         ver_modificarLayout.setHorizontalGroup(
             ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ver_modificarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(ver_modificarLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(ver_modificarLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ver_modificarLayout.createSequentialGroup()
@@ -752,16 +723,22 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(ver_modificarLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         ver_modificarLayout.setVerticalGroup(
             ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ver_modificarLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(ver_modificarLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -1044,57 +1021,48 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
-//MOVER USUARIO (Administrador, adscripto o docente)
-    private void mostrarUsuariosEnTabla() {
-        Persistencia_SQL consultasSQL = new Persistencia_SQL();
-        Object[][] datos = consultasSQL.obtenerUsuarios();
+    
+    
+    
+//MOUSE LISTENER PARA LLENAR DATOS DE TEXTFIELD Y SELECTORES CON DATOS DE LA TABLA
+    private void configurarMouseListener() {
+        tablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = tablaCuentas.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    Integer cedula = (Integer) tablaCuentas.getValueAt(filaSeleccionada, 0);
+                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 3).toString(); 
+                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 4).toString();
+                    String cargo = tablaCuentas.getValueAt(filaSeleccionada, 5).toString();
 
-        // Llenar la tabla con los datos obtenidos
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tablaCuentas.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
-        for (Object[] fila : datos) {
-            model.addRow(fila);
-        }
-            // Agregar el MouseListener a la tabla
-            tablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    int filaSeleccionada = tablaCuentas.getSelectedRow();
-                    if (filaSeleccionada >= 0) {
-                        Integer cedula = (Integer) tablaCuentas.getValueAt(filaSeleccionada, 0);
-                        String usuario = tablaCuentas.getValueAt(filaSeleccionada, 3).toString(); 
-                        String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 4).toString();
-                        String cargo = tablaCuentas.getValueAt(filaSeleccionada, 5).toString();
+                    modificar_textoUsuario.setText(usuario);
+                    modificar_textoContrasenia.setText(contrasenia);
+                    modificar_textoCedula.setText(cedula.toString());
+                    modificar_opcionesCargo.setSelectedItem(cargo); 
 
-                        modificar_textoUsuario.setText(usuario);
-                        modificar_textoContrasenia.setText(contrasenia);
-                        modificar_textoCedula.setText(cedula.toString());
-                        modificar_opcionesCargo.setSelectedItem(cargo); 
-                        
-                        if (cargo.equals("Docente")) {
-                            String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
-                            modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-                            String asignatura = tablaCuentas.getValueAt(filaSeleccionada, 7).toString();
-                            modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
-                            /*modificar_opcionesAsignatura.setEnabled(true);
-                            modificar_opcionesGrado.setEnabled(true);*/
-                        } else if (cargo.equals("Adscripto")) {
-                            String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
-                            modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-                            modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
-                            /*modificar_opcionesGrado.setEnabled(true);
-                            modificar_opcionesAsignatura.setEnabled(false);*/
-                        } else {
-                            // Otro cargo (como Administrador)
-                            modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
-                            modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
-                            /*modificar_opcionesAsignatura.setEnabled(false);
-                            modificar_opcionesGrado.setEnabled(false);*/
-                        }
+                    if (cargo.equals("Docente")) {
+                        String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
+                        modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+                        String asignatura = tablaCuentas.getValueAt(filaSeleccionada, 7).toString();
+                        modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
+                    } else if (cargo.equals("Adscripto")) {
+                        String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
+                        modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+                        modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
+                    } else {
+                        // Otro cargo (como Administrador)
+                        modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
+                        modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
                     }
                 }
-            });  
-        }
+            }
+        });
+    }
+
+
+
+
 
     private void agregar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoUsuarioActionPerformed
         
@@ -1117,7 +1085,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             if (respuesta == JOptionPane.YES_OPTION){
                 Persistencia_SQL consultasSQL = new Persistencia_SQL();
                 consultasSQL.eliminarDato(cedula, cargo); // Eliminar el usuario utilizando el ID
-                mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
+                //mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
             }else{
                 System.out.println("Eliminación cancelada.");
             }   
@@ -1128,7 +1096,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //ACTUALIZAR TABLA AL CAMBIAR PESATAÑA
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
-        mostrarUsuariosEnTabla();
+        //cargarUsuariosEnTabla();
         modificar_textoContrasenia.setEchoChar((char) 0);
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
@@ -1156,7 +1124,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             if (respuesta == JOptionPane.YES_OPTION) {
                 Persistencia_SQL consultasSQL = new Persistencia_SQL();
                 consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
-                mostrarUsuariosEnTabla();
+                //mostrarUsuariosEnTabla();
                 
                 // Borra los campos de los JTextField
                 modificar_textoCedula.setText("");
@@ -1178,7 +1146,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     }//GEN-LAST:event_modificar_textoUsuarioActionPerformed
 
-//VER/OCULTAR CONTRASEÑA
+//VER CONTRASEÑA
     private char echoCharOriginal = '\u2022';
     private boolean contraseniaVisible = false;
     
@@ -1191,6 +1159,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
     }//GEN-LAST:event_verPswdMouseClicked
 
+//OCULTAR CONTRASEÑA
     private void ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ocultarPswdMouseClicked
         ocultarPswd.setVisible(false);
         verPswd.setVisible(true);
@@ -1234,7 +1203,9 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        String busquedaCedula = modificar_textoBuscar.getText().trim();
+        cargarUsuariosEnTabla();
+        
+        /*String busquedaCedula = modificar_textoBuscar.getText().trim();
         DefaultTableModel model = (DefaultTableModel) tablaCuentas.getModel();
         boolean encontrado = false;
 
@@ -1250,9 +1221,63 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
         if (!encontrado) {
             JOptionPane.showMessageDialog(null, "No se encontró ninguna cédula coincidente.", "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_botonBuscarActionPerformed
      
+    public void cargarUsuariosEnTabla() {
+        DefaultTableModel model = (DefaultTableModel) tablaCuentas.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+
+        if (listaAdministradores != null) {
+            for (Administrador admin : listaAdministradores) {
+                Object[] fila = {
+                    admin.getCedula(),
+                    admin.getNombre(),
+                    admin.getApellido(),
+                    admin.getUsuario(),
+                    admin.getContrasenia(),
+                    admin.getCargo(),
+                    "", // Grado (vacío para no docentes)
+                    ""  // Asignatura (vacío para no docentes)
+                };
+                model.addRow(fila);
+            }
+        }
+
+        if (listaAdscriptos != null) {
+            for (Adscripto adscripto : listaAdscriptos) {
+                Object[] fila = {
+                    adscripto.getCedula(),
+                    adscripto.getNombre(),
+                    adscripto.getApellido(),
+                    adscripto.getUsuario(),
+                    adscripto.getContrasenia(),
+                    adscripto.getCargo(),
+                    adscripto.getGrado(),
+                    ""  // Asignatura (vacío para adscriptos)
+                };
+                model.addRow(fila);
+            }
+        }
+
+        if (listaDocentes != null) {
+            for (Docente docente : listaDocentes) {
+                Object[] fila = {
+                    docente.getCedula(),
+                    docente.getNombre(),
+                    docente.getApellido(),
+                    docente.getUsuario(),
+                    docente.getContrasenia(),
+                    docente.getCargo(),
+                    docente.getGrado(),
+                    docente.getAsignatura()
+                };
+                model.addRow(fila);
+            }
+        }
+        tablaCuentas.repaint(); 
+    }
+    
 //HACER VISIBLE FILA USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
         if (!(table.getParent() instanceof javax.swing.JViewport)) {
@@ -1364,7 +1389,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JLabel cuentasRegistradas;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JLabel modificar_asignatura;
     private javax.swing.JButton modificar_botonModificar;
@@ -1392,6 +1416,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
+    private javax.swing.JScrollPane tabla;
     private javax.swing.JTable tablaCuentas;
     private javax.swing.JLabel verPswd;
     private javax.swing.JPanel ver_modificar;

@@ -45,5 +45,19 @@ public class GestorDocentes {
     /*//LLAMAR PARA CARGAR DOCENTES
     GestorDocentes gestionarDocentes = new GestorDocentes();
     gestionarDocentes.cargarDocentesDesdeBD();*/
+    
+    //MOSTRAR DOCENTES
+    public void mostrarDocentes() {
+        for (Docente docente : listaDocentes) {
+            System.out.println("Cédula: " + docente.getCedula());
+            System.out.println("Nombre: " + docente.getNombre());
+            System.out.println("Apellido: " + docente.getApellido());
+            System.out.println("Usuario: " + docente.getUsuario());
+            System.out.println("Contraseña: " + docente.getContrasenia());
+            System.out.println("Grado: " + docente.getGrado());
+            System.out.println("Asignatura: " + docente.getAsignatura());
+        }
+    }
+
 
 }
