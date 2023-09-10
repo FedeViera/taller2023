@@ -1297,10 +1297,10 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //LLENAR CAMPOS CON DATOS DE USUARIO ENCONTRADO
     private void llenarCamposDesdeTabla(int fila) {
-        /*Integer cedula = (Integer) tablaCuentas.getValueAt(fila, 0);
-        String usuario = tablaCuentas.getValueAt(fila, 3).toString(); 
-        String contrasenia = tablaCuentas.getValueAt(fila, 4).toString();
-        String cargo = tablaCuentas.getValueAt(fila, 5).toString();
+        Integer cedula = (Integer) tablaUsuario.getValueAt(fila, 0);
+        String usuario = tablaUsuario.getValueAt(fila, 3).toString(); 
+        String contrasenia = tablaUsuario.getValueAt(fila, 4).toString();
+        String cargo = tablaUsuario.getValueAt(fila, 5).toString();
 
         modificar_textoUsuario.setText(usuario);
         modificar_textoContrasenia.setText(contrasenia);
@@ -1308,18 +1308,18 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificar_opcionesCargo.setSelectedItem(cargo); 
 
         if (cargo.equals("Docente")) {
-            String grado = tablaCuentas.getValueAt(fila, 6).toString();
+            String grado = tablaUsuario.getValueAt(fila, 6).toString();
             modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-            String asignatura = tablaCuentas.getValueAt(fila, 7).toString();
+            String asignatura = tablaUsuario.getValueAt(fila, 7).toString();
             modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
         } else if (cargo.equals("Adscripto")) {
-            String grado = tablaCuentas.getValueAt(fila, 6).toString();
+            String grado = tablaUsuario.getValueAt(fila, 6).toString();
             modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
             modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
         } else {
             modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
             modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
-        }*/
+        }
     }
 
 

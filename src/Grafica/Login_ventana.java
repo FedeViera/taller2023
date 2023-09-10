@@ -204,60 +204,60 @@ public class Login_ventana extends javax.swing.JFrame {
 // Boton ENTRAR del panel Login (ahora inicia el Panel Administrador, luego dependiendo de quien logee ira a distintos paneles)
     private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
         // Obtener el nombre de usuario y contraseña ingresados por el usuario
-    String nickUsuario = textoUsuario.getText();
-    String contraseniaUsuario = textoContrasenia.getText(); 
-    // Instancia de la capa lógica
-    Controlador control = new Controlador(); 
-    
-    boolean usuarioValido = control.validarUsuario(nickUsuario, contraseniaUsuario);
+        String nickUsuario = textoUsuario.getText();
+        String contraseniaUsuario = textoContrasenia.getText(); 
+        // Instancia de la capa lógica
+        Controlador control = new Controlador(); 
 
-    if (usuarioValido) {
-        // Obtener el cargo del usuario
-        String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
-        String nombre = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
-        
-        if (cargo != null) {
-            int x = getLocation().x;
-            int y = getLocation().y;
-            this.setVisible(false);
-            switch (cargo) {
-                case "Administrador":
-                    // Abre la ventana de Administrador
-                    Administrador_ventana admin = new Administrador_ventana();
-                    admin.bienvenidaUsuario(nombre);
-                    admin.setVisible(true);
-                    admin.setLocationRelativeTo(null);
-                    admin.setLocation(x, y);
-                    break;
-                case "Docente":
-                    // Abre la ventana de Adscripto
-                    Adscripto_ventana adscripto = new Adscripto_ventana();
-                    adscripto.bienvenidaUsuario(nombre);
-                    adscripto.setVisible(true);
-                    adscripto.setLocationRelativeTo(null);
-                    adscripto.setLocation(x, y);
-                    break;
-                case "Adscripto":
-                    // Abre la ventana de Docente
-                    Docente_ventana docente = new Docente_ventana();
-                    docente.bienvenidaUsuario(nombre);
-                    docente.setVisible(true);
-                    docente.setLocationRelativeTo(null);
-                    docente.setLocation(x, y);
-                    break;
-                default:
-                    // Cargo desconocido o inválido
-                    JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
-                    break;
+        boolean usuarioValido = control.validarUsuario(nickUsuario, contraseniaUsuario);
+
+        if (usuarioValido) {
+            // Obtener el cargo del usuario
+            String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
+            String nombre = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+
+            if (cargo != null) {
+                int x = getLocation().x;
+                int y = getLocation().y;
+                this.setVisible(false);
+                switch (cargo) {
+                    case "Administrador":
+                        // Abre la ventana de Administrador
+                        Administrador_ventana admin = new Administrador_ventana();
+                        admin.bienvenidaUsuario(nombre);
+                        admin.setVisible(true);
+                        admin.setLocationRelativeTo(null);
+                        admin.setLocation(x, y);
+                        break;
+                    case "Docente":
+                        // Abre la ventana de Adscripto
+                        Adscripto_ventana adscripto = new Adscripto_ventana();
+                        adscripto.bienvenidaUsuario(nombre);
+                        adscripto.setVisible(true);
+                        adscripto.setLocationRelativeTo(null);
+                        adscripto.setLocation(x, y);
+                        break;
+                    case "Adscripto":
+                        // Abre la ventana de Docente
+                        Docente_ventana docente = new Docente_ventana();
+                        docente.bienvenidaUsuario(nombre);
+                        docente.setVisible(true);
+                        docente.setLocationRelativeTo(null);
+                        docente.setLocation(x, y);
+                        break;
+                    default:
+                        // Cargo desconocido o inválido
+                        JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                        break;
+                }
+            } else {
+                // Mostrar un mensaje de error en caso de que no se pueda obtener el cargo del usuario
+                JOptionPane.showMessageDialog(this, "No se pudo obtener el cargo del usuario", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            // Mostrar un mensaje de error en caso de que no se pueda obtener el cargo del usuario
-            JOptionPane.showMessageDialog(this, "No se pudo obtener el cargo del usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            // Mostrar un mensaje de error en caso de que el usuario no sea válido.
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }
-    } else {
-        // Mostrar un mensaje de error en caso de que el usuario no sea válido.
-        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
-    }
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     
@@ -266,7 +266,7 @@ public class Login_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_textoUsuarioMousePressed
 
     private void textoContraseniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoContraseniaMousePressed
-      
+
     }//GEN-LAST:event_textoContraseniaMousePressed
 
     private void botonEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEntrarMouseClicked
@@ -274,7 +274,7 @@ public class Login_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEntrarMouseClicked
 
     private void botonEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonEntrarKeyPressed
-
+        
     }//GEN-LAST:event_botonEntrarKeyPressed
 
     //Al pasar el mouse por encima del boton ENTRAR cambia el color
@@ -294,7 +294,61 @@ public class Login_ventana extends javax.swing.JFrame {
     //AL PRESIONAR ENTER EN EL CAMPO DE CONTRASEÑA LEVANTA METODO abrirVentanaCorrespondiente()
     private void textoContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseniaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        //abrirVentanaCorrespondiente();
+            // Obtener el nombre de usuario y contraseña ingresados por el usuario
+            String nickUsuario = textoUsuario.getText();
+            String contraseniaUsuario = textoContrasenia.getText(); 
+            // Instancia de la capa lógica
+            Controlador control = new Controlador(); 
+
+            boolean usuarioValido = control.validarUsuario(nickUsuario, contraseniaUsuario);
+
+            if (usuarioValido) {
+                // Obtener el cargo del usuario
+                String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
+                String nombre = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+
+                if (cargo != null) {
+                    int x = getLocation().x;
+                    int y = getLocation().y;
+                    this.setVisible(false);
+                    switch (cargo) {
+                        case "Administrador":
+                            // Abre la ventana de Administrador
+                            Administrador_ventana admin = new Administrador_ventana();
+                            admin.bienvenidaUsuario(nombre);
+                            admin.setVisible(true);
+                            admin.setLocationRelativeTo(null);
+                            admin.setLocation(x, y);
+                            break;
+                        case "Docente":
+                            // Abre la ventana de Adscripto
+                            Adscripto_ventana adscripto = new Adscripto_ventana();
+                            adscripto.bienvenidaUsuario(nombre);
+                            adscripto.setVisible(true);
+                            adscripto.setLocationRelativeTo(null);
+                            adscripto.setLocation(x, y);
+                            break;
+                        case "Adscripto":
+                            // Abre la ventana de Docente
+                            Docente_ventana docente = new Docente_ventana();
+                            docente.bienvenidaUsuario(nombre);
+                            docente.setVisible(true);
+                            docente.setLocationRelativeTo(null);
+                            docente.setLocation(x, y);
+                            break;
+                        default:
+                            // Cargo desconocido o inválido
+                            JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+                            break;
+                    }
+                } else {
+                    // Mostrar un mensaje de error en caso de que no se pueda obtener el cargo del usuario
+                    JOptionPane.showMessageDialog(this, "No se pudo obtener el cargo del usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                // Mostrar un mensaje de error en caso de que el usuario no sea válido.
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+            }
         }
     }//GEN-LAST:event_textoContraseniaKeyPressed
  
