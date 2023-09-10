@@ -1028,41 +1028,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     
     
     
-//MOUSE LISTENER PARA LLENAR DATOS DE TEXTFIELD Y SELECTORES CON DATOS DE LA TABLA
- /*   private void configurarMouseListener() {
-        tablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int filaSeleccionada = tablaCuentas.getSelectedRow();
-                if (filaSeleccionada >= 0) {
-                    Integer cedula = (Integer) tablaCuentas.getValueAt(filaSeleccionada, 0);
-                    String usuario = tablaCuentas.getValueAt(filaSeleccionada, 3).toString(); 
-                    String contrasenia = tablaCuentas.getValueAt(filaSeleccionada, 4).toString();
-                    String cargo = tablaCuentas.getValueAt(filaSeleccionada, 5).toString();
 
-                    modificar_textoUsuario.setText(usuario);
-                    modificar_textoContrasenia.setText(contrasenia);
-                    modificar_textoCedula.setText(cedula.toString());
-                    modificar_opcionesCargo.setSelectedItem(cargo); 
-
-                    if (cargo.equals("Docente")) {
-                        String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
-                        modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-                        String asignatura = tablaCuentas.getValueAt(filaSeleccionada, 7).toString();
-                        modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
-                    } else if (cargo.equals("Adscripto")) {
-                        String grado = tablaCuentas.getValueAt(filaSeleccionada, 6).toString();
-                        modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-                        modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
-                    } else {
-                        // Otro cargo (como Administrador)
-                        modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
-                        modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
-                    }
-                }
-            }
-        });
-    }*/
 
 
 
@@ -1098,65 +1064,14 @@ public class Administrador_ventana extends javax.swing.JFrame
         }*/
     }//GEN-LAST:event_botonEliminarActionPerformed
 
-//ACTUALIZAR TABLA AL CAMBIAR PESATAÑA
+//ACTUALIZAR JTable AL CAMBIAR PESATAÑA
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
-        GestorUsuarios gestor = new GestorUsuarios();
-        List<Object> listaGeneral = gestor.cargarUsuariosEnTabla();
-        
-        DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
-        
-        // Eliminar todas las filas vacías del modelo
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
-        }
-        
-        // Agregar datos de la lista general al modelo de la tabla
-        for (Object usuario : listaGeneral) {
-            if (usuario instanceof Administrador) {
-                Administrador admin = (Administrador) usuario;
-                model.addRow(new Object[]{
-                    admin.getCedula(),
-                    admin.getNombre(),
-                    admin.getApellido(),
-                    admin.getUsuario(),
-                    admin.getContrasenia(),
-                    admin.getCargo(),
-                    "", // Grado (vacío para no docentes)
-                    ""  // Asignatura (vacío para no docentes)
-                });
-            } else if (usuario instanceof Adscripto) {
-                Adscripto adscripto = (Adscripto) usuario;
-                model.addRow(new Object[]{
-                    adscripto.getCedula(),
-                    adscripto.getNombre(),
-                    adscripto.getApellido(),
-                    adscripto.getUsuario(),
-                    adscripto.getContrasenia(),
-                    adscripto.getCargo(),
-                    adscripto.getGrado(),
-                    ""  // Asignatura (vacío para adscriptos)
-                });
-            } else if (usuario instanceof Docente) {
-                Docente docente = (Docente) usuario;
-                model.addRow(new Object[]{
-                    docente.getCedula(),
-                    docente.getNombre(),
-                    docente.getApellido(),
-                    docente.getUsuario(),
-                    docente.getContrasenia(),
-                    docente.getCargo(),
-                    docente.getGrado(),
-                    docente.getAsignatura()
-                });
-            }
-            tablaUsuario.repaint();
-        }
+        cargarDatosJTable();
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
 //BOTON MODIFICAR USUARIOo
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
-    /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
+        /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
         
         if (filaSeleccionada >= 0){
             String cedulaStr = modificar_textoCedula.getText();
@@ -1254,12 +1169,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void modificar_textoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoBuscarActionPerformed
         
     }//GEN-LAST:event_modificar_textoBuscarActionPerformed
-
-    // Declara las listas en la clase
-    private List<Administrador> listaAdministradores = new ArrayList<>();
-    private List<Adscripto> listaAdscriptos = new ArrayList<>();
-    private List<Docente> listaDocentes = new ArrayList<>();
-
     
 //BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
@@ -1282,6 +1191,93 @@ public class Administrador_ventana extends javax.swing.JFrame
         table.scrollRectToVisible(rect);*/
     }
 
+    private void cargarDatosJTable(){
+        GestorUsuarios gestor = new GestorUsuarios();
+        List<Object> listaGeneral = gestor.cargarUsuariosEnTabla();
+        
+        DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+        
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        
+        // Agregar datos de la lista general al modelo de la tabla
+        for (Object usuario : listaGeneral) {
+            if (usuario instanceof Administrador) {
+                Administrador admin = (Administrador) usuario;
+                model.addRow(new Object[]{
+                    admin.getCedula(),
+                    admin.getNombre(),
+                    admin.getApellido(),
+                    admin.getUsuario(),
+                    admin.getContrasenia(),
+                    admin.getCargo(),
+                    "", // Grado (vacío para no docentes)
+                    ""  // Asignatura (vacío para no docentes)
+                });
+            } else if (usuario instanceof Adscripto) {
+                Adscripto adscripto = (Adscripto) usuario;
+                model.addRow(new Object[]{
+                    adscripto.getCedula(),
+                    adscripto.getNombre(),
+                    adscripto.getApellido(),
+                    adscripto.getUsuario(),
+                    adscripto.getContrasenia(),
+                    adscripto.getCargo(),
+                    adscripto.getGrado(),
+                    ""  // Asignatura (vacío para adscriptos)
+                });
+            } else if (usuario instanceof Docente) {
+                Docente docente = (Docente) usuario;
+                model.addRow(new Object[]{
+                    docente.getCedula(),
+                    docente.getNombre(),
+                    docente.getApellido(),
+                    docente.getUsuario(),
+                    docente.getContrasenia(),
+                    docente.getCargo(),
+                    docente.getGrado(),
+                    docente.getAsignatura()
+                });
+            }
+            tablaUsuario.repaint();
+        }
+        
+        tablaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = tablaUsuario.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    Integer cedula = (Integer) tablaUsuario.getValueAt(filaSeleccionada, 0);
+                    String usuario = tablaUsuario.getValueAt(filaSeleccionada, 3).toString(); 
+                    String contrasenia = tablaUsuario.getValueAt(filaSeleccionada, 4).toString();
+                    String cargo = tablaUsuario.getValueAt(filaSeleccionada, 5).toString();
+
+                    modificar_textoUsuario.setText(usuario);
+                    modificar_textoContrasenia.setText(contrasenia);
+                    modificar_textoCedula.setText(cedula.toString());
+                    modificar_opcionesCargo.setSelectedItem(cargo); 
+
+                    if (cargo.equals("Docente")) {
+                        String grado = tablaUsuario.getValueAt(filaSeleccionada, 6).toString();
+                        modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+                        String asignatura = tablaUsuario.getValueAt(filaSeleccionada, 7).toString();
+                        modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
+                    } else if (cargo.equals("Adscripto")) {
+                        String grado = tablaUsuario.getValueAt(filaSeleccionada, 6).toString();
+                        modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+                        modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
+                    } else {
+                        // Otro cargo (como Administrador)
+                        modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
+                        modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
+                    }
+                }
+            }
+        });
+    }
 
 //LLENAR CAMPOS CON DATOS DE USUARIO ENCONTRADO
     private void llenarCamposDesdeTabla(int fila) {
