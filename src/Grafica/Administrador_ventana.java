@@ -1172,7 +1172,23 @@ public class Administrador_ventana extends javax.swing.JFrame
     
 //BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        String busquedaCedula = modificar_textoBuscar.getText().trim();
+        DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
+        boolean encontrado = false;
 
+        for (int row = 0; row < model.getRowCount(); row++) {
+            Object cedulaValue = model.getValueAt(row, 0);
+            if (cedulaValue != null && cedulaValue.toString().equalsIgnoreCase(busquedaCedula)) {
+                tablaUsuario.setRowSelectionInterval(row, row);
+                hacerVisible(tablaUsuario, row, 0);
+                llenarCamposDesdeTabla(row);
+                encontrado = true;
+                break; 
+            }
+        }
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "No se encontró ninguna cédula coincidente.", "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void mostrartablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrartablaActionPerformed
@@ -1181,14 +1197,14 @@ public class Administrador_ventana extends javax.swing.JFrame
          
 //HACER VISIBLE FILA USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
-        /*if (!(table.getParent() instanceof javax.swing.JViewport)) {
+        if (!(table.getParent() instanceof javax.swing.JViewport)) {
             return;
         }
         javax.swing.JViewport viewport = (javax.swing.JViewport) table.getParent();
         java.awt.Rectangle rect = table.getCellRect(fila, columna, true);
         java.awt.Point pt = viewport.getViewPosition();
         rect.setLocation(rect.x - pt.x, rect.y - pt.y);
-        table.scrollRectToVisible(rect);*/
+        table.scrollRectToVisible(rect);
     }
 
     private void cargarDatosJTable(){
