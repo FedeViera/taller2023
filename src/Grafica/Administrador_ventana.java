@@ -14,13 +14,13 @@ import Logica.GestorAdministradores;
 import Logica.GestorAdscriptos;
 import Logica.GestorDocentes;
 import Logica.GestorUsuarios;
-
+/*
 import java.lang.System.Logger;
 import java.util.logging.Level;
+*/
 
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -82,8 +82,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar_opcionesAsignatura = new javax.swing.JComboBox<>();
         ver_modificar = new javax.swing.JPanel();
         cuentasRegistradas = new javax.swing.JLabel();
-        tablaUsuarios = new javax.swing.JScrollPane();
-        tablaUsuario = new javax.swing.JTable();
         modificar_cedula = new javax.swing.JLabel();
         modificar_textoCedula = new javax.swing.JTextField();
         modificar_usuario = new javax.swing.JLabel();
@@ -101,6 +99,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificar_cedula1 = new javax.swing.JLabel();
         modificar_textoBuscar = new javax.swing.JTextField();
         botonBuscar = new javax.swing.JButton();
+        tablaUsuarios = new javax.swing.JScrollPane();
+        tablaUsuario = new javax.swing.JTable();
         pestaña1 = new javax.swing.JPanel();
         pestaña2 = new javax.swing.JPanel();
         pestaña3 = new javax.swing.JPanel();
@@ -549,19 +549,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         cuentasRegistradas.setForeground(new java.awt.Color(0, 0, 0));
         cuentasRegistradas.setText("Cuentas registradas:");
 
-        tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Cédula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
-            }
-        ));
-        tablaUsuarios.setViewportView(tablaUsuario);
-
         modificar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         modificar_cedula.setForeground(new java.awt.Color(0, 0, 0));
         modificar_cedula.setText("Cédula");
@@ -665,6 +652,19 @@ public class Administrador_ventana extends javax.swing.JFrame
                 botonBuscarActionPerformed(evt);
             }
         });
+
+        tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
+            }
+        ));
+        tablaUsuarios.setViewportView(tablaUsuario);
 
         javax.swing.GroupLayout ver_modificarLayout = new javax.swing.GroupLayout(ver_modificar);
         ver_modificar.setLayout(ver_modificarLayout);
@@ -959,7 +959,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //DESHABILITA BOTON SI ES NECESARIO
     private void agregar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_opcionesCargoActionPerformed
-        String selectedCargo = (String) agregar_opcionesCargo.getSelectedItem();
+        /*String selectedCargo = (String) agregar_opcionesCargo.getSelectedItem();
 
         switch (selectedCargo) {
         case "Administrador":
@@ -978,12 +978,12 @@ public class Administrador_ventana extends javax.swing.JFrame
             agregar_opcionesAsignatura.setEnabled(false);
             agregar_opcionesGrado.setEnabled(false); 
             break;
-        }
+        }*/
     }//GEN-LAST:event_agregar_opcionesCargoActionPerformed
 
 //BOTON AGREGAR
     private void agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_botonAgregarActionPerformed
-       
+       /*
         String cedulaStr = agregar_textoCedula.getText();  // Obtener la cédula como cadena
 
         // Convertir la cédula a un número entero
@@ -1008,7 +1008,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             agregar_textoContrasenia.setText("");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cédula debe ser un número válido.", "Cédula Inválida", JOptionPane.WARNING_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
     
@@ -1087,7 +1087,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 //ACTUALIZAR TABLA AL CAMBIAR PESATAÑA
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
         //cargarUsuariosEnTabla();
-        modificar_textoContrasenia.setEchoChar((char) 0);
+        //modificar_textoContrasenia.setEchoChar((char) 0);
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
 //BOTON MODIFICAR USUARIOo
@@ -1205,19 +1205,20 @@ public class Administrador_ventana extends javax.swing.JFrame
          
 //HACER VISIBLE FILA USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
-        if (!(table.getParent() instanceof javax.swing.JViewport)) {
+        /*if (!(table.getParent() instanceof javax.swing.JViewport)) {
             return;
         }
         javax.swing.JViewport viewport = (javax.swing.JViewport) table.getParent();
         java.awt.Rectangle rect = table.getCellRect(fila, columna, true);
         java.awt.Point pt = viewport.getViewPosition();
         rect.setLocation(rect.x - pt.x, rect.y - pt.y);
-        table.scrollRectToVisible(rect);
+        table.scrollRectToVisible(rect);*/
     }
 
+
 //LLENAR CAMPOS CON DATOS DE USUARIO ENCONTRADO
-/*    private void llenarCamposDesdeTabla(int fila) {
-        Integer cedula = (Integer) tablaCuentas.getValueAt(fila, 0);
+    private void llenarCamposDesdeTabla(int fila) {
+        /*Integer cedula = (Integer) tablaCuentas.getValueAt(fila, 0);
         String usuario = tablaCuentas.getValueAt(fila, 3).toString(); 
         String contrasenia = tablaCuentas.getValueAt(fila, 4).toString();
         String cargo = tablaCuentas.getValueAt(fila, 5).toString();
@@ -1239,13 +1240,14 @@ public class Administrador_ventana extends javax.swing.JFrame
         } else {
             modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
             modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
-        }
-    }*/
-    
+        }*/
+    }
+
+
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
-        bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
-        /*String nombreApellido = obtenerNombreApellido(nombreUsuario);
+        /*bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
+        String nombreApellido = obtenerNombreApellido(nombreUsuario);
         if (nombreApellido != null) {
             bienvenidaUsuario.setText("Bienvenido/a " + nombreApellido);
         } else {
@@ -1280,10 +1282,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                 new Administrador_ventana().setVisible(true);
             }
         });
-    }
-
-    void setVisibile(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
