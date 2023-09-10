@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import Entidades.Docente;
+import Entidades.GestorAdministradores;
+import Entidades.GestorAdscriptos;
+import Entidades.GestorDocentes;
 import Entidades.GestorUsuarios;
 
 import java.lang.System.Logger;
@@ -18,18 +21,21 @@ import java.util.logging.Level;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
+
+
 public class Administrador_ventana extends javax.swing.JFrame 
 {
    
-    private List<Administrador> listaAdministradores;
-    private List<Adscripto> listaAdscriptos;
-    private List<Docente> listaDocentes;
-           
+    private DefaultTableModel model;
+
+    
+    
     public Administrador_ventana() {
         initComponents();
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
@@ -77,8 +83,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         agregar_opcionesAsignatura = new javax.swing.JComboBox<>();
         ver_modificar = new javax.swing.JPanel();
         cuentasRegistradas = new javax.swing.JLabel();
-        tabla = new javax.swing.JScrollPane();
-        tablaCuentas = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JScrollPane();
+        tablaUsuario = new javax.swing.JTable();
         modificar_cedula = new javax.swing.JLabel();
         modificar_textoCedula = new javax.swing.JTextField();
         modificar_usuario = new javax.swing.JLabel();
@@ -544,7 +550,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         cuentasRegistradas.setForeground(new java.awt.Color(0, 0, 0));
         cuentasRegistradas.setText("Cuentas registradas:");
 
-        tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -554,26 +560,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             new String [] {
                 "Cédula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tabla.setViewportView(tablaCuentas);
-        if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
-            tablaCuentas.getColumnModel().getColumn(0).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(1).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(2).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(3).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(4).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(5).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(6).setResizable(false);
-            tablaCuentas.getColumnModel().getColumn(7).setResizable(false);
-        }
+        ));
+        tablaUsuarios.setViewportView(tablaUsuario);
 
         modificar_cedula.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         modificar_cedula.setForeground(new java.awt.Color(0, 0, 0));
@@ -684,52 +672,55 @@ public class Administrador_ventana extends javax.swing.JFrame
         ver_modificarLayout.setHorizontalGroup(
             ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ver_modificarLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ver_modificarLayout.createSequentialGroup()
-                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ver_modificarLayout.createSequentialGroup()
-                                .addComponent(modificar_textoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(modificar_cedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59)
-                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificar_grado)))
-                    .addGroup(ver_modificarLayout.createSequentialGroup()
-                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(ver_modificarLayout.createSequentialGroup()
-                                    .addComponent(modificar_contrasenia)
-                                    .addGap(4, 4, 4)
-                                    .addComponent(modificar_textoContrasenia))
-                                .addGroup(ver_modificarLayout.createSequentialGroup()
-                                    .addComponent(modificar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(33, 33, 33)
-                                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(modificar_textoUsuario)
-                                        .addComponent(modificar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
-                        .addComponent(modificar_asignatura)))
-                .addGap(18, 18, 18)
-                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(modificar_opcionesGrado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
-            .addGroup(ver_modificarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ver_modificarLayout.createSequentialGroup()
+                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tablaUsuarios, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ver_modificarLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(ver_modificarLayout.createSequentialGroup()
+                                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(ver_modificarLayout.createSequentialGroup()
+                                                .addComponent(modificar_textoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(modificar_cedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(59, 59, 59)
+                                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(modificar_grado)))
+                                    .addGroup(ver_modificarLayout.createSequentialGroup()
+                                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(ver_modificarLayout.createSequentialGroup()
+                                                    .addComponent(modificar_contrasenia)
+                                                    .addGap(4, 4, 4)
+                                                    .addComponent(modificar_textoContrasenia))
+                                                .addGroup(ver_modificarLayout.createSequentialGroup()
+                                                    .addComponent(modificar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(33, 33, 33)
+                                                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(modificar_textoUsuario)
+                                                        .addComponent(modificar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(modificar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(61, 61, 61)
+                                        .addComponent(modificar_asignatura)))
+                                .addGap(18, 18, 18)
+                                .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(modificar_opcionesGrado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(39, 39, 39))
+                    .addGroup(ver_modificarLayout.createSequentialGroup()
+                        .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         ver_modificarLayout.setVerticalGroup(
             ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -737,8 +728,8 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(7, 7, 7)
                 .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabla, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tablaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(ver_modificarLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -1025,7 +1016,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     
     
 //MOUSE LISTENER PARA LLENAR DATOS DE TEXTFIELD Y SELECTORES CON DATOS DE LA TABLA
-    private void configurarMouseListener() {
+ /*   private void configurarMouseListener() {
         tablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1058,7 +1049,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 }
             }
         });
-    }
+    }*/
 
 
 
@@ -1070,7 +1061,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BOTON ELIMINAR USUARIO
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        int filaSeleccionada = tablaCuentas.getSelectedRow();
+    /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
     
         if (filaSeleccionada >= 0) {
             int cedula = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
@@ -1091,7 +1082,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             }   
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_botonEliminarActionPerformed
 
 //ACTUALIZAR TABLA AL CAMBIAR PESATAÑA
@@ -1102,7 +1093,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BOTON MODIFICAR USUARIOo
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
-        int filaSeleccionada = tablaCuentas.getSelectedRow();
+    /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
         
         if (filaSeleccionada >= 0){
             String cedulaStr = modificar_textoCedula.getText();
@@ -1135,7 +1126,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             }   
         } else {
         JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para modificar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
-        }     
+        }     */
     }//GEN-LAST:event_modificar_botonModificarActionPerformed
 
     private void modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargoActionPerformed
@@ -1201,83 +1192,17 @@ public class Administrador_ventana extends javax.swing.JFrame
         
     }//GEN-LAST:event_modificar_textoBuscarActionPerformed
 
+    // Declara las listas en la clase
+    private List<Administrador> listaAdministradores = new ArrayList<>();
+    private List<Adscripto> listaAdscriptos = new ArrayList<>();
+    private List<Docente> listaDocentes = new ArrayList<>();
+
+    
 //BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        cargarUsuariosEnTabla();
-        
-        /*String busquedaCedula = modificar_textoBuscar.getText().trim();
-        DefaultTableModel model = (DefaultTableModel) tablaCuentas.getModel();
-        boolean encontrado = false;
-
-        for (int row = 0; row < model.getRowCount(); row++) {
-            Object cedulaValue = model.getValueAt(row, 0);
-            if (cedulaValue != null && cedulaValue.toString().equalsIgnoreCase(busquedaCedula)) {
-                tablaCuentas.setRowSelectionInterval(row, row);
-                hacerVisible(tablaCuentas, row, 0);
-                llenarCamposDesdeTabla(row);
-                encontrado = true;
-                break; 
-            }
-        }
-        if (!encontrado) {
-            JOptionPane.showMessageDialog(null, "No se encontró ninguna cédula coincidente.", "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
-        }*/
+        JOptionPane.showMessageDialog(this, "HIJO DE REMIL PUTAS");
     }//GEN-LAST:event_botonBuscarActionPerformed
-     
-    public void cargarUsuariosEnTabla() {
-        DefaultTableModel model = (DefaultTableModel) tablaCuentas.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
-
-        if (listaAdministradores != null) {
-            for (Administrador admin : listaAdministradores) {
-                Object[] fila = {
-                    admin.getCedula(),
-                    admin.getNombre(),
-                    admin.getApellido(),
-                    admin.getUsuario(),
-                    admin.getContrasenia(),
-                    admin.getCargo(),
-                    "", // Grado (vacío para no docentes)
-                    ""  // Asignatura (vacío para no docentes)
-                };
-                model.addRow(fila);
-            }
-        }
-
-        if (listaAdscriptos != null) {
-            for (Adscripto adscripto : listaAdscriptos) {
-                Object[] fila = {
-                    adscripto.getCedula(),
-                    adscripto.getNombre(),
-                    adscripto.getApellido(),
-                    adscripto.getUsuario(),
-                    adscripto.getContrasenia(),
-                    adscripto.getCargo(),
-                    adscripto.getGrado(),
-                    ""  // Asignatura (vacío para adscriptos)
-                };
-                model.addRow(fila);
-            }
-        }
-
-        if (listaDocentes != null) {
-            for (Docente docente : listaDocentes) {
-                Object[] fila = {
-                    docente.getCedula(),
-                    docente.getNombre(),
-                    docente.getApellido(),
-                    docente.getUsuario(),
-                    docente.getContrasenia(),
-                    docente.getCargo(),
-                    docente.getGrado(),
-                    docente.getAsignatura()
-                };
-                model.addRow(fila);
-            }
-        }
-        tablaCuentas.repaint(); 
-    }
-    
+         
 //HACER VISIBLE FILA USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
         if (!(table.getParent() instanceof javax.swing.JViewport)) {
@@ -1291,7 +1216,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
 
 //LLENAR CAMPOS CON DATOS DE USUARIO ENCONTRADO
-    private void llenarCamposDesdeTabla(int fila) {
+/*    private void llenarCamposDesdeTabla(int fila) {
         Integer cedula = (Integer) tablaCuentas.getValueAt(fila, 0);
         String usuario = tablaCuentas.getValueAt(fila, 3).toString(); 
         String contrasenia = tablaCuentas.getValueAt(fila, 4).toString();
@@ -1315,7 +1240,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
             modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
         }
-    }
+    }*/
     
     //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
     public void bienvenidaUsuario(String nombreUsuario) {
@@ -1416,8 +1341,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JTabbedPane pestañaOpcionesCuentas;
     private javax.swing.JSeparator separador;
-    private javax.swing.JScrollPane tabla;
-    private javax.swing.JTable tablaCuentas;
+    private javax.swing.JTable tablaUsuario;
+    private javax.swing.JScrollPane tablaUsuarios;
     private javax.swing.JLabel verPswd;
     private javax.swing.JPanel ver_modificar;
     // End of variables declaration//GEN-END:variables

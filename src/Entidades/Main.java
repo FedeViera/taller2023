@@ -21,18 +21,17 @@ public class Main {
         login.setVisible(true);
         login.setLocationRelativeTo(null);
         
+        GestorAdministradores gestionarAdministradores = new GestorAdministradores();
+        gestionarAdministradores.cargarAdministradoresDesdeBD();
+        //gestionarAdministradores.mostrarAdministradores();
         
         GestorDocentes gestionarDocentes = new GestorDocentes();
         gestionarDocentes.cargarDocentesDesdeBD();
-        gestionarDocentes.mostrarDocentes();
-        
-        GestorAdministradores gestionarAdministradores = new GestorAdministradores();
-        gestionarAdministradores.cargarAdministradoresDesdeBD();
-        gestionarAdministradores.mostrarAdministradores();
+        //gestionarDocentes.mostrarDocentes();
        
         GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
         gestionarAdscriptos.cargarAdscriptosDesdeBD();
-        gestionarAdscriptos.mostrarAdscriptos();
+        //gestionarAdscriptos.mostrarAdscriptos();
         
         
   
