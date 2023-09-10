@@ -1,9 +1,11 @@
 package Logica;
 
 import Entidades.Adscripto;
+import Entidades.Docente;
 import java.util.ArrayList;
 import java.util.List;
 import Persistencia.Persistencia_SQL;
+import javax.swing.table.DefaultTableModel;
 
 public class GestorAdscriptos {
     
@@ -59,6 +61,29 @@ public class GestorAdscriptos {
         }
     }
 
+    public void insertarAdscriptosEnTabla(DefaultTableModel model) {
+        // Verificar si la lista de administradores no está vacía
+        if (!listaAdscriptos.isEmpty()) {
+            // Limpiar cualquier dato existente en el modelo de la tabla
+            model.setRowCount(0);
+
+            // Iterar a través de la lista de administradores y agregar cada uno al modelo de la tabla
+            for (Adscripto adscripto : listaAdscriptos) {
+                Object[] fila = {
+                    adscripto.getCedula(),
+                    adscripto.getNombre(),
+                    adscripto.getApellido(),
+                    adscripto.getUsuario(),
+                    adscripto.getContrasenia(),
+                    adscripto.getCargo(),
+                    adscripto.getGrado(),
+                };
+                model.addRow(fila);
+            }
+        } else {
+            // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
+        }
+    }
 
     
 }

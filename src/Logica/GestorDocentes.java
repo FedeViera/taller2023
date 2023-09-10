@@ -1,10 +1,12 @@
 package Logica;
 
+import Entidades.Administrador;
 import java.util.ArrayList;
 import java.util.List;
 import Persistencia.Persistencia_SQL;
 import Entidades.Docente;
 import Entidades.Docente;
+import javax.swing.table.DefaultTableModel;
 
 public class GestorDocentes {
     
@@ -58,6 +60,31 @@ public class GestorDocentes {
             System.out.println("Cargo: " + docente.getCargo());
             System.out.println("Grado: " + docente.getGrado());
             System.out.println("Asignatura: " + docente.getAsignatura());
+        }
+    }
+    
+    public void insertarDocentesEnTabla(DefaultTableModel model) {
+        // Verificar si la lista de administradores no está vacía
+        if (!listaDocentes.isEmpty()) {
+            // Limpiar cualquier dato existente en el modelo de la tabla
+            model.setRowCount(0);
+
+            // Iterar a través de la lista de administradores y agregar cada uno al modelo de la tabla
+            for (Docente docente : listaDocentes) {
+                Object[] fila = {
+                    docente.getCedula(),
+                    docente.getNombre(),
+                    docente.getApellido(),
+                    docente.getUsuario(),
+                    docente.getContrasenia(),
+                    docente.getCargo(),
+                    docente.getGrado(),
+                    docente.getAsignatura()
+                };
+                model.addRow(fila);
+            }
+        } else {
+            // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
         }
     }
 

@@ -20,86 +20,29 @@ public class GestorUsuarios {
     
     public GestorUsuarios(javax.swing.JTable tablaUsuario) {
         this.tablaUsuario = tablaUsuario;
-        listaAdministradores = new ArrayList<Administrador>();
-        listaAdscriptos = new ArrayList<Adscripto>();
-        listaDocentes = new ArrayList<Docente>();
     }   
     
-    public void cargarUsuariosEnTabla() {
-        
-        DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
-        
+    public List<Object> cargarUsuariosEnTabla() {
+        List<Object> listaGeneral = new ArrayList<>();     
+
         GestorAdministradores gestionarAdministradores = new GestorAdministradores();
         GestorDocentes gestionarDocentes = new GestorDocentes();
         GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
 
         gestionarAdministradores.cargarAdministradoresDesdeBD();
-        //gestionarAdministradores.mostrarAdministradores();
-        
-   
+        listaGeneral.addAll(gestionarAdministradores.obtenerTodosLosAdministradores());
+
         gestionarDocentes.cargarDocentesDesdeBD();
-        //gestionarDocentes.mostrarDocentes();
-      
+        listaGeneral.addAll(gestionarDocentes.obtenerTodosLosDocentes());
+
         gestionarAdscriptos.cargarAdscriptosDesdeBD();
-        //gestionarAdscriptos.mostrarAdscriptos();
+        listaGeneral.addAll(gestionarAdscriptos.obtenerTodosLosAdscriptores());
 
-
-        // Agregar usuarios administradores
-        for (Administrador admin : listaAdministradores) {
-            Object[] fila = {
-                admin.getCedula(),
-                admin.getNombre(),
-                admin.getApellido(),
-                admin.getUsuario(),
-                admin.getContrasenia(),
-                admin.getCargo(),
-                "", // Grado (vacío para no docentes)
-                ""  // Asignatura (vacío para no docentes)
-            };
-            model.addRow(fila);
-        }
-        
-        // Agregar usuarios adscriptos
-        for (Adscripto adscripto : listaAdscriptos) {
-            Object[] fila = {
-                adscripto.getCedula(),
-                adscripto.getNombre(),
-                adscripto.getApellido(),
-                adscripto.getUsuario(),
-                adscripto.getContrasenia(),
-                adscripto.getCargo(),
-                adscripto.getGrado(),
-                ""  // Asignatura (vacío para adscriptos)
-            };
-            model.addRow(fila);
-        }
-
-        // Agregar usuarios docentes
-        for (Docente docente : listaDocentes) {
-            Object[] fila = {
-                docente.getCedula(),
-                docente.getNombre(),
-                docente.getApellido(),
-                docente.getUsuario(),
-                docente.getContrasenia(),
-                docente.getCargo(),
-                docente.getGrado(),
-                docente.getAsignatura()
-            };
-            model.addRow(fila);
-        }
-        tablaUsuario.repaint();
+        return listaGeneral;
     }
 
     public GestorUsuarios() {
     }
-
-    
-    
-    
-
-
     
     
     

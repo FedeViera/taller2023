@@ -102,6 +102,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         tablaUsuarios = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
         pestaña1 = new javax.swing.JPanel();
+        mostrartabla = new javax.swing.JButton();
         pestaña2 = new javax.swing.JPanel();
         pestaña3 = new javax.swing.JPanel();
 
@@ -674,9 +675,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(20, 20, 20)
                 .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ver_modificarLayout.createSequentialGroup()
+                        .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ver_modificarLayout.createSequentialGroup()
                         .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(tablaUsuarios, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ver_modificarLayout.createSequentialGroup()
+                            .addGroup(ver_modificarLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ver_modificarLayout.createSequentialGroup()
@@ -716,10 +720,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                                             .addComponent(modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(39, 39, 39))
-                    .addGroup(ver_modificarLayout.createSequentialGroup()
-                        .addComponent(cuentasRegistradas, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         ver_modificarLayout.setVerticalGroup(
             ver_modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -789,15 +790,28 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
 
+        mostrartabla.setText("jButton1");
+        mostrartabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrartablaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
         pestaña1Layout.setHorizontalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1Layout.createSequentialGroup()
+                .addContainerGap(547, Short.MAX_VALUE)
+                .addComponent(mostrartabla, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(326, 326, 326))
         );
         pestaña1Layout.setVerticalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+            .addGroup(pestaña1Layout.createSequentialGroup()
+                .addGap(332, 332, 332)
+                .addComponent(mostrartabla)
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         panelPestañas.addTab("tab2", pestaña1);
@@ -1086,8 +1100,58 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //ACTUALIZAR TABLA AL CAMBIAR PESATAÑA
     private void pestañaOpcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pestañaOpcionesCuentasStateChanged
-        //cargarUsuariosEnTabla();
-        //modificar_textoContrasenia.setEchoChar((char) 0);
+        GestorUsuarios gestor = new GestorUsuarios();
+        List<Object> listaGeneral = gestor.cargarUsuariosEnTabla();
+        
+        DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+        
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        
+        // Agregar datos de la lista general al modelo de la tabla
+        for (Object usuario : listaGeneral) {
+            if (usuario instanceof Administrador) {
+                Administrador admin = (Administrador) usuario;
+                model.addRow(new Object[]{
+                    admin.getCedula(),
+                    admin.getNombre(),
+                    admin.getApellido(),
+                    admin.getUsuario(),
+                    admin.getContrasenia(),
+                    admin.getCargo(),
+                    "", // Grado (vacío para no docentes)
+                    ""  // Asignatura (vacío para no docentes)
+                });
+            } else if (usuario instanceof Adscripto) {
+                Adscripto adscripto = (Adscripto) usuario;
+                model.addRow(new Object[]{
+                    adscripto.getCedula(),
+                    adscripto.getNombre(),
+                    adscripto.getApellido(),
+                    adscripto.getUsuario(),
+                    adscripto.getContrasenia(),
+                    adscripto.getCargo(),
+                    adscripto.getGrado(),
+                    ""  // Asignatura (vacío para adscriptos)
+                });
+            } else if (usuario instanceof Docente) {
+                Docente docente = (Docente) usuario;
+                model.addRow(new Object[]{
+                    docente.getCedula(),
+                    docente.getNombre(),
+                    docente.getApellido(),
+                    docente.getUsuario(),
+                    docente.getContrasenia(),
+                    docente.getCargo(),
+                    docente.getGrado(),
+                    docente.getAsignatura()
+                });
+            }
+            tablaUsuario.repaint();
+        }
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
 //BOTON MODIFICAR USUARIOo
@@ -1199,9 +1263,12 @@ public class Administrador_ventana extends javax.swing.JFrame
     
 //BUSCAR USUARIO POR CEDULA
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        GestorUsuarios gestor = new GestorUsuarios(tablaUsuario);
-        gestor.cargarUsuariosEnTabla();
+
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void mostrartablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrartablaActionPerformed
+         
+    }//GEN-LAST:event_mostrartablaActionPerformed
          
 //HACER VISIBLE FILA USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
@@ -1328,6 +1395,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPasswordField modificar_textoContrasenia;
     private javax.swing.JTextField modificar_textoUsuario;
     private javax.swing.JLabel modificar_usuario;
+    private javax.swing.JButton mostrartabla;
     private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;

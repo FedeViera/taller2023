@@ -4,6 +4,7 @@ import Entidades.Administrador;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 
 public class GestorAdministradores {
@@ -57,6 +58,30 @@ public class GestorAdministradores {
             System.out.println("Cargo: " + administrador.getCargo());
         }
     }
+    
+    public void insertarAdministradoresEnTabla(DefaultTableModel model) {
+        // Verificar si la lista de administradores no está vacía
+        if (!listaAdministradores.isEmpty()) {
+            // Limpiar cualquier dato existente en el modelo de la tabla
+            model.setRowCount(0);
+
+            // Iterar a través de la lista de administradores y agregar cada uno al modelo de la tabla
+            for (Administrador administrador : listaAdministradores) {
+                Object[] fila = {
+                    administrador.getCedula(),
+                    administrador.getNombre(),
+                    administrador.getApellido(),
+                    administrador.getUsuario(),
+                    administrador.getContrasenia(),
+                    administrador.getCargo()
+                };
+                model.addRow(fila);
+            }
+        } else {
+            // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
+        }
+    }
+
 
 }
 

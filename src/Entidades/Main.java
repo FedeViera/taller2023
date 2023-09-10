@@ -27,6 +27,7 @@ public class Main {
         login.setVisible(true);
         login.setLocationRelativeTo(null);
         
+        /*
         GestorAdministradores gestionarAdministradores = new GestorAdministradores();
         gestionarAdministradores.cargarAdministradoresDesdeBD();
         gestionarAdministradores.mostrarAdministradores();
@@ -36,8 +37,9 @@ public class Main {
         gestionarDocentes.mostrarDocentes();
        
         GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
-        gestionarAdscriptos.cargarAdscriptosDesdeBD();
+        //gestionarAdscriptos.cargarAdscriptosDesdeBD();
         //gestionarAdscriptos.mostrarAdscriptos();
+        
         
         
   
