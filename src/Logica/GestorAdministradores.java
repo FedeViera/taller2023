@@ -15,8 +15,9 @@ public class GestorAdministradores {
         this.listaAdministradores = new ArrayList<>();
     }
 
-    public void agregarAdministrador(Administrador administrador) {
-        listaAdministradores.add(administrador);
+    public void agregarAdministrador(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+        Administrador nuevoAdministrador = new Administrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
+        
     }
 
     public void eliminarAdministrador(Administrador administrador) {

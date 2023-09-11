@@ -55,155 +55,158 @@ public class Persistencia_SQL {
     }
 
 //MAPEAR ADMINS
-public List<Administrador> mapearAdministradores() {
-    
-    List<Administrador> listaAdministradores = new ArrayList<>();
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
+    public List<Administrador> mapearAdministradores() {
 
-    if (conn != null) {
-        try {
-            // Consulta para traer todos los Administradores
-            String query = "SELECT\n" +
-                            "    u.cedula,\n" +
-                            "    u.nombre,\n" +
-                            "    u.apellido,\n" +
-                            "    u.usuario,\n" +
-                            "    u.contrasenia,\n" +
-                            "    u.cargo\n" +
-                            "FROM\n" +
-                            "    usuario u\n" +
-                            "INNER JOIN\n" +
-                            "    administrador a ON u.cedula = a.usuario_cedula;";
-            
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        List<Administrador> listaAdministradores = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
 
-            while (resultSet.next()) {
-                Administrador admin = new Administrador();
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Administradores
+                String query = "SELECT\n" +
+                                "    u.cedula,\n" +
+                                "    u.nombre,\n" +
+                                "    u.apellido,\n" +
+                                "    u.usuario,\n" +
+                                "    u.contrasenia,\n" +
+                                "    u.cargo\n" +
+                                "FROM\n" +
+                                "    usuario u\n" +
+                                "INNER JOIN\n" +
+                                "    administrador a ON u.cedula = a.usuario_cedula;";
 
-                admin.setCedula(resultSet.getInt("cedula"));
-                admin.setNombre(resultSet.getString("nombre"));
-                admin.setApellido(resultSet.getString("apellido"));
-                admin.setUsuario(resultSet.getString("usuario"));
-                admin.setContrasenia(resultSet.getString("contrasenia"));
-                admin.setCargo(resultSet.getString("cargo"));
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-                listaAdministradores.add(admin);
+                while (resultSet.next()) {
+                    Administrador admin = new Administrador();
+
+                    admin.setCedula(resultSet.getInt("cedula"));
+                    admin.setNombre(resultSet.getString("nombre"));
+                    admin.setApellido(resultSet.getString("apellido"));
+                    admin.setUsuario(resultSet.getString("usuario"));
+                    admin.setContrasenia(resultSet.getString("contrasenia"));
+                    admin.setCargo(resultSet.getString("cargo"));
+
+                    listaAdministradores.add(admin);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los administradores.");
             }
-            resultSet.close();
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Ocurrió un error al mapear los administradores.");
         }
+        return listaAdministradores;
     }
-    return listaAdministradores;
-}
 
 //MAPEAR ADSCRIPTOS
-public List<Adscripto> mapearAdscriptos() {
-    
-    List<Adscripto> listaAdscriptos = new ArrayList<>();
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
+    public List<Adscripto> mapearAdscriptos() {
 
-    if (conn != null) {
-        try {
-            // Consulta para traer todos los Adscriptos
-            String query =  "SELECT\n" +
-                            "    u.cedula,\n" +
-                            "    u.nombre,\n" +
-                            "    u.apellido,\n" +
-                            "    u.usuario,\n" +
-                            "    u.contrasenia,\n" +
-                            "    u.cargo,\n" +
-                            "    ad.grado\n" +
-                            "FROM\n" +
-                            "    usuario u\n" +
-                            "INNER JOIN\n" +
-                            "    adscripto ad ON u.cedula = ad.usuario_cedula;";
-            
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        List<Adscripto> listaAdscriptos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
 
-            while (resultSet.next()) {
-                Adscripto adscriptor = new Adscripto();
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Adscriptos
+                String query =  "SELECT\n" +
+                                "    u.cedula,\n" +
+                                "    u.nombre,\n" +
+                                "    u.apellido,\n" +
+                                "    u.usuario,\n" +
+                                "    u.contrasenia,\n" +
+                                "    u.cargo,\n" +
+                                "    ad.grado\n" +
+                                "FROM\n" +
+                                "    usuario u\n" +
+                                "INNER JOIN\n" +
+                                "    adscripto ad ON u.cedula = ad.usuario_cedula;";
 
-                adscriptor.setCedula(resultSet.getInt("cedula"));
-                adscriptor.setNombre(resultSet.getString("nombre"));
-                adscriptor.setApellido(resultSet.getString("apellido"));
-                adscriptor.setUsuario(resultSet.getString("usuario"));
-                adscriptor.setContrasenia(resultSet.getString("contrasenia"));
-                adscriptor.setCargo(resultSet.getString("cargo"));
-                adscriptor.setGrado(resultSet.getInt("grado"));
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-                listaAdscriptos.add(adscriptor);
+                while (resultSet.next()) {
+                    Adscripto adscriptor = new Adscripto();
+
+                    adscriptor.setCedula(resultSet.getInt("cedula"));
+                    adscriptor.setNombre(resultSet.getString("nombre"));
+                    adscriptor.setApellido(resultSet.getString("apellido"));
+                    adscriptor.setUsuario(resultSet.getString("usuario"));
+                    adscriptor.setContrasenia(resultSet.getString("contrasenia"));
+                    adscriptor.setCargo(resultSet.getString("cargo"));
+                    adscriptor.setGrado(resultSet.getInt("grado"));
+
+                    listaAdscriptos.add(adscriptor);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los adscriptos.");
             }
-            resultSet.close();
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Ocurrió un error al mapear los adscriptos.");
         }
+        return listaAdscriptos;
     }
-    return listaAdscriptos;
-}
 
 
 //MAPEAR DOCENTES
-public List<Docente> mapearDocentes() {
-    
-    List<Docente> listaDocentes = new ArrayList<>();
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
+    public List<Docente> mapearDocentes() {
 
-    if (conn != null) {
-        try {
-            // Consulta para traer todos los Docentes
-            String query =  "SELECT\n" +
-                            "    u.cedula,\n" +
-                            "    u.nombre,\n" +
-                            "    u.apellido,\n" +
-                            "    u.usuario,\n" +
-                            "    u.contrasenia,\n" +
-                            "    u.cargo,\n" +
-                            "    d.grado,\n" +
-                            "    d.asignatura\n" +
-                            "FROM\n" +
-                            "    usuario u\n" +
-                            "INNER JOIN\n" +
-                            "    docente d ON u.cedula = d.usuario_cedula;";
-            
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        List<Docente> listaDocentes = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
 
-            while (resultSet.next()) {
-                Docente docente = new Docente();
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Docentes
+                String query =  "SELECT\n" +
+                                "    u.cedula,\n" +
+                                "    u.nombre,\n" +
+                                "    u.apellido,\n" +
+                                "    u.usuario,\n" +
+                                "    u.contrasenia,\n" +
+                                "    u.cargo,\n" +
+                                "    d.grado,\n" +
+                                "    d.asignatura\n" +
+                                "FROM\n" +
+                                "    usuario u\n" +
+                                "INNER JOIN\n" +
+                                "    docente d ON u.cedula = d.usuario_cedula;";
 
-                docente.setCedula(resultSet.getInt("cedula"));
-                docente.setNombre(resultSet.getString("nombre"));
-                docente.setApellido(resultSet.getString("apellido"));
-                docente.setUsuario(resultSet.getString("usuario"));
-                docente.setContrasenia(resultSet.getString("contrasenia"));
-                docente.setCargo(resultSet.getString("cargo"));
-                docente.setGrado(resultSet.getInt("grado"));
-                docente.setAsignatura(resultSet.getString("asignatura"));
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-                listaDocentes.add(docente);
+                while (resultSet.next()) {
+                    Docente docente = new Docente();
+
+                    docente.setCedula(resultSet.getInt("cedula"));
+                    docente.setNombre(resultSet.getString("nombre"));
+                    docente.setApellido(resultSet.getString("apellido"));
+                    docente.setUsuario(resultSet.getString("usuario"));
+                    docente.setContrasenia(resultSet.getString("contrasenia"));
+                    docente.setCargo(resultSet.getString("cargo"));
+                    docente.setGrado(resultSet.getInt("grado"));
+                    docente.setAsignatura(resultSet.getString("asignatura"));
+
+                    listaDocentes.add(docente);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los docentes.");
             }
-            resultSet.close();
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Ocurrió un error al mapear los docentes.");
         }
+        return listaDocentes;
     }
-    return listaDocentes;
-}
+    
+//INSERTAR ADMINISTRADOR
+    
 
 
     
