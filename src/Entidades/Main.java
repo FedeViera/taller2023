@@ -40,13 +40,6 @@ public class Main {
         //gestionarAdscriptos.cargarAdscriptosDesdeBD();
         //gestionarAdscriptos.mostrarAdscriptos();
         
-        
-        
-  
-       
-       
-        
-        
         //Mostrar Admin
         /*Administrador admin = new Administrador();
         admin.setVisible(true);

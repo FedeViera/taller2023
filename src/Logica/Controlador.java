@@ -51,6 +51,9 @@ public class Controlador {
         return nombreApellido;
     }
 
+    public Controlador() {
+    }
 
+    
  
 }

@@ -510,9 +510,9 @@ public class Docente_ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonInformesKeyPressed
      
-    //Metodo para cambiar el nombre en la bienvenida
-    public void bienvenidaUsuario(String nombreUsuario) {
-    bienvenidaUsuario.setText("Bienvenido/a Docente " + nombreUsuario);
+    //Bienvenida al usuario mostrando el cargo, nombre y apellido
+    public void bienvenidaUsuario(String nombreyapellidoUsuario) {
+        bienvenidaUsuario.setText("Bienvenido/a Docente " + nombreyapellidoUsuario);
     }
 
     

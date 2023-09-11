@@ -214,7 +214,7 @@ public class Login_ventana extends javax.swing.JFrame {
         if (usuarioValido) {
             // Obtener el cargo del usuario
             String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
-            String nombre = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+            String nombreyApellido = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
 
             if (cargo != null) {
                 int x = getLocation().x;
@@ -224,7 +224,7 @@ public class Login_ventana extends javax.swing.JFrame {
                     case "Administrador":
                         // Abre la ventana de Administrador
                         Administrador_ventana admin = new Administrador_ventana();
-                        admin.bienvenidaUsuario(nombre);
+                        admin.bienvenidaUsuario(nombreyApellido);
                         admin.setVisible(true);
                         admin.setLocationRelativeTo(null);
                         admin.setLocation(x, y);
@@ -232,7 +232,7 @@ public class Login_ventana extends javax.swing.JFrame {
                     case "Docente":
                         // Abre la ventana de Adscripto
                         Adscripto_ventana adscripto = new Adscripto_ventana();
-                        adscripto.bienvenidaUsuario(nombre);
+                        adscripto.bienvenidaUsuario(nombreyApellido);
                         adscripto.setVisible(true);
                         adscripto.setLocationRelativeTo(null);
                         adscripto.setLocation(x, y);
@@ -240,7 +240,7 @@ public class Login_ventana extends javax.swing.JFrame {
                     case "Adscripto":
                         // Abre la ventana de Docente
                         Docente_ventana docente = new Docente_ventana();
-                        docente.bienvenidaUsuario(nombre);
+                        docente.bienvenidaUsuario(nombreyApellido);
                         docente.setVisible(true);
                         docente.setLocationRelativeTo(null);
                         docente.setLocation(x, y);
@@ -291,7 +291,7 @@ public class Login_ventana extends javax.swing.JFrame {
         String contrasenia = new String(textoContrasenia.getPassword());
     }//GEN-LAST:event_textoContraseniaActionPerformed
 
-    //AL PRESIONAR ENTER EN EL CAMPO DE CONTRASEÑA LEVANTA METODO abrirVentanaCorrespondiente()
+//AL PRESIONAR ENTER EN EL CAMPO DE CONTRASEÑA LEVANTA EL LOGIN
     private void textoContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContraseniaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             // Obtener el nombre de usuario y contraseña ingresados por el usuario
@@ -305,7 +305,7 @@ public class Login_ventana extends javax.swing.JFrame {
             if (usuarioValido) {
                 // Obtener el cargo del usuario
                 String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
-                String nombre = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+                String nombreyApellido = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
 
                 if (cargo != null) {
                     int x = getLocation().x;
@@ -315,7 +315,7 @@ public class Login_ventana extends javax.swing.JFrame {
                         case "Administrador":
                             // Abre la ventana de Administrador
                             Administrador_ventana admin = new Administrador_ventana();
-                            admin.bienvenidaUsuario(nombre);
+                            admin.bienvenidaUsuario(nombreyApellido);
                             admin.setVisible(true);
                             admin.setLocationRelativeTo(null);
                             admin.setLocation(x, y);
@@ -323,7 +323,7 @@ public class Login_ventana extends javax.swing.JFrame {
                         case "Docente":
                             // Abre la ventana de Adscripto
                             Adscripto_ventana adscripto = new Adscripto_ventana();
-                            adscripto.bienvenidaUsuario(nombre);
+                            adscripto.bienvenidaUsuario(nombreyApellido);
                             adscripto.setVisible(true);
                             adscripto.setLocationRelativeTo(null);
                             adscripto.setLocation(x, y);
@@ -331,7 +331,7 @@ public class Login_ventana extends javax.swing.JFrame {
                         case "Adscripto":
                             // Abre la ventana de Docente
                             Docente_ventana docente = new Docente_ventana();
-                            docente.bienvenidaUsuario(nombre);
+                            docente.bienvenidaUsuario(nombreyApellido);
                             docente.setVisible(true);
                             docente.setLocationRelativeTo(null);
                             docente.setLocation(x, y);
@@ -374,7 +374,7 @@ public class Login_ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_verPswdMouseClicked
     
 //Chequeo el usuario y Abre la ventana Correspondiente
-    public void abrirVentanaCorrespondiente(Usuario usuario) {
+/*    public void abrirVentanaCorrespondiente(Usuario usuario) {
         String cargo = usuario.getCargo();
         String nombre = usuario.getNombre();
         //String apellido = usuario.getApellido();
@@ -412,7 +412,7 @@ public class Login_ventana extends javax.swing.JFrame {
                     break;
             }
         }
-    }
+    }*/
     
     /**
      * @param args the command line arguments

@@ -63,6 +63,7 @@ public class GestorDocentes {
         }
     }
     
+    /*
     public void insertarDocentesEnTabla(DefaultTableModel model) {
         // Verificar si la lista de administradores no está vacía
         if (!listaDocentes.isEmpty()) {
@@ -86,7 +87,7 @@ public class GestorDocentes {
         } else {
             // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
         }
-    }
+    }*/
 
 
 }

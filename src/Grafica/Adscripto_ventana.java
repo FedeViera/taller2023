@@ -503,9 +503,9 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonActividadesMouseClicked
      
-    //Metodo para cambiar el nombre en la bienvenida
-    public void bienvenidaUsuario(String nombreUsuario) {
-    bienvenidaUsuario.setText("Bienvenido/a Adscripto " + nombreUsuario);
+    //Bienvenida al usuario mostrando el cargo, nombre y apellido
+    public void bienvenidaUsuario(String nombreyapellidoUsuario) {
+        bienvenidaUsuario.setText("Bienvenido/a Adscripto " + nombreyapellidoUsuario);
     }
 
     

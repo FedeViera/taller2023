@@ -14,6 +14,7 @@ import Logica.GestorAdministradores;
 import Logica.GestorAdscriptos;
 import Logica.GestorDocentes;
 import Logica.GestorUsuarios;
+import Logica.Controlador;
 /*
 import java.lang.System.Logger;
 import java.util.logging.Level;
@@ -1065,9 +1066,9 @@ public class Administrador_ventana extends javax.swing.JFrame
      
     }//GEN-LAST:event_botonGestionActividadesKeyPressed
 
-//DESHABILITA BOTON SI ES NECESARIO
+//PESTAÑA AGREGAR - DESHABILITA GRADO Y ASIGNATURA SI EL CARGO NO LO NECESITA
     private void agregar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_opcionesCargoActionPerformed
-        /*String selectedCargo = (String) agregar_opcionesCargo.getSelectedItem();
+        String selectedCargo = (String) agregar_opcionesCargo.getSelectedItem();
 
         switch (selectedCargo) {
         case "Administrador":
@@ -1086,7 +1087,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             agregar_opcionesAsignatura.setEnabled(false);
             agregar_opcionesGrado.setEnabled(false); 
             break;
-        }*/
+        }
     }//GEN-LAST:event_agregar_opcionesCargoActionPerformed
 
 //BOTON AGREGAR
@@ -1163,7 +1164,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         cargarDatosJTable();
     }//GEN-LAST:event_pestañaOpcionesCuentasStateChanged
 
-//BOTON MODIFICAR USUARIOo
+//BOTON MODIFICAR USUARIO
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
         /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
         
@@ -1291,7 +1292,7 @@ public class Administrador_ventana extends javax.swing.JFrame
          
     }//GEN-LAST:event_mostrartablaActionPerformed
          
-//HACER VISIBLE FILA USUARIO ENCONTRADO
+//HACER VISIBLE EN LA TABLA LA FILA DEL USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
         if (!(table.getParent() instanceof javax.swing.JViewport)) {
             return;
@@ -1303,6 +1304,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         table.scrollRectToVisible(rect);
     }
 
+//CARGAR TODOS LOS DATOS DESDE LISTA GENERAL (ADMIN, ADS Y DOCENTES) EN EL JTable
     private void cargarDatosJTable(){
         GestorUsuarios gestor = new GestorUsuarios();
         List<Object> listaGeneral = gestor.cargarUsuariosEnTabla();
@@ -1357,6 +1359,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaUsuario.repaint();
         }
         
+        //LLENA LOS CAMPOS DEL USUARIO DE LA FILA SELECCIONADA EN EL JTable
         tablaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1391,7 +1394,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }
 
-//LLENAR CAMPOS CON DATOS DE USUARIO ENCONTRADO
+//COMPLEMENTO DEL BOTON BUSCAR - LLENA CAMPOS CON DATOS DE USUARIO ENCONTRADO
     private void llenarCamposDesdeTabla(int fila) {
         Integer cedula = (Integer) tablaUsuario.getValueAt(fila, 0);
         String usuario = tablaUsuario.getValueAt(fila, 3).toString(); 
@@ -1419,15 +1422,9 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
 
 
-    //Bienvenida al usuario mostrando el nick de USUARIO (LUEGO TRAER EL NOMBRE VERDADERO DE BASE DE DATOS Y CAMBIARLO)
-    public void bienvenidaUsuario(String nombreUsuario) {
-        /*bienvenidaUsuario.setText("Bienvenido/a Administrador/a " + nombreUsuario);
-        String nombreApellido = obtenerNombreApellido(nombreUsuario);
-        if (nombreApellido != null) {
-            bienvenidaUsuario.setText("Bienvenido/a " + nombreApellido);
-        } else {
-            bienvenidaUsuario.setText("Bienvenido/a " + nombreUsuario);
-        }*/
+    //Bienvenida al usuario mostrando el cargo, nombre y apellido
+    public void bienvenidaUsuario(String nombreyapellidoUsuario) {
+        bienvenidaUsuario.setText("Bienvenido/a Administrador " + nombreyapellidoUsuario);
     }
 
  
