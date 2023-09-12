@@ -85,7 +85,7 @@ public class GestorAdministradores {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarUsuario(administrador.getCedula(), administrador.getCargo());    
     }
-    
+       
    
 
 }

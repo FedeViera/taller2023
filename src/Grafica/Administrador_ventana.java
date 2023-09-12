@@ -760,7 +760,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1106,26 +1106,35 @@ public class Administrador_ventana extends javax.swing.JFrame
         Integer grado = Integer.parseInt(agregar_opcionesGrado.getSelectedItem().toString());
         String asignatura = agregar_opcionesAsignatura.getSelectedItem().toString();
 
-        // Borra los campos de los JTextField
-        agregar_textoCedula.setText("");
-        agregar_textoNombre.setText("");
-        agregar_textoApellido.setText("");
-        agregar_textoUsuario.setText("");
-        agregar_textoContrasenia.setText("");
         
         List<Object> listaGeneral = new ArrayList<>(); // Crea una lista vacía
         GestorUsuarios gestor = new GestorUsuarios();
-        gestor.agregarUsuario(listaGeneral, cedula, nombre, apellido, usuario, contrasenia, cargo);
-        if(cargo.equals("Administrador")){
-            GestorAdministradores gestorAdmin = new GestorAdministradores();
-            gestorAdmin.agregarAdministrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
-        }else if(cargo.equals("Adscripto")){
-            GestorAdscriptos gestorAds = new GestorAdscriptos();
-            gestorAds.agregarAdscripto(cedula, nombre, apellido, usuario, contrasenia, cargo, grado);
-        }else if(cargo.equals("Docente")){
-            GestorDocentes gestorDoce = new GestorDocentes();
-            gestorDoce.agregarDocente(cedula, nombre, apellido, usuario, contrasenia, cargo, grado, asignatura);
+        listaGeneral = gestor.obtenerTodosUsuarios();
+        if(!gestor.usuarioExiste(listaGeneral, cedula, usuario)){
+            gestor.agregarUsuario(cedula, nombre, apellido, usuario, contrasenia, cargo);
+            // Borra los campos de los JTextField
+            agregar_textoCedula.setText("");
+            agregar_textoNombre.setText("");
+            agregar_textoApellido.setText("");
+            agregar_textoUsuario.setText("");
+            agregar_textoContrasenia.setText("");
+            if(cargo.equals("Administrador")){
+                GestorAdministradores gestorAdmin = new GestorAdministradores();
+                gestorAdmin.agregarAdministrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
+            }else if(cargo.equals("Adscripto")){
+                GestorAdscriptos gestorAds = new GestorAdscriptos();
+                gestorAds.agregarAdscripto(cedula, nombre, apellido, usuario, contrasenia, cargo, grado);
+            }else if(cargo.equals("Docente")){
+                GestorDocentes gestorDoce = new GestorDocentes();
+                gestorDoce.agregarDocente(cedula, nombre, apellido, usuario, contrasenia, cargo, grado, asignatura);
+            }
         }
+        
+        
+        
+                  
+        
+        
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
     private void agregar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoUsuarioActionPerformed
@@ -1198,7 +1207,26 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_modificar_botonModificarActionPerformed
 
     private void modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargoActionPerformed
+        String selectedCargo = (String) modificar_opcionesCargo.getSelectedItem();
 
+        switch (selectedCargo) {
+        case "Administrador":
+            modificar_opcionesAsignatura.setEnabled(false);
+            modificar_opcionesGrado.setEnabled(false);
+            break;
+        case "Adscripto":
+            modificar_opcionesAsignatura.setEnabled(false);
+            modificar_opcionesGrado.setEnabled(true);
+            break;
+        case "Docente":
+            modificar_opcionesAsignatura.setEnabled(true);
+            modificar_opcionesGrado.setEnabled(true);
+            break;
+        default:
+            modificar_opcionesAsignatura.setEnabled(false);
+            modificar_opcionesGrado.setEnabled(false); 
+            break;
+        }
     }//GEN-LAST:event_modificar_opcionesCargoActionPerformed
 
     private void modificar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoUsuarioActionPerformed

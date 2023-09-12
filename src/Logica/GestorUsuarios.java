@@ -49,23 +49,26 @@ public class GestorUsuarios {
         return listaGeneral;
     }
 
+
 //BUSCAR SI USUARIO EXISTE
-    public boolean usuarioExiste(List<Object> listaGeneral, int cedulaAVerificar, String usuarioAVerificar) {
+    public boolean usuarioExiste(List<Object> listaGeneral, int cedulaVerificar, String usuarioVerificar) {
         for (Object usuario : listaGeneral) {
             if (usuario instanceof Administrador) {
                 Administrador administrador = (Administrador) usuario;
                 int cedulaUsuario = administrador.getCedula();
                 String usuarioUsuario = administrador.getUsuario();
 
-                if (cedulaUsuario == cedulaAVerificar || usuarioUsuario.equals(usuarioAVerificar)) {
-                    return true; 
+                if (cedulaUsuario == cedulaVerificar || usuarioUsuario.equals(usuarioVerificar)) {
+                    JOptionPane.showMessageDialog(null, "La cedula o Usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                    return true;
                 }
             } else if (usuario instanceof Adscripto) {
                 Adscripto adscripto = (Adscripto) usuario;
                 int cedulaUsuario = adscripto.getCedula();
                 String usuarioUsuario = adscripto.getUsuario();
 
-                if (cedulaUsuario == cedulaAVerificar || usuarioUsuario.equals(usuarioAVerificar)) {
+                if (cedulaUsuario == cedulaVerificar || usuarioUsuario.equals(usuarioVerificar)) {
+                    JOptionPane.showMessageDialog(null, "La cedula o Usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
                     return true; 
                 }
             } else if (usuario instanceof Docente) {
@@ -73,34 +76,28 @@ public class GestorUsuarios {
                 int cedulaUsuario = docente.getCedula();
                 String usuarioUsuario = docente.getUsuario();
 
-                if (cedulaUsuario == cedulaAVerificar || usuarioUsuario.equals(usuarioAVerificar)) {
+                if (cedulaUsuario == cedulaVerificar || usuarioUsuario.equals(usuarioVerificar)) {
+                    JOptionPane.showMessageDialog(null, "La cedula o Usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
                     return true; 
                 }
             }
         }
-        return false; 
-                              
+        return false;                             
     }
     
-    public void agregarUsuario(List<Object> listaGeneral, Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo){
-        
-        boolean usuarioExiste = usuarioExiste(listaGeneral, cedula, usuario);
-        
-        if (usuarioExiste) {
-            JOptionPane.showMessageDialog(null, "Ya existe usuario con la misma cedula o nombre de usuario", "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);  
-        } else {
-            //Crea obj nuevoUsuario y asigna valores
-            Usuario nuevoUsuario = new Usuario();
-            nuevoUsuario.setCedula(cedula);
-            nuevoUsuario.setNombre(nombre);
-            nuevoUsuario.setApellido(apellido);
-            nuevoUsuario.setUsuario(usuario);
-            nuevoUsuario.setContrasenia(contrasenia);
-            nuevoUsuario.setCargo(cargo);
+    public void agregarUsuario(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo){
+        //Creo obj nuevoUsuario y asigna valores
+        Usuario nuevoUsuario = new Usuario();
+        nuevoUsuario.setCedula(cedula);
+        nuevoUsuario.setNombre(nombre);
+        nuevoUsuario.setApellido(apellido);
+        nuevoUsuario.setUsuario(usuario);
+        nuevoUsuario.setContrasenia(contrasenia);
+        nuevoUsuario.setCargo(cargo);
             
-            Persistencia_SQL persist = new Persistencia_SQL();
-            persist.agregarUsuarioGenerico(nuevoUsuario);
-        }
+        Persistencia_SQL persist = new Persistencia_SQL();
+        persist.agregarUsuario(nuevoUsuario);         
+        
     }
     
     public void eliminarUsuario(Integer cedula, String cargo){
@@ -123,14 +120,12 @@ public class GestorUsuarios {
         usuarioFull.setGrado(nuevoGrado);
         usuarioFull.setAsignatura(nuevaAsignatura);
         
-        int modCedula = usuarioFull.getCedula();
-        String modContrasenia = usuarioFull.getContrasenia();
-        String modCargo = usuarioFull.getCargo();
-        int modGrado = usuarioFull.getGrado();
-        String modAsign = usuarioFull.getAsignatura();
-        
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.actualizarUsuario(modCedula, modContrasenia, modCargo, modGrado, modAsign);
+        
+        
+        
+        
+        
         
     }
 

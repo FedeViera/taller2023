@@ -212,7 +212,7 @@ public class Persistencia_SQL {
     
 
 //AGREGAR SOLO USUARIO
-    public void agregarUsuarioGenerico(Usuario usuario) {
+    public void agregarUsuario(Usuario usuario) {
         // Obtén la información del usuario
         Integer cedula = usuario.getCedula();
         String nombre = usuario.getNombre();
@@ -424,7 +424,7 @@ public class Persistencia_SQL {
     
     
     
-
+/*
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD - PARA MODIFICAR CARGO DE USUARIO
     private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
         String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
@@ -442,12 +442,12 @@ public class Persistencia_SQL {
         preparedStatement.close();
 
         return total > 0;
-    }
+    }*/
 
     
     
 //OBTENER CARGO ACTUAL - PARA MODIFICAR CARGO DE USUARIO    
-    private String obtenerCargoActual(Integer cedula) throws SQLException {
+  /*  private void obtenerCargoActual(Docente docente) throws SQLException {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
@@ -466,10 +466,10 @@ public class Persistencia_SQL {
         preparedStatement.close();
 
         return cargoActual;
-    }
+    }*/
     
     
-
+/*
     private void moverUsuario(Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -502,8 +502,9 @@ public class Persistencia_SQL {
             insertStatement.executeUpdate();
         }
 
-    }
+    }*/
     
+    /*
 //ACTUALIZAR DATO EN BD
     public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo, Integer grado, String asignatura) {
         Conexion conexion = new Conexion();
@@ -538,7 +539,7 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }*/
 
     
     
