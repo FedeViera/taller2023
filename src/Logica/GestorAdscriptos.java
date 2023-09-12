@@ -43,11 +43,7 @@ public class GestorAdscriptos {
         listaAdscriptos = persistencia.mapearAdscriptos();
   
     }
-    
-    /*//LLAMAR PARA CARGAR ADSCRIPTOS
-    GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
-    gestionarAdscriptos.cargarAdscriptosDesdeBD();*/
-    
+       
     //MOSTRAR ADSCRIPTOS
     public void mostrarAdscriptos() {
         for (Adscripto adscripto : listaAdscriptos) {
@@ -61,14 +57,15 @@ public class GestorAdscriptos {
         }
     }
     
-    
-    public void agregarAdscripto(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, Integer grado) {
+//LOGICA AGREGAR ADSCRIPTO
+    public void agregarAdscripto(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo, Integer grado) {
         Adscripto nuevoAdscripto = new Adscripto();
         nuevoAdscripto.setCedula(cedula);
         nuevoAdscripto.setNombre(nombre);
         nuevoAdscripto.setApellido(apellido);
         nuevoAdscripto.setUsuario(usuario);
         nuevoAdscripto.setContrasenia(contrasenia);
+        nuevoAdscripto.setCargo(cargo);
         nuevoAdscripto.setGrado(grado);
 
         // Llama a tu método de persistencia para agregar el Administrador
@@ -76,30 +73,16 @@ public class GestorAdscriptos {
         persistencia.agregarAdscripto(nuevoAdscripto);
     }
 
-    /*
-    public void insertarAdscriptosEnTabla(DefaultTableModel model) {
-        // Verificar si la lista de administradores no está vacía
-        if (!listaAdscriptos.isEmpty()) {
-            // Limpiar cualquier dato existente en el modelo de la tabla
-            model.setRowCount(0);
+//ELIMINAR ADSCRIPTO (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)    
+    public void eliminarAdscripto(Integer cedula, String cargo){
+        Adscripto adscripto = new Adscripto();
+        adscripto.setCedula(cedula);
+        adscripto.setCargo(cargo);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarUsuario(adscripto.getCedula(), adscripto.getCargo());
+    }
 
-            // Iterar a través de la lista de administradores y agregar cada uno al modelo de la tabla
-            for (Adscripto adscripto : listaAdscriptos) {
-                Object[] fila = {
-                    adscripto.getCedula(),
-                    adscripto.getNombre(),
-                    adscripto.getApellido(),
-                    adscripto.getUsuario(),
-                    adscripto.getContrasenia(),
-                    adscripto.getCargo(),
-                    adscripto.getGrado(),
-                };
-                model.addRow(fila);
-            }
-        } else {
-            // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
-        }
-    }*/
 
     
 }

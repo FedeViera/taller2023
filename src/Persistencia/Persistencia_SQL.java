@@ -211,7 +211,7 @@ public class Persistencia_SQL {
     }
     
 
-// Método para agregar un usuario genérico
+//AGREGAR SOLO USUARIO
     public void agregarUsuarioGenerico(Usuario usuario) {
         // Obtén la información del usuario
         Integer cedula = usuario.getCedula();
@@ -250,7 +250,7 @@ public class Persistencia_SQL {
         }
     }
 
-// Método para agregar un Administrador
+//AGREGAR ADMINISTRADOR
     public void agregarAdministrador(Administrador administrador) {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
@@ -275,7 +275,7 @@ public class Persistencia_SQL {
         }
     }
 
-// Método para agregar un Adscripto
+//AGREGAR ADSCRIPTO
     public void agregarAdscripto(Adscripto adscripto) {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
@@ -302,7 +302,7 @@ public class Persistencia_SQL {
         }
     }
 
-// Método para agregar un Docente
+//AGREGAR DOCENTE
     public void agregarDocente(Docente docente) {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
@@ -324,195 +324,15 @@ public class Persistencia_SQL {
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                //JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- /*
-//CHEQUEAR SI EL USUARIO EXISTE EN LA BD
-    private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
-        String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1, cedula);
-        preparedStatement.setString(2, usuario);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        int total = 0;
-        if (resultSet.next()) {
-            total = resultSet.getInt("total");
-        }
-
-        resultSet.close();
-        preparedStatement.close();
-
-        return total > 0;
-    }
-*/   
-    
-    
-//CARGO ACTUAL    
-    private String obtenerCargoActual(Connection conn, Integer cedula) throws SQLException {
-        String cargoActual = null;
-
-        String query = "SELECT cargo FROM usuario WHERE cedula = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1, cedula);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            cargoActual = resultSet.getString("cargo");
-        }
-
-        resultSet.close();
-        preparedStatement.close();
-
-        return cargoActual;
-    }
-
-/*    
-//ACTUALIZAR DATO EN BD
-    public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo, Integer grado, String asignatura) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                // Verificar si el usuario existe en la base de datos antes de actualizarlo
-                if (usuarioExiste(conn, cedula, null)) {
-                    // Obtener el cargo actual del usuario
-                    String cargoActual = obtenerCargoActual(conn, cedula);
-
-                    String query = "UPDATE usuario SET contrasenia = ?, cargo = ? WHERE cedula = ?";
-                    PreparedStatement preparedStatement = conn.prepareStatement(query);
-                    preparedStatement.setString(1, nuevaContrasenia);
-                    preparedStatement.setString(2, nuevoCargo);
-                    preparedStatement.setInt(3, cedula);
-
-                    preparedStatement.executeUpdate();
-                    preparedStatement.close();
-                    
-                    // Mover al usuario a la tabla correspondiente
-                    moverUsuario(conn, cedula, cargoActual, nuevoCargo, grado, asignatura);
-                    JOptionPane.showMessageDialog(null, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
-                }
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
-*/
-    private void moverUsuario(Connection conn, Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
-        // Eliminar al usuario de la tabla actual
-        String deleteQuery = "DELETE FROM " + cargoActual + " WHERE usuario_cedula = ?";
-        PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery);
-        deleteStatement.setInt(1, cedula);
-        deleteStatement.executeUpdate();
-        
-        //System.out.println("Valor de asignatura: " + asignatura);
 
-        // Insertar al usuario en la nueva tabla correspondiente al nuevo cargo
-        if ("Docente".equals(nuevoCargo)) {
-            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
-            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
-            insertStatement.setInt(1, cedula);
-            insertStatement.setInt(2, grado);
-            insertStatement.setString(3, asignatura);
-            insertStatement.executeUpdate();
-        } else if ("Adscripto".equals(nuevoCargo)) {
-            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula, grado) VALUES (?, ?)";
-            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
-            insertStatement.setInt(1, cedula);
-            insertStatement.setInt(2, grado);
-            insertStatement.executeUpdate();
-        } else if ("Administrador".equals(nuevoCargo)) {
-            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula) VALUES (?)";
-            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
-            insertStatement.setInt(1, cedula);
-            insertStatement.executeUpdate();
-        }
-
-    }
-
-    
-
-
-    /*//OBTENER ID POR USUARIO 
-    public int obtenerIDUsuarioPorCorreo(String correo) {
-    Conexion conexion = new Conexion();
-    Connection conn = conexion.conectarMySQL();
-
-    Integer idUsuario = -1;
-
-    if (conn != null) {
-        try {
-            String query = "SELECT id FROM Usuarios WHERE ingresoUsuario = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1, correo);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                idUsuario = resultSet.getInt("id"); // Convertimos el valor a un entero
-            }
-
-            resultSet.close();
-            preparedStatement.close();
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-    }
-    return idUsuario;
-}*/
-    
-    
-//ELIMINAR DATOS DE LA BD    
-    public void eliminarDato(int cedula, String cargo) {
+//ELIMINAR DUSUARIOS DE LA BASE DE DATOS (Y SU RELACION CON TABLA ADMINISTRADOR, ADSCRIPTO O DOCENTE)  
+    public void eliminarUsuario(int cedula, String cargo) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
@@ -525,8 +345,9 @@ public class Persistencia_SQL {
                 } else if ("Docente".equals(cargo)) {
                     eliminarDocente(conn, cedula);
                 }
-
+      
                 eliminarUsuario(conn, cedula);
+                
                 JOptionPane.showMessageDialog(null, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
@@ -568,6 +389,196 @@ public class Persistencia_SQL {
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+//CHEQUEAR SI EL USUARIO EXISTE EN LA BD - PARA MODIFICAR CARGO DE USUARIO
+    private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
+        String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.setString(2, usuario);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        int total = 0;
+        if (resultSet.next()) {
+            total = resultSet.getInt("total");
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return total > 0;
+    }
+
+    
+    
+//OBTENER CARGO ACTUAL - PARA MODIFICAR CARGO DE USUARIO    
+    private String obtenerCargoActual(Integer cedula) throws SQLException {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        String cargoActual = null;
+
+        String query = "SELECT cargo FROM usuario WHERE cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, cedula);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            cargoActual = resultSet.getString("cargo");
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return cargoActual;
+    }
+    
+    
+
+    private void moverUsuario(Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        // Eliminar al usuario de la tabla actual
+        String deleteQuery = "DELETE FROM " + cargoActual + " WHERE usuario_cedula = ?";
+        PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery);
+        deleteStatement.setInt(1, cedula);
+        deleteStatement.executeUpdate();
+        
+        //System.out.println("Valor de asignatura: " + asignatura);
+
+        // Insertar al usuario en la nueva tabla correspondiente al nuevo cargo
+        if ("Docente".equals(nuevoCargo)) {
+            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, cedula);
+            insertStatement.setInt(2, grado);
+            insertStatement.setString(3, asignatura);
+            insertStatement.executeUpdate();
+        } else if ("Adscripto".equals(nuevoCargo)) {
+            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula, grado) VALUES (?, ?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, cedula);
+            insertStatement.setInt(2, grado);
+            insertStatement.executeUpdate();
+        } else if ("Administrador".equals(nuevoCargo)) {
+            String insertQuery = "INSERT INTO " + nuevoCargo + " (usuario_cedula) VALUES (?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, cedula);
+            insertStatement.executeUpdate();
+        }
+
+    }
+    
+//ACTUALIZAR DATO EN BD
+    public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo, Integer grado, String asignatura) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Verificar si el usuario existe en la base de datos antes de actualizarlo
+                if (usuarioExiste(conn, cedula, null)) {
+                    // Obtener el cargo actual del usuario
+                    String cargoActual = obtenerCargoActual(cedula);
+
+                    String query = "UPDATE usuario SET contrasenia = ?, cargo = ? WHERE cedula = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setString(1, nuevaContrasenia);
+                    preparedStatement.setString(2, nuevoCargo);
+                    preparedStatement.setInt(3, cedula);
+
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                 
+                    // Mover al usuario a la tabla correspondiente
+                    moverUsuario(cedula, cargoActual, nuevoCargo, grado, asignatura);
+                    JOptionPane.showMessageDialog(null, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    
+    
+
+    
+
+
+    /*//OBTENER ID POR USUARIO 
+    public int obtenerIDUsuarioPorCorreo(String correo) {
+    Conexion conexion = new Conexion();
+    Connection conn = conexion.conectarMySQL();
+
+    Integer idUsuario = -1;
+
+    if (conn != null) {
+        try {
+            String query = "SELECT id FROM Usuarios WHERE ingresoUsuario = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, correo);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                idUsuario = resultSet.getInt("id"); // Convertimos el valor a un entero
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+    }
+    return idUsuario;
+}*/
+    
+    
+
 
     
     

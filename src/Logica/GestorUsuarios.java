@@ -102,7 +102,37 @@ public class GestorUsuarios {
             persist.agregarUsuarioGenerico(nuevoUsuario);
         }
     }
+    
+    public void eliminarUsuario(Integer cedula, String cargo){
+        
+        Usuario usuario = new Usuario();
+        usuario.setCedula(cedula);
+        usuario.setCargo(cargo);
+       
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        
+        persistencia.eliminarUsuario(usuario.getCedula(), usuario.getCargo());       
+    }
 
+    public void modificarUsuario(int cedula, String nuevaContrasenia, String nuevoCargo, int nuevoGrado, String nuevaAsignatura){
+        //SE USA DOCENTE YA QUE ES LA ENTIDAD CON TODOS LOS ATRIBUTOS - POR ESO USUARIO FULL
+        Docente usuarioFull = new Docente();
+        usuarioFull.setCedula(cedula);
+        usuarioFull.setContrasenia(nuevaContrasenia);
+        usuarioFull.setCargo(nuevoCargo);
+        usuarioFull.setGrado(nuevoGrado);
+        usuarioFull.setAsignatura(nuevaAsignatura);
+        
+        int modCedula = usuarioFull.getCedula();
+        String modContrasenia = usuarioFull.getContrasenia();
+        String modCargo = usuarioFull.getCargo();
+        int modGrado = usuarioFull.getGrado();
+        String modAsign = usuarioFull.getAsignatura();
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.actualizarUsuario(modCedula, modContrasenia, modCargo, modGrado, modAsign);
+        
+    }
 
 
     

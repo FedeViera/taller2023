@@ -61,31 +61,7 @@ public class GestorAdministradores {
         }
     }
     
-    /*
-    public void insertarAdministradoresEnTabla(DefaultTableModel model) {
-        // Verificar si la lista de administradores no está vacía
-        if (!listaAdministradores.isEmpty()) {
-            // Limpiar cualquier dato existente en el modelo de la tabla
-            model.setRowCount(0);
-
-            // Iterar a través de la lista de administradores y agregar cada uno al modelo de la tabla
-            for (Administrador administrador : listaAdministradores) {
-                Object[] fila = {
-                    administrador.getCedula(),
-                    administrador.getNombre(),
-                    administrador.getApellido(),
-                    administrador.getUsuario(),
-                    administrador.getContrasenia(),
-                    administrador.getCargo()
-                };
-                model.addRow(fila);
-            }
-        } else {
-            // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
-        }
-    }*/
-
-    
+//LOGICA AGREGAR ADMINISTRADOR    
     public void agregarAdministrador(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
         Administrador nuevoAdministrador = new Administrador();
         nuevoAdministrador.setCedula(cedula);
@@ -100,6 +76,17 @@ public class GestorAdministradores {
         persistencia.agregarAdministrador(nuevoAdministrador);
     }
     
+//ELIMINAR ADMINISTRADOR (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)
+    public void eliminarAdministrador(Integer cedula, String cargo){
+        Administrador administrador = new Administrador();
+        administrador.setCedula(cedula);
+        administrador.setCargo(cargo);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarUsuario(administrador.getCedula(), administrador.getCargo());    
+    }
+    
+   
 
 }
 

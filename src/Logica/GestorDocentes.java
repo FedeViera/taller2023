@@ -42,14 +42,10 @@ public class GestorDocentes {
     public void cargarDocentesDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaDocentes = persistencia.mapearDocentes();
-  
     }
     
-    /*//LLAMAR PARA CARGAR DOCENTES
-    GestorDocentes gestionarDocentes = new GestorDocentes();
-    gestionarDocentes.cargarDocentesDesdeBD();*/
-    
-    //MOSTRAR DOCENTES
+
+//MOSTRAR DOCENTES
     public void mostrarDocentes() {
         for (Docente docente : listaDocentes) {
             System.out.println("Cédula: " + docente.getCedula());
@@ -63,13 +59,15 @@ public class GestorDocentes {
         }
     }
     
-    public void agregarDocente(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, Integer grado, String asignatura) {
+//LOGICA AGREGAR DOCENTE    
+    public void agregarDocente(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo, Integer grado, String asignatura) {
         Docente nuevoDocente = new Docente();
         nuevoDocente.setCedula(cedula);
         nuevoDocente.setNombre(nombre);
         nuevoDocente.setApellido(apellido);
         nuevoDocente.setUsuario(usuario);
         nuevoDocente.setContrasenia(contrasenia);
+        nuevoDocente.setCargo(cargo);
         nuevoDocente.setGrado(grado);
         nuevoDocente.setAsignatura(asignatura);
 
@@ -77,34 +75,18 @@ public class GestorDocentes {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarDocente(nuevoDocente);
     }
-    
-    
-    
-    /*
-    public void insertarDocentesEnTabla(DefaultTableModel model) {
-        // Verificar si la lista de administradores no está vacía
-        if (!listaDocentes.isEmpty()) {
-            // Limpiar cualquier dato existente en el modelo de la tabla
-            model.setRowCount(0);
 
-            // Iterar a través de la lista de administradores y agregar cada uno al modelo de la tabla
-            for (Docente docente : listaDocentes) {
-                Object[] fila = {
-                    docente.getCedula(),
-                    docente.getNombre(),
-                    docente.getApellido(),
-                    docente.getUsuario(),
-                    docente.getContrasenia(),
-                    docente.getCargo(),
-                    docente.getGrado(),
-                    docente.getAsignatura()
-                };
-                model.addRow(fila);
-            }
-        } else {
-            // Si la lista de administradores está vacía, puedes mostrar un mensaje o realizar alguna acción adecuada.
-        }
-    }*/
+//ELIMINAR DOCENTE (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)    
+    public void eliminarDocente(Integer cedula, String cargo){
+        Docente docente = new Docente();
+        docente.setCedula(cedula);
+        docente.setCargo(cargo);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarUsuario(docente.getCedula(), docente.getCargo());
+    }
+    
+  
 
 
 }

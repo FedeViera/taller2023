@@ -758,8 +758,26 @@ public class Administrador_ventana extends javax.swing.JFrame
             new String [] {
                 "Cédula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaUsuarios.setViewportView(tablaUsuario);
+        if (tablaUsuario.getColumnModel().getColumnCount() > 0) {
+            tablaUsuario.getColumnModel().getColumn(0).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(1).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(2).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(3).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(4).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(5).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(6).setResizable(false);
+            tablaUsuario.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         javax.swing.GroupLayout ver_modificarLayout = new javax.swing.GroupLayout(ver_modificar);
         ver_modificar.setLayout(ver_modificarLayout);
@@ -1103,21 +1121,12 @@ public class Administrador_ventana extends javax.swing.JFrame
             gestorAdmin.agregarAdministrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
         }else if(cargo.equals("Adscripto")){
             GestorAdscriptos gestorAds = new GestorAdscriptos();
-            gestorAds.agregarAdscripto(cedula, nombre, apellido, usuario, contrasenia, grado);
+            gestorAds.agregarAdscripto(cedula, nombre, apellido, usuario, contrasenia, cargo, grado);
         }else if(cargo.equals("Docente")){
             GestorDocentes gestorDoce = new GestorDocentes();
-            gestorDoce.agregarDocente(cedula, nombre, apellido, usuario, contrasenia, grado, asignatura);
+            gestorDoce.agregarDocente(cedula, nombre, apellido, usuario, contrasenia, cargo, grado, asignatura);
         }
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
-
-    
-    
-    
-
-
-
-
-
 
     private void agregar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_textoUsuarioActionPerformed
         
@@ -1125,12 +1134,11 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BOTON ELIMINAR USUARIO
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-    /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
+        int filaSeleccionada = tablaUsuario.getSelectedRow();
     
         if (filaSeleccionada >= 0) {
-            int cedula = (int) tablaCuentas.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
-            String cargo = (String) tablaCuentas.getValueAt(filaSeleccionada, 5);
-            
+            int cedula = (int) tablaUsuario.getValueAt(filaSeleccionada, 0); // Obtenemos el ID del usuario de la tabla
+            String cargo = (String) tablaUsuario.getValueAt(filaSeleccionada, 5);            
             int respuesta = JOptionPane.showConfirmDialog(
                 null,
                 "¿Está seguro que desea eliminar el usuario con cedula: "+cedula+"?\nSe eliminaran todos los archivos relacionados a este Usuario",
@@ -1138,15 +1146,15 @@ public class Administrador_ventana extends javax.swing.JFrame
                 JOptionPane.YES_NO_OPTION
             );
             if (respuesta == JOptionPane.YES_OPTION){
-                Persistencia_SQL consultasSQL = new Persistencia_SQL();
-                consultasSQL.eliminarDato(cedula, cargo); // Eliminar el usuario utilizando el ID
-                //mostrarUsuariosEnTabla(); // Después de eliminar, actualizar la tabla
+                GestorUsuarios gestor = new GestorUsuarios();
+                gestor.eliminarUsuario(cedula, cargo);
+                cargarDatosJTable(); // Después de eliminar, actualizar la tabla
             }else{
                 System.out.println("Eliminación cancelada.");
             }   
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para eliminar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
 //ACTUALIZAR JTable AL CAMBIAR PESATAÑA
@@ -1156,17 +1164,16 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BOTON MODIFICAR USUARIO
     private void modificar_botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificarActionPerformed
-        /*    int filaSeleccionada = tablaCuentas.getSelectedRow();
+        int filaSeleccionada = tablaUsuario.getSelectedRow();
         
         if (filaSeleccionada >= 0){
-            String cedulaStr = modificar_textoCedula.getText();
-            String nuevoGradoStr = modificar_opcionesGrado.getSelectedItem().toString();
-            Integer cedula = Integer.parseInt(cedulaStr); // Convertir la cadena a Integer
+            int cedula = Integer.parseInt(modificar_textoCedula.getText()); // Convertir la cadena a entero
             String usuario = modificar_textoUsuario.getText();
             String nuevaContrasenia = new String(modificar_textoContrasenia.getPassword());
             String nuevoCargo = modificar_opcionesCargo.getSelectedItem().toString(); // Obtiene el cargo seleccionado
-            int nuevoGrado = Integer.parseInt(nuevoGradoStr);
+            int nuevoGrado = Integer.parseInt(modificar_opcionesGrado.getSelectedItem().toString()); // Convertir item a entero
             String nuevaAsignatura = modificar_opcionesAsignatura.getSelectedItem().toString();
+            
 
             int respuesta = JOptionPane.showConfirmDialog(
                 null,
@@ -1176,10 +1183,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             );
             
             if (respuesta == JOptionPane.YES_OPTION) {
-                Persistencia_SQL consultasSQL = new Persistencia_SQL();
-                consultasSQL.actualizarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
-                //mostrarUsuariosEnTabla();
-                
+                GestorUsuarios user = new GestorUsuarios();
+                user.modificarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
                 // Borra los campos de los JTextField
                 modificar_textoCedula.setText("");
                 modificar_textoUsuario.setText("");
@@ -1189,7 +1194,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             }   
         } else {
         JOptionPane.showMessageDialog(this, "Seleccione una fila de la tabla para modificar.", "Fila no seleccionada", JOptionPane.WARNING_MESSAGE);
-        }     */
+        }
     }//GEN-LAST:event_modificar_botonModificarActionPerformed
 
     private void modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargoActionPerformed
