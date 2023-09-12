@@ -424,7 +424,7 @@ public class Persistencia_SQL {
     
     
     
-/*
+
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD - PARA MODIFICAR CARGO DE USUARIO
     private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
         String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
@@ -442,15 +442,13 @@ public class Persistencia_SQL {
         preparedStatement.close();
 
         return total > 0;
-    }*/
+    }
 
     
     
 //OBTENER CARGO ACTUAL - PARA MODIFICAR CARGO DE USUARIO    
-  /*  private void obtenerCargoActual(Docente docente) throws SQLException {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        
+    private void obtenerCargoActual(Connection conn, int cedula) throws SQLException {
+
         String cargoActual = null;
 
         String query = "SELECT cargo FROM usuario WHERE cedula = ?";
@@ -466,7 +464,7 @@ public class Persistencia_SQL {
         preparedStatement.close();
 
         return cargoActual;
-    }*/
+    }
     
     
 /*
