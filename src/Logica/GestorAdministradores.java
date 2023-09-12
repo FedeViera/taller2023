@@ -4,7 +4,9 @@ import Entidades.Administrador;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 
 public class GestorAdministradores {
@@ -17,7 +19,6 @@ public class GestorAdministradores {
 
     public void agregarAdministrador(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
         Administrador nuevoAdministrador = new Administrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
-        
     }
 
     public void eliminarAdministrador(Administrador administrador) {
@@ -84,6 +85,21 @@ public class GestorAdministradores {
         }
     }*/
 
+    
+    public void agregarAdministrador(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+        Administrador nuevoAdministrador = new Administrador();
+        nuevoAdministrador.setCedula(cedula);
+        nuevoAdministrador.setNombre(nombre);
+        nuevoAdministrador.setApellido(apellido);
+        nuevoAdministrador.setUsuario(usuario);
+        nuevoAdministrador.setContrasenia(contrasenia);
+        nuevoAdministrador.setCargo(cargo);
+
+        // Llama a tu método de persistencia para agregar el Administrador
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.agregarAdministrador(nuevoAdministrador);
+    }
+    
 
 }
 

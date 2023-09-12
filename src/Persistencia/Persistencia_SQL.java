@@ -18,6 +18,11 @@ import java.util.List;
 
 public class Persistencia_SQL {
 
+    public Persistencia_SQL() {
+        
+    }
+
+    
 //MAPEAR USUARIO - PARA LOGIN
     public Usuario mapearUsuario(String usuario, String contrasenia) {
         
@@ -205,10 +210,129 @@ public class Persistencia_SQL {
         return listaDocentes;
     }
     
-//INSERTAR ADMINISTRADOR
+
+// Método para agregar un usuario genérico
+    public void agregarUsuarioGenerico(Usuario usuario) {
+        // Obtén la información del usuario
+        Integer cedula = usuario.getCedula();
+        String nombre = usuario.getNombre();
+        String apellido = usuario.getApellido();
+        String nickUsuario = usuario.getUsuario();
+        String contrasenia = usuario.getContrasenia();
+        String cargo = usuario.getCargo();
+
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Verificar si el usuario ya existe en la base de datos.
+                String query = "INSERT INTO usuario (cedula, nombre, apellido, usuario, contrasenia, cargo) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cedula);
+                preparedStatement.setString(2, nombre);
+                preparedStatement.setString(3, apellido);
+                preparedStatement.setString(4, nickUsuario);
+                preparedStatement.setString(5, contrasenia);
+                preparedStatement.setString(6, cargo);
+
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+
+                JOptionPane.showMessageDialog(null, "" + cargo + ": " + nombre + " " + apellido + "\nCI: " + cedula + ", fue agregado correctamente.", "Usuario agregado", JOptionPane.INFORMATION_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "Error al agregar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+// Método para agregar un Administrador
+    public void agregarAdministrador(Administrador administrador) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                Integer cedula = administrador.getCedula();
+                String queryAdmin = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
+                PreparedStatement preparedStatementAdmin = conn.prepareStatement(queryAdmin);
+                preparedStatementAdmin.setInt(1, cedula);
+                preparedStatementAdmin.executeUpdate();
+                preparedStatementAdmin.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "Error al agregar el administrador.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+// Método para agregar un Adscripto
+    public void agregarAdscripto(Adscripto adscripto) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                Integer cedula = adscripto.getCedula();
+                Integer grado = adscripto.getGrado();
+                String queryAdscripto = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
+                PreparedStatement preparedStatementAdscripto = conn.prepareStatement(queryAdscripto);
+                preparedStatementAdscripto.setInt(1, cedula);
+                preparedStatementAdscripto.setInt(2, grado);
+                preparedStatementAdscripto.executeUpdate();
+                preparedStatementAdscripto.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "Error al agregar el adscripto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+// Método para agregar un Docente
+    public void agregarDocente(Docente docente) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                Integer cedula = docente.getCedula();
+                Integer grado = docente.getGrado();
+                String asignatura = docente.getAsignatura();
+                String queryDocente = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(queryDocente);
+                preparedStatementDocente.setInt(1, cedula);
+                preparedStatementDocente.setInt(2, grado);
+                preparedStatementDocente.setString(3, asignatura);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     
 
-
     
     
     
@@ -231,6 +355,18 @@ public class Persistencia_SQL {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ /*
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD
     private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
         String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
@@ -249,78 +385,9 @@ public class Persistencia_SQL {
 
         return total > 0;
     }
-
-
-//AGREGAR DATO EN BD
-    public void agregarDato(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo, String grado, String asignatura) {
-        String cedulaStr = cedula.toString();
-
-        if (!cedulaStr.matches("\\d{8}")) {
-            JOptionPane.showMessageDialog(null, "La cédula debe contener exactamente 8 dígitos numéricos.", "Cédula Inválida", JOptionPane.WARNING_MESSAGE);
-            return; // Salir del método si la cédula es inválida
-        }
-
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                // Verificar si el usuario ya existe en la base de datos.
-                if (!usuarioExiste(conn, cedula, usuario)) {
-                    String query = "INSERT INTO usuario (cedula, nombre, apellido, usuario, contrasenia, cargo) VALUES (?, ?, ?, ?, ?, ?)";
-                    PreparedStatement preparedStatement = conn.prepareStatement(query);
-                    preparedStatement.setInt(1, cedula);
-                    preparedStatement.setString(2, nombre);
-                    preparedStatement.setString(3, apellido);
-                    preparedStatement.setString(4, usuario);
-                    preparedStatement.setString(5, contrasenia);
-                    preparedStatement.setString(6, cargo);
-
-                    preparedStatement.executeUpdate();
-
-                    preparedStatement.close();
-                    
-                    // Insertar en la tabla correspondiente según el cargo
-                    if ("Administrador".equals(cargo)) {
-                        String queryAdmin = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
-                        PreparedStatement preparedStatementAdmin = conn.prepareStatement(queryAdmin);
-                        preparedStatementAdmin.setInt(1, cedula);
-                        preparedStatementAdmin.executeUpdate();
-                        preparedStatementAdmin.close();
-                    } else if ("Adscripto".equals(cargo)) {
-                        String queryAdscripto = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
-                        PreparedStatement preparedStatementAdscripto = conn.prepareStatement(queryAdscripto);
-                        preparedStatementAdscripto.setInt(1, cedula);
-                        preparedStatementAdscripto.setString(2, grado); // Corregido
-                        preparedStatementAdscripto.executeUpdate();
-                        preparedStatementAdscripto.close();
-                    } else if ("Docente".equals(cargo)) {
-                        String queryDocente = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
-                        PreparedStatement preparedStatementDocente = conn.prepareStatement(queryDocente);
-                        preparedStatementDocente.setInt(1, cedula);
-                        preparedStatementDocente.setString(2, grado); // Corregido
-                        preparedStatementDocente.setString(3, asignatura); // Corregido
-                        preparedStatementDocente.executeUpdate();
-                        preparedStatementDocente.close();
-                    }
-                    JOptionPane.showMessageDialog(null,""+ cargo +": "+nombre+" "+apellido+"\nCI: "+cedula+", fue agregado correctamente.", "Usuario agregado", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    String mensaje = "Ya existe un usuario con ";
-                    if (usuarioExiste(conn, cedula, usuario)) {
-                        mensaje += "la misma cédula: " + cedula + " o nombre de usuario: " + usuario + "\nPor favor Verifique los datos.";
-                    }
-                    JOptionPane.showMessageDialog(null, mensaje, "Usuario Duplicado", JOptionPane.WARNING_MESSAGE);  
-                }
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
+*/   
+    
+    
 //CARGO ACTUAL    
     private String obtenerCargoActual(Connection conn, Integer cedula) throws SQLException {
         String cargoActual = null;
@@ -339,7 +406,8 @@ public class Persistencia_SQL {
 
         return cargoActual;
     }
-    
+
+/*    
 //ACTUALIZAR DATO EN BD
     public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo, Integer grado, String asignatura) {
         Conexion conexion = new Conexion();
@@ -375,7 +443,7 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+*/
     private void moverUsuario(Connection conn, Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
         // Eliminar al usuario de la tabla actual
         String deleteQuery = "DELETE FROM " + cargoActual + " WHERE usuario_cedula = ?";

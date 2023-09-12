@@ -60,6 +60,21 @@ public class GestorAdscriptos {
             System.out.println("Grado: " + adscripto.getGrado());
         }
     }
+    
+    
+    public void agregarAdscripto(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, Integer grado) {
+        Adscripto nuevoAdscripto = new Adscripto();
+        nuevoAdscripto.setCedula(cedula);
+        nuevoAdscripto.setNombre(nombre);
+        nuevoAdscripto.setApellido(apellido);
+        nuevoAdscripto.setUsuario(usuario);
+        nuevoAdscripto.setContrasenia(contrasenia);
+        nuevoAdscripto.setGrado(grado);
+
+        // Llama a tu método de persistencia para agregar el Administrador
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.agregarAdscripto(nuevoAdscripto);
+    }
 
     /*
     public void insertarAdscriptosEnTabla(DefaultTableModel model) {

@@ -164,7 +164,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         tablaUsuarios = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
         pestaña1 = new javax.swing.JPanel();
-        mostrartabla = new javax.swing.JButton();
         pestaña2 = new javax.swing.JPanel();
         pestaña3 = new javax.swing.JPanel();
 
@@ -885,28 +884,15 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
 
-        mostrartabla.setText("jButton1");
-        mostrartabla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrartablaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
         pestaña1.setLayout(pestaña1Layout);
         pestaña1Layout.setHorizontalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1Layout.createSequentialGroup()
-                .addContainerGap(547, Short.MAX_VALUE)
-                .addComponent(mostrartabla, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(326, 326, 326))
+            .addGap(0, 958, Short.MAX_VALUE)
         );
         pestaña1Layout.setVerticalGroup(
             pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña1Layout.createSequentialGroup()
-                .addGap(332, 332, 332)
-                .addComponent(mostrartabla)
-                .addContainerGap(188, Short.MAX_VALUE))
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         panelPestañas.addTab("tab2", pestaña1);
@@ -1092,32 +1078,36 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //BOTON AGREGAR
     private void agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_botonAgregarActionPerformed
-       /*
-        String cedulaStr = agregar_textoCedula.getText();  // Obtener la cédula como cadena
+        
+        Integer cedula = Integer.parseInt(agregar_textoCedula.getText());
+        String nombre = agregar_textoNombre.getText();
+        String apellido = agregar_textoApellido.getText();
+        String usuario = agregar_textoUsuario.getText();
+        String contrasenia = new String(agregar_textoContrasenia.getPassword());
+        String cargo = agregar_opcionesCargo.getSelectedItem().toString(); // Obtener el cargo
+        Integer grado = Integer.parseInt(agregar_opcionesGrado.getSelectedItem().toString());
+        String asignatura = agregar_opcionesAsignatura.getSelectedItem().toString();
 
-        // Convertir la cédula a un número entero
-        try {
-            Integer cedula = Integer.parseInt(cedulaStr);  
-            String nombre = agregar_textoNombre.getText();
-            String apellido = agregar_textoApellido.getText();
-            String usuario = agregar_textoUsuario.getText();
-            String contrasenia = new String(agregar_textoContrasenia.getPassword());
-            String cargo = agregar_opcionesCargo.getSelectedItem().toString(); // Obtener el cargo
-            String grado = agregar_opcionesGrado.getSelectedItem().toString();
-            String asignatura = agregar_opcionesAsignatura.getSelectedItem().toString();
-
-            Persistencia_SQL consultasSQL = new Persistencia_SQL();
-            consultasSQL.agregarDato(cedula, nombre, apellido, usuario, contrasenia, cargo, grado, asignatura);
-
-            // Borra los campos de los JTextField
-            agregar_textoCedula.setText("");
-            agregar_textoNombre.setText("");
-            agregar_textoApellido.setText("");
-            agregar_textoUsuario.setText("");
-            agregar_textoContrasenia.setText("");
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "La cédula debe ser un número válido.", "Cédula Inválida", JOptionPane.WARNING_MESSAGE);
-        }*/
+        // Borra los campos de los JTextField
+        agregar_textoCedula.setText("");
+        agregar_textoNombre.setText("");
+        agregar_textoApellido.setText("");
+        agregar_textoUsuario.setText("");
+        agregar_textoContrasenia.setText("");
+        
+        List<Object> listaGeneral = new ArrayList<>(); // Crea una lista vacía
+        GestorUsuarios gestor = new GestorUsuarios();
+        gestor.agregarUsuario(listaGeneral, cedula, nombre, apellido, usuario, contrasenia, cargo);
+        if(cargo.equals("Administrador")){
+            GestorAdministradores gestorAdmin = new GestorAdministradores();
+            gestorAdmin.agregarAdministrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
+        }else if(cargo.equals("Adscripto")){
+            GestorAdscriptos gestorAds = new GestorAdscriptos();
+            gestorAds.agregarAdscripto(cedula, nombre, apellido, usuario, contrasenia, grado);
+        }else if(cargo.equals("Docente")){
+            GestorDocentes gestorDoce = new GestorDocentes();
+            gestorDoce.agregarDocente(cedula, nombre, apellido, usuario, contrasenia, grado, asignatura);
+        }
     }//GEN-LAST:event_agregar_botonAgregarActionPerformed
 
     
@@ -1287,10 +1277,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             JOptionPane.showMessageDialog(null, "No se encontró ninguna cédula coincidente.", "Búsqueda", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonBuscarActionPerformed
-
-    private void mostrartablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrartablaActionPerformed
-         
-    }//GEN-LAST:event_mostrartablaActionPerformed
          
 //HACER VISIBLE EN LA TABLA LA FILA DEL USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
@@ -1307,7 +1293,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 //CARGAR TODOS LOS DATOS DESDE LISTA GENERAL (ADMIN, ADS Y DOCENTES) EN EL JTable
     private void cargarDatosJTable(){
         GestorUsuarios gestor = new GestorUsuarios();
-        List<Object> listaGeneral = gestor.cargarUsuariosEnTabla();
+        List<Object> listaGeneral = gestor.obtenerTodosUsuarios();
         
         DefaultTableModel model = (DefaultTableModel) tablaUsuario.getModel();
         model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
@@ -1503,7 +1489,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPasswordField modificar_textoContrasenia;
     private javax.swing.JTextField modificar_textoUsuario;
     private javax.swing.JLabel modificar_usuario;
-    private javax.swing.JButton mostrartabla;
     private javax.swing.JLabel ocultarPswd;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;

@@ -63,6 +63,23 @@ public class GestorDocentes {
         }
     }
     
+    public void agregarDocente(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, Integer grado, String asignatura) {
+        Docente nuevoDocente = new Docente();
+        nuevoDocente.setCedula(cedula);
+        nuevoDocente.setNombre(nombre);
+        nuevoDocente.setApellido(apellido);
+        nuevoDocente.setUsuario(usuario);
+        nuevoDocente.setContrasenia(contrasenia);
+        nuevoDocente.setGrado(grado);
+        nuevoDocente.setAsignatura(asignatura);
+
+        // Llama a tu método de persistencia para agregar el Administrador
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.agregarDocente(nuevoDocente);
+    }
+    
+    
+    
     /*
     public void insertarDocentesEnTabla(DefaultTableModel model) {
         // Verificar si la lista de administradores no está vacía

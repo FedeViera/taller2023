@@ -7,6 +7,10 @@ import javax.swing.JTextField;
 
 public class Controlador {
 
+    public Controlador() {
+        
+    }
+    
 //VALIDAR USUARIO
     public boolean validarUsuario(String usuario, String contrasenia) {
         // Instancia de Persistencia_SQL
@@ -51,8 +55,7 @@ public class Controlador {
         return nombreApellido;
     }
 
-    public Controlador() {
-    }
+    
 
     
  
