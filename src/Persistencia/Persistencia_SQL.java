@@ -447,7 +447,7 @@ public class Persistencia_SQL {
     
     
 //OBTENER CARGO ACTUAL - PARA MODIFICAR CARGO DE USUARIO    
-    private void obtenerCargoActual(Connection conn, int cedula) throws SQLException {
+    private String obtenerCargoActual(Connection conn, int cedula) throws SQLException {
 
         String cargoActual = null;
 
@@ -467,7 +467,7 @@ public class Persistencia_SQL {
     }
     
     
-/*
+
     private void moverUsuario(Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -500,20 +500,26 @@ public class Persistencia_SQL {
             insertStatement.executeUpdate();
         }
 
-    }*/
+    }
     
-    /*
+    
 //ACTUALIZAR DATO EN BD
-    public void actualizarUsuario(Integer cedula, String nuevaContrasenia, String nuevoCargo, Integer grado, String asignatura) {
+    public void actualizarUsuario(Docente docente) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
+        
+        Integer cedula = docente.getCedula();
+        String nuevaContrasenia = docente.getContrasenia();
+        String nuevoCargo = docente.getCargo();
+        Integer nuevoGrado = docente.getGrado();
+        String nuevaAsignatura = docente.getAsignatura();
 
         if (conn != null) {
             try {
                 // Verificar si el usuario existe en la base de datos antes de actualizarlo
                 if (usuarioExiste(conn, cedula, null)) {
                     // Obtener el cargo actual del usuario
-                    String cargoActual = obtenerCargoActual(cedula);
+                    String cargoActual = obtenerCargoActual(conn, cedula);
 
                     String query = "UPDATE usuario SET contrasenia = ?, cargo = ? WHERE cedula = ?";
                     PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -525,7 +531,7 @@ public class Persistencia_SQL {
                     preparedStatement.close();
                  
                     // Mover al usuario a la tabla correspondiente
-                    moverUsuario(cedula, cargoActual, nuevoCargo, grado, asignatura);
+                    moverUsuario(cedula, cargoActual, nuevoCargo, nuevoGrado, nuevaAsignatura);
                     JOptionPane.showMessageDialog(null, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos.", "Usuario no encontrado", JOptionPane.WARNING_MESSAGE);
@@ -537,7 +543,7 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }*/
+    }
 
     
     

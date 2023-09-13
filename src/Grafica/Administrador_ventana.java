@@ -1193,7 +1193,10 @@ public class Administrador_ventana extends javax.swing.JFrame
             
             if (respuesta == JOptionPane.YES_OPTION) {
                 GestorUsuarios user = new GestorUsuarios();
-                user.modificarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);
+                user.modificarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);              
+                
+                cargarDatosJTable();
+                
                 // Borra los campos de los JTextField
                 modificar_textoCedula.setText("");
                 modificar_textoUsuario.setText("");

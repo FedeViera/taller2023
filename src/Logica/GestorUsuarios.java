@@ -121,13 +121,7 @@ public class GestorUsuarios {
         usuarioFull.setAsignatura(nuevaAsignatura);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        
-        
-        
-        
-        
-        
-        
+        persistencia.actualizarUsuario(usuarioFull);
     }
 
 
