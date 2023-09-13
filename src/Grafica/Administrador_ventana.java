@@ -1381,7 +1381,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaUsuario.repaint();
         }
         
-        //LLENA LOS CAMPOS DEL USUARIO DE LA FILA SELECCIONADA EN EL JTable
+//AL SELECCIONAR UNA FILA, TOMA LOS DATOS Y LOS COLOCA EN LOS CAMPOS PARA MODIFICAR
         tablaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
