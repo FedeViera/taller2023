@@ -11,6 +11,7 @@ import Entidades.Usuario;
 import Entidades.Administrador;
 import Entidades.Adscripto;
 import Entidades.Docente;
+import Entidades.Curso;
 import Grafica.Login_ventana;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +22,18 @@ public class Persistencia_SQL {
     public Persistencia_SQL() {
         
     }
-
+   
     
-//MAPEAR USUARIO - PARA LOGIN
+//MAPEAR 1 USUARIO - PARA LOGIN
     public Usuario mapearUsuario(String usuario, String contrasenia) {
-        
         Usuario usuarioTemp = null;
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
         if (conn != null) {
             try {
-                String query = "SELECT cedula, nombre, apellido, usuario, contrasenia, cargo FROM usuario WHERE usuario=? AND contrasenia=?";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                String mapQuery = "SELECT cedula, nombre, apellido, usuario, contrasenia, cargo FROM usuario WHERE usuario=? AND contrasenia=?";
+                PreparedStatement preparedStatement = conn.prepareStatement(mapQuery);
                 preparedStatement.setString(1, usuario);
                 preparedStatement.setString(2, contrasenia);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -59,158 +59,7 @@ public class Persistencia_SQL {
         return usuarioTemp;
     }
 
-//MAPEAR ADMINS
-    public List<Administrador> mapearAdministradores() {
-
-        List<Administrador> listaAdministradores = new ArrayList<>();
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                // Consulta para traer todos los Administradores
-                String query = "SELECT\n" +
-                                "    u.cedula,\n" +
-                                "    u.nombre,\n" +
-                                "    u.apellido,\n" +
-                                "    u.usuario,\n" +
-                                "    u.contrasenia,\n" +
-                                "    u.cargo\n" +
-                                "FROM\n" +
-                                "    usuario u\n" +
-                                "INNER JOIN\n" +
-                                "    administrador a ON u.cedula = a.usuario_cedula;";
-
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    Administrador admin = new Administrador();
-
-                    admin.setCedula(resultSet.getInt("cedula"));
-                    admin.setNombre(resultSet.getString("nombre"));
-                    admin.setApellido(resultSet.getString("apellido"));
-                    admin.setUsuario(resultSet.getString("usuario"));
-                    admin.setContrasenia(resultSet.getString("contrasenia"));
-                    admin.setCargo(resultSet.getString("cargo"));
-
-                    listaAdministradores.add(admin);
-                }
-                resultSet.close();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Ocurrió un error al mapear los administradores.");
-            }
-        }
-        return listaAdministradores;
-    }
-
-//MAPEAR ADSCRIPTOS
-    public List<Adscripto> mapearAdscriptos() {
-
-        List<Adscripto> listaAdscriptos = new ArrayList<>();
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                // Consulta para traer todos los Adscriptos
-                String query =  "SELECT\n" +
-                                "    u.cedula,\n" +
-                                "    u.nombre,\n" +
-                                "    u.apellido,\n" +
-                                "    u.usuario,\n" +
-                                "    u.contrasenia,\n" +
-                                "    u.cargo,\n" +
-                                "    ad.grado\n" +
-                                "FROM\n" +
-                                "    usuario u\n" +
-                                "INNER JOIN\n" +
-                                "    adscripto ad ON u.cedula = ad.usuario_cedula;";
-
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    Adscripto adscriptor = new Adscripto();
-
-                    adscriptor.setCedula(resultSet.getInt("cedula"));
-                    adscriptor.setNombre(resultSet.getString("nombre"));
-                    adscriptor.setApellido(resultSet.getString("apellido"));
-                    adscriptor.setUsuario(resultSet.getString("usuario"));
-                    adscriptor.setContrasenia(resultSet.getString("contrasenia"));
-                    adscriptor.setCargo(resultSet.getString("cargo"));
-                    adscriptor.setGrado(resultSet.getInt("grado"));
-
-                    listaAdscriptos.add(adscriptor);
-                }
-                resultSet.close();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Ocurrió un error al mapear los adscriptos.");
-            }
-        }
-        return listaAdscriptos;
-    }
-
-
-//MAPEAR DOCENTES
-    public List<Docente> mapearDocentes() {
-
-        List<Docente> listaDocentes = new ArrayList<>();
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                // Consulta para traer todos los Docentes
-                String query =  "SELECT\n" +
-                                "    u.cedula,\n" +
-                                "    u.nombre,\n" +
-                                "    u.apellido,\n" +
-                                "    u.usuario,\n" +
-                                "    u.contrasenia,\n" +
-                                "    u.cargo,\n" +
-                                "    d.grado,\n" +
-                                "    d.asignatura\n" +
-                                "FROM\n" +
-                                "    usuario u\n" +
-                                "INNER JOIN\n" +
-                                "    docente d ON u.cedula = d.usuario_cedula;";
-
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    Docente docente = new Docente();
-
-                    docente.setCedula(resultSet.getInt("cedula"));
-                    docente.setNombre(resultSet.getString("nombre"));
-                    docente.setApellido(resultSet.getString("apellido"));
-                    docente.setUsuario(resultSet.getString("usuario"));
-                    docente.setContrasenia(resultSet.getString("contrasenia"));
-                    docente.setCargo(resultSet.getString("cargo"));
-                    docente.setGrado(resultSet.getInt("grado"));
-                    docente.setAsignatura(resultSet.getString("asignatura"));
-
-                    listaDocentes.add(docente);
-                }
-                resultSet.close();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Ocurrió un error al mapear los docentes.");
-            }
-        }
-        return listaDocentes;
-    }
     
-
 //AGREGAR SOLO USUARIO
     public void agregarUsuario(Usuario usuario) {
         // Obtén la información del usuario
@@ -227,8 +76,8 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 // Verificar si el usuario ya existe en la base de datos.
-                String query = "INSERT INTO usuario (cedula, nombre, apellido, usuario, contrasenia, cargo) VALUES (?, ?, ?, ?, ?, ?)";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                String insertQuery = "INSERT INTO usuario (cedula, nombre, apellido, usuario, contrasenia, cargo) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
                 preparedStatement.setInt(1, cedula);
                 preparedStatement.setString(2, nombre);
                 preparedStatement.setString(3, apellido);
@@ -248,187 +97,13 @@ public class Persistencia_SQL {
         } else {
             //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-//AGREGAR ADMINISTRADOR
-    public void agregarAdministrador(Administrador administrador) {
-        // Insertar en la tabla correspondiente según el cargo
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                Integer cedula = administrador.getCedula();
-                String queryAdmin = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
-                PreparedStatement preparedStatementAdmin = conn.prepareStatement(queryAdmin);
-                preparedStatementAdmin.setInt(1, cedula);
-                preparedStatementAdmin.executeUpdate();
-                preparedStatementAdmin.close();
-
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                //JOptionPane.showMessageDialog(null, "Error al agregar el administrador.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-//AGREGAR ADSCRIPTO
-    public void agregarAdscripto(Adscripto adscripto) {
-        // Insertar en la tabla correspondiente según el cargo
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                Integer cedula = adscripto.getCedula();
-                Integer grado = adscripto.getGrado();
-                String queryAdscripto = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
-                PreparedStatement preparedStatementAdscripto = conn.prepareStatement(queryAdscripto);
-                preparedStatementAdscripto.setInt(1, cedula);
-                preparedStatementAdscripto.setInt(2, grado);
-                preparedStatementAdscripto.executeUpdate();
-                preparedStatementAdscripto.close();
-
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                //JOptionPane.showMessageDialog(null, "Error al agregar el adscripto.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-//AGREGAR DOCENTE
-    public void agregarDocente(Docente docente) {
-        // Insertar en la tabla correspondiente según el cargo
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                Integer cedula = docente.getCedula();
-                Integer grado = docente.getGrado();
-                String asignatura = docente.getAsignatura();
-                String queryDocente = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(queryDocente);
-                preparedStatementDocente.setInt(1, cedula);
-                preparedStatementDocente.setInt(2, grado);
-                preparedStatementDocente.setString(3, asignatura);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
-
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-//ELIMINAR DUSUARIOS DE LA BASE DE DATOS (Y SU RELACION CON TABLA ADMINISTRADOR, ADSCRIPTO O DOCENTE)  
-    public void eliminarUsuario(int cedula, String cargo) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                if ("Administrador".equals(cargo)) {
-                    eliminarAdministrador(conn, cedula);
-                } else if ("Adscripto".equals(cargo)) {
-                    eliminarAdscripto(conn, cedula);
-                } else if ("Docente".equals(cargo)) {
-                    eliminarDocente(conn, cedula);
-                }
-      
-                eliminarUsuario(conn, cedula);
-                
-                JOptionPane.showMessageDialog(null, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    private void eliminarAdministrador(Connection conn, int cedula) throws SQLException {
-        String query = "DELETE FROM administrador WHERE usuario_cedula = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1, cedula);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-
-    private void eliminarAdscripto(Connection conn, int cedula) throws SQLException {
-        String query = "DELETE FROM adscripto WHERE usuario_cedula = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1, cedula);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-
-    private void eliminarDocente(Connection conn, int cedula) throws SQLException {
-        String query = "DELETE FROM docente WHERE usuario_cedula = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1, cedula);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-
-    private void eliminarUsuario(Connection conn, int cedula) throws SQLException {
-        String query = "DELETE FROM usuario WHERE cedula = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1, cedula);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-    
+    } 
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 //CHEQUEAR SI EL USUARIO EXISTE EN LA BD - PARA MODIFICAR CARGO DE USUARIO
     private boolean usuarioExiste(Connection conn, Integer cedula, String usuario) throws SQLException {
-        String query = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        String searchQuery = "SELECT COUNT(*) AS total FROM usuario WHERE cedula = ? OR usuario = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(searchQuery);
         preparedStatement.setInt(1, cedula);
         preparedStatement.setString(2, usuario);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -442,17 +117,16 @@ public class Persistencia_SQL {
         preparedStatement.close();
 
         return total > 0;
-    }
-
-    
+    }    
+   
     
 //OBTENER CARGO ACTUAL - PARA MODIFICAR CARGO DE USUARIO    
     private String obtenerCargoActual(Connection conn, int cedula) throws SQLException {
 
         String cargoActual = null;
 
-        String query = "SELECT cargo FROM usuario WHERE cedula = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        String searchQuery = "SELECT cargo FROM usuario WHERE cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(searchQuery);
         preparedStatement.setInt(1, cedula);
 
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -465,9 +139,8 @@ public class Persistencia_SQL {
 
         return cargoActual;
     }
-    
-    
 
+    
     private void moverUsuario(Integer cedula, String cargoActual, String nuevoCargo, Integer grado, String asignatura) throws SQLException {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -521,8 +194,8 @@ public class Persistencia_SQL {
                     // Obtener el cargo actual del usuario
                     String cargoActual = obtenerCargoActual(conn, cedula);
 
-                    String query = "UPDATE usuario SET contrasenia = ?, cargo = ? WHERE cedula = ?";
-                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    String updateQuery = "UPDATE usuario SET contrasenia = ?, cargo = ? WHERE cedula = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(updateQuery);
                     preparedStatement.setString(1, nuevaContrasenia);
                     preparedStatement.setString(2, nuevoCargo);
                     preparedStatement.setInt(3, cedula);
@@ -544,6 +217,409 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+
+//ELIMINAR DUSUARIOS DE LA BASE DE DATOS (Y SU RELACION CON TABLA ADMINISTRADOR, ADSCRIPTO O DOCENTE)  
+    public void eliminarUsuario(int cedula, String cargo) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                if ("Administrador".equals(cargo)) {
+                    eliminarAdministrador(conn, cedula);
+                } else if ("Adscripto".equals(cargo)) {
+                    eliminarAdscripto(conn, cedula);
+                } else if ("Docente".equals(cargo)) {
+                    eliminarDocente(conn, cedula);
+                }
+      
+                eliminarUsuario(conn, cedula);
+                
+                JOptionPane.showMessageDialog(null, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void eliminarUsuario(Connection conn, int cedula) throws SQLException {
+        String deleteQuery = "DELETE FROM usuario WHERE cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }    
+   
+    private void eliminarAdministrador(Connection conn, int cedula) throws SQLException {
+        String deleteQuery = "DELETE FROM administrador WHERE usuario_cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    private void eliminarAdscripto(Connection conn, int cedula) throws SQLException {
+        String deleteQuery = "DELETE FROM adscripto WHERE usuario_cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    private void eliminarDocente(Connection conn, int cedula) throws SQLException {
+        String deleteQuery = "DELETE FROM docente WHERE usuario_cedula = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+        preparedStatement.setInt(1, cedula);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    
+    
+//MAPEAR ADMINS
+    public List<Administrador> mapearAdministradores() {
+        List<Administrador> listaAdministradores = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Administradores
+                String query = "SELECT\n" +
+                                "    u.cedula,\n" +
+                                "    u.nombre,\n" +
+                                "    u.apellido,\n" +
+                                "    u.usuario,\n" +
+                                "    u.contrasenia,\n" +
+                                "    u.cargo\n" +
+                                "FROM\n" +
+                                "    usuario u\n" +
+                                "INNER JOIN\n" +
+                                "    administrador a ON u.cedula = a.usuario_cedula;";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Administrador admin = new Administrador();
+
+                    admin.setCedula(resultSet.getInt("cedula"));
+                    admin.setNombre(resultSet.getString("nombre"));
+                    admin.setApellido(resultSet.getString("apellido"));
+                    admin.setUsuario(resultSet.getString("usuario"));
+                    admin.setContrasenia(resultSet.getString("contrasenia"));
+                    admin.setCargo(resultSet.getString("cargo"));
+
+                    listaAdministradores.add(admin);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los administradores.");
+            }
+        }
+        return listaAdministradores;
+    }
+
+//AGREGAR ADMINISTRADOR
+    public void agregarAdministrador(Administrador administrador) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                Integer cedula = administrador.getCedula();
+                String query = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
+                PreparedStatement preparedStatementAdmin = conn.prepareStatement(query);
+                preparedStatementAdmin.setInt(1, cedula);
+                preparedStatementAdmin.executeUpdate();
+                preparedStatementAdmin.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "Error al agregar el administrador.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+    
+//MAPEAR ADSCRIPTOS
+    public List<Adscripto> mapearAdscriptos() {
+        List<Adscripto> listaAdscriptos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Adscriptos
+                String query =  "SELECT\n" +
+                                "    u.cedula,\n" +
+                                "    u.nombre,\n" +
+                                "    u.apellido,\n" +
+                                "    u.usuario,\n" +
+                                "    u.contrasenia,\n" +
+                                "    u.cargo,\n" +
+                                "    ad.grado\n" +
+                                "FROM\n" +
+                                "    usuario u\n" +
+                                "INNER JOIN\n" +
+                                "    adscripto ad ON u.cedula = ad.usuario_cedula;";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Adscripto adscriptor = new Adscripto();
+
+                    adscriptor.setCedula(resultSet.getInt("cedula"));
+                    adscriptor.setNombre(resultSet.getString("nombre"));
+                    adscriptor.setApellido(resultSet.getString("apellido"));
+                    adscriptor.setUsuario(resultSet.getString("usuario"));
+                    adscriptor.setContrasenia(resultSet.getString("contrasenia"));
+                    adscriptor.setCargo(resultSet.getString("cargo"));
+                    adscriptor.setGrado(resultSet.getInt("grado"));
+
+                    listaAdscriptos.add(adscriptor);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los adscriptos.");
+            }
+        }
+        return listaAdscriptos;
+    }
+
+//AGREGAR ADSCRIPTO
+    public void agregarAdscripto(Adscripto adscripto) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                Integer cedula = adscripto.getCedula();
+                Integer grado = adscripto.getGrado();
+                String insertQuery = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
+                PreparedStatement preparedStatementAdscripto = conn.prepareStatement(insertQuery);
+                preparedStatementAdscripto.setInt(1, cedula);
+                preparedStatementAdscripto.setInt(2, grado);
+                preparedStatementAdscripto.executeUpdate();
+                preparedStatementAdscripto.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //JOptionPane.showMessageDialog(null, "Error al agregar el adscripto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            //JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+
+//MAPEAR DOCENTES
+    public List<Docente> mapearDocentes() {
+        List<Docente> listaDocentes = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Docentes
+                String query =  "SELECT\n" +
+                                "    u.cedula,\n" +
+                                "    u.nombre,\n" +
+                                "    u.apellido,\n" +
+                                "    u.usuario,\n" +
+                                "    u.contrasenia,\n" +
+                                "    u.cargo,\n" +
+                                "    d.grado,\n" +
+                                "    d.asignatura\n" +
+                                "FROM\n" +
+                                "    usuario u\n" +
+                                "INNER JOIN\n" +
+                                "    docente d ON u.cedula = d.usuario_cedula;";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Docente docente = new Docente();
+
+                    docente.setCedula(resultSet.getInt("cedula"));
+                    docente.setNombre(resultSet.getString("nombre"));
+                    docente.setApellido(resultSet.getString("apellido"));
+                    docente.setUsuario(resultSet.getString("usuario"));
+                    docente.setContrasenia(resultSet.getString("contrasenia"));
+                    docente.setCargo(resultSet.getString("cargo"));
+                    docente.setGrado(resultSet.getInt("grado"));
+                    docente.setAsignatura(resultSet.getString("asignatura"));
+
+                    listaDocentes.add(docente);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los docentes.");
+            }
+        }
+        return listaDocentes;
+    }
+    
+//AGREGAR DOCENTE
+    public void agregarDocente(Docente docente) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                Integer cedula = docente.getCedula();
+                Integer grado = docente.getGrado();
+                String asignatura = docente.getAsignatura();
+                String query = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(query);
+                preparedStatementDocente.setInt(1, cedula);
+                preparedStatementDocente.setInt(2, grado);
+                preparedStatementDocente.setString(3, asignatura);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+    
+//MAPEAR CURSOS
+    public List<Curso> mapearCursos() {
+        List<Curso> listaCursos = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Docentes
+                String query =  "SELECT * from curso";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Curso curso = new Curso();
+
+                    curso.setAsignatura(resultSet.getString("asignatura"));
+
+                    listaCursos.add(curso);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los cursos.");
+            }
+        }
+        return listaCursos;
+    }
+    
+    
+//AGREGAR CURSO
+    public void agregarCurso(Curso curso) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String nuevoCurso = curso.getAsignatura();
+                String insertQuery = "INSERT INTO curso (asignatura) VALUES (?)";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
+                preparedStatementDocente.setString(1, nuevoCurso);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+    
+    
+//AGREGAR CURSO
+    public void eliminarCurso(Curso curso) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String cursoEliminar = curso.getAsignatura();
+                String deleteQuery = "DELETE FROM curso WHERE asignatura = ?";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
+                preparedStatementDocente.setString(1, cursoEliminar);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+                
+                JOptionPane.showMessageDialog(null, "El "+cursoEliminar+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
+
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }        
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 
     
     

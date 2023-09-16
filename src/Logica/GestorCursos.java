@@ -25,17 +25,12 @@ public class GestorCursos {
     }
     
 //LOGICA AGREGAR CURSO    
-    public void agregarCurso(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
-        Administrador nuevoAdministrador = new Administrador();
-        nuevoAdministrador.setCedula(cedula);
-        nuevoAdministrador.setNombre(nombre);
-        nuevoAdministrador.setApellido(apellido);
-        nuevoAdministrador.setUsuario(usuario);
-        nuevoAdministrador.setContrasenia(contrasenia);
-        nuevoAdministrador.setCargo(cargo);
+    public void agregarCurso(String asitnagura) {
+        Curso nuevoCurso = new Curso();
+        nuevoCurso.setAsignatura(asitnagura);
 
         // Llama a tu método de persistencia para agregar el Administrador
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.agregarAdministrador(nuevoAdministrador);
+        persistencia.agregarCurso(nuevoCurso);
     }
 }

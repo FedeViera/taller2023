@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import Persistencia.Persistencia_SQL;
 import Entidades.Usuario;
-import Logica.Controlador;
+import Logica.GestorUsuarios;
 import javax.swing.JTable;
 
 
@@ -207,7 +207,7 @@ public class Login_ventana extends javax.swing.JFrame {
         String nickUsuario = textoUsuario.getText();
         String contraseniaUsuario = textoContrasenia.getText(); 
         // Instancia de la capa lógica
-        Controlador control = new Controlador(); 
+        GestorUsuarios control = new GestorUsuarios(); 
 
         boolean usuarioValido = control.validarUsuario(nickUsuario, contraseniaUsuario);
 
@@ -298,7 +298,7 @@ public class Login_ventana extends javax.swing.JFrame {
             String nickUsuario = textoUsuario.getText();
             String contraseniaUsuario = textoContrasenia.getText(); 
             // Instancia de la capa lógica
-            Controlador control = new Controlador(); 
+            GestorUsuarios control = new GestorUsuarios(); 
 
             boolean usuarioValido = control.validarUsuario(nickUsuario, contraseniaUsuario);
 

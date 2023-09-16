@@ -4,7 +4,6 @@ import Logica.GestorAdministradores;
 import Logica.GestorDocentes;
 import Logica.GestorAdscriptos;
 import Grafica.Login_ventana;
-import Logica.Controlador;
 import Grafica.Administrador_ventana;
 import Logica.GestorUsuarios;
 

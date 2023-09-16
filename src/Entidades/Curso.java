@@ -15,6 +15,9 @@ public class Curso
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
+
+    public Curso() {
+    }
     
     
     
