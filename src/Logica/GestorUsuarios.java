@@ -81,14 +81,13 @@ public class GestorUsuarios {
         GestorDocentes gestionarDocentes = new GestorDocentes();
         GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
 
-        gestionarAdministradores.cargarAdministradoresDesdeBD();
-        listaGeneral.addAll(gestionarAdministradores.obtenerTodosLosAdministradores());
+        listaGeneral.addAll(gestionarAdministradores.cargarAdministradoresDesdeBD());
 
         gestionarDocentes.cargarDocentesDesdeBD();
-        listaGeneral.addAll(gestionarDocentes.obtenerTodosLosDocentes());
+        listaGeneral.addAll(gestionarDocentes.cargarDocentesDesdeBD());
 
         gestionarAdscriptos.cargarAdscriptosDesdeBD();
-        listaGeneral.addAll(gestionarAdscriptos.obtenerTodosLosAdscriptores());
+        listaGeneral.addAll(gestionarAdscriptos.cargarAdscriptosDesdeBD());
 
         return listaGeneral;
     }

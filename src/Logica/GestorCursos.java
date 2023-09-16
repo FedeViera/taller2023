@@ -14,23 +14,29 @@ public class GestorCursos {
         this.listaCursos = new ArrayList<>();
     }
             
-    public void cargarCursosDesdeBD(){
-        Persistencia_SQL persistencia = new Persistencia_SQL();
-    }
-    
-    public void mostrarAdministradores() {
-        for (Curso curso : listaCursos) {
-            System.out.println("Asignatura: " + curso.getAsignatura());
-        }
-    }
-    
-//LOGICA AGREGAR CURSO    
     public void agregarCurso(String asitnagura) {
         Curso nuevoCurso = new Curso();
         nuevoCurso.setAsignatura(asitnagura);
-
-        // Llama a tu método de persistencia para agregar el Administrador
+        
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarCurso(nuevoCurso);
     }
+
+    
+//LISTAR CURSOS DESDE BD   
+    public List<Curso>  cargarCursosDesdeBD() {
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        listaCursos = persistencia.mapearCursos();
+        return listaCursos;
+    }
+    
+//ELIMINAR CURSO
+    public void eliminarCurso(String asignatura){
+        Curso curso = new Curso();
+        curso.setAsignatura(asignatura);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarCurso(curso);
+    }
+    
 }

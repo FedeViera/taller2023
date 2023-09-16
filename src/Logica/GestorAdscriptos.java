@@ -15,20 +15,6 @@ public class GestorAdscriptos {
         this.listaAdscriptos = new ArrayList<>();
     }
 
-    public void agregarAdscripto(Adscripto adscripto) {
-        listaAdscriptos.add(adscripto);
-    }
-
-    public void eliminarAdscripto(Adscripto adscripto) {
-        listaAdscriptos.remove(adscripto);
-    }
-
-    public List<Adscripto> obtenerTodosLosAdscriptores() {
-        return listaAdscriptos;
-    }
-
-    // Puedes agregar más métodos según tus necesidades
-
     public Adscripto buscarAdscriptoPorCedula(int cedula) {
         for (Adscripto adscripto : listaAdscriptos) {
             if (adscripto.getCedula() == cedula) {
@@ -38,10 +24,11 @@ public class GestorAdscriptos {
         return null; // Adscripto no encontrado
     }
     
-    public void cargarAdscriptosDesdeBD() {
+    
+    public List<Adscripto> cargarAdscriptosDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaAdscriptos = persistencia.mapearAdscriptos();
-  
+        return listaAdscriptos;
     }
        
     //MOSTRAR ADSCRIPTOS
@@ -72,7 +59,8 @@ public class GestorAdscriptos {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarAdscripto(nuevoAdscripto);
     }
-
+    
+/*    
 //ELIMINAR ADSCRIPTO (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)    
     public void eliminarAdscripto(Integer cedula, String cargo){
         Adscripto adscripto = new Adscripto();
@@ -82,7 +70,7 @@ public class GestorAdscriptos {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarUsuario(adscripto.getCedula(), adscripto.getCargo());
     }
-
+*/
 
     
 }

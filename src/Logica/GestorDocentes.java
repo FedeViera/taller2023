@@ -16,20 +16,6 @@ public class GestorDocentes {
         this.listaDocentes = new ArrayList<>();
     }
 
-    public void agregarDocente(Docente docente) {
-        listaDocentes.add(docente);
-    }
-
-    public void eliminarDocente(Docente docente) {
-        listaDocentes.remove(docente);
-    }
-
-    public List<Docente> obtenerTodosLosDocentes() {
-        return listaDocentes;
-    }
-
-    // Puedes agregar más métodos según tus necesidades
-
     public Docente buscarDocentePorCedula(int cedula) {
         for (Docente docente : listaDocentes) {
             if (docente.getCedula() == cedula) {
@@ -39,9 +25,11 @@ public class GestorDocentes {
         return null; // Docente no encontrado
     }
     
-    public void cargarDocentesDesdeBD() {
+    
+    public List<Docente> cargarDocentesDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaDocentes = persistencia.mapearDocentes();
+        return listaDocentes;
     }
     
 
@@ -76,6 +64,7 @@ public class GestorDocentes {
         persistencia.agregarDocente(nuevoDocente);
     }
 
+/*    
 //ELIMINAR DOCENTE (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)    
     public void eliminarDocente(Integer cedula, String cargo){
         Docente docente = new Docente();
@@ -85,7 +74,7 @@ public class GestorDocentes {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarUsuario(docente.getCedula(), docente.getCargo());
     }
-    
+*/   
   
 
 

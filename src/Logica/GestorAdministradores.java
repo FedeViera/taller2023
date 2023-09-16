@@ -17,20 +17,7 @@ public class GestorAdministradores {
         this.listaAdministradores = new ArrayList<>();
     }
 
-    public void agregarAdministrador(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
-        Administrador nuevoAdministrador = new Administrador(cedula, nombre, apellido, usuario, contrasenia, cargo);
-    }
-
-    public void eliminarAdministrador(Administrador administrador) {
-        listaAdministradores.remove(administrador);
-    }
-
-    public List<Administrador> obtenerTodosLosAdministradores() {
-        return listaAdministradores;
-    }
-
-    // Puedes agregar más métodos según tus necesidades
-
+    
     public Administrador buscarAdministradorPorCedula(int cedula) {
         for (Administrador administrador : listaAdministradores) {
             if (administrador.getCedula() == cedula) {
@@ -40,9 +27,11 @@ public class GestorAdministradores {
         return null; // Administrador no encontrado
     }
     
-    public void cargarAdministradoresDesdeBD() {
+//LISTAR ADMINISTRADORES DESDE BD
+    public List<Administrador>  cargarAdministradoresDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaAdministradores = persistencia.mapearAdministradores();
+        return listaAdministradores;
     }
     
     /*//LLAMAR PARA CARGAR ADMINISTRADORES
@@ -71,11 +60,11 @@ public class GestorAdministradores {
         nuevoAdministrador.setContrasenia(contrasenia);
         nuevoAdministrador.setCargo(cargo);
 
-        // Llama a tu método de persistencia para agregar el Administrador
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarAdministrador(nuevoAdministrador);
     }
     
+/*
 //ELIMINAR ADMINISTRADOR (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)
     public void eliminarAdministrador(Integer cedula, String cargo){
         Administrador administrador = new Administrador();
@@ -85,7 +74,7 @@ public class GestorAdministradores {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarUsuario(administrador.getCedula(), administrador.getCargo());    
     }
-       
+*/  
    
 
 }
