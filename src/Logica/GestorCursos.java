@@ -14,9 +14,9 @@ public class GestorCursos {
         this.listaCursos = new ArrayList<>();
     }
             
-    public void agregarCurso(String asitnagura) {
+    public void agregarCurso(String id_curso) {
         Curso nuevoCurso = new Curso();
-        nuevoCurso.setAsignatura(asitnagura);
+        nuevoCurso.setAsignatura(id_curso);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarCurso(nuevoCurso);
@@ -31,9 +31,9 @@ public class GestorCursos {
     }
     
 //ELIMINAR CURSO
-    public void eliminarCurso(String asignatura){
+    public void eliminarCurso(String id_curso){
         Curso curso = new Curso();
-        curso.setAsignatura(asignatura);
+        curso.setAsignatura(id_curso);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarCurso(curso);

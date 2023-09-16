@@ -102,7 +102,7 @@ public class GestorUsuarios {
                 String usuarioUsuario = administrador.getUsuario();
 
                 if (cedulaUsuario == cedulaVerificar || usuarioUsuario.equals(usuarioVerificar)) {
-                    JOptionPane.showMessageDialog(null, "La cedula o Usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "La cédula o usuario ya esta registrado como Administrador", "Error", JOptionPane.ERROR_MESSAGE);
                     return true;
                 }
             } else if (usuario instanceof Adscripto) {
@@ -111,7 +111,7 @@ public class GestorUsuarios {
                 String usuarioUsuario = adscripto.getUsuario();
 
                 if (cedulaUsuario == cedulaVerificar || usuarioUsuario.equals(usuarioVerificar)) {
-                    JOptionPane.showMessageDialog(null, "La cedula o Usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "La cédula o usuario ya esta registrado como Adscripto", "Error", JOptionPane.ERROR_MESSAGE);
                     return true; 
                 }
             } else if (usuario instanceof Docente) {
@@ -120,7 +120,7 @@ public class GestorUsuarios {
                 String usuarioUsuario = docente.getUsuario();
 
                 if (cedulaUsuario == cedulaVerificar || usuarioUsuario.equals(usuarioVerificar)) {
-                    JOptionPane.showMessageDialog(null, "La cedula o Usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "La cédula o usuario ya esta registrado como Docente", "Error", JOptionPane.ERROR_MESSAGE);
                     return true; 
                 }
             }

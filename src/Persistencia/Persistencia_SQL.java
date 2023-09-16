@@ -47,7 +47,6 @@ public class Persistencia_SQL {
                     usuarioTemp.setContrasenia(resultSet.getString("contrasenia"));
                     usuarioTemp.setCargo(resultSet.getString("cargo"));
                 }
-
                 resultSet.close();
                 preparedStatement.close();
                 conn.close();
@@ -69,7 +68,6 @@ public class Persistencia_SQL {
         String nickUsuario = usuario.getUsuario();
         String contrasenia = usuario.getContrasenia();
         String cargo = usuario.getCargo();
-
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
@@ -84,7 +82,6 @@ public class Persistencia_SQL {
                 preparedStatement.setString(4, nickUsuario);
                 preparedStatement.setString(5, contrasenia);
                 preparedStatement.setString(6, cargo);
-
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
 
@@ -107,15 +104,12 @@ public class Persistencia_SQL {
         preparedStatement.setInt(1, cedula);
         preparedStatement.setString(2, usuario);
         ResultSet resultSet = preparedStatement.executeQuery();
-
         int total = 0;
         if (resultSet.next()) {
             total = resultSet.getInt("total");
         }
-
         resultSet.close();
         preparedStatement.close();
-
         return total > 0;
     }    
    
@@ -133,10 +127,8 @@ public class Persistencia_SQL {
         if (resultSet.next()) {
             cargoActual = resultSet.getString("cargo");
         }
-
         resultSet.close();
         preparedStatement.close();
-
         return cargoActual;
     }
 
@@ -199,10 +191,8 @@ public class Persistencia_SQL {
                     preparedStatement.setString(1, nuevaContrasenia);
                     preparedStatement.setString(2, nuevoCargo);
                     preparedStatement.setInt(3, cedula);
-
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
-                 
                     // Mover al usuario a la tabla correspondiente
                     moverUsuario(cedula, cargoActual, nuevoCargo, nuevoGrado, nuevaAsignatura);
                     JOptionPane.showMessageDialog(null, "El usuario con cedula: "+cedula+" fue correctamente modificado", "Usuario modificado", JOptionPane.WARNING_MESSAGE);
@@ -233,9 +223,7 @@ public class Persistencia_SQL {
                 } else if ("Docente".equals(cargo)) {
                     eliminarDocente(conn, cedula);
                 }
-      
                 eliminarUsuario(conn, cedula);
-                
                 JOptionPane.showMessageDialog(null, "El "+cargo+" con cedula: "+cedula+" fue correctamente eliminado", "Usuario eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
@@ -312,7 +300,6 @@ public class Persistencia_SQL {
                     admin.setUsuario(resultSet.getString("usuario"));
                     admin.setContrasenia(resultSet.getString("contrasenia"));
                     admin.setCargo(resultSet.getString("cargo"));
-
                     listaAdministradores.add(admin);
                 }
                 resultSet.close();
@@ -331,16 +318,16 @@ public class Persistencia_SQL {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
+        
+        Integer cedula = administrador.getCedula();
 
         if (conn != null) {
             try {
-                Integer cedula = administrador.getCedula();
                 String query = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
                 PreparedStatement preparedStatementAdmin = conn.prepareStatement(query);
                 preparedStatementAdmin.setInt(1, cedula);
                 preparedStatementAdmin.executeUpdate();
                 preparedStatementAdmin.close();
-
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -386,7 +373,6 @@ public class Persistencia_SQL {
                     adscriptor.setContrasenia(resultSet.getString("contrasenia"));
                     adscriptor.setCargo(resultSet.getString("cargo"));
                     adscriptor.setGrado(resultSet.getInt("grado"));
-
                     listaAdscriptos.add(adscriptor);
                 }
                 resultSet.close();
@@ -405,18 +391,18 @@ public class Persistencia_SQL {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
+        
+        Integer cedula = adscripto.getCedula();
+        Integer grado = adscripto.getGrado();
 
         if (conn != null) {
             try {
-                Integer cedula = adscripto.getCedula();
-                Integer grado = adscripto.getGrado();
                 String insertQuery = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
                 PreparedStatement preparedStatementAdscripto = conn.prepareStatement(insertQuery);
                 preparedStatementAdscripto.setInt(1, cedula);
                 preparedStatementAdscripto.setInt(2, grado);
                 preparedStatementAdscripto.executeUpdate();
                 preparedStatementAdscripto.close();
-
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -455,7 +441,6 @@ public class Persistencia_SQL {
 
                 while (resultSet.next()) {
                     Docente docente = new Docente();
-
                     docente.setCedula(resultSet.getInt("cedula"));
                     docente.setNombre(resultSet.getString("nombre"));
                     docente.setApellido(resultSet.getString("apellido"));
@@ -464,7 +449,6 @@ public class Persistencia_SQL {
                     docente.setCargo(resultSet.getString("cargo"));
                     docente.setGrado(resultSet.getInt("grado"));
                     docente.setAsignatura(resultSet.getString("asignatura"));
-
                     listaDocentes.add(docente);
                 }
                 resultSet.close();
@@ -484,11 +468,12 @@ public class Persistencia_SQL {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
+        Integer cedula = docente.getCedula();
+        Integer grado = docente.getGrado();
+        String asignatura = docente.getAsignatura();
+        
         if (conn != null) {
             try {
-                Integer cedula = docente.getCedula();
-                Integer grado = docente.getGrado();
-                String asignatura = docente.getAsignatura();
                 String query = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(query);
                 preparedStatementDocente.setInt(1, cedula);
@@ -496,7 +481,6 @@ public class Persistencia_SQL {
                 preparedStatementDocente.setString(3, asignatura);
                 preparedStatementDocente.executeUpdate();
                 preparedStatementDocente.close();
-
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -523,7 +507,7 @@ public class Persistencia_SQL {
 
                 while (resultSet.next()) {
                     Curso curso = new Curso();
-
+                    curso.setId_curso(resultSet.getString("id_curso"));
                     curso.setAsignatura(resultSet.getString("asignatura"));
 
                     listaCursos.add(curso);
@@ -545,16 +529,18 @@ public class Persistencia_SQL {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
+        
+        String id = curso.getId_curso();
+        String asignatura = curso.getAsignatura();
 
         if (conn != null) {
             try {
-                String nuevoCurso = curso.getAsignatura();
-                String insertQuery = "INSERT INTO curso (asignatura) VALUES (?)";
+                String insertQuery = "INSERT INTO curso (id_curso, asignatura) VALUES (?. ?)";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setString(1, nuevoCurso);
+                preparedStatementDocente.setString(1, id);
+                preparedStatementDocente.setString(1, asignatura);
                 preparedStatementDocente.executeUpdate();
                 preparedStatementDocente.close();
-
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -571,18 +557,17 @@ public class Persistencia_SQL {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
+        
+        String idEliminar = curso.getId_curso();
 
         if (conn != null) {
             try {
-                String cursoEliminar = curso.getAsignatura();
-                String deleteQuery = "DELETE FROM curso WHERE asignatura = ?";
+                String deleteQuery = "DELETE FROM curso WHERE id_curso = ?";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
-                preparedStatementDocente.setString(1, cursoEliminar);
+                preparedStatementDocente.setString(1, idEliminar);
                 preparedStatementDocente.executeUpdate();
                 preparedStatementDocente.close();
-                
-                JOptionPane.showMessageDialog(null, "El "+cursoEliminar+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "El curso "+idEliminar+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();

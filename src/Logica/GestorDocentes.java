@@ -75,7 +75,21 @@ public class GestorDocentes {
         persistencia.eliminarUsuario(docente.getCedula(), docente.getCargo());
     }
 */   
+    
+    public List<Docente> filtrarDocentesPorAsignatura(String asignatura) {
+    List<Docente> docentesFiltrados = new ArrayList<>();
+    
+    for (Docente docente : listaDocentes) {
+        if (docente.getAsignatura().equals(asignatura)) { // Filtrar por asignatura
+            docentesFiltrados.add(docente);
+        }
+    }
+    
+    return docentesFiltrados;
+}
   
+
+    
 
 
 }
