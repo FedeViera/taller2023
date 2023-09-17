@@ -175,6 +175,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         Curso_agregar_docente = new javax.swing.JLabel();
         Curso_tablaDocentes = new javax.swing.JScrollPane();
         Curso_tablaDocente = new javax.swing.JTable();
+        Curso_agregar_docente1 = new javax.swing.JLabel();
         modificarCurso = new javax.swing.JPanel();
         cuentasRegistradas1 = new javax.swing.JLabel();
         modificar_cedula2 = new javax.swing.JLabel();
@@ -417,7 +418,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         panelPestañas.addTab("tab5", pestañaBienvenida);
 
-        pestaña0.setBackground(new java.awt.Color(38, 56, 63));
+        pestaña0.setBackground(new java.awt.Color(52, 80, 86));
         pestaña0.setToolTipText("");
 
         opcionesCuentas.setBackground(new java.awt.Color(255, 255, 255));
@@ -558,58 +559,57 @@ public class Administrador_ventana extends javax.swing.JFrame
             crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(crearCuentaLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
+                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addComponent(Cuenta_agregar_contrasenia)
+                        .addGap(18, 18, 18)
+                        .addComponent(Cuenta_agregar_textoContrasenia))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
+                        .addComponent(Cuenta_agregar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Cuenta_agregar_textoNombre))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
+                        .addComponent(Cuenta_agregar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Cuenta_mensajeAlertaCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_mensajeAlertaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_agregar_textoUsuario)))
+                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addComponent(Cuenta_agregar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Cuenta_agregar_textoApellido))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
+                        .addComponent(Cuenta_agregar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Cuenta_agregar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Cuenta_mensajeAlertaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)))
                 .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(crearCuentaLayout.createSequentialGroup()
-                        .addComponent(Cuenta_agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearCuentaLayout.createSequentialGroup()
-                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addComponent(Cuenta_agregar_contrasenia)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cuenta_agregar_textoContrasenia))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
-                                .addComponent(Cuenta_agregar_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cuenta_agregar_textoNombre))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
-                                .addComponent(Cuenta_agregar_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cuenta_mensajeAlertaCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_mensajeAlertaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_agregar_textoUsuario)))
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addComponent(Cuenta_agregar_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cuenta_agregar_textoApellido))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
-                                .addComponent(Cuenta_agregar_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cuenta_agregar_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Cuenta_mensajeAlertaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)))
+                        .addGap(18, 18, 18)
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cuenta_agregar_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_agregar_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Cuenta_agregar_opcionesCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Cuenta_agregar_opcionesAsignatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Cuenta_agregar_opcionesGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cuenta_ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(61, 61, 61))))
+                            .addComponent(Cuenta_ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Cuenta_agregar_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_agregar_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_agregar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Cuenta_agregar_opcionesCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Cuenta_agregar_opcionesAsignatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Cuenta_agregar_opcionesGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(61, 61, 61))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearCuentaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Cuenta_agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         crearCuentaLayout.setVerticalGroup(
             crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,11 +635,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addComponent(Cuenta_agregar_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(crearCuentaLayout.createSequentialGroup()
-                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Cuenta_agregar_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_agregar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearCuentaLayout.createSequentialGroup()
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(crearCuentaLayout.createSequentialGroup()
@@ -663,9 +658,14 @@ public class Administrador_ventana extends javax.swing.JFrame
                                 .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Cuenta_agregar_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Cuenta_agregar_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(28, 28, 28)
+                        .addGap(107, 107, 107))
+                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Cuenta_agregar_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_agregar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Cuenta_agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
+                        .addGap(42, 42, 42))))
         );
 
         opcionesCuentas.addTab("Crear Cuenta", crearCuenta);
@@ -938,7 +938,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         panelPestañas.addTab("tab1", pestaña0);
 
-        pestaña1.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña1.setBackground(new java.awt.Color(52, 80, 86));
 
         opcionesCursos.setBackground(new java.awt.Color(255, 255, 255));
         opcionesCursos.setForeground(new java.awt.Color(0, 0, 0));
@@ -986,6 +986,11 @@ public class Administrador_ventana extends javax.swing.JFrame
         Curso_agregar_opcionesAsignatura.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Curso_agregar_opcionesAsignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Informática", "Idioma Español", "Matemática", "Inglés", "Historia", "Geografía", "Biología", "Ciencias Físicas", "Dibujo", "Música", "Educación Física" }));
         Curso_agregar_opcionesAsignatura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Curso_agregar_opcionesAsignatura.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Curso_agregar_opcionesAsignaturaItemStateChanged(evt);
+            }
+        });
         Curso_agregar_opcionesAsignatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Curso_agregar_opcionesAsignaturaActionPerformed(evt);
@@ -1002,7 +1007,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         Curso_agregar_docente.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Curso_agregar_docente.setForeground(new java.awt.Color(0, 0, 0));
-        Curso_agregar_docente.setText("Seleccione un docente");
+        Curso_agregar_docente.setText("Agregar un curso:");
 
         Curso_tablaDocente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1023,13 +1028,17 @@ public class Administrador_ventana extends javax.swing.JFrame
         ));
         Curso_tablaDocentes.setViewportView(Curso_tablaDocente);
 
+        Curso_agregar_docente1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Curso_agregar_docente1.setForeground(new java.awt.Color(0, 0, 0));
+        Curso_agregar_docente1.setText("Seleccione un docente");
+
         javax.swing.GroupLayout agregarCursoLayout = new javax.swing.GroupLayout(agregarCurso);
         agregarCurso.setLayout(agregarCursoLayout);
         agregarCursoLayout.setHorizontalGroup(
             agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(agregarCursoLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Curso_agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(agregarCursoLayout.createSequentialGroup()
                         .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1044,18 +1053,21 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addGroup(agregarCursoLayout.createSequentialGroup()
                                 .addComponent(Curso_agregar_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Curso_agregar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Curso_agregar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Curso_agregar_docente, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(100, 100, 100)
                         .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Curso_agregar_docente, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Curso_agregar_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         agregarCursoLayout.setVerticalGroup(
             agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(agregarCursoLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(Curso_agregar_docente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Curso_agregar_docente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Curso_agregar_docente1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(agregarCursoLayout.createSequentialGroup()
@@ -1070,12 +1082,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Curso_agregar_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Curso_agregar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Curso_agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
+                        .addGap(24, 235, Short.MAX_VALUE))
                     .addGroup(agregarCursoLayout.createSequentialGroup()
                         .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(114, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Curso_agregar_botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         opcionesCursos.addTab("Crear Curso", agregarCurso);
@@ -1754,8 +1766,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_Cuenta_botonBuscarActionPerformed
 
     private void Curso_agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_agregar_botonAgregarActionPerformed
-        String asignatura = "Historia";
-        cargarTablaDocentesPorAsignatura(asignatura);
+        
     }//GEN-LAST:event_Curso_agregar_botonAgregarActionPerformed
 
     private void modificar_textoCedula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoCedula1ActionPerformed
@@ -1805,6 +1816,11 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void Curso_agregar_opcionesAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_agregar_opcionesAsignaturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Curso_agregar_opcionesAsignaturaActionPerformed
+
+    private void Curso_agregar_opcionesAsignaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Curso_agregar_opcionesAsignaturaItemStateChanged
+        String asignatura = Curso_agregar_opcionesAsignatura.getSelectedItem().toString();
+        cargarTablaDocentesPorAsignatura(asignatura);
+    }//GEN-LAST:event_Curso_agregar_opcionesAsignaturaItemStateChanged
          
 //HACER VISIBLE EN LA TABLA LA FILA DEL USUARIO ENCONTRADO
     private void hacerVisible(JTable table, int fila, int columna) {
@@ -1913,12 +1929,12 @@ public class Administrador_ventana extends javax.swing.JFrame
         GestorDocentes gestor = new GestorDocentes();
        
         List<Docente> listaDocentes = gestor.cargarDocentesDesdeBD();
-        listaDocentes = gestor.filtrarDocentesPorAsignatura(asignatura); // Debes implementar este método en tu GestorDocentes
+        listaDocentes = gestor.filtrarDocentesPorAsignatura(asignatura);
 
-        gestor.mostrarDocentes();
+        //gestor.mostrarDocentes();
         
         DefaultTableModel model = (DefaultTableModel) Curso_tablaDocente.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+        model.setRowCount(0);
 
         // Eliminar todas las filas vacías del modelo
         while (model.getRowCount() > 0) {
@@ -2050,6 +2066,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JButton Curso_agregar_botonAgregar;
     private javax.swing.JLabel Curso_agregar_clase;
     private javax.swing.JLabel Curso_agregar_docente;
+    private javax.swing.JLabel Curso_agregar_docente1;
     private javax.swing.JLabel Curso_agregar_grupo;
     private javax.swing.JComboBox<String> Curso_agregar_opcionesAsignatura;
     private javax.swing.JComboBox<String> Curso_agregar_opcionesClase;
