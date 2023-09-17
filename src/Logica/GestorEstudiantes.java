@@ -13,7 +13,7 @@ public class GestorEstudiantes {
     }
         
 //LISTAR ESTUDIANTES DESDE BD   
-    public List<Estudiante>  cargarCursosDesdeBD() {
+    public List<Estudiante>  cargarEstudiantesDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaEstudiantes = persistencia.mapearEstudiantes();
         return listaEstudiantes;

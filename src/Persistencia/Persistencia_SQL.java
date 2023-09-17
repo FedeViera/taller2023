@@ -597,9 +597,9 @@ public class Persistencia_SQL {
 
                 while (resultSet.next()) {
                     Estudiante estudiante = new Estudiante();
-                    estudiante.setId_estudiante(Integer.parseInt(resultSet.getString("id_curso")));
-                    estudiante.setNombre(resultSet.getString("claseYgrupo"));
-                    estudiante.setApellido(resultSet.getString("asignatura"));
+                    estudiante.setId_estudiante(Integer.parseInt(resultSet.getString("id_estudiante")));
+                    estudiante.setNombre(resultSet.getString("nombre"));
+                    estudiante.setApellido(resultSet.getString("apellido"));
                     estudiante.setEdad(Integer.parseInt(resultSet.getString("edad")));
 
                     listaEstudiantes.add(estudiante);
