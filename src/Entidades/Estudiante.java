@@ -45,6 +45,11 @@ public class Estudiante
     public int getEdad() {
         return edad;
     }
+
+    public Estudiante() {
+    }
+    
+    
     
     
 }

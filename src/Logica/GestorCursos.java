@@ -13,16 +13,6 @@ public class GestorCursos {
     public GestorCursos() {
         this.listaCursos = new ArrayList<>();
     }
-            
-    public void agregarCurso(String claseYgrupo, String asignatura) {
-        Curso nuevoCurso = new Curso();
-        nuevoCurso.setAsignatura(claseYgrupo);
-        nuevoCurso.setAsignatura(asignatura);
-        
-        Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.agregarCurso(nuevoCurso);
-    }
-
     
 //LISTAR CURSOS DESDE BD   
     public List<Curso>  cargarCursosDesdeBD() {
@@ -30,6 +20,16 @@ public class GestorCursos {
         listaCursos = persistencia.mapearCursos();
         return listaCursos;
     }
+
+//AGREGAR CURSO
+    public void agregarCurso(String claseYgrupo, String asignatura) {
+        Curso nuevoCurso = new Curso();
+        nuevoCurso.setAsignatura(claseYgrupo);
+        nuevoCurso.setAsignatura(asignatura);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.agregarCurso(nuevoCurso);
+    }  
     
 //ELIMINAR CURSO
     public void eliminarCurso(String id_curso){

@@ -12,6 +12,7 @@ import Entidades.Administrador;
 import Entidades.Adscripto;
 import Entidades.Docente;
 import Entidades.Curso;
+import Entidades.Estudiante;
 import Grafica.Login_ventana;
 import java.util.ArrayList;
 import java.util.List;
@@ -536,16 +537,16 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                String insertQuery = "INSERT INTO curso (id_curso, asignatura) VALUES (?. ?)";
+                String insertQuery = "INSERT INTO curso (id_curso, asignatura) VALUES (?, ?)";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
                 preparedStatementDocente.setString(1, idclaseYgrupo);
-                preparedStatementDocente.setString(1, asignatura);
+                preparedStatementDocente.setString(2, asignatura);
                 preparedStatementDocente.executeUpdate();
                 preparedStatementDocente.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar el docente.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al agregar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
@@ -553,7 +554,7 @@ public class Persistencia_SQL {
     }    
     
     
-//AGREGAR CURSO
+//ELIMINAR CURSO
     public void eliminarCurso(Curso curso) {
         // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
@@ -580,7 +581,97 @@ public class Persistencia_SQL {
         }
     }        
 
+//MAPEAR ESTUDIANTES
+    public List<Estudiante> mapearEstudiantes() {
+        List<Estudiante> listaEstudiantes = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Consulta para traer todos los Docentes
+                String query =  "SELECT * from estudiante";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Estudiante estudiante = new Estudiante();
+                    estudiante.setId_estudiante(Integer.parseInt(resultSet.getString("id_curso")));
+                    estudiante.setNombre(resultSet.getString("claseYgrupo"));
+                    estudiante.setApellido(resultSet.getString("asignatura"));
+                    estudiante.setEdad(Integer.parseInt(resultSet.getString("edad")));
+
+                    listaEstudiantes.add(estudiante);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los estudiantes.");
+            }
+        }
+        return listaEstudiantes;
+    }    
     
+//AGREGAR ESTUDIANTE
+    public void agregarEstudiante(Estudiante estudiante) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idEstudiante = estudiante.getId_estudiante();
+        String nombreEstudiante = estudiante.getNombre();
+        String apellidoEstudiante = estudiante.getApellido();
+        int edadEstudiante = estudiante.getEdad();
+
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO estudiante (id_estudiante, nombre, apellido, edad) VALUES (?, ?, ?, ?)";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
+                preparedStatementDocente.setInt(1, idEstudiante);
+                preparedStatementDocente.setString(2, nombreEstudiante);
+                preparedStatementDocente.setString(3, apellidoEstudiante);
+                preparedStatementDocente.setInt(4, edadEstudiante);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar el estudiante.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
+    
+//ELIMINAR CURSO
+    public void eliminarEstudiante(Estudiante estudiante) {
+        // Insertar en la tabla correspondiente según el cargo
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idEstudiante = estudiante.getId_estudiante();
+        String nombre = estudiante.getNombre();
+        String apellido = estudiante.getApellido();
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM estudiante WHERE id_estudiante = ?";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
+                preparedStatementDocente.setInt(1, idEstudiante);
+                preparedStatementDocente.close();
+                JOptionPane.showMessageDialog(null, "El estudiante "+nombre+" "+apellido+", CI: "+idEstudiante+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }        
     
     
     
