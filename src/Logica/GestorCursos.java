@@ -14,9 +14,10 @@ public class GestorCursos {
         this.listaCursos = new ArrayList<>();
     }
             
-    public void agregarCurso(String id_curso) {
+    public void agregarCurso(String claseYgrupo, String asignatura) {
         Curso nuevoCurso = new Curso();
-        nuevoCurso.setAsignatura(id_curso);
+        nuevoCurso.setAsignatura(claseYgrupo);
+        nuevoCurso.setAsignatura(asignatura);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarCurso(nuevoCurso);

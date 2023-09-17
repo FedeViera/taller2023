@@ -3,12 +3,8 @@ package Entidades;
 public class Curso
 {
     private String id_curso;
+    private String claseYgrupo;
     private String asignatura;
-
-    public Curso(String id_curso, String asignatura) {
-        this.id_curso = id_curso;
-        this.asignatura = asignatura;
-    }
 
     public String getId_curso() {
         return id_curso;
@@ -18,6 +14,14 @@ public class Curso
         this.id_curso = id_curso;
     }
 
+    public String getClaseYgrupo() {
+        return claseYgrupo;
+    }
+
+    public void setClaseYgrupo(String claseYgrupo) {
+        this.claseYgrupo = claseYgrupo;
+    }
+
     public String getAsignatura() {
         return asignatura;
     }
@@ -25,11 +29,17 @@ public class Curso
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
-    
-    
-    
+
     public Curso() {
     }
+
+    public Curso(String id_curso, String claseYgrupo, String asignatura) {
+        this.id_curso = id_curso;
+        this.claseYgrupo = claseYgrupo;
+        this.asignatura = asignatura;
+    }
+    
+    
     
     
     

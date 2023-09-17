@@ -508,6 +508,7 @@ public class Persistencia_SQL {
                 while (resultSet.next()) {
                     Curso curso = new Curso();
                     curso.setId_curso(resultSet.getString("id_curso"));
+                    curso.setClaseYgrupo(resultSet.getString("claseYgrupo"));
                     curso.setAsignatura(resultSet.getString("asignatura"));
 
                     listaCursos.add(curso);
@@ -530,14 +531,14 @@ public class Persistencia_SQL {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        String id = curso.getId_curso();
+        String idclaseYgrupo = curso.getId_curso();
         String asignatura = curso.getAsignatura();
 
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO curso (id_curso, asignatura) VALUES (?. ?)";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setString(1, id);
+                preparedStatementDocente.setString(1, idclaseYgrupo);
                 preparedStatementDocente.setString(1, asignatura);
                 preparedStatementDocente.executeUpdate();
                 preparedStatementDocente.close();
@@ -558,16 +559,17 @@ public class Persistencia_SQL {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        String idEliminar = curso.getId_curso();
+        String claseYgrupo = curso.getId_curso();
+        String asignatura = curso.getAsignatura();
 
         if (conn != null) {
             try {
-                String deleteQuery = "DELETE FROM curso WHERE id_curso = ?";
+                String deleteQuery = "DELETE FROM curso WHERE id_curso = ? AND asignatura = ?";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
-                preparedStatementDocente.setString(1, idEliminar);
-                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.setString(1, claseYgrupo);
+                preparedStatementDocente.setString(2, asignatura);
                 preparedStatementDocente.close();
-                JOptionPane.showMessageDialog(null, "El curso "+idEliminar+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El curso "+claseYgrupo+" de "+asignatura+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
