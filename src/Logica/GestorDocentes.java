@@ -77,16 +77,15 @@ public class GestorDocentes {
 */   
     
     public List<Docente> filtrarDocentesPorAsignatura(String asignatura) {
-    List<Docente> docentesFiltrados = new ArrayList<>();
-    
-    for (Docente docente : listaDocentes) {
-        if (docente.getAsignatura().equals(asignatura)) { // Filtrar por asignatura
-            docentesFiltrados.add(docente);
+        List<Docente> docentesFiltrados = new ArrayList<>();
+
+        for (Docente docente : listaDocentes) {
+            if (docente.getAsignatura().equals(asignatura)) { // Filtrar por asignatura
+                docentesFiltrados.add(docente);
+            }
         }
+        return docentesFiltrados;
     }
-    
-    return docentesFiltrados;
-}
   
 
     

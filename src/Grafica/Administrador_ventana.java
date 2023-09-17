@@ -1021,23 +1021,23 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         tablaDocente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Seleccionar", "Cédula", "Nombre", "Apellido", "Asignatura"
+                "Cédula", "Nombre", "Apellido", "Asignatura"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1050,7 +1050,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             tablaDocente.getColumnModel().getColumn(1).setResizable(false);
             tablaDocente.getColumnModel().getColumn(2).setResizable(false);
             tablaDocente.getColumnModel().getColumn(3).setResizable(false);
-            tablaDocente.getColumnModel().getColumn(4).setResizable(false);
         }
 
         Curso_agregar_docente1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -1532,7 +1531,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_botonGestionCursosKeyPressed
 
     private void botonGestionCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionCursosActionPerformed
- 
+        cargarTablaEstudiantes();
     }//GEN-LAST:event_botonGestionCursosActionPerformed
 
     private void botonGestionCursosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseExited
@@ -1859,7 +1858,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_Cuenta_botonBuscarActionPerformed
 
     private void Curso_agregar_botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_agregar_botonAgregarActionPerformed
-        cargarTablaEstudiantes();
+        
     }//GEN-LAST:event_Curso_agregar_botonAgregarActionPerformed
 
     private void modificar_textoCedula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoCedula1ActionPerformed
@@ -2018,60 +2017,60 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
     
 //CARGAR LOS DOCENTES EN EL JTable    
-private void cargarTablaDocentesPorAsignatura(String asignatura) {
-    GestorDocentes gestor = new GestorDocentes();
-       
-    List<Docente> listaDocentes = gestor.cargarDocentesDesdeBD();
-        
-    DefaultTableModel model = (DefaultTableModel) tablaDocente.getModel();
-    model.setRowCount(0);
+    private void cargarTablaDocentesPorAsignatura(String asignatura) {
+        GestorDocentes gestor = new GestorDocentes();
 
-    // Eliminar todas las filas vacías del modelo
-    while (model.getRowCount() > 0) {
-        model.removeRow(0);
-    }
+        List<Docente> listaDocentes = gestor.cargarDocentesDesdeBD();
+        listaDocentes = gestor.filtrarDocentesPorAsignatura(asignatura);
 
-    // Agregar datos de la lista de docentes al modelo de la tabla
-    for (Docente docente : listaDocentes) {
-        model.addRow(new Object[]{
-            docente.getCedula(),
-            docente.getNombre(),
-            docente.getApellido(),
-            docente.getAsignatura()
-        });
-    }
+        DefaultTableModel model = (DefaultTableModel) tablaDocente.getModel();
+        model.setRowCount(0);
 
-    tablaDocente.repaint(); // Actualizar la tabla
-    }        
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        // Agregar datos de la lista de docentes al modelo de la tabla
+        for (Docente docente : listaDocentes) {
+            model.addRow(new Object[]{
+                docente.getCedula(),
+                docente.getNombre(),
+                docente.getApellido(),
+                docente.getAsignatura()
+            });
+        }
+        tablaDocente.repaint(); // Actualizar la tabla
+        }        
 
 //CARGAR LOS DOCENTES EN EL JTable    
-private void cargarTablaEstudiantes() {
-    GestorEstudiantes gestor = new GestorEstudiantes();
+    private void cargarTablaEstudiantes() {
+        GestorEstudiantes gestor = new GestorEstudiantes();
 
-    List<Estudiante> listaEstudiantes = gestor.cargarEstudiantesDesdeBD();
+        List<Estudiante> listaEstudiantes = gestor.cargarEstudiantesDesdeBD();
 
-    DefaultTableModel model = (DefaultTableModel) tablaEstudiante.getModel();
-    model.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) tablaEstudiante.getModel();
+        model.setRowCount(0);
 
-    // Agregar datos de la lista de estudiantes al modelo de la tabla
-    for (Estudiante estudiante : listaEstudiantes) {
-        // Agregar un objeto Boolean.TRUE para representar una casilla de verificación marcada
-        model.addRow(new Object[]{
-            Boolean.FALSE, // Inicialmente, la casilla de verificación está desmarcada
-            estudiante.getId_estudiante(),
-            estudiante.getNombre(),
-            estudiante.getApellido(),
-            estudiante.getEdad()
-        });
+        // Agregar datos de la lista de estudiantes al modelo de la tabla
+        for (Estudiante estudiante : listaEstudiantes) {
+            // Agregar un objeto Boolean.TRUE para representar una casilla de verificación marcada
+            model.addRow(new Object[]{
+                Boolean.FALSE, // Inicialmente, la casilla de verificación está desmarcada
+                estudiante.getId_estudiante(),
+                estudiante.getNombre(),
+                estudiante.getApellido(),
+                estudiante.getEdad()
+            });
+        }
+
+        // Configurar la primera columna para que muestre casillas de verificación
+        TableColumn seleccionColumn = tablaEstudiante.getColumnModel().getColumn(0);
+        seleccionColumn.setCellRenderer(tablaEstudiante.getDefaultRenderer(Boolean.class));
+        seleccionColumn.setCellEditor(new DefaultCellEditor(new JCheckBox()));
+
+        tablaEstudiante.repaint(); // Actualizar la tabla
     }
-
-    // Configurar la primera columna para que muestre casillas de verificación
-    TableColumn seleccionColumn = tablaEstudiante.getColumnModel().getColumn(0);
-    seleccionColumn.setCellRenderer(tablaEstudiante.getDefaultRenderer(Boolean.class));
-    seleccionColumn.setCellEditor(new DefaultCellEditor(new JCheckBox()));
-
-    tablaEstudiante.repaint(); // Actualizar la tabla
-}
 
     
     
