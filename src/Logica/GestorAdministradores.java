@@ -17,7 +17,7 @@ public class GestorAdministradores {
         this.listaAdministradores = new ArrayList<>();
     }
 
-    
+//BUSCAR ADMINISTRADOR    
     public Administrador buscarAdministradorPorCedula(int cedula) {
         for (Administrador administrador : listaAdministradores) {
             if (administrador.getCedula() == cedula) {
@@ -27,6 +27,16 @@ public class GestorAdministradores {
         return null; // Administrador no encontrado
     }
     
+//ADMINISTRADOR EXISTE
+    public boolean administradorExiste(int cedula) {
+        for (Administrador administrador : listaAdministradores) {
+            if (administrador.getCedula()==cedula) {
+                return true; // El administrador existe en la lista
+            }
+        }
+        return false; // El administrador no existe en la lista
+    }
+    
 //LISTAR ADMINISTRADORES DESDE BD
     public List<Administrador>  cargarAdministradoresDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
@@ -34,11 +44,8 @@ public class GestorAdministradores {
         return listaAdministradores;
     }
     
-    /*//LLAMAR PARA CARGAR ADMINISTRADORES
-    GestorAdministradores gestionarAdministradores = new GestorAdministradores();
-    gestionarAdministradores.cargarAdministradoresDesdeBD();*/
-    
-    //MOSTRAR ADMINISTRADORES
+
+//MOSTRAR ADMINISTRADORES (PARA PRUEBAS)
     public void mostrarAdministradores() {
         for (Administrador administrador : listaAdministradores) {
             System.out.println("Cédula: " + administrador.getCedula());

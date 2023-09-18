@@ -2,15 +2,24 @@ package Entidades;
 
 public class Curso
 {
-    private String id_curso;
+    private int id_curso;
     private String claseYgrupo;
     private String asignatura;
 
-    public String getId_curso() {
+    public Curso() {
+    }
+
+    public Curso(int id_curso, String claseYgrupo, String asignatura) {
+        this.id_curso = id_curso;
+        this.claseYgrupo = claseYgrupo;
+        this.asignatura = asignatura;
+    }
+
+    public int getId_curso() {
         return id_curso;
     }
 
-    public void setId_curso(String id_curso) {
+    public void setId_curso(int id_curso) {
         this.id_curso = id_curso;
     }
 
@@ -30,14 +39,7 @@ public class Curso
         this.asignatura = asignatura;
     }
 
-    public Curso() {
-    }
-
-    public Curso(String id_curso, String claseYgrupo, String asignatura) {
-        this.id_curso = id_curso;
-        this.claseYgrupo = claseYgrupo;
-        this.asignatura = asignatura;
-    }
+    
     
     
     

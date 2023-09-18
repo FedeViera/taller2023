@@ -276,7 +276,6 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                // Consulta para traer todos los Administradores
                 String query = "SELECT\n" +
                                 "    u.cedula,\n" +
                                 "    u.nombre,\n" +
@@ -316,7 +315,6 @@ public class Persistencia_SQL {
 
 //AGREGAR ADMINISTRADOR
     public void agregarAdministrador(Administrador administrador) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
@@ -347,7 +345,6 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                // Consulta para traer todos los Adscriptos
                 String query =  "SELECT\n" +
                                 "    u.cedula,\n" +
                                 "    u.nombre,\n" +
@@ -389,7 +386,6 @@ public class Persistencia_SQL {
 
 //AGREGAR ADSCRIPTO
     public void agregarAdscripto(Adscripto adscripto) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
@@ -422,7 +418,6 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                // Consulta para traer todos los Docentes
                 String query =  "SELECT\n" +
                                 "    u.cedula,\n" +
                                 "    u.nombre,\n" +
@@ -465,7 +460,6 @@ public class Persistencia_SQL {
     
 //AGREGAR DOCENTE
     public void agregarDocente(Docente docente) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
@@ -500,7 +494,6 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                // Consulta para traer todos los Docentes
                 String query =  "SELECT * from curso";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -508,7 +501,7 @@ public class Persistencia_SQL {
 
                 while (resultSet.next()) {
                     Curso curso = new Curso();
-                    curso.setId_curso(resultSet.getString("id_curso"));
+                    curso.setId_curso(resultSet.getInt("id_curso"));
                     curso.setClaseYgrupo(resultSet.getString("claseYgrupo"));
                     curso.setAsignatura(resultSet.getString("asignatura"));
 
@@ -528,16 +521,15 @@ public class Persistencia_SQL {
     
 //AGREGAR CURSO
     public void agregarCurso(Curso curso) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        String idclaseYgrupo = curso.getId_curso();
+        String idclaseYgrupo = curso.getClaseYgrupo();
         String asignatura = curso.getAsignatura();
 
         if (conn != null) {
             try {
-                String insertQuery = "INSERT INTO curso (id_curso, asignatura) VALUES (?, ?)";
+                String insertQuery = "INSERT INTO curso (claseYgrupo, asignatura) VALUES (?, ?)";
                 PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
                 preparedStatementDocente.setString(1, idclaseYgrupo);
                 preparedStatementDocente.setString(2, asignatura);
@@ -556,11 +548,10 @@ public class Persistencia_SQL {
     
 //ELIMINAR CURSO
     public void eliminarCurso(Curso curso) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        String claseYgrupo = curso.getId_curso();
+        String claseYgrupo = curso.getClaseYgrupo();
         String asignatura = curso.getAsignatura();
 
         if (conn != null) {
@@ -589,7 +580,6 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                // Consulta para traer todos los Docentes
                 String query =  "SELECT * from estudiante";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -617,7 +607,6 @@ public class Persistencia_SQL {
     
 //AGREGAR ESTUDIANTE
     public void agregarEstudiante(Estudiante estudiante) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
@@ -648,7 +637,6 @@ public class Persistencia_SQL {
     
 //ELIMINAR CURSO
     public void eliminarEstudiante(Estudiante estudiante) {
-        // Insertar en la tabla correspondiente según el cargo
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
@@ -672,6 +660,58 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }        
+    
+//AGREGAR ESTUDIANTE A CURSO (TABLA curso_has_estudiane)
+    public void agregarEstudianteACurso(Curso curso, Estudiante estudiante) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idCurso = curso.getId_curso();
+        int idEstudiante = estudiante.getId_estudiante();
+
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO curso_has_estudiante (curso_id_curso, estudiante_id_estudiante) VALUES (?, ?)";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
+                preparedStatementDocente.setInt(1, idCurso);
+                preparedStatementDocente.setInt(2, idEstudiante);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar el estudiante al curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    } 
+    
+//AGREGAR DOCENTE A CURSO (TABLA curso_has_docente)
+    public void agregarDocenteACurso(Curso curso, Docente docente) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idCurso = curso.getId_curso();
+        int cedulaDocente = docente.getCedula();
+
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO curso_has_docente (curso_id_curso, docente_usuario_cedula) VALUES (?, ?)";
+                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
+                preparedStatementDocente.setInt(1, idCurso);
+                preparedStatementDocente.setInt(2, cedulaDocente);
+                preparedStatementDocente.executeUpdate();
+                preparedStatementDocente.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar el docente al curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }      
     
     
     

@@ -1379,45 +1379,41 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="Curso_agregar_grupo" min="-2" pref="98" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="Curso_agregar_opcionesGrupo" pref="174" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="Curso_agregar_clase" min="-2" pref="98" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="Curso_agregar_opcionesClase" min="-2" pref="171" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="Curso_agregar_docente" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="Curso_tablaDocentes" alignment="0" min="-2" pref="348" max="-2" attributes="0"/>
-                                      <Component id="Curso_agregar_docente1" min="-2" pref="223" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="Curso_agregar_botonAgregar" min="-2" pref="151" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="Curso_agregar_asignatura" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Curso_agregar_opcionesAsignatura" min="-2" pref="171" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jSeparator1" min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace pref="351" max="32767" attributes="0"/>
-                                          <Component id="Curso_agregar_botonAgregar" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="Curso_agregar_grupo" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="Curso_agregar_opcionesGrupo" pref="174" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="Curso_agregar_clase" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="Curso_agregar_opcionesClase" min="-2" pref="171" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="Curso_agregar_docente" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="Curso_tablaDocentes" alignment="0" min="-2" pref="348" max="-2" attributes="0"/>
+                                              <Component id="Curso_agregar_docente1" min="-2" pref="223" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="Curso_agregar_asignatura" min="-2" pref="98" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="Curso_agregar_opcionesAsignatura" min="-2" pref="171" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="jSeparator1" min="-2" pref="19" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="Curso_agregar_estudiante" min="-2" pref="223" max="-2" attributes="0"/>
                                               <Component id="Curso_tablaEstudiantes" min="-2" pref="443" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <EmptySpace pref="38" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1426,12 +1422,13 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
                                           <Component id="Curso_agregar_estudiante" min="-2" pref="40" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="Curso_tablaEstudiantes" pref="0" max="32767" attributes="0"/>
+                                          <Component id="Curso_tablaEstudiantes" min="-2" pref="355" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="Curso_agregar_botonAgregar" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
@@ -1604,7 +1601,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="tablaDocente">
+                            <Component class="javax.swing.JTable" name="Curso_tablaDocente">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="10">
@@ -1653,7 +1650,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Seleccione un docente"/>
+                            <Property name="text" type="java.lang.String" value="Seleccionar un docente"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JSeparator" name="jSeparator1">

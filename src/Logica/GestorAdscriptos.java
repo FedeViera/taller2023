@@ -15,6 +15,7 @@ public class GestorAdscriptos {
         this.listaAdscriptos = new ArrayList<>();
     }
 
+//BUSCAR ADSCRIPTO    
     public Adscripto buscarAdscriptoPorCedula(int cedula) {
         for (Adscripto adscripto : listaAdscriptos) {
             if (adscripto.getCedula() == cedula) {
@@ -24,14 +25,24 @@ public class GestorAdscriptos {
         return null; // Adscripto no encontrado
     }
     
-    
+//ADSCRIPTO EXISTE    
+    public boolean adscriptoExiste(int cedula) {
+    for (Adscripto adscripto : listaAdscriptos) {
+        if (adscripto.getCedula() == cedula) {
+            return true; // El adscripto existe en la lista
+        }
+    }
+    return false; // El adscripto no existe en la lista
+}
+
+//LISTAR ADSCRIPTOS DESDE LA BD    
     public List<Adscripto> cargarAdscriptosDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaAdscriptos = persistencia.mapearAdscriptos();
         return listaAdscriptos;
     }
        
-    //MOSTRAR ADSCRIPTOS
+//MOSTRAR ADSCRIPTOS (PARA PRUEBAS)
     public void mostrarAdscriptos() {
         for (Adscripto adscripto : listaAdscriptos) {
             System.out.println("Cédula: " + adscripto.getCedula());

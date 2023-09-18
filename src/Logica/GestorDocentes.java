@@ -6,16 +6,19 @@ import java.util.List;
 import Persistencia.Persistencia_SQL;
 import Entidades.Docente;
 import Entidades.Docente;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class GestorDocentes {
     
     private List<Docente> listaDocentes;
+    private javax.swing.JTable tablaDocente;
 
     public GestorDocentes() {
         this.listaDocentes = new ArrayList<>();
     }
 
+//BUSCAR DOCENTE    
     public Docente buscarDocentePorCedula(int cedula) {
         for (Docente docente : listaDocentes) {
             if (docente.getCedula() == cedula) {
@@ -25,7 +28,18 @@ public class GestorDocentes {
         return null; // Docente no encontrado
     }
     
+//DOCENTE EXISTE    
+    public boolean docenteExiste(int cedula) {
+    for (Docente docente : listaDocentes) {
+        if (docente.getCedula() == cedula) {
+            return true; // El docente existe en la lista
+        }
+    }
+    return false; // El docente no existe en la lista
+}
+
     
+//LISTAR DOCENTES DESDE LA BD    
     public List<Docente> cargarDocentesDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaDocentes = persistencia.mapearDocentes();
@@ -33,7 +47,7 @@ public class GestorDocentes {
     }
     
 
-//MOSTRAR DOCENTES
+//MOSTRAR DOCENTES (PARA PRUEBAS)
     public void mostrarDocentes() {
         for (Docente docente : listaDocentes) {
             System.out.println("Cédula: " + docente.getCedula());
@@ -86,9 +100,9 @@ public class GestorDocentes {
         }
         return docentesFiltrados;
     }
-  
-
     
+  
+  
 
 
 }

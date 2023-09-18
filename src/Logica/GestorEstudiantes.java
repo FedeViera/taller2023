@@ -4,6 +4,8 @@ import Entidades.Estudiante;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class GestorEstudiantes {
     
@@ -40,7 +42,27 @@ public class GestorEstudiantes {
         persistencia.eliminarEstudiante(estudiante);
     }    
     
-    
+//OBTENER ESTUDIANTE SELECIONADOS DE LA TablaEstudiantes (PARA LUEGO AGREGAR AL CURSO)     
+    private List<Estudiante> obtenerEstudiantesSeleccionados(JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int rowCount = model.getRowCount();
+        List<Estudiante> estudiantesSeleccionados = new ArrayList<>();
+
+        for (int i = 0; i < rowCount; i++) {
+            Boolean seleccionado = (Boolean) model.getValueAt(i, 0); // La primera columna es la de casillas de verificación
+            if (seleccionado) {
+                int idEstudiante = (int) model.getValueAt(i, 1); // Obtén el ID del estudiante
+                String nombre = (String) model.getValueAt(i, 2); // Obtén el nombre del estudiante
+                String apellido = (String) model.getValueAt(i, 3); // Obtén el apellido del estudiante
+                int edad = (int) model.getValueAt(i, 4); // Obtén la edad del estudiante
+
+                Estudiante estudiante = new Estudiante(idEstudiante, nombre, apellido, edad);
+                estudiantesSeleccionados.add(estudiante);
+            }
+        }
+        return estudiantesSeleccionados;
+    }
+
 
     
     

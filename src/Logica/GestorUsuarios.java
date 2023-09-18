@@ -77,18 +77,12 @@ public class GestorUsuarios {
     public List<Object> obtenerTodosUsuarios() {
         List<Object> listaGeneral = new ArrayList<>();     
 
-        GestorAdministradores gestionarAdministradores = new GestorAdministradores();
-        GestorDocentes gestionarDocentes = new GestorDocentes();
-        GestorAdscriptos gestionarAdscriptos = new GestorAdscriptos();
-
-        listaGeneral.addAll(gestionarAdministradores.cargarAdministradoresDesdeBD());
-
-        gestionarDocentes.cargarDocentesDesdeBD();
-        listaGeneral.addAll(gestionarDocentes.cargarDocentesDesdeBD());
-
-        gestionarAdscriptos.cargarAdscriptosDesdeBD();
-        listaGeneral.addAll(gestionarAdscriptos.cargarAdscriptosDesdeBD());
-
+        GestorAdministradores gestorAdministradores = new GestorAdministradores();
+        GestorDocentes gestorDocentes = new GestorDocentes();
+        GestorAdscriptos gestorAdscriptos = new GestorAdscriptos();
+        listaGeneral.addAll(gestorAdministradores.cargarAdministradoresDesdeBD());
+        listaGeneral.addAll(gestorDocentes.cargarDocentesDesdeBD());
+        listaGeneral.addAll(gestorAdscriptos.cargarAdscriptosDesdeBD());
         return listaGeneral;
     }
 
@@ -166,8 +160,9 @@ public class GestorUsuarios {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.actualizarUsuario(usuarioFull);
     }
-
-
+    
+    
+  
     
     
     

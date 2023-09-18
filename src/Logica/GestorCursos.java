@@ -24,7 +24,7 @@ public class GestorCursos {
 //AGREGAR CURSO
     public void agregarCurso(String claseYgrupo, String asignatura) {
         Curso nuevoCurso = new Curso();
-        nuevoCurso.setAsignatura(claseYgrupo);
+        nuevoCurso.setClaseYgrupo(claseYgrupo);
         nuevoCurso.setAsignatura(asignatura);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
@@ -39,5 +39,17 @@ public class GestorCursos {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarCurso(curso);
     }
+
+//CURSO EXISTE
+    public boolean cursoExiste(String claseYgrupo, String asignatura) {
+        for (Curso curso : listaCursos) {
+            if (curso.getClaseYgrupo().equals(claseYgrupo)&&curso.getAsignatura().equals(asignatura)) {
+                return true; // El curso existe en la lista
+            }
+        }
+        return false; // El curso no existe en la lista
+    }
+
+    
     
 }
