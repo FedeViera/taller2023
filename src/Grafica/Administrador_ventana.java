@@ -47,7 +47,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         initComponents();
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage()); //Logo de la ventana
-        Cuenta_verPswd.setVisible(false);
+       
             
         // DocumentListener - Validar el campo en tiempo real
         Cuenta_crear_textoCedula.getDocument().addDocumentListener(new DocumentListener() {
@@ -138,8 +138,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         Cuenta_crear_cargo = new javax.swing.JLabel();
         Cuenta_crear_opcionesCargo = new javax.swing.JComboBox<>();
         Cuenta_crear_botonCrearCuenta = new javax.swing.JButton();
-        Cuenta_verPswd = new javax.swing.JLabel();
-        Cuenta_ocultarPswd = new javax.swing.JLabel();
         Cuenta_crear_grado = new javax.swing.JLabel();
         Cuenta_crear_opcionesGrado = new javax.swing.JComboBox<>();
         Cuenta_crear_asignatura = new javax.swing.JLabel();
@@ -187,26 +185,17 @@ public class Administrador_ventana extends javax.swing.JFrame
         tablaEstudiante = new javax.swing.JTable();
         Curso_crear_estudiante = new javax.swing.JLabel();
         modificarCurso = new javax.swing.JPanel();
-        cuentasRegistradas1 = new javax.swing.JLabel();
-        modificar_cedula2 = new javax.swing.JLabel();
-        modificar_textoCedula1 = new javax.swing.JTextField();
-        modificar_usuario1 = new javax.swing.JLabel();
-        modificar_textoUsuario1 = new javax.swing.JTextField();
-        modificar_contrasenia1 = new javax.swing.JLabel();
-        modificar_textoContrasenia1 = new javax.swing.JPasswordField();
+        cursosRegistrados = new javax.swing.JLabel();
         modificar_opcionesCargo1 = new javax.swing.JComboBox<>();
         modificar_cargo1 = new javax.swing.JLabel();
         modificar_botonModificar1 = new javax.swing.JButton();
-        botonEliminar1 = new javax.swing.JButton();
+        botonEliminarCurso = new javax.swing.JButton();
         modificar_grado1 = new javax.swing.JLabel();
         modificar_opcionesGrado1 = new javax.swing.JComboBox<>();
         modificar_asignatura1 = new javax.swing.JLabel();
         modificar_opcionesAsignatura1 = new javax.swing.JComboBox<>();
-        modificar_cedula3 = new javax.swing.JLabel();
-        modificar_textoBuscar1 = new javax.swing.JTextField();
-        botonBuscar1 = new javax.swing.JButton();
-        tablaUsuarios1 = new javax.swing.JScrollPane();
-        tablaUsuario1 = new javax.swing.JTable();
+        tablaCursosR = new javax.swing.JScrollPane();
+        tablaCursosRegistrados = new javax.swing.JTable();
         pestaña2 = new javax.swing.JPanel();
         pestaña3 = new javax.swing.JPanel();
 
@@ -520,22 +509,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        Cuenta_verPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonMostrar.png"))); // NOI18N
-        Cuenta_verPswd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Cuenta_verPswd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Cuenta_verPswdMouseClicked(evt);
-            }
-        });
-
-        Cuenta_ocultarPswd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonOcultar.png"))); // NOI18N
-        Cuenta_ocultarPswd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Cuenta_ocultarPswd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Cuenta_ocultarPswdMouseClicked(evt);
-            }
-        });
-
         Cuenta_crear_grado.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Cuenta_crear_grado.setForeground(new java.awt.Color(0, 0, 0));
         Cuenta_crear_grado.setText("Grado");
@@ -571,111 +544,106 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(16, 16, 16)
                 .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(crearCuentaLayout.createSequentialGroup()
-                        .addComponent(Cuenta_crear_contrasenia)
-                        .addGap(18, 18, 18)
-                        .addComponent(Cuenta_crear_textoContrasenia))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
-                        .addComponent(Cuenta_crear_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Cuenta_crear_textoNombre))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
-                        .addComponent(Cuenta_crear_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addGap(116, 116, 116)
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Cuenta_mensajeAlertaCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_mensajeAlertaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_crear_textoUsuario)))
-                    .addGroup(crearCuentaLayout.createSequentialGroup()
-                        .addComponent(Cuenta_crear_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Cuenta_crear_textoApellido))
+                            .addGroup(crearCuentaLayout.createSequentialGroup()
+                                .addComponent(Cuenta_crear_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(crearCuentaLayout.createSequentialGroup()
+                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                                        .addComponent(Cuenta_mensajeAlertaCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                                        .addGap(0, 3, Short.MAX_VALUE)
+                                        .addComponent(Cuenta_mensajeAlertaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(155, 155, 155)))
+                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Cuenta_crear_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Cuenta_crear_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Cuenta_crear_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Cuenta_crear_opcionesCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cuenta_crear_opcionesAsignatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cuenta_crear_opcionesGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
-                        .addComponent(Cuenta_crear_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Cuenta_crear_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Cuenta_crear_usuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(crearCuentaLayout.createSequentialGroup()
+                                    .addComponent(Cuenta_crear_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(Cuenta_crear_textoNombre))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
+                                    .addComponent(Cuenta_crear_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(Cuenta_crear_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearCuentaLayout.createSequentialGroup()
+                                .addComponent(Cuenta_crear_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Cuenta_mensajeAlertaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Cuenta_crear_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(crearCuentaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Cuenta_mensajeAlertaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)))
-                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(crearCuentaLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Cuenta_ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(crearCuentaLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Cuenta_crear_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_crear_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_crear_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Cuenta_crear_opcionesCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Cuenta_crear_opcionesAsignatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Cuenta_crear_opcionesGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(61, 61, 61))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearCuentaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Cuenta_crear_botonCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                            .addComponent(Cuenta_crear_botonCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(crearCuentaLayout.createSequentialGroup()
+                                .addComponent(Cuenta_crear_contrasenia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Cuenta_crear_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(357, 357, 357)))
+                .addGap(72, 72, 72))
         );
         crearCuentaLayout.setVerticalGroup(
             crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(crearCuentaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cuenta_crear_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cuenta_crear_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cuenta_crear_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cuenta_crear_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cuenta_crear_textoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_crear_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addComponent(Cuenta_mensajeAlertaCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cuenta_crear_textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_crear_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Cuenta_crear_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Cuenta_mensajeAlertaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cuenta_crear_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_crear_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Cuenta_mensajeAlertaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cuenta_crear_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_crear_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cuenta_crear_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_crear_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addComponent(Cuenta_crear_botonCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
                     .addGroup(crearCuentaLayout.createSequentialGroup()
+                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cuenta_crear_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cuenta_crear_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cuenta_crear_opcionesGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cuenta_crear_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearCuentaLayout.createSequentialGroup()
-                        .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cuenta_ocultarPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_verPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(crearCuentaLayout.createSequentialGroup()
-                                .addComponent(Cuenta_mensajeAlertaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Cuenta_crear_textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_crear_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Cuenta_mensajeAlertaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Cuenta_crear_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_crear_textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40)
-                                .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Cuenta_crear_textoContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Cuenta_crear_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(107, 107, 107))
-                    .addGroup(crearCuentaLayout.createSequentialGroup()
+                            .addComponent(Cuenta_crear_grado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(crearCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Cuenta_crear_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Cuenta_crear_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cuenta_crear_botonCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))))
+                        .addGap(305, 305, 305))))
         );
 
         opcionesCuentas.addTab("Crear Cuenta", crearCuenta);
@@ -732,7 +700,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         Cuenta_modificar_cargo.setText("Cambiar cargo");
 
         Cuenta_modificar_botonModificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        Cuenta_modificar_botonModificar.setText("Modificar");
+        Cuenta_modificar_botonModificar.setText("Modificar cuenta");
         Cuenta_modificar_botonModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Cuenta_modificar_botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -741,7 +709,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
 
         Cuenta_botonEliminar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        Cuenta_botonEliminar.setText("Eliminar");
+        Cuenta_botonEliminar.setText("Eliminar cuenta");
         Cuenta_botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Cuenta_botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -782,7 +750,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
 
         Cuenta_botonBuscar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        Cuenta_botonBuscar.setText("Buscar");
+        Cuenta_botonBuscar.setText("Buscar cuenta");
         Cuenta_botonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Cuenta_botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -845,11 +813,11 @@ public class Administrador_ventana extends javax.swing.JFrame
                                 .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(modificarCuentaLayout.createSequentialGroup()
                                         .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Cuenta_modificar_cedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(modificarCuentaLayout.createSequentialGroup()
-                                                .addComponent(Cuenta_modificar_textoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(Cuenta_modificar_textoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(Cuenta_botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(Cuenta_modificar_cedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(Cuenta_botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(59, 59, 59)
                                         .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(Cuenta_modificar_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -871,15 +839,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                                         .addGap(61, 61, 61)
                                         .addComponent(Cuenta_modificar_asignatura)))
                                 .addGap(18, 18, 18)
-                                .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(Cuenta_modificar_opcionesGrado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Cuenta_modificar_opcionesCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Cuenta_modificar_botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Cuenta_botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(Cuenta_modificar_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(modificarCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Cuenta_modificar_opcionesGrado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cuenta_modificar_opcionesAsignatura, javax.swing.GroupLayout.Alignment.TRAILING, 0, 171, Short.MAX_VALUE)
+                                    .addComponent(Cuenta_modificar_botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cuenta_botonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Cuenta_modificar_opcionesCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         modificarCuentaLayout.setVerticalGroup(
@@ -1118,32 +1083,30 @@ public class Administrador_ventana extends javax.swing.JFrame
             agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(agregarCursoLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Curso_crear_botonCrearCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(agregarCursoLayout.createSequentialGroup()
+                            .addComponent(Curso_crear_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(Curso_crear_opcionesGrupo, 0, 174, Short.MAX_VALUE))
+                        .addGroup(agregarCursoLayout.createSequentialGroup()
+                            .addComponent(Curso_crear_clase, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(Curso_crear_opcionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Curso_crear_textoAgregarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Curso_crear_textoSeleccionarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(agregarCursoLayout.createSequentialGroup()
-                        .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(agregarCursoLayout.createSequentialGroup()
-                                    .addComponent(Curso_crear_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(Curso_crear_opcionesGrupo, 0, 174, Short.MAX_VALUE))
-                                .addGroup(agregarCursoLayout.createSequentialGroup()
-                                    .addComponent(Curso_crear_clase, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(Curso_crear_opcionesClase, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(Curso_crear_textoAgregarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Curso_crear_textoSeleccionarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(agregarCursoLayout.createSequentialGroup()
-                                .addComponent(Curso_crear_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Curso_crear_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(40, 40, 40)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Curso_crear_estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Curso_tablaEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(Curso_crear_asignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Curso_crear_opcionesAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Curso_crear_botonCrearCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Curso_crear_estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Curso_tablaEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         agregarCursoLayout.setVerticalGroup(
@@ -1154,9 +1117,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                     .addGroup(agregarCursoLayout.createSequentialGroup()
                         .addComponent(Curso_crear_estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Curso_tablaEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Curso_crear_botonCrearCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Curso_tablaEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, agregarCursoLayout.createSequentialGroup()
@@ -1176,7 +1137,10 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(Curso_crear_textoSeleccionarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Curso_tablaDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(Curso_crear_botonCrearCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)))
                 .addGap(12, 12, 12))
         );
 
@@ -1184,41 +1148,9 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         modificarCurso.setBackground(new java.awt.Color(255, 255, 255));
 
-        cuentasRegistradas1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        cuentasRegistradas1.setForeground(new java.awt.Color(0, 0, 0));
-        cuentasRegistradas1.setText("Cuentas registradas:");
-
-        modificar_cedula2.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        modificar_cedula2.setForeground(new java.awt.Color(0, 0, 0));
-        modificar_cedula2.setText("Cédula");
-
-        modificar_textoCedula1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        modificar_textoCedula1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        modificar_textoCedula1.setFocusable(false);
-        modificar_textoCedula1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar_textoCedula1ActionPerformed(evt);
-            }
-        });
-
-        modificar_usuario1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        modificar_usuario1.setForeground(new java.awt.Color(0, 0, 0));
-        modificar_usuario1.setText("Usuario");
-
-        modificar_textoUsuario1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        modificar_textoUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        modificar_textoUsuario1.setFocusable(false);
-        modificar_textoUsuario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar_textoUsuario1ActionPerformed(evt);
-            }
-        });
-
-        modificar_contrasenia1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        modificar_contrasenia1.setForeground(new java.awt.Color(0, 0, 0));
-        modificar_contrasenia1.setText("Cambiar contraseña");
-
-        modificar_textoContrasenia1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        cursosRegistrados.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        cursosRegistrados.setForeground(new java.awt.Color(0, 0, 0));
+        cursosRegistrados.setText("Cursos registrados:");
 
         modificar_opcionesCargo1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         modificar_opcionesCargo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Adscripto", "Docente" }));
@@ -1242,12 +1174,12 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        botonEliminar1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        botonEliminar1.setText("Eliminar");
-        botonEliminar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEliminar1.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminarCurso.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        botonEliminarCurso.setText("Eliminar curso");
+        botonEliminarCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEliminarCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminar1ActionPerformed(evt);
+                botonEliminarCursoActionPerformed(evt);
             }
         });
 
@@ -1272,55 +1204,36 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
-        modificar_cedula3.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        modificar_cedula3.setForeground(new java.awt.Color(0, 0, 0));
-        modificar_cedula3.setText("Buscar por cédula");
-
-        modificar_textoBuscar1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        modificar_textoBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar_textoBuscar1ActionPerformed(evt);
-            }
-        });
-
-        botonBuscar1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        botonBuscar1.setText("Buscar");
-        botonBuscar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscar1ActionPerformed(evt);
-            }
-        });
-
-        tablaUsuario1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCursosRegistrados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
+                "Clase/Grupo", "Asignatura", "Docente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tablaUsuarios1.setViewportView(tablaUsuario1);
-        if (tablaUsuario1.getColumnModel().getColumnCount() > 0) {
-            tablaUsuario1.getColumnModel().getColumn(0).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(1).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(2).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(3).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(4).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(5).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(6).setResizable(false);
-            tablaUsuario1.getColumnModel().getColumn(7).setResizable(false);
+        tablaCursosR.setViewportView(tablaCursosRegistrados);
+        if (tablaCursosRegistrados.getColumnModel().getColumnCount() > 0) {
+            tablaCursosRegistrados.getColumnModel().getColumn(0).setResizable(false);
+            tablaCursosRegistrados.getColumnModel().getColumn(1).setResizable(false);
+            tablaCursosRegistrados.getColumnModel().getColumn(2).setResizable(false);
         }
 
         javax.swing.GroupLayout modificarCursoLayout = new javax.swing.GroupLayout(modificarCurso);
@@ -1331,64 +1244,37 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(20, 20, 20)
                 .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modificarCursoLayout.createSequentialGroup()
-                        .addComponent(cuentasRegistradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEliminarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cursosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(modificarCursoLayout.createSequentialGroup()
-                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tablaUsuarios1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tablaCursosR, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(modificar_cargo1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modificar_grado1)
                             .addGroup(modificarCursoLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(modificarCursoLayout.createSequentialGroup()
-                                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(modificarCursoLayout.createSequentialGroup()
-                                                .addComponent(modificar_textoBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(botonBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(modificar_cedula3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(59, 59, 59)
-                                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(modificar_cargo1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(modificar_grado1)))
-                                    .addGroup(modificarCursoLayout.createSequentialGroup()
-                                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(modificarCursoLayout.createSequentialGroup()
-                                                    .addComponent(modificar_contrasenia1)
-                                                    .addGap(4, 4, 4)
-                                                    .addComponent(modificar_textoContrasenia1))
-                                                .addGroup(modificarCursoLayout.createSequentialGroup()
-                                                    .addComponent(modificar_cedula2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(33, 33, 33)
-                                                    .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(modificar_textoUsuario1)
-                                                        .addComponent(modificar_textoCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addComponent(modificar_usuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(61, 61, 61)
-                                        .addComponent(modificar_asignatura1)))
-                                .addGap(18, 18, 18)
-                                .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(modificar_opcionesGrado1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(modificar_opcionesCargo1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(modificar_botonModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(botonEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(modificar_opcionesAsignatura1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(2, 2, 2)
+                                .addComponent(modificar_asignatura1)))
+                        .addGap(18, 18, 18)
+                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(modificar_opcionesGrado1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(modificar_opcionesCargo1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(modificar_botonModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(modificar_opcionesAsignatura1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45))))
         );
         modificarCursoLayout.setVerticalGroup(
             modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modificarCursoLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addComponent(cuentasRegistradas1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tablaUsuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(cursosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(modificarCursoLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(49, 49, 49)
                         .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(modificar_cargo1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(modificar_opcionesCargo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1401,28 +1287,13 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addComponent(modificar_asignatura1)
                             .addComponent(modificar_opcionesAsignatura1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(modificar_botonModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonEliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(modificar_botonModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(modificarCursoLayout.createSequentialGroup()
-                        .addComponent(modificar_cedula3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(modificar_textoBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(modificar_cedula2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificar_textoCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(modificar_usuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificar_textoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(modificarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(modificar_contrasenia1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificar_textoContrasenia1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(tablaCursosR, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(botonEliminarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         opcionesCursos.addTab("Modificar Curso", modificarCurso);
@@ -1785,25 +1656,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private char echoCharOriginal = '\u2022';
     private boolean contraseniaVisible = false;
     
-    private void Cuenta_verPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cuenta_verPswdMouseClicked
-        Cuenta_ocultarPswd.setVisible(true);
-        Cuenta_verPswd.setVisible(false);
-        if (contraseniaVisible) {
-            Cuenta_crear_textoContrasenia.setEchoChar((char) 0); // Mostrar el texto de la contraseña
-            contraseniaVisible = false;
-        }
-    }//GEN-LAST:event_Cuenta_verPswdMouseClicked
-
-//OCULTAR CONTRASEÑA
-    private void Cuenta_ocultarPswdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cuenta_ocultarPswdMouseClicked
-        Cuenta_ocultarPswd.setVisible(false);
-        Cuenta_verPswd.setVisible(true);
-        if (!contraseniaVisible) {
-            Cuenta_crear_textoContrasenia.setEchoChar(echoCharOriginal); // Ocultar el texto de la contraseña
-            contraseniaVisible = true;
-        }
-    }//GEN-LAST:event_Cuenta_ocultarPswdMouseClicked
-
     
     
     private void Cuenta_crear_textoContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cuenta_crear_textoContraseniaActionPerformed
@@ -1886,13 +1738,14 @@ public class Administrador_ventana extends javax.swing.JFrame
         if(!gestorCursos.cursoExiste(claseYgrupo, asignatura)){
             gestorCursos.agregarCurso(claseYgrupo, asignatura); //AGREGAR CURSO
             
+            /*
             GestorEstudiantes gestorE = new GestorEstudiantes();
             List<Estudiante> estudiantesSeleccionados = gestorE.obtenerEstudiantesSeleccionados(tablaEstudiante); //Estudiantes seleccionados en la JTable
             //gestorE.mostrarEstudiantes(estudiantesSeleccionados);
             gestorCursos.cargarCursosDesdeBD(); //Actualizar estudiantes desde BD
             int idCurso = gestorCursos.buscarIDCurso(claseYgrupo, asignatura); //Obtener idCurso para agregar a los estudiantes
             GestorRelacional gestorR = new GestorRelacional();
-            gestorR.agregarEstudiantesACurso(idCurso, estudiantesSeleccionados); //AGREGAR ESTUDIANTES AL CURSO
+            gestorR.agregarEstudiantesACurso(idCurso, estudiantesSeleccionados); //AGREGAR ESTUDIANTES AL CURSO*/
 
             JOptionPane.showMessageDialog(null, "Curso "+claseYgrupo+" - "+asignatura+" creado correctamente", "Curso Creado", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -1910,38 +1763,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         }    
     }//GEN-LAST:event_Curso_crear_botonCrearCursoActionPerformed
   
-    private void modificar_textoCedula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoCedula1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_textoCedula1ActionPerformed
-
-    private void modificar_textoUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoUsuario1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_textoUsuario1ActionPerformed
-
-    private void modificar_opcionesCargo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_opcionesCargo1ActionPerformed
-
-    private void modificar_botonModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_botonModificar1ActionPerformed
-
-    private void botonEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminar1ActionPerformed
-
-    private void modificar_opcionesAsignatura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesAsignatura1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_opcionesAsignatura1ActionPerformed
-
-    private void modificar_textoBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textoBuscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_textoBuscar1ActionPerformed
-
-    private void botonBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBuscar1ActionPerformed
-
     private void opcionesCursosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_opcionesCursosStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_opcionesCursosStateChanged
@@ -1962,6 +1783,22 @@ public class Administrador_ventana extends javax.swing.JFrame
         String asignatura = Curso_crear_opcionesAsignatura.getSelectedItem().toString();
         cargarTablaDocentesPorAsignatura(asignatura);
     }//GEN-LAST:event_Curso_crear_opcionesAsignaturaItemStateChanged
+
+    private void modificar_opcionesAsignatura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesAsignatura1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_opcionesAsignatura1ActionPerformed
+
+    private void botonEliminarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarCursoActionPerformed
+
+    private void modificar_botonModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_botonModificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_botonModificar1ActionPerformed
+
+    private void modificar_opcionesCargo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_opcionesCargo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_opcionesCargo1ActionPerformed
          
 
 
@@ -2223,10 +2060,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPasswordField Cuenta_modificar_textoContrasenia;
     private javax.swing.JTextField Cuenta_modificar_textoUsuario;
     private javax.swing.JLabel Cuenta_modificar_usuario;
-    private javax.swing.JLabel Cuenta_ocultarPswd;
     private javax.swing.JTable Cuenta_tablaUsuario;
     private javax.swing.JScrollPane Cuenta_tablaUsuarios;
-    private javax.swing.JLabel Cuenta_verPswd;
     private javax.swing.JLabel Curso_crear_asignatura;
     private javax.swing.JButton Curso_crear_botonCrearCurso;
     private javax.swing.JLabel Curso_crear_clase;
@@ -2243,14 +2078,13 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel agregarCurso;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
-    private javax.swing.JButton botonBuscar1;
     private javax.swing.JButton botonCerrarSesion;
-    private javax.swing.JButton botonEliminar1;
+    private javax.swing.JButton botonEliminarCurso;
     private javax.swing.JButton botonGestionActividades;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JPanel crearCuenta;
-    private javax.swing.JLabel cuentasRegistradas1;
+    private javax.swing.JLabel cursosRegistrados;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel modificarCuenta;
@@ -2258,18 +2092,10 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel modificar_asignatura1;
     private javax.swing.JButton modificar_botonModificar1;
     private javax.swing.JLabel modificar_cargo1;
-    private javax.swing.JLabel modificar_cedula2;
-    private javax.swing.JLabel modificar_cedula3;
-    private javax.swing.JLabel modificar_contrasenia1;
     private javax.swing.JLabel modificar_grado1;
     private javax.swing.JComboBox<String> modificar_opcionesAsignatura1;
     private javax.swing.JComboBox<String> modificar_opcionesCargo1;
     private javax.swing.JComboBox<String> modificar_opcionesGrado1;
-    private javax.swing.JTextField modificar_textoBuscar1;
-    private javax.swing.JTextField modificar_textoCedula1;
-    private javax.swing.JPasswordField modificar_textoContrasenia1;
-    private javax.swing.JTextField modificar_textoUsuario1;
-    private javax.swing.JLabel modificar_usuario1;
     private javax.swing.JTabbedPane opcionesCuentas;
     private javax.swing.JTabbedPane opcionesCursos;
     private javax.swing.JPanel panelAdministrador;
@@ -2281,8 +2107,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel pestaña3;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
+    private javax.swing.JScrollPane tablaCursosR;
+    private javax.swing.JTable tablaCursosRegistrados;
     private javax.swing.JTable tablaEstudiante;
-    private javax.swing.JTable tablaUsuario1;
-    private javax.swing.JScrollPane tablaUsuarios1;
     // End of variables declaration//GEN-END:variables
 }

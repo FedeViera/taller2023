@@ -400,89 +400,95 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="Cuenta_crear_contrasenia" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Cuenta_crear_textoContrasenia" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="Cuenta_crear_nombre" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Cuenta_crear_textoNombre" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="Cuenta_crear_usuario" min="-2" pref="74" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Cuenta_mensajeAlertaCedula" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                                              <Component id="Cuenta_mensajeAlertaApellido" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                                              <Component id="Cuenta_crear_textoUsuario" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="Cuenta_crear_apellido" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Cuenta_crear_textoApellido" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="Cuenta_crear_cedula" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Cuenta_crear_textoCedula" min="-2" pref="343" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="Cuenta_mensajeAlertaNombre" min="-2" pref="290" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Cuenta_ocultarPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                              <Component id="Cuenta_verPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Cuenta_crear_grado" min="-2" pref="98" max="-2" attributes="0"/>
-                                              <Component id="Cuenta_crear_asignatura" min="-2" pref="115" max="-2" attributes="0"/>
-                                              <Component id="Cuenta_crear_cargo" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="Cuenta_crear_opcionesCargo" max="32767" attributes="0"/>
-                                              <Component id="Cuenta_crear_opcionesAsignatura" max="32767" attributes="0"/>
-                                              <Component id="Cuenta_crear_opcionesGrado" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="Cuenta_crear_textoUsuario" min="-2" pref="389" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="Cuenta_mensajeAlertaCedula" min="-2" pref="290" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                                                          <Component id="Cuenta_mensajeAlertaNombre" min="-2" pref="290" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="Cuenta_crear_grado" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <Component id="Cuenta_crear_asignatura" min="-2" pref="115" max="-2" attributes="0"/>
+                                                      <Component id="Cuenta_crear_cargo" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="Cuenta_crear_opcionesCargo" max="32767" attributes="0"/>
+                                                      <Component id="Cuenta_crear_opcionesAsignatura" max="32767" attributes="0"/>
+                                                      <Component id="Cuenta_crear_opcionesGrado" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="Cuenta_crear_usuario" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="Cuenta_crear_nombre" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="Cuenta_crear_textoNombre" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="Cuenta_crear_cedula" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="Cuenta_crear_textoCedula" min="-2" pref="389" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="Cuenta_crear_apellido" min="-2" pref="98" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="Cuenta_mensajeAlertaApellido" min="-2" pref="290" max="-2" attributes="0"/>
+                                                      <Component id="Cuenta_crear_textoApellido" min="-2" pref="389" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="165" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="Cuenta_crear_contrasenia" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="Cuenta_crear_textoContrasenia" min="-2" pref="387" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="357" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="Cuenta_crear_textoCedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="Cuenta_crear_cedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="Cuenta_crear_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Cuenta_crear_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="Cuenta_crear_textoCedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="Cuenta_crear_cedula" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                           <Component id="Cuenta_mensajeAlertaCedula" min="-2" pref="15" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -490,57 +496,45 @@
                                               <Component id="Cuenta_crear_textoNombre" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="Cuenta_crear_nombre" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="Cuenta_mensajeAlertaNombre" min="-2" pref="14" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="Cuenta_crear_textoApellido" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="Cuenta_crear_apellido" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="Cuenta_mensajeAlertaApellido" min="-2" pref="14" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="Cuenta_crear_usuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="Cuenta_crear_textoUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="Cuenta_crear_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="Cuenta_crear_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="Cuenta_crear_opcionesCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="Cuenta_crear_cargo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="Cuenta_crear_opcionesGrado" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="Cuenta_crear_grado" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="Cuenta_ocultarPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_verPswd" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="Cuenta_mensajeAlertaNombre" min="-2" pref="14" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="Cuenta_crear_textoApellido" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_crear_apellido" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="Cuenta_mensajeAlertaApellido" min="-2" pref="14" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="Cuenta_crear_usuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_crear_textoUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="Cuenta_crear_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_crear_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="Cuenta_crear_asignatura" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="Cuenta_crear_opcionesAsignatura" min="-2" pref="34" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="305" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -698,32 +692,6 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cuenta_crear_botonCrearCuentaActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="Cuenta_verPswd">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/imagenes/botonMostrar.png"/>
-                            </Property>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Hand Cursor"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Cuenta_verPswdMouseClicked"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="Cuenta_ocultarPswd">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/imagenes/botonOcultar.png"/>
-                            </Property>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Hand Cursor"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Cuenta_ocultarPswdMouseClicked"/>
-                          </Events>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="Cuenta_crear_grado">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -856,12 +824,12 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Group type="102" alignment="0" attributes="0">
-                                                                  <Component id="Cuenta_modificar_textoBuscar" min="-2" pref="333" max="-2" attributes="0"/>
-                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                                  <Component id="Cuenta_botonBuscar" min="-2" pref="113" max="-2" attributes="0"/>
-                                                              </Group>
                                                               <Component id="Cuenta_modificar_cedula1" min="-2" pref="182" max="-2" attributes="0"/>
+                                                              <Group type="102" attributes="0">
+                                                                  <Component id="Cuenta_modificar_textoBuscar" min="-2" pref="281" max="-2" attributes="0"/>
+                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <Component id="Cuenta_botonBuscar" min="-2" pref="165" max="-2" attributes="0"/>
+                                                              </Group>
                                                           </Group>
                                                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -893,18 +861,12 @@
                                                       </Group>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="Cuenta_modificar_opcionesGrado" max="32767" attributes="0"/>
-                                                          <Component id="Cuenta_modificar_opcionesCargo" min="-2" pref="171" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                              <Component id="Cuenta_modificar_botonModificar" min="-2" pref="151" max="-2" attributes="0"/>
-                                                              <Component id="Cuenta_botonEliminar" min="-2" pref="151" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Component id="Cuenta_modificar_opcionesAsignatura" min="-2" pref="169" max="-2" attributes="0"/>
-                                                      </Group>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="Cuenta_modificar_opcionesGrado" max="32767" attributes="0"/>
+                                                      <Component id="Cuenta_modificar_opcionesAsignatura" alignment="1" pref="171" max="32767" attributes="0"/>
+                                                      <Component id="Cuenta_modificar_botonModificar" alignment="1" max="32767" attributes="0"/>
+                                                      <Component id="Cuenta_botonEliminar" alignment="1" max="32767" attributes="0"/>
+                                                      <Component id="Cuenta_modificar_opcionesCargo" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1092,7 +1054,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Modificar"/>
+                            <Property name="text" type="java.lang.String" value="Modificar cuenta"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>
@@ -1106,7 +1068,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Eliminar"/>
+                            <Property name="text" type="java.lang.String" value="Eliminar cuenta"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>
@@ -1218,7 +1180,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Buscar"/>
+                            <Property name="text" type="java.lang.String" value="Buscar cuenta"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>
@@ -1379,39 +1341,35 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="Curso_crear_botonCrearCurso" min="-2" pref="165" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="Curso_crear_grupo" min="-2" pref="98" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="Curso_crear_opcionesGrupo" pref="174" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="Curso_crear_clase" min="-2" pref="98" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="Curso_crear_opcionesClase" min="-2" pref="171" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="Curso_crear_textoAgregarCurso" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="Curso_tablaDocentes" alignment="0" min="-2" pref="348" max="-2" attributes="0"/>
-                                              <Component id="Curso_crear_textoSeleccionarDocente" min="-2" pref="223" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="Curso_crear_asignatura" min="-2" pref="98" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="Curso_crear_opcionesAsignatura" min="-2" pref="171" max="-2" attributes="0"/>
-                                              </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="Curso_crear_grupo" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="Curso_crear_opcionesGrupo" pref="174" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Component id="jSeparator1" min="-2" pref="19" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_crear_estudiante" min="-2" pref="223" max="-2" attributes="0"/>
-                                              <Component id="Curso_tablaEstudiantes" min="-2" pref="443" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="Curso_crear_clase" min="-2" pref="98" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="Curso_crear_opcionesClase" min="-2" pref="171" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="Curso_crear_textoAgregarCurso" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="Curso_tablaDocentes" alignment="0" min="-2" pref="348" max="-2" attributes="0"/>
+                                      <Component id="Curso_crear_textoSeleccionarDocente" min="-2" pref="223" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="Curso_crear_asignatura" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="Curso_crear_opcionesAsignatura" min="-2" pref="171" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="Curso_crear_botonCrearCurso" min="-2" pref="165" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" min="-2" pref="19" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Curso_crear_estudiante" min="-2" pref="223" max="-2" attributes="0"/>
+                                      <Component id="Curso_tablaEstudiantes" min="-2" pref="443" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="38" max="32767" attributes="0"/>
                               </Group>
@@ -1425,9 +1383,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="Curso_crear_estudiante" min="-2" pref="40" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="Curso_tablaEstudiantes" min="-2" pref="355" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="Curso_crear_botonCrearCurso" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="Curso_tablaEstudiantes" min="-2" pref="340" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
@@ -1451,7 +1407,10 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="Curso_crear_textoSeleccionarDocente" min="-2" pref="40" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="Curso_tablaDocentes" min="-2" pref="203" max="-2" attributes="0"/>
+                                          <Component id="Curso_tablaDocentes" min="-2" pref="117" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Component id="Curso_crear_botonCrearCurso" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -1745,71 +1704,36 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="cuentasRegistradas1" min="-2" pref="185" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="botonEliminarCurso" min="-2" pref="151" max="-2" attributes="0"/>
+                                              <Component id="cursosRegistrados" min="-2" pref="185" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="tablaUsuarios1" alignment="0" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Group type="102" alignment="0" attributes="0">
-                                                                  <Component id="modificar_textoBuscar1" min="-2" pref="333" max="-2" attributes="0"/>
-                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                                  <Component id="botonBuscar1" min="-2" pref="113" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <Component id="modificar_cedula3" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="modificar_cargo1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
-                                                              <Component id="modificar_grado1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                                  <Group type="102" alignment="1" attributes="0">
-                                                                      <Component id="modificar_contrasenia1" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                                                      <Component id="modificar_textoContrasenia1" max="32767" attributes="0"/>
-                                                                  </Group>
-                                                                  <Group type="102" alignment="1" attributes="0">
-                                                                      <Component id="modificar_cedula2" min="-2" pref="98" max="-2" attributes="0"/>
-                                                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                                          <Component id="modificar_textoUsuario1" alignment="0" max="32767" attributes="0"/>
-                                                                          <Component id="modificar_textoCedula1" alignment="0" min="-2" pref="333" max="-2" attributes="0"/>
-                                                                      </Group>
-                                                                  </Group>
-                                                              </Group>
-                                                              <Component id="modificar_usuario1" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                                          <Component id="modificar_asignatura1" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="modificar_opcionesGrado1" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="modificar_opcionesCargo1" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                              <Component id="modificar_botonModificar1" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                                                              <Component id="botonEliminar1" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Component id="modificar_opcionesAsignatura1" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
+                                          <Component id="tablaCursosR" min="-2" pref="317" max="-2" attributes="0"/>
+                                          <EmptySpace pref="206" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="modificar_cargo1" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <Component id="modificar_grado1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                  <Component id="modificar_asignatura1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="39" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="modificar_opcionesGrado1" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="modificar_opcionesCargo1" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="modificar_botonModificar1" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
+                                                  <Component id="modificar_opcionesAsignatura1" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1819,13 +1743,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Component id="cuentasRegistradas1" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tablaUsuarios1" min="-2" pref="174" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Component id="cursosRegistrados" min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="modificar_cargo1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="modificar_opcionesCargo1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1842,40 +1763,21 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="modificar_botonModificar1" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="botonEliminar1" min="-2" pref="40" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="modificar_cedula3" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="modificar_textoBuscar1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="botonBuscar1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="modificar_cedula2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="modificar_textoCedula1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="modificar_usuario1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="modificar_textoUsuario1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="modificar_contrasenia1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="modificar_textoContrasenia1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="tablaCursosR" min="-2" pref="388" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                                  <Component id="botonEliminarCurso" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="cuentasRegistradas1">
+                        <Component class="javax.swing.JLabel" name="cursosRegistrados">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="16" style="1"/>
@@ -1883,75 +1785,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Cuentas registradas:"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="modificar_cedula2">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="20" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="C&#xe9;dula"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="modificar_textoCedula1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                            <Property name="focusable" type="boolean" value="false"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoCedula1ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="modificar_usuario1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="20" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Usuario"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="modificar_textoUsuario1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                            <Property name="focusable" type="boolean" value="false"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoUsuario1ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="modificar_contrasenia1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="20" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Cambiar contrase&#xf1;a"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JPasswordField" name="modificar_textoContrasenia1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
+                            <Property name="text" type="java.lang.String" value="Cursos registrados:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="modificar_opcionesCargo1">
@@ -2002,18 +1836,18 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_botonModificar1ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="botonEliminar1">
+                        <Component class="javax.swing.JButton" name="botonEliminarCurso">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Eliminar"/>
+                            <Property name="text" type="java.lang.String" value="Eliminar curso"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminar1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarCursoActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="modificar_grado1">
@@ -2093,89 +1927,24 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="modificar_cedula3">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="20" style="0"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Buscar por c&#xe9;dula"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="modificar_textoBuscar1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="18" style="0"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificar_textoBuscar1ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="botonBuscar1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="20" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Buscar"/>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Hand Cursor"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscar1ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Container class="javax.swing.JScrollPane" name="tablaUsuarios1">
+                        <Container class="javax.swing.JScrollPane" name="tablaCursosR">
                           <AuxValues>
                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                           </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="tablaUsuario1">
+                            <Component class="javax.swing.JTable" name="tablaCursosRegistrados">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="8" rowCount="4">
-                                    <Column editable="false" title="C&#xe9;dula" type="java.lang.Object"/>
-                                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                                    <Column editable="false" title="Apellido" type="java.lang.Object"/>
-                                    <Column editable="false" title="Usuario" type="java.lang.Object"/>
-                                    <Column editable="false" title="Contrase&#xf1;a" type="java.lang.Object"/>
-                                    <Column editable="false" title="Cargo" type="java.lang.Object"/>
-                                    <Column editable="false" title="Grado" type="java.lang.Object"/>
+                                  <Table columnCount="3" rowCount="10">
+                                    <Column editable="false" title="Clase/Grupo" type="java.lang.Object"/>
                                     <Column editable="false" title="Asignatura" type="java.lang.Object"/>
+                                    <Column editable="false" title="Docente" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                       <Title/>
                                       <Editor/>
