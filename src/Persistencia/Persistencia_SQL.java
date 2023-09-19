@@ -325,10 +325,10 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String query = "INSERT INTO administrador (usuario_cedula) VALUES (?)";
-                PreparedStatement preparedStatementAdmin = conn.prepareStatement(query);
-                preparedStatementAdmin.setInt(1, cedula);
-                preparedStatementAdmin.executeUpdate();
-                preparedStatementAdmin.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cedula);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -399,11 +399,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO adscripto (usuario_cedula, grado) VALUES (?, ?)";
-                PreparedStatement preparedStatementAdscripto = conn.prepareStatement(insertQuery);
-                preparedStatementAdscripto.setInt(1, cedula);
-                preparedStatementAdscripto.setInt(2, grado);
-                preparedStatementAdscripto.executeUpdate();
-                preparedStatementAdscripto.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, cedula);
+                preparedStatement.setInt(2, grado);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -476,12 +476,12 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String query = "INSERT INTO docente (usuario_cedula, grado, asignatura) VALUES (?, ?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(query);
-                preparedStatementDocente.setInt(1, cedula);
-                preparedStatementDocente.setInt(2, grado);
-                preparedStatementDocente.setString(3, asignatura);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cedula);
+                preparedStatement.setInt(2, grado);
+                preparedStatement.setString(3, asignatura);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -538,11 +538,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO curso (claseYgrupo, asignatura) VALUES (?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setString(1, idclaseYgrupo);
-                preparedStatementDocente.setString(2, asignatura);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setString(1, idclaseYgrupo);
+                preparedStatement.setString(2, asignatura);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -565,10 +565,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String deleteQuery = "DELETE FROM curso WHERE id_curso = ? AND asignatura = ?";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
-                preparedStatementDocente.setString(1, claseYgrupo);
-                preparedStatementDocente.setString(2, asignatura);
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setString(1, claseYgrupo);
+                preparedStatement.setString(2, asignatura);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "El curso "+claseYgrupo+" de "+asignatura+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
@@ -628,13 +629,13 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO estudiante (id_estudiante, nombre, apellido, edad) VALUES (?, ?, ?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setInt(1, idEstudiante);
-                preparedStatementDocente.setString(2, nombreEstudiante);
-                preparedStatementDocente.setString(3, apellidoEstudiante);
-                preparedStatementDocente.setInt(4, edadEstudiante);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idEstudiante);
+                preparedStatement.setString(2, nombreEstudiante);
+                preparedStatement.setString(3, apellidoEstudiante);
+                preparedStatement.setInt(4, edadEstudiante);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -657,9 +658,10 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String deleteQuery = "DELETE FROM estudiante WHERE id_estudiante = ?";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
-                preparedStatementDocente.setInt(1, idEstudiante);
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, idEstudiante);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "El estudiante "+nombre+" "+apellido+", CI: "+idEstudiante+" fue correctamente eliminado", "Estudiante eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
@@ -718,12 +720,12 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO informe (descripcion, fecha) VALUES (?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setInt(1, idInforme);
-                preparedStatementDocente.setString(2, descripcionInforme);
-                preparedStatementDocente.setString(3, fechaInforme);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idInforme);
+                preparedStatement.setString(2, descripcionInforme);
+                preparedStatement.setString(3, fechaInforme);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -744,9 +746,10 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String deleteQuery = "DELETE FROM informe WHERE id_informe = ?";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(deleteQuery);
-                preparedStatementDocente.setInt(1, idInforme);
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, idInforme);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "El informe fue correctamente eliminado", "Informe eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
@@ -773,11 +776,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO curso_has_estudiante (curso_id_curso, estudiante_id_estudiante) VALUES (?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setInt(1, idCurso);
-                preparedStatementDocente.setInt(2, idEstudiante);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idCurso);
+                preparedStatement.setInt(2, idEstudiante);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -799,11 +802,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO curso_has_docente (curso_id_curso, docente_usuario_cedula) VALUES (?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setInt(1, idCurso);
-                preparedStatementDocente.setInt(2, cedulaDocente);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idCurso);
+                preparedStatement.setInt(2, cedulaDocente);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -812,7 +815,34 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }      
+    }     
+    
+//ELIMINAR DOCENTE A CURSO (TABLA curso_has_docente)
+    public void eliminarDocenteACurso(Docente docente) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int cedula = docente.getCedula();
+        System.out.println(cedula);
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM curso_has_docente WHERE docente_usuario_cedula = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, cedula);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "El docente fue eliminado del curso", "Informe eliminado", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }     
+    
     
 //AGREGAR INFORME A CURSO (TABLA curso_has_informe)
     public void agregarInformeACurso(Curso curso, Informe informe) {
@@ -825,11 +855,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO curso_has_informe (curso_id_curso, informe_id_informe) VALUES (?, ?)";
-                PreparedStatement preparedStatementDocente = conn.prepareStatement(insertQuery);
-                preparedStatementDocente.setInt(1, idCurso);
-                preparedStatementDocente.setInt(2, idInforme);
-                preparedStatementDocente.executeUpdate();
-                preparedStatementDocente.close();
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idCurso);
+                preparedStatement.setInt(2, idInforme);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();

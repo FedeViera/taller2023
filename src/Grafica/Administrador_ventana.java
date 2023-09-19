@@ -17,11 +17,11 @@ import Logica.GestorCursos;
 import Logica.GestorDocentes;
 import Logica.GestorUsuarios;
 import Logica.GestorEstudiantes;
-import Logica.GestorIntermedio;
-/*
+import Logica.GestorRelacional;
+
 import java.lang.System.Logger;
 import java.util.logging.Level;
-*/
+
 
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
@@ -1696,8 +1696,10 @@ public class Administrador_ventana extends javax.swing.JFrame
                 JOptionPane.YES_NO_OPTION
             );
             if (respuesta == JOptionPane.YES_OPTION){
-                GestorUsuarios gestor = new GestorUsuarios();
-                gestor.eliminarUsuario(cedula, cargo);
+                GestorRelacional gestorR = new GestorRelacional();
+                gestorR.eliminarDocenteACurso(cedula); //PRIMERO ELIMINAR EL DOCENTE RELACIONADO A LA CURSO
+                GestorUsuarios gestorU = new GestorUsuarios();
+                gestorU.eliminarUsuario(cedula, cargo); //LUEGO ELIMINAR EL DOCENTE
                 cargarTablaUsuarios(); // Después de eliminar, actualizar la tabla
             }else{
                 System.out.println("Eliminación cancelada.");
@@ -1733,6 +1735,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             );
             
             if (respuesta == JOptionPane.YES_OPTION) {
+                GestorRelacional gestorR = new GestorRelacional();
+                gestorR.eliminarDocenteACurso(cedula); //PRIMERO ELIMINAR EL DOCENTE RELACIONADO A LA CURSO
                 GestorUsuarios gestorUsuario = new GestorUsuarios();
                 gestorUsuario.modificarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);              
                 
@@ -1889,8 +1893,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         int idCurso = gestorCursos.buscarIDCurso(claseYgrupo, asignatura);    
         if (docenteSeleccionadoParaCurso != null) {
             int cedulaDocente = docenteSeleccionadoParaCurso.intValue();
-            GestorIntermedio gestor = new GestorIntermedio();
-            gestor.agregarDocenteACurso(cedulaDocente, idCurso);
+            GestorRelacional gestorRelacional = new GestorRelacional();
+            gestorRelacional.agregarDocenteACurso(cedulaDocente, idCurso);
         } else {
             // Maneja el caso en el que docenteSeleccionadoParaCurso sea nulo
             JOptionPane.showMessageDialog(null, "No se selecciono ningun docente para el curso. Deberá asignarlo luego.", "Aviso", JOptionPane.WARNING_MESSAGE);

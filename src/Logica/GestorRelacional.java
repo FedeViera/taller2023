@@ -5,7 +5,7 @@ import Entidades.Curso;
 import Entidades.Docente;
 import Persistencia.Persistencia_SQL;
 
-public class GestorIntermedio {
+public class GestorRelacional {
     
     public void agregarDocenteACurso(Integer cedula, Integer idCurso){
         Docente docente = new Docente();
@@ -15,6 +15,14 @@ public class GestorIntermedio {
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarDocenteACurso(curso, docente);
+    }
+    
+    public void eliminarDocenteACurso (Integer cedula){
+        Docente docente = new Docente();
+        docente.setCedula(cedula);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarDocenteACurso(docente);
     }
     
    
