@@ -20,6 +20,18 @@ public class GestorCursos {
         listaCursos = persistencia.mapearCursos();
         return listaCursos;
     }
+    
+    public int buscarIDCurso(String claseYgrupo, String asignatura) {
+        for (Curso curso : listaCursos) {
+            if (curso.getClaseYgrupo().equals(claseYgrupo) && curso.getAsignatura().equals(asignatura)) {
+                return curso.getId_curso(); // Devuelve el ID del curso encontrado como int
+            }
+        }
+        return -1; // Retorna -1 (o cualquier otro valor que indique que el curso no se encontró) si el curso no se encuentra
+    }
+
+
+
 
 //AGREGAR CURSO
     public void agregarCurso(String claseYgrupo, String asignatura) {
