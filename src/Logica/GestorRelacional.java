@@ -3,10 +3,15 @@ package Logica;
 
 import Entidades.Curso;
 import Entidades.Docente;
+import Entidades.Estudiante;
 import Persistencia.Persistencia_SQL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestorRelacional {
     
+    List<Estudiante> estudiantes = new ArrayList<>();
+
     public void agregarDocenteACurso(Integer cedula, Integer idCurso){
         Docente docente = new Docente();
         docente.setCedula(cedula);
@@ -24,6 +29,15 @@ public class GestorRelacional {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarDocenteACurso(docente);
     }
+    
+    public void agregarEstudiantesACurso(int idCurso, List estudiantes){
+        Curso curso = new Curso();
+        curso.setId_curso(idCurso);
+
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.agregarEstudiantesACurso(curso, estudiantes);
+    }
+
     
    
     

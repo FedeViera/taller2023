@@ -871,6 +871,36 @@ public class Persistencia_SQL {
     }        
     
     
+//AGREGAR ESTUDIANTES A CURSO (TABLA curso_has_estudiante)    
+    public void agregarEstudiantesACurso(Curso curso, List<Estudiante> estudiantes) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        int idCurso = curso.getId_curso();
+
+        if (conn != null) {
+            try {
+                for (Estudiante estudiante : estudiantes) {
+                    int idEstudiante = estudiante.getId_estudiante();
+                    String insertQuery = "INSERT INTO curso_has_estudiante (curso_id_curso, estudiante_id_estudiante) VALUES (?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                    preparedStatement.setInt(1, idCurso);
+                    preparedStatement.setInt(2, idEstudiante);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar estudiantes al curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
+    
+    
     
  
     

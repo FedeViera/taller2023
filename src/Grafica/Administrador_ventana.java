@@ -1874,27 +1874,36 @@ public class Administrador_ventana extends javax.swing.JFrame
 //AGREGAR UN CURSO (VINCULAR DOCENTE Y AGREGAR ALUMNOS)
     private void Curso_crear_botonCrearCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_crear_botonCrearCursoActionPerformed
         
-        String clase = Curso_crear_opcionesClase.getSelectedItem().toString();
-        String grupo = Curso_crear_opcionesGrupo.getSelectedItem().toString();
+        String clase = Curso_crear_opcionesClase.getSelectedItem().toString(); //Guardar clase
+        String grupo = Curso_crear_opcionesGrupo.getSelectedItem().toString(); //Guardar grupo
         
-        String claseYgrupo = clase+grupo;
-        String asignatura = Curso_crear_opcionesAsignatura.getSelectedItem().toString();
+        String claseYgrupo = clase+grupo; //Concatenar claseygrupo
+        String asignatura = Curso_crear_opcionesAsignatura.getSelectedItem().toString(); //Guardar asignatura
         
         GestorCursos gestorCursos = new GestorCursos();
-        gestorCursos.cargarCursosDesdeBD();
+        gestorCursos.cargarCursosDesdeBD(); 
         
         if(!gestorCursos.cursoExiste(claseYgrupo, asignatura)){
-            gestorCursos.agregarCurso(claseYgrupo, asignatura);
+            gestorCursos.agregarCurso(claseYgrupo, asignatura); //AGREGAR CURSO
+            
+            GestorEstudiantes gestorE = new GestorEstudiantes();
+            List<Estudiante> estudiantesSeleccionados = gestorE.obtenerEstudiantesSeleccionados(tablaEstudiante); //Estudiantes seleccionados en la JTable
+            //gestorE.mostrarEstudiantes(estudiantesSeleccionados);
+            gestorCursos.cargarCursosDesdeBD(); //Actualizar estudiantes desde BD
+            int idCurso = gestorCursos.buscarIDCurso(claseYgrupo, asignatura); //Obtener idCurso para agregar a los estudiantes
+            GestorRelacional gestorR = new GestorRelacional();
+            gestorR.agregarEstudiantesACurso(idCurso, estudiantesSeleccionados); //AGREGAR ESTUDIANTES AL CURSO
+
             JOptionPane.showMessageDialog(null, "Curso "+claseYgrupo+" - "+asignatura+" creado correctamente", "Curso Creado", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null, "El Curso "+claseYgrupo+" de la Asignatura "+asignatura+" ya se encuentra creado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         gestorCursos.cargarCursosDesdeBD();
-        int idCurso = gestorCursos.buscarIDCurso(claseYgrupo, asignatura);    
+        int idCurso1 = gestorCursos.buscarIDCurso(claseYgrupo, asignatura);    
         if (docenteSeleccionadoParaCurso != null) {
             int cedulaDocente = docenteSeleccionadoParaCurso.intValue();
             GestorRelacional gestorRelacional = new GestorRelacional();
-            gestorRelacional.agregarDocenteACurso(cedulaDocente, idCurso);
+            gestorRelacional.agregarDocenteACurso(cedulaDocente, idCurso1);//AGREGAR DOCENTE AL CURSO
         } else {
             // Maneja el caso en el que docenteSeleccionadoParaCurso sea nulo
             JOptionPane.showMessageDialog(null, "No se selecciono ningun docente para el curso. Deberá asignarlo luego.", "Aviso", JOptionPane.WARNING_MESSAGE);

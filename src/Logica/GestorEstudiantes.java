@@ -41,9 +41,19 @@ public class GestorEstudiantes {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarEstudiante(estudiante);
     }    
+ 
+//MOSTRAR ADMINISTRADORES (PARA PRUEBAS)
+    public void mostrarEstudiantes(List<Estudiante> lista) {
+        for (Estudiante estudiante : lista) {
+            System.out.println("Cédula: " + estudiante.getId_estudiante());   
+            System.out.println("Nombre: " + estudiante.getNombre());
+            System.out.println("Apellido: " + estudiante.getApellido());
+            System.out.println("Edad: " + estudiante.getEdad());
+        }
+    }    
     
 //OBTENER ESTUDIANTE SELECIONADOS DE LA TablaEstudiantes (PARA LUEGO AGREGAR AL CURSO)     
-    private List<Estudiante> obtenerEstudiantesSeleccionados(JTable table) {
+    public List<Estudiante> obtenerEstudiantesSeleccionados(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int rowCount = model.getRowCount();
         List<Estudiante> estudiantesSeleccionados = new ArrayList<>();
@@ -63,9 +73,15 @@ public class GestorEstudiantes {
         return estudiantesSeleccionados;
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
 
-    
-    
     
     
     
