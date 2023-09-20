@@ -9,6 +9,7 @@ import Logica.GestorUsuarios;
 
 import Persistencia.Persistencia_SQL;
 import Logica.GestorAdministradores;
+import Logica.GestorCursos;
 
 
 public class Main {
@@ -30,6 +31,10 @@ public class Main {
         Administrador_ventana adm = new Administrador_ventana();
         adm.setVisible(true);
         adm.setLocationRelativeTo(null);
+        
+        GestorCursos gcursos = new GestorCursos();
+        gcursos.cargarCursosDesdeBD();
+        gcursos.mostrarCursos();
         
         /*
         GestorAdministradores gestionarAdministradores = new GestorAdministradores();

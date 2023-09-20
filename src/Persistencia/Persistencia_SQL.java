@@ -559,18 +559,16 @@ public class Persistencia_SQL {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        String claseYgrupo = curso.getClaseYgrupo();
-        String asignatura = curso.getAsignatura();
+        int idCurso = curso.getId_curso();
 
         if (conn != null) {
             try {
-                String deleteQuery = "DELETE FROM curso WHERE id_curso = ? AND asignatura = ?";
+                String deleteQuery = "DELETE FROM curso WHERE id_curso = ?";
                 PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
-                preparedStatement.setString(1, claseYgrupo);
-                preparedStatement.setString(2, asignatura);
+                preparedStatement.setInt(1, idCurso);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "El curso "+claseYgrupo+" de "+asignatura+" fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El curso  fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -810,7 +808,7 @@ public class Persistencia_SQL {
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar el docente al curso.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al agregar el docente al curso.", "Error Agregar Docente", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
@@ -823,7 +821,6 @@ public class Persistencia_SQL {
         Connection conn = conexion.conectarMySQL();
         
         int cedula = docente.getCedula();
-        System.out.println(cedula);
 
         if (conn != null) {
             try {
@@ -832,7 +829,7 @@ public class Persistencia_SQL {
                 preparedStatement.setInt(1, cedula);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "El docente fue eliminado del curso", "Informe eliminado", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El docente fue eliminado del curso", "Docente eliminado", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -841,7 +838,32 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }     
+    }  
+    
+//ELIMINAR CURSO CON DOCENTE (TABLA curso_has_docente)
+    public void eliminarCursoConDocente(Curso curso) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int cursoID = curso.getId_curso();
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM curso_has_docente WHERE curso_id_curso = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, cursoID);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                //JOptionPane.showMessageDialog(null, "El curso fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
     
     
 //AGREGAR INFORME A CURSO (TABLA curso_has_informe)

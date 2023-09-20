@@ -30,6 +30,23 @@ public class GestorRelacional {
         persistencia.eliminarDocenteACurso(docente);
     }
     
+    public void eliminarCursoConDocente(Integer cursoID){
+        Curso curso = new Curso();
+        curso.setId_curso(cursoID);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarCursoConDocente(curso);
+        
+    }
+    
+    public void eliminarCurso(Integer cursoID){
+        Curso curso = new Curso();
+        curso.setId_curso(cursoID);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        
+    }
+    
     public void agregarEstudiantesACurso(int idCurso, List estudiantes){
         Curso curso = new Curso();
         curso.setId_curso(idCurso);

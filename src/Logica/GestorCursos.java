@@ -28,11 +28,19 @@ public class GestorCursos {
         for (Curso curso : listaCursos) {
             if (curso.getClaseYgrupo().equals(claseYgrupo) && curso.getAsignatura().equals(asignatura)) {
                 return curso.getId_curso(); // Devuelve el ID del curso encontrado como int
+                
             }
         }
         return -1; // Retorna -1 (o cualquier otro valor que indique que el curso no se encontró) si el curso no se encuentra
     }
 
+    public void mostrarCursos() {
+        for (Curso curso : listaCursos) {
+            System.out.println(curso.getClaseYgrupo());
+            System.out.println(curso.getAsignatura());
+        }
+    }    
+    
 
 //AGREGAR CURSO
     public void agregarCurso(String claseYgrupo, String asignatura) {
@@ -45,9 +53,9 @@ public class GestorCursos {
     }  
     
 //ELIMINAR CURSO
-    public void eliminarCurso(String id_curso){
+    public void eliminarCurso(int id_curso){
         Curso curso = new Curso();
-        curso.setAsignatura(id_curso);
+        curso.setId_curso(id_curso);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarCurso(curso);
@@ -81,7 +89,7 @@ public class GestorCursos {
         for (Curso curso : listaCursos) {
             model.addRow(new Object[]{
                 curso.getClaseYgrupo(),
-                curso.getAsignatura()
+                curso.getAsignatura(),
             });
         }
         table.repaint(); // Actualizar la tabla
