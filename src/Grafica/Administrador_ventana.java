@@ -42,13 +42,16 @@ public class Administrador_ventana extends javax.swing.JFrame
 {
    
     private DefaultTableModel model;   
-    private Integer docenteSeleccionadoParaCurso;
+    private Integer docenteSeleccionadoAgregarACurso;
+    //private String docenteSeleccionadoEliminar_Curso, docenteSeleccionadoEliminar_Asignatura;
+                    
     
     public Administrador_ventana() {
         initComponents();
         
         MouseListenerUsuarios();
         MouseListenerDocentesPorAsignatura();
+        MouseListenerEliminarCurso();
         
         //VARIABLE PARA GUARDAR DOCENTE SELECCIONADO EN TABLA PARA AGREGAR CURSO
         
@@ -193,6 +196,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         Curso_tablaCurso = new javax.swing.JTable();
         Curso_crear_textoAgregarCurso1 = new javax.swing.JLabel();
         Curso_crear_botonEliminarCurso = new javax.swing.JButton();
+        Curso_eliminar_textoGrupo = new javax.swing.JTextField();
+        Curso_crear_grupoE = new javax.swing.JLabel();
+        Curso_crear_grupoE1 = new javax.swing.JLabel();
+        Curso_eliminar_textoAsignatura = new javax.swing.JTextField();
         modificarCurso = new javax.swing.JPanel();
         cursosRegistrados = new javax.swing.JLabel();
         modificar_botonModificar1 = new javax.swing.JButton();
@@ -1087,6 +1094,32 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
+        Curso_eliminar_textoGrupo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Curso_eliminar_textoGrupo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Curso_eliminar_textoGrupo.setFocusable(false);
+        Curso_eliminar_textoGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Curso_eliminar_textoGrupoActionPerformed(evt);
+            }
+        });
+
+        Curso_crear_grupoE.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Curso_crear_grupoE.setForeground(new java.awt.Color(0, 0, 0));
+        Curso_crear_grupoE.setText("Grupo");
+
+        Curso_crear_grupoE1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Curso_crear_grupoE1.setForeground(new java.awt.Color(0, 0, 0));
+        Curso_crear_grupoE1.setText("Asignatura");
+
+        Curso_eliminar_textoAsignatura.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Curso_eliminar_textoAsignatura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Curso_eliminar_textoAsignatura.setFocusable(false);
+        Curso_eliminar_textoAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Curso_eliminar_textoAsignaturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout agregarCursoLayout = new javax.swing.GroupLayout(agregarCurso);
         agregarCurso.setLayout(agregarCursoLayout);
         agregarCursoLayout.setHorizontalGroup(
@@ -1116,7 +1149,16 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Curso_crear_textoAgregarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Curso_tablaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Curso_crear_botonEliminarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Curso_crear_botonEliminarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(agregarCursoLayout.createSequentialGroup()
+                            .addComponent(Curso_crear_grupoE, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(39, 39, 39)
+                            .addComponent(Curso_eliminar_textoGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(agregarCursoLayout.createSequentialGroup()
+                            .addComponent(Curso_crear_grupoE1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Curso_eliminar_textoAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 33, 33))
         );
         agregarCursoLayout.setVerticalGroup(
@@ -1152,8 +1194,16 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(14, 14, 14)
                 .addComponent(Curso_crear_textoAgregarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Curso_tablaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Curso_tablaCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Curso_crear_grupoE, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Curso_eliminar_textoGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(agregarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Curso_crear_grupoE1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Curso_eliminar_textoAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addComponent(Curso_crear_botonEliminarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1623,7 +1673,8 @@ public class Administrador_ventana extends javax.swing.JFrame
 //ACTUALIZAR JTable AL CAMBIAR PESATAÑA
     private void opcionesCuentasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_opcionesCuentasStateChanged
         GestorUsuarios gestorU = new GestorUsuarios();
-        gestorU.cargarTablaUsuarios(Cuenta_tablaUsuario);
+        gestorU.cargarTablaUsuarios(Cuenta_tablaUsuario); //Refresco TablaUsuarios
+        
     }//GEN-LAST:event_opcionesCuentasStateChanged
 
 //BOTON MODIFICAR USUARIO
@@ -1638,7 +1689,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             int nuevoGrado = Integer.parseInt(Cuenta_modificar_opcionesGrado.getSelectedItem().toString()); // Convertir item a entero
             String nuevaAsignatura = Cuenta_modificar_opcionesAsignatura.getSelectedItem().toString();
             
-
+            //Aviso antes de Borrar Usuario (Borrar todo lo relacionado a ese usuario)
             int respuesta = JOptionPane.showConfirmDialog(
                 null,
                 "¿Está seguro que desea modificar el usuario con cedula: "+cedula+"?\nSe eliminaran todos los archivos relacionados a este Usuario",
@@ -1648,11 +1699,11 @@ public class Administrador_ventana extends javax.swing.JFrame
             
             if (respuesta == JOptionPane.YES_OPTION) {
                 GestorRelacional gestorR = new GestorRelacional();
-                gestorR.eliminarDocenteACurso(cedula); //PRIMERO ELIMINAR EL DOCENTE RELACIONADO A LA CURSO
+                gestorR.eliminarDocenteACurso(cedula); //Primero elimina docente relacionado a un Curso
                 GestorUsuarios gestorU = new GestorUsuarios();
-                gestorU.modificarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura);              
+                gestorU.modificarUsuario(cedula, nuevaContrasenia, nuevoCargo, nuevoGrado, nuevaAsignatura); //Modifica usuario "libre"             
                 
-                gestorU.cargarTablaUsuarios(Cuenta_tablaUsuario);
+                gestorU.cargarTablaUsuarios(Cuenta_tablaUsuario); //Refresca tabla Usuarios
                 
                 // Borra los campos de los JTextField
                 Cuenta_modificar_textoCedula.setText("");
@@ -1666,6 +1717,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
     }//GEN-LAST:event_Cuenta_modificar_botonModificarActionPerformed
 
+//APAGA LOS BOTONES SI NO ES NECESARIO USARLOS PARA DETERMINADO USUARIO    
     private void Cuenta_modificar_opcionesCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cuenta_modificar_opcionesCargoActionPerformed
         String selectedCargo = (String) Cuenta_modificar_opcionesCargo.getSelectedItem();
 
@@ -1692,13 +1744,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void Cuenta_modificar_textoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cuenta_modificar_textoUsuarioActionPerformed
 
     }//GEN-LAST:event_Cuenta_modificar_textoUsuarioActionPerformed
-
-//VER CONTRASEÑA
-    private char echoCharOriginal = '\u2022';
-    private boolean contraseniaVisible = false;
-    
-    
-    
+     
     private void Cuenta_crear_textoContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cuenta_crear_textoContraseniaActionPerformed
         
     }//GEN-LAST:event_Cuenta_crear_textoContraseniaActionPerformed
@@ -1741,8 +1787,8 @@ public class Administrador_ventana extends javax.swing.JFrame
             Object cedulaValue = model.getValueAt(row, 0);
             if (cedulaValue != null && cedulaValue.toString().equalsIgnoreCase(busquedaCedula)) {
                 Cuenta_tablaUsuario.setRowSelectionInterval(row, row);
-                hacerVisibleFilaEncontrada(Cuenta_tablaUsuario, row, 0);
-                llenarCamposDesdeTabla(row);
+                hacerVisibleFilaEncontrada(Cuenta_tablaUsuario, row, 0); //Llama a metodo para que seleccione la fila buscada en la Tabla
+                llenarCamposDesdeTabla(row); //Completa los campos a modificar
                 encontrado = true;
                 break; 
             }
@@ -1764,9 +1810,35 @@ public class Administrador_ventana extends javax.swing.JFrame
         table.scrollRectToVisible(rect);
     }    
     
+//COMPLEMENTO DEL BOTON BUSCAR - LLENA CAMPOS CON DATOS DE USUARIO ENCONTRADO
+    private void llenarCamposDesdeTabla(int fila) {
+        Integer cedula = (Integer) Cuenta_tablaUsuario.getValueAt(fila, 0);
+        String usuario = Cuenta_tablaUsuario.getValueAt(fila, 3).toString(); 
+        String contrasenia = Cuenta_tablaUsuario.getValueAt(fila, 4).toString();
+        String cargo = Cuenta_tablaUsuario.getValueAt(fila, 5).toString();
+
+        Cuenta_modificar_textoUsuario.setText(usuario);
+        Cuenta_modificar_textoContrasenia.setText(contrasenia);
+        Cuenta_modificar_textoCedula.setText(cedula.toString());
+        Cuenta_modificar_opcionesCargo.setSelectedItem(cargo); 
+
+        if (cargo.equals("Docente")) {
+            String grado = Cuenta_tablaUsuario.getValueAt(fila, 6).toString();
+            Cuenta_modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+            String asignatura = Cuenta_tablaUsuario.getValueAt(fila, 7).toString();
+            Cuenta_modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
+        } else if (cargo.equals("Adscripto")) {
+            String grado = Cuenta_tablaUsuario.getValueAt(fila, 6).toString();
+            Cuenta_modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
+            Cuenta_modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
+        } else {
+            Cuenta_modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
+            Cuenta_modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
+        }
+    }    
+    
 //AGREGAR UN CURSO (VINCULAR DOCENTE Y AGREGAR ALUMNOS)
     private void Curso_crear_botonCrearCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_crear_botonCrearCursoActionPerformed
-        
         String clase = Curso_crear_opcionesClase.getSelectedItem().toString(); //Guardar clase
         String grupo = Curso_crear_opcionesGrupo.getSelectedItem().toString(); //Guardar grupo
         
@@ -1774,10 +1846,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         String asignatura = Curso_crear_opcionesAsignatura.getSelectedItem().toString(); //Guardar asignatura
         
         GestorCursos gestorCursos = new GestorCursos();
-        gestorCursos.cargarCursosDesdeBD(); 
-        
-        if(!gestorCursos.cursoExiste(claseYgrupo, asignatura)){
-            gestorCursos.agregarCurso(claseYgrupo, asignatura); //AGREGAR CURSO
+        gestorCursos.cargarCursosDesdeBD(); //Refresca datos desde BD
+        boolean realizado = false;
+        if(!gestorCursos.cursoExiste(claseYgrupo, asignatura) && docenteSeleccionadoAgregarACurso != null){
+            gestorCursos.agregarCurso(claseYgrupo, asignatura); //Agrega un Curso
             
             /*
             GestorEstudiantes gestorE = new GestorEstudiantes();
@@ -1789,21 +1861,22 @@ public class Administrador_ventana extends javax.swing.JFrame
             gestorR.agregarEstudiantesACurso(idCurso, estudiantesSeleccionados); //AGREGAR ESTUDIANTES AL CURSO*/
 
             JOptionPane.showMessageDialog(null, "Curso "+claseYgrupo+" - "+asignatura+" creado correctamente", "Curso Creado", JOptionPane.INFORMATION_MESSAGE);
+            realizado = true; //Si se creo el grupo correctamente devuelve true
         }else{
-            JOptionPane.showMessageDialog(null, "El Curso "+claseYgrupo+" de la Asignatura "+asignatura+" ya se encuentra creado.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El Curso "+claseYgrupo+" de la Asignatura "+asignatura+" ya se encuentra creado o no Selecciono ningún Docente", "Error", JOptionPane.ERROR_MESSAGE);
         }
         gestorCursos.cargarCursosDesdeBD();
-        int idCurso1 = gestorCursos.buscarIDCurso(claseYgrupo, asignatura);    
-        if (docenteSeleccionadoParaCurso != null) {
-            int cedulaDocente = docenteSeleccionadoParaCurso.intValue();
+        int idCurso1 = gestorCursos.buscarIDCurso(claseYgrupo, asignatura);  //Trae el ID del curso a partir de Clase y Grupo 
+        //Si se pudo crear el grupo, Agrega el docente a ese grupo
+        if (realizado) {
+            int cedulaDocente = docenteSeleccionadoAgregarACurso.intValue();
             GestorRelacional gestorRelacional = new GestorRelacional();
-            gestorRelacional.agregarDocenteACurso(cedulaDocente, idCurso1);//AGREGAR DOCENTE AL CURSO
+            gestorRelacional.agregarDocenteACurso(cedulaDocente, idCurso1);//Agrega docente al grupo
             
             GestorCursos gestorC = new GestorCursos();
             gestorC.cargarTablaCursos(Curso_tablaCurso);
         } else {
-            // Maneja el caso en el que docenteSeleccionadoParaCurso sea nulo
-            JOptionPane.showMessageDialog(null, "No se selecciono ningun docente para el curso. Deberá asignarlo luego.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se selecciono ningun docente para el curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }    
     }//GEN-LAST:event_Curso_crear_botonCrearCursoActionPerformed
   
@@ -1824,6 +1897,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_Curso_crear_opcionesAsignaturaActionPerformed
 
     private void Curso_crear_opcionesAsignaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Curso_crear_opcionesAsignaturaItemStateChanged
+        //Cuando seleccionamos otra Asignatura al crear Curso, actualiza la tabla mostrando docentes de esa Asignatura
         String asignatura = Curso_crear_opcionesAsignatura.getSelectedItem().toString();
         GestorDocentes gestorD = new GestorDocentes();
         gestorD.cargarTablaDocentesPorAsignatura(asignatura, Curso_tablaDocente);
@@ -1838,8 +1912,19 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_modificar_botonModificar1ActionPerformed
 
     private void Curso_crear_botonEliminarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_crear_botonEliminarCursoActionPerformed
-        // TODO add your handling code here:
+        
+        GestorCursos gestorC = new GestorCursos();
+        gestorC.cargarCursosDesdeBD();
+        gestorC.cargarTablaCursos(Curso_tablaCurso); //Refresco TablaCurso
     }//GEN-LAST:event_Curso_crear_botonEliminarCursoActionPerformed
+
+    private void Curso_eliminar_textoGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_eliminar_textoGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Curso_eliminar_textoGrupoActionPerformed
+
+    private void Curso_eliminar_textoAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_eliminar_textoAsignaturaActionPerformed
+        
+    }//GEN-LAST:event_Curso_eliminar_textoAsignaturaActionPerformed
          
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
     
@@ -1887,7 +1972,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 int filaSeleccionada = Curso_tablaDocente.getSelectedRow();
                 if (filaSeleccionada >= 0) {
                     //variable declarada arriba fuera del metodo para usarla luego. GUARDA LA CEDULA DEL DOCENTE SELECCIONADO PARA CREAR EL CURSO
-                    docenteSeleccionadoParaCurso = (Integer) Curso_tablaDocente.getValueAt(filaSeleccionada, 0);
+                    docenteSeleccionadoAgregarACurso = (Integer) Curso_tablaDocente.getValueAt(filaSeleccionada, 0);
                 }
             }
         });
@@ -1898,45 +1983,28 @@ public class Administrador_ventana extends javax.swing.JFrame
         Curso_tablaCurso.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int filaSeleccionada = Curso_tablaDocente.getSelectedRow();
+                int filaSeleccionada = Curso_tablaCurso.getSelectedRow();
                 if (filaSeleccionada >= 0) {
                     //variable declarada arriba fuera del metodo para usarla luego. GUARDA LA CEDULA DEL DOCENTE SELECCIONADO PARA CREAR EL CURSO
-                    docenteSeleccionadoParaCurso = (Integer) Curso_tablaDocente.getValueAt(filaSeleccionada, 0);
+                    String docenteSeleccionadoEliminar_Curso = Curso_tablaCurso.getValueAt(filaSeleccionada, 0).toString();
+                    String docenteSeleccionadoEliminar_Asignatura = Curso_tablaCurso.getValueAt(filaSeleccionada, 1).toString();
+                    
+                    System.out.println(docenteSeleccionadoEliminar_Curso);
+                    System.out.println(docenteSeleccionadoEliminar_Asignatura);
+                    
+                    Curso_eliminar_textoGrupo.setText(docenteSeleccionadoEliminar_Curso);
+                    Curso_eliminar_textoAsignatura.setText(docenteSeleccionadoEliminar_Asignatura);
                 }
             }
         });
     }    
 
+    
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
 
 
-//COMPLEMENTO DEL BOTON BUSCAR - LLENA CAMPOS CON DATOS DE USUARIO ENCONTRADO
-    private void llenarCamposDesdeTabla(int fila) {
-        Integer cedula = (Integer) Cuenta_tablaUsuario.getValueAt(fila, 0);
-        String usuario = Cuenta_tablaUsuario.getValueAt(fila, 3).toString(); 
-        String contrasenia = Cuenta_tablaUsuario.getValueAt(fila, 4).toString();
-        String cargo = Cuenta_tablaUsuario.getValueAt(fila, 5).toString();
 
-        Cuenta_modificar_textoUsuario.setText(usuario);
-        Cuenta_modificar_textoContrasenia.setText(contrasenia);
-        Cuenta_modificar_textoCedula.setText(cedula.toString());
-        Cuenta_modificar_opcionesCargo.setSelectedItem(cargo); 
-
-        if (cargo.equals("Docente")) {
-            String grado = Cuenta_tablaUsuario.getValueAt(fila, 6).toString();
-            Cuenta_modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-            String asignatura = Cuenta_tablaUsuario.getValueAt(fila, 7).toString();
-            Cuenta_modificar_opcionesAsignatura.setSelectedItem(asignatura); // Actualizar asignatura 
-        } else if (cargo.equals("Adscripto")) {
-            String grado = Cuenta_tablaUsuario.getValueAt(fila, 6).toString();
-            Cuenta_modificar_opcionesGrado.setSelectedItem(grado); // Actualizar grado
-            Cuenta_modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura para adscripto
-        } else {
-            Cuenta_modificar_opcionesAsignatura.setSelectedIndex(0); // Vaciar asignatura
-            Cuenta_modificar_opcionesGrado.setSelectedIndex(0); // Vaciar grado
-        }
-    }
 
 
     //Bienvenida al usuario mostrando el cargo, nombre y apellido
@@ -2020,12 +2088,16 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel Curso_crear_clase;
     private javax.swing.JLabel Curso_crear_estudiante;
     private javax.swing.JLabel Curso_crear_grupo;
+    private javax.swing.JLabel Curso_crear_grupoE;
+    private javax.swing.JLabel Curso_crear_grupoE1;
     private javax.swing.JComboBox<String> Curso_crear_opcionesAsignatura;
     private javax.swing.JComboBox<String> Curso_crear_opcionesClase;
     private javax.swing.JComboBox<String> Curso_crear_opcionesGrupo;
     private javax.swing.JLabel Curso_crear_textoAgregarCurso;
     private javax.swing.JLabel Curso_crear_textoAgregarCurso1;
     private javax.swing.JLabel Curso_crear_textoSeleccionarDocente;
+    private javax.swing.JTextField Curso_eliminar_textoAsignatura;
+    private javax.swing.JTextField Curso_eliminar_textoGrupo;
     private javax.swing.JTable Curso_tablaCurso;
     private javax.swing.JScrollPane Curso_tablaCursos;
     private javax.swing.JTable Curso_tablaDocente;

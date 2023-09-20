@@ -64,11 +64,11 @@ public class GestorUsuarios {
     public String obtenerNombreyApellido(String usuario, String contrasenia) {
         String nombreApellido = null;
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        Usuario cargoUsuario = persistencia.mapearUsuario(usuario, contrasenia);
+        Usuario nombreYapellido = persistencia.mapearUsuario(usuario, contrasenia);
 
-        if (cargoUsuario != null) {
+        if (nombreYapellido != null) {
             // Combina el nombre y el apellido en una sola cadena
-            nombreApellido = cargoUsuario.getNombre() + " " + cargoUsuario.getApellido();
+            nombreApellido = nombreYapellido.getNombre() + " " + nombreYapellido.getApellido();
         }
 
         return nombreApellido;
