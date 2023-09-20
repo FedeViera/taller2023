@@ -4,8 +4,11 @@ import Entidades.Estudiante;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class GestorEstudiantes {
     
@@ -73,6 +76,34 @@ public class GestorEstudiantes {
         return estudiantesSeleccionados;
     }
 
+//CARGAR LOS DOCENTES EN EL JTable    
+    public void cargarTablaEstudiantes(JTable table) {
+        GestorEstudiantes gestor = new GestorEstudiantes();
+
+        List<Estudiante> listaEstudiantes = gestor.cargarEstudiantesDesdeBD();
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        // Agregar datos de la lista de estudiantes al modelo de la tabla
+        for (Estudiante estudiante : listaEstudiantes) {
+            // Agregar un objeto Boolean.TRUE para representar una casilla de verificación marcada
+            model.addRow(new Object[]{
+                Boolean.FALSE, // Inicialmente, la casilla de verificación está desmarcada
+                estudiante.getId_estudiante(),
+                estudiante.getNombre(),
+                estudiante.getApellido(),
+                estudiante.getEdad()
+            });
+        }
+
+        // Configurar la primera columna para que muestre casillas de verificación
+        TableColumn seleccionColumn = table.getColumnModel().getColumn(0);
+        seleccionColumn.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+        seleccionColumn.setCellEditor(new DefaultCellEditor(new JCheckBox()));
+
+        table.repaint(); // Actualizar la tabla
+    }    
     
     
     

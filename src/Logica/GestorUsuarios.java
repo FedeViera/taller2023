@@ -161,6 +161,63 @@ public class GestorUsuarios {
         persistencia.actualizarUsuario(usuarioFull);
     }
     
+    //CARGAR TODOS LOS DATOS DE USUARIOS (ADMIN, ADS Y DOCENTES) EN EL JTable
+    public void cargarTablaUsuarios(JTable table){
+        GestorUsuarios gestorUsuarios = new GestorUsuarios();
+        List<Object> listaGeneral = gestorUsuarios.obtenerTodosUsuarios();
+        
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de agregar nuevos datos
+        
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        
+        // Agregar datos de la lista general al modelo de la tabla
+        for (Object usuario : listaGeneral) {
+            if (usuario instanceof Administrador) {
+                Administrador admin = (Administrador) usuario;
+                model.addRow(new Object[]{
+                    admin.getCedula(),
+                    admin.getNombre(),
+                    admin.getApellido(),
+                    admin.getUsuario(),
+                    admin.getContrasenia(),
+                    admin.getCargo(),
+                    "", // Grado (vacío para no docentes)
+                    ""  // Asignatura (vacío para no docentes)
+                });
+            } else if (usuario instanceof Adscripto) {
+                Adscripto adscripto = (Adscripto) usuario;
+                model.addRow(new Object[]{
+                    adscripto.getCedula(),
+                    adscripto.getNombre(),
+                    adscripto.getApellido(),
+                    adscripto.getUsuario(),
+                    adscripto.getContrasenia(),
+                    adscripto.getCargo(),
+                    adscripto.getGrado(),
+                    ""  // Asignatura (vacío para adscriptos)
+                });
+            } else if (usuario instanceof Docente) {
+                Docente docente = (Docente) usuario;
+                model.addRow(new Object[]{
+                    docente.getCedula(),
+                    docente.getNombre(),
+                    docente.getApellido(),
+                    docente.getUsuario(),
+                    docente.getContrasenia(),
+                    docente.getCargo(),
+                    docente.getGrado(),
+                    docente.getAsignatura()
+                });
+            }
+            table.repaint();
+        }
+    } 
+    
+    
     
   
     

@@ -13,6 +13,7 @@ public class GestorDocentes {
     
     private List<Docente> listaDocentes;
     private javax.swing.JTable tablaDocente;
+    
 
     public GestorDocentes() {
         this.listaDocentes = new ArrayList<>();
@@ -101,7 +102,32 @@ public class GestorDocentes {
         return docentesFiltrados;
     }
     
-  
+//CARGAR LOS DOCENTES EN EL JTable    
+    public void cargarTablaDocentesPorAsignatura(String asignatura, JTable table) {
+        GestorDocentes gestorDocentes = new GestorDocentes();
+
+        List<Docente> listaDocentes = gestorDocentes.cargarDocentesDesdeBD();
+        listaDocentes = gestorDocentes.filtrarDocentesPorAsignatura(asignatura);
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        // Agregar datos de la lista de docentes al modelo de la tabla
+        for (Docente docente : listaDocentes) {
+            model.addRow(new Object[]{
+                docente.getCedula(),
+                docente.getNombre(),
+                docente.getApellido(),
+                docente.getAsignatura()
+            });
+        }
+        table.repaint(); // Actualizar la tabla
+    } 
   
 
 

@@ -5,10 +5,13 @@ import Entidades.Curso;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class GestorCursos {
     
     private List<Curso> listaCursos;
+    
     
     public GestorCursos() {
         this.listaCursos = new ArrayList<>();
@@ -29,8 +32,6 @@ public class GestorCursos {
         }
         return -1; // Retorna -1 (o cualquier otro valor que indique que el curso no se encontró) si el curso no se encuentra
     }
-
-
 
 
 //AGREGAR CURSO
@@ -61,6 +62,35 @@ public class GestorCursos {
         }
         return false; // El curso no existe en la lista
     }
+    
+//CARGAR LOS DOCENTES EN EL JTable    
+    public void cargarTablaCursos(JTable table) {
+        GestorCursos gestorCursos = new GestorCursos();
+
+        List<Curso> listaCursos = gestorCursos.cargarCursosDesdeBD();
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        // Agregar datos de la lista de docentes al modelo de la tabla
+        for (Curso curso : listaCursos) {
+            model.addRow(new Object[]{
+                curso.getClaseYgrupo(),
+                curso.getAsignatura()
+            });
+        }
+        table.repaint(); // Actualizar la tabla
+    } 
+
+
+
+
+
 
     
     
