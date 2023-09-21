@@ -814,6 +814,34 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }     
+
+//REASIGNAR DOCENTE A CURSO (TABLA curso_has_docente)    
+    public void reasignarDocenteACurso(Docente docente, int nuevoDocente ) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        int viejaCedula = docente.getCedula();
+        int nuevaCedula = nuevoDocente;
+        
+
+        if (conn != null) {
+            try {
+                String updateQuery = "UPDATE curso_has_docente SET docente_usuario_cedula = (?) WHERE docente_usuario_cedula = (?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(updateQuery);
+                preparedStatement.setInt(1, nuevaCedula);
+                preparedStatement.setInt(2, viejaCedula);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();        
+                
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al reasignar el docente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }     
     
 //ELIMINAR DOCENTE A CURSO (TABLA curso_has_docente)
     public void eliminarDocenteACurso(Docente docente) {
@@ -891,25 +919,40 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }        
-    
-    
-//AGREGAR ESTUDIANTES A CURSO (TABLA curso_has_estudiante)    
+  
+//VERIFICAR SI ESTUDIANTE EXISTE    
+    private boolean existeEstudiante(Connection conn, int idCurso, int idEstudiante) throws SQLException {
+        String query = "SELECT * FROM curso_has_estudiante WHERE curso_id_curso = ? AND estudiante_id_estudiante = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, idCurso);
+        preparedStatement.setInt(2, idEstudiante);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        boolean existe = resultSet.next(); // Si hay al menos una fila, ya existe la entrada
+        resultSet.close();
+        preparedStatement.close();
+        return existe;
+    }     
+
+// AGREGAR ESTUDIANTES A CURSO (TABLA curso_has_estudiante)
     public void agregarEstudiantesACurso(Curso curso, List<Estudiante> estudiantes) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
-
         int idCurso = curso.getId_curso();
 
         if (conn != null) {
             try {
                 for (Estudiante estudiante : estudiantes) {
                     int idEstudiante = estudiante.getId_estudiante();
-                    String insertQuery = "INSERT INTO curso_has_estudiante (curso_id_curso, estudiante_id_estudiante) VALUES (?, ?)";
-                    PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
-                    preparedStatement.setInt(1, idCurso);
-                    preparedStatement.setInt(2, idEstudiante);
-                    preparedStatement.executeUpdate();
-                    preparedStatement.close();
+
+                    // Verificar si ya existe una entrada para este curso y estudiante
+                    if (!existeEstudiante(conn, idCurso, idEstudiante)) {
+                        String insertQuery = "INSERT INTO curso_has_estudiante (curso_id_curso, estudiante_id_estudiante) VALUES (?, ?)";
+                        PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                        preparedStatement.setInt(1, idCurso);
+                        preparedStatement.setInt(2, idEstudiante);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                    }
                 }
                 conn.close();
             } catch (SQLException ex) {
@@ -920,6 +963,75 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+//MAPEAR ESTUDIANTES
+    public List<Estudiante> obtenerEstudiantesCursoEspecifico(Integer cursoID) {
+        List<Estudiante> listaEstudiantesCursoEspecifico = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT estudiante_id_estudiante FROM curso_has_estudiante WHERE curso_id_curso = ?";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cursoID); // Establecer el valor del parámetro curso_id_curso
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    int idEstudiante = resultSet.getInt("estudiante_id_estudiante");
+
+                    // Crear un objeto Estudiante y establecer solo el id_estudiante
+                    Estudiante estudiante = new Estudiante();
+                    estudiante.setId_estudiante(idEstudiante);
+
+                    listaEstudiantesCursoEspecifico.add(estudiante);
+                }
+
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al obtener los estudiantes del curso.");
+            }
+        }
+        return listaEstudiantesCursoEspecifico;
+    }
+
+    
+ // AGREGAR ESTUDIANTES A CURSO (TABLA curso_has_estudiante)
+    public void quitarEstudiantesACurso(Curso curso, List<Estudiante> estudiantes) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        int idCurso = curso.getId_curso();
+
+        if (conn != null) {
+            try {
+                for (Estudiante estudiante : estudiantes) {
+                    int idEstudiante = estudiante.getId_estudiante();
+
+                    // Verificar si existe una entrada para este curso y estudiante
+                    if (existeEstudiante(conn, idCurso, idEstudiante)) {
+                        String deleteQuery = "DELETE FROM curso_has_estudiante WHERE curso_id_curso = ? AND estudiante_id_estudiante = ?";
+                        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                        preparedStatement.setInt(1, idCurso);
+                        preparedStatement.setInt(2, idEstudiante);
+                        preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                    }
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar estudiantes del curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+   
         
     
     

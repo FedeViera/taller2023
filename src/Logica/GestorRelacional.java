@@ -54,6 +54,14 @@ public class GestorRelacional {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarEstudiantesACurso(curso, estudiantes);
     }
+    
+    public void quitarEstudiantesACurso(int idCurso, List estudiantes){
+        Curso curso = new Curso();
+        curso.setId_curso(idCurso);
+
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.quitarEstudiantesACurso(curso, estudiantes);
+    }
 
     
    
