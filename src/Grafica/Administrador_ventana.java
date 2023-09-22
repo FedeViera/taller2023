@@ -46,7 +46,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private Integer docenteSeleccionadoAgregarACurso; //VARIABLE UTILIZADA EN MOUSELISTENNER MouseListenerDocentesPorAsignatura()
     private String cursoSeleccionadoEliminarCurso_Curso, cursoSeleccionadoEliminarCurso_Asignatura; //VARIABLE UTILIZADA EN MOUSELISTENNER MouseListenerEliminarCurso()
     private String cursoSeleccionadoAgregarEstudiante_Curso, cursoSeleccionadoAgregarEstudiante_Asignatura; //VARIABLE UTILIZADA EN MOUSELISTENNER MouseListenerSeleccionarCurso_AgregarEstudiante()
-    private Integer cursoID;                
+    private Integer cursoID;//VARIABLE DE CURSO       
     
     public Administrador_ventana() {
         initComponents();
@@ -56,8 +56,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         MouseListenerDocentesPorAsignatura(); //Seleccionar docentes por asignatura
         MouseListenerEliminarCurso(); //Seleccionar curso para eliminarlo
         MouseListenerSeleccionarCurso_AgregarEstudiante(); //Seleccionar curso para Agregar Estudiante
-        
-        
+                
         //Precargamos tablaCursos
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
@@ -67,18 +66,11 @@ public class Administrador_ventana extends javax.swing.JFrame
         GestorEstudiantes gestorE = new GestorEstudiantes();
         gestorE.cargarTablaEstudiantes(tablaEstudiante_Agregar);
         
-        
-        
-        
-        
-        //VARIABLE PARA GUARDAR DOCENTE SELECCIONADO EN TABLA PARA AGREGAR CURSO
-        
-        
         this.setTitle("SDFA - Panel Administrador"); //Titulo de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage()); //Logo de la ventana
        
             
-        // DocumentListener - Validar el campo en tiempo real
+        // DocumentListener - Validar el campo en tiempo real en Crear Cuentas
         Cuenta_crear_textoCedula.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -1707,8 +1699,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorR.eliminarDocenteACurso(cedula); //PRIMERO ELIMINAR EL DOCENTE RELACIONADO A LA CURSO
                 GestorUsuarios gestorU = new GestorUsuarios();
                 gestorU.eliminarUsuario(cedula, cargo); //LUEGO ELIMINAR EL DOCENTE
-                
-                
+                    
                 gestorU.cargarTablaUsuarios(Cuenta_tablaUsuario); // Después de eliminar, actualizar la tabla
             }else{
                 System.out.println("Eliminación cancelada.");
@@ -1970,6 +1961,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorC.cargarCursosDesdeBD();
                 gestorC.cargarTablaCursos(Curso_tablaCurso);
                 gestorC.cargarTablaCursos(Curso_tablaCursoEstudiantes);
+                gestorC.cargarTablaCursos(tablaEstudiante_Quitar);
             }else{
                 System.out.println("Eliminación cancelada.");
             }  
@@ -1980,19 +1972,24 @@ public class Administrador_ventana extends javax.swing.JFrame
         //Traemos seleccion de curso desde MouseListener - MouseListenerSeleccionarCurso_AgregarEstudiante()
         String curso_ClaseyGrupo = cursoSeleccionadoAgregarEstudiante_Curso;
         String asignatura = cursoSeleccionadoAgregarEstudiante_Asignatura;
-                       
+
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
         int cursoID = gestorC.buscarIDCurso(curso_ClaseyGrupo, asignatura);
-            
-        GestorEstudiantes gestorE = new GestorEstudiantes();
-        List<Estudiante> estudiantesSeleccionadosAgregar = gestorE.obtenerEstudiantesSeleccionados_Agregar(tablaEstudiante_Agregar); //Estudiantes seleccionados en la JTable
-
-        GestorRelacional gestorR = new GestorRelacional();
-        gestorR.agregarEstudiantesACurso(cursoID, estudiantesSeleccionadosAgregar); //AGREGAR ESTUDIANTES AL CURSO*/     
         
-        //Actualizo la tabla tablaEstudiante_Quitar con los nuevos estudiantes agregados.
-        gestorE.cargarTablaEstudiantesCursoEspecifico(cursoID, tablaEstudiante_Quitar);
+            if(cursoID!=-1){
+                GestorEstudiantes gestorE = new GestorEstudiantes();
+                List<Estudiante> estudiantesSeleccionadosAgregar = gestorE.obtenerEstudiantesSeleccionados_Agregar(tablaEstudiante_Agregar); //Estudiantes seleccionados en la JTable
+
+                GestorRelacional gestorR = new GestorRelacional();
+                gestorR.agregarEstudiantesACurso(cursoID, estudiantesSeleccionadosAgregar); //AGREGAR ESTUDIANTES AL CURSO*/     
+
+                //Actualizo la tabla tablaEstudiante_Quitar con los nuevos estudiantes agregados.
+                gestorE.cargarTablaEstudiantesCursoEspecifico(cursoID, tablaEstudiante_Quitar);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Para agregar Estudiantes primero debe seleccionar un Curso", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
     }//GEN-LAST:event_Curso_crear_botonAgregarEstudianteActionPerformed
 
 //QUITAR ESTUDIANTES DE CURSO    

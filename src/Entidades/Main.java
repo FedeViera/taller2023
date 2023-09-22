@@ -25,8 +25,8 @@ public class Main {
        /*
         Login_ventana login = new Login_ventana();
         login.setVisible(true);
-        login.setLocationRelativeTo(null);
-        */
+        login.setLocationRelativeTo(null);*/
+        
        
         Administrador_ventana adm = new Administrador_ventana();
         adm.setVisible(true);

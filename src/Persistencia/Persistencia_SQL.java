@@ -918,6 +918,47 @@ public class Persistencia_SQL {
         }
     }     
     
+    public Docente obtenerDocenteParaCurso(Integer cursoID) {
+        Docente docente = new Docente();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                // Query SQL para obtener los datos del docente para un curso específico
+                String query = "SELECT u.cedula, u.nombre, u.apellido " +
+                               "FROM usuario u " +
+                               "INNER JOIN docente d ON u.cedula = d.usuario_cedula " +
+                               "INNER JOIN curso_has_docente cd ON u.cedula = cd.docente_usuario_cedula " +
+                               "WHERE cd.curso_id = ?"; // Ajusta la consulta según tu esquema de base de datos
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cursoID); // Suponiendo que tienes un método getId() en la clase Curso
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    int cedula = resultSet.getInt("cedula");
+                    String nombre = resultSet.getString("nombre");
+                    String apellido = resultSet.getString("apellido");
+
+                    // Crea un objeto Docente con los datos obtenidos de la base de datos
+                    docente.setCedula(cedula);
+                    docente.setNombre(nombre);
+                    docente.setApellido(apellido);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al obtener el docente para el curso.");
+            }
+        }
+        return docente;
+    }
+
+    
     
 //AGREGAR INFORME A CURSO (TABLA curso_has_informe)
     public void agregarInformeACurso(Curso curso, Informe informe) {
