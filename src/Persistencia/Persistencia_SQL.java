@@ -891,7 +891,32 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }    
+    } 
+    
+//ELIMINAR CURSO CON DOCENTE (TABLA curso_has_docente)
+    public void eliminarCursoConEstudiantes(Curso curso) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int cursoID = curso.getId_curso();
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM curso_has_estudiante WHERE curso_id_curso = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, cursoID);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                //JOptionPane.showMessageDialog(null, "El curso fue correctamente eliminado", "Curso eliminado", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }     
     
     
 //AGREGAR INFORME A CURSO (TABLA curso_has_informe)
@@ -1001,25 +1026,19 @@ public class Persistencia_SQL {
 
     
  // AGREGAR ESTUDIANTES A CURSO (TABLA curso_has_estudiante)
-    public void quitarEstudiantesACurso(Curso curso, List<Estudiante> estudiantes) {
+    public void quitarEstudiantesACurso(List<Estudiante> estudiantes) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
-        int idCurso = curso.getId_curso();
 
         if (conn != null) {
             try {
                 for (Estudiante estudiante : estudiantes) {
                     int idEstudiante = estudiante.getId_estudiante();
-
-                    // Verificar si existe una entrada para este curso y estudiante
-                    if (existeEstudiante(conn, idCurso, idEstudiante)) {
-                        String deleteQuery = "DELETE FROM curso_has_estudiante WHERE curso_id_curso = ? AND estudiante_id_estudiante = ?";
-                        PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
-                        preparedStatement.setInt(1, idCurso);
-                        preparedStatement.setInt(2, idEstudiante);
-                        preparedStatement.executeUpdate();
-                        preparedStatement.close();
-                    }
+                    String deleteQuery = "DELETE FROM curso_has_estudiante WHERE estudiante_id_estudiante = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                    preparedStatement.setInt(1, idEstudiante);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
                 }
                 conn.close();
             } catch (SQLException ex) {

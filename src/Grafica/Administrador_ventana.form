@@ -1358,7 +1358,7 @@
                                       <Component id="Curso_crear_textoAsignarDocente" alignment="0" min="-2" pref="261" max="-2" attributes="0"/>
                                       <Component id="Curso_tablaDocentes" alignment="0" min="-2" pref="885" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1705,32 +1705,44 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_crear_agregarEstudiante" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <Component id="Curso_crear_textoEstudiantes" min="-2" pref="370" max="-2" attributes="0"/>
-                                              <Component id="Curso_tablaEstudiantes" min="-2" pref="416" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_tablaEstudiantes1" alignment="0" min="-2" pref="437" max="-2" attributes="0"/>
-                                              <Component id="Curso_crear_textoEstudiantes1" min="-2" pref="370" max="-2" attributes="0"/>
-                                              <Component id="Curso_crear_quitarEstudiante" min="-2" pref="165" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="Curso_crear_textoSeleccionarCursoEstudiantes" min="-2" pref="223" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_crear_textoSeleccionarCursoEstudiantes" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
-                                              <Component id="Curso_tablaCursos2" min="-2" pref="910" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="Curso_crear_textoEstudiantes" min="-2" pref="370" max="-2" attributes="0"/>
+                                                      <Component id="indicadorCurso" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                                      <Component id="Curso_tablaEstudiantes" min="-2" pref="422" max="-2" attributes="0"/>
+                                                      <Component id="Curso_crear_botonAgregarEstudiante" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="Curso_crear_textoEstudiantes1" min="-2" pref="273" max="-2" attributes="0"/>
+                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="indicadorCurso1" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                                              <Component id="Curso_tablaEstudiantes1" min="-2" pref="432" max="-2" attributes="0"/>
+                                                              <Component id="Curso_crear_botonQuitarEstudiante" min="-2" pref="165" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace pref="39" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <Component id="Curso_tablaCursos2" min="-2" pref="891" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="26" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1742,26 +1754,40 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Curso_tablaCursos2" min="-2" pref="99" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="Curso_crear_textoEstudiantes1" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="Curso_crear_textoEstudiantes" min="-2" pref="28" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jSeparator1" min="-2" pref="282" max="-2" attributes="0"/>
+                                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_crear_textoEstudiantes1" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="Curso_crear_textoEstudiantes" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="indicadorCurso" min="-2" pref="32" max="-2" attributes="0"/>
+                                              <Component id="indicadorCurso1" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="Curso_tablaEstudiantes" min="-2" pref="195" max="-2" attributes="0"/>
-                                              <Component id="Curso_tablaEstudiantes1" min="-2" pref="195" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="24" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_crear_agregarEstudiante" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="Curso_crear_quitarEstudiante" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                              <Component id="Curso_tablaEstudiantes" min="-2" pref="180" max="-2" attributes="0"/>
+                                              <Component id="Curso_tablaEstudiantes1" alignment="0" min="-2" pref="179" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="Curso_crear_botonQuitarEstudiante" min="-2" pref="45" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="Curso_crear_botonAgregarEstudiante" min="-2" pref="45" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
-                                      <Component id="jSeparator1" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1879,7 +1905,7 @@
                             <Property name="text" type="java.lang.String" value="Seleccionar estudiantes para agregar al curso:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="Curso_crear_agregarEstudiante">
+                        <Component class="javax.swing.JButton" name="Curso_crear_botonAgregarEstudiante">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -1887,10 +1913,10 @@
                             <Property name="text" type="java.lang.String" value="Agregar"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Curso_crear_agregarEstudianteActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Curso_crear_botonAgregarEstudianteActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="Curso_crear_quitarEstudiante">
+                        <Component class="javax.swing.JButton" name="Curso_crear_botonQuitarEstudiante">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Dialog" size="20" style="0"/>
@@ -1898,7 +1924,7 @@
                             <Property name="text" type="java.lang.String" value="Quitar"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Curso_crear_quitarEstudianteActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Curso_crear_botonQuitarEstudianteActionPerformed"/>
                           </Events>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="Curso_tablaEstudiantes1">
@@ -1945,12 +1971,32 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Seleccionar estudiantes para quitar del curso:"/>
+                            <Property name="text" type="java.lang.String" value="Lista de estudiantes que integran:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JSeparator" name="jSeparator1">
                           <Properties>
                             <Property name="orientation" type="int" value="1"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="indicadorCurso">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="16" style="1"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="66" green="66" red="66" type="rgb"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="indicadorCurso1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Dialog" size="16" style="1"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="66" green="66" red="66" type="rgb"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>

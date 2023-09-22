@@ -39,11 +39,12 @@ public class GestorRelacional {
         
     }
     
-    public void eliminarCurso(Integer cursoID){
+    public void eliminarCursoConEstudiantes(Integer cursoID){
         Curso curso = new Curso();
         curso.setId_curso(cursoID);
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarCursoConEstudiantes(curso);
         
     }
     
@@ -55,12 +56,9 @@ public class GestorRelacional {
         persistencia.agregarEstudiantesACurso(curso, estudiantes);
     }
     
-    public void quitarEstudiantesACurso(int idCurso, List estudiantes){
-        Curso curso = new Curso();
-        curso.setId_curso(idCurso);
-
+    public void quitarEstudiantesACurso(List estudiantes){
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.quitarEstudiantesACurso(curso, estudiantes);
+        persistencia.quitarEstudiantesACurso(estudiantes);
     }
 
     
