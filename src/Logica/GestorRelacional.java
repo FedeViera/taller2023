@@ -48,6 +48,7 @@ public class GestorRelacional {
         
     }
     
+    
     public void agregarEstudiantesACurso(int idCurso, List estudiantes){
         Curso curso = new Curso();
         curso.setId_curso(idCurso);

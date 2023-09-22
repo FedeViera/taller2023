@@ -1097,35 +1097,35 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         Curso_tablaCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Curso", "Asignatura"
+                "Curso", "Asignatura", "Cédula Docente", "Nombre Docente", "Apellido Docente"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1136,6 +1136,9 @@ public class Administrador_ventana extends javax.swing.JFrame
         if (Curso_tablaCurso.getColumnModel().getColumnCount() > 0) {
             Curso_tablaCurso.getColumnModel().getColumn(0).setResizable(false);
             Curso_tablaCurso.getColumnModel().getColumn(1).setResizable(false);
+            Curso_tablaCurso.getColumnModel().getColumn(2).setResizable(false);
+            Curso_tablaCurso.getColumnModel().getColumn(3).setResizable(false);
+            Curso_tablaCurso.getColumnModel().getColumn(4).setResizable(false);
         }
 
         Curso_crear_botonEliminarCurso.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N

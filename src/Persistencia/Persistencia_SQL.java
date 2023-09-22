@@ -926,11 +926,11 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 // Query SQL para obtener los datos del docente para un curso específico
-                String query = "SELECT u.cedula, u.nombre, u.apellido " +
-                               "FROM usuario u " +
-                               "INNER JOIN docente d ON u.cedula = d.usuario_cedula " +
-                               "INNER JOIN curso_has_docente cd ON u.cedula = cd.docente_usuario_cedula " +
-                               "WHERE cd.curso_id = ?"; // Ajusta la consulta según tu esquema de base de datos
+                String query =  "SELECT u.cedula, u.nombre, u.apellido\n" +
+                                "FROM usuario u\n" +
+                                "INNER JOIN docente d ON u.cedula = d.usuario_cedula\n" +
+                                "INNER JOIN curso_has_docente cd ON u.cedula = cd.docente_usuario_cedula\n" +
+                                "WHERE cd.curso_id_curso = ?;"; // Ajusta la consulta según tu esquema de base de datos
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setInt(1, cursoID); // Suponiendo que tienes un método getId() en la clase Curso
