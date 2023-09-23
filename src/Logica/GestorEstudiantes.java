@@ -86,7 +86,6 @@ public class GestorEstudiantes {
 
 //CARGAR LOS DOCENTES EN EL JTable    
     public void cargarTablaEstudiantesCursoEspecifico(Integer cursoID, JTable table) {
-        
         Persistencia_SQL persistencia = new Persistencia_SQL();
         List<Estudiante> listaEstudiantesEspecifico = persistencia.obtenerEstudiantesCursoEspecifico(cursoID);
 
@@ -99,7 +98,9 @@ public class GestorEstudiantes {
             model.addRow(new Object[]{
                 Boolean.FALSE, // Inicialmente, la casilla de verificación está desmarcada
                 estudiante.getId_estudiante(),
-
+                estudiante.getNombre(),
+                estudiante.getApellido(),
+                estudiante.getEdad(),
             });
         }
 
@@ -142,8 +143,6 @@ public class GestorEstudiantes {
             Boolean seleccionado = (Boolean) model.getValueAt(i, 0); // La primera columna es la de casillas de verificación
             if (seleccionado) {
                 int idEstudiante = (int) model.getValueAt(i, 1); // Obtén el ID del estudiante
-
-
                 Estudiante estudiante = new Estudiante();
                 estudiante.setId_estudiante(idEstudiante);
                 estudiantesSeleccionados_quitar.add(estudiante);

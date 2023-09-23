@@ -29,7 +29,6 @@ public class GestorCursos {
         for (Curso curso : listaCursos) {
             if (curso.getClaseYgrupo().equals(claseYgrupo) && curso.getAsignatura().equals(asignatura)) {
                 return curso.getId_curso(); // Devuelve el ID del curso encontrado como int
-                
             }
         }
         return -1; // Retorna -1 (o cualquier otro valor que indique que el curso no se encontró) si el curso no se encuentra
@@ -41,7 +40,7 @@ public class GestorCursos {
             System.out.println(curso.getAsignatura());
         }
     }    
-    
+   
 
 //AGREGAR CURSO
     public void agregarCurso(String claseYgrupo, String asignatura) {
@@ -91,7 +90,7 @@ public class GestorCursos {
         // Agregar datos de la lista de cursos al modelo de la tabla
         for (Curso curso : listaCursos) {
             // Obtener los datos del docente para el curso actual
-            docente = persistencia.obtenerDocenteParaCurso(curso.getId_curso());
+            docente = persistencia.obtenerDatosDocenteParaCurso(curso.getId_curso());
 
             // Agregar una fila con los datos del curso y del docente.
             model.addRow(new Object[]{

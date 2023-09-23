@@ -32,9 +32,7 @@ public class Main {
         adm.setVisible(true);
         adm.setLocationRelativeTo(null);
         
-        GestorCursos gcursos = new GestorCursos();
-        gcursos.cargarCursosDesdeBD();
-        gcursos.mostrarCursos();
+        
         
         /*
         GestorAdministradores gestionarAdministradores = new GestorAdministradores();

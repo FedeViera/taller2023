@@ -433,43 +433,44 @@
                                               </Group>
                                           </Group>
                                       </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="Cuenta_crear_contrasenia" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="Cuenta_crear_textoContrasenia" min="-2" pref="387" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="357" max="-2" attributes="0"/>
+                                      </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="Cuenta_crear_usuario" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="Cuenta_crear_nombre" min="-2" pref="98" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_crear_textoNombre" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="Cuenta_crear_usuario" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="Cuenta_crear_nombre" min="-2" pref="98" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="Cuenta_crear_textoNombre" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="Cuenta_crear_cedula" min="-2" pref="98" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="Cuenta_crear_textoCedula" min="-2" pref="389" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="Cuenta_crear_cedula" min="-2" pref="98" max="-2" attributes="0"/>
+                                                      <Component id="Cuenta_crear_apellido" min="-2" pref="98" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_crear_textoCedula" min="-2" pref="389" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="Cuenta_mensajeAlertaApellido" min="-2" pref="290" max="-2" attributes="0"/>
+                                                          <Component id="Cuenta_crear_textoApellido" min="-2" pref="389" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="Cuenta_crear_apellido" min="-2" pref="98" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="Cuenta_mensajeAlertaApellido" min="-2" pref="290" max="-2" attributes="0"/>
-                                                      <Component id="Cuenta_crear_textoApellido" min="-2" pref="389" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                                  <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="165" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="Cuenta_crear_contrasenia" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="Cuenta_crear_textoContrasenia" min="-2" pref="387" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="357" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
@@ -512,9 +513,9 @@
                                               <Component id="Cuenta_crear_textoContrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="Cuenta_crear_contrasenia" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                           <Component id="Cuenta_crear_botonCrearCuenta" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1603,8 +1604,8 @@
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Curso_tablaCursos" min="-2" pref="906" max="-2" attributes="0"/>
                                               <Component id="Curso_crear_botonEliminarCurso" min="-2" pref="165" max="-2" attributes="0"/>
+                                              <Component id="Curso_tablaCursos" min="-2" pref="906" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -1705,7 +1706,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="Estudiantes">
+                    <Container class="javax.swing.JPanel" name="modificarEstudiantes">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1735,9 +1736,9 @@
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="Curso_crear_textoEstudiantes" min="-2" pref="370" max="-2" attributes="0"/>
-                                                      <Component id="indicadorCurso" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                                       <Component id="Curso_tablaEstudiantes" min="-2" pref="422" max="-2" attributes="0"/>
                                                       <Component id="Curso_crear_botonAgregarEstudiante" min="-2" pref="165" max="-2" attributes="0"/>
+                                                      <Component id="indicadorCurso" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1749,15 +1750,15 @@
                                                           <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="indicadorCurso1" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                                               <Component id="Curso_tablaEstudiantes1" min="-2" pref="432" max="-2" attributes="0"/>
                                                               <Component id="Curso_crear_botonQuitarEstudiante" min="-2" pref="165" max="-2" attributes="0"/>
+                                                              <Component id="indicadorCurso1" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
                                                           </Group>
-                                                          <EmptySpace pref="39" max="32767" attributes="0"/>
+                                                          <EmptySpace pref="79" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
-                                              <Component id="Curso_tablaCursos2" min="-2" pref="891" max="-2" attributes="0"/>
+                                              <Component id="Curso_tablaCursosEstudiantes" min="-2" pref="891" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1770,7 +1771,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Curso_crear_textoSeleccionarCursoEstudiantes" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Curso_tablaCursos2" min="-2" pref="99" max="-2" attributes="0"/>
+                                  <Component id="Curso_tablaCursosEstudiantes" min="-2" pref="99" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="Curso_crear_textoEstudiantes1" min="-2" pref="28" max="-2" attributes="0"/>
@@ -1876,7 +1877,7 @@
                             <Property name="text" type="java.lang.String" value="Seleccionar curso:"/>
                           </Properties>
                         </Component>
-                        <Container class="javax.swing.JScrollPane" name="Curso_tablaCursos2">
+                        <Container class="javax.swing.JScrollPane" name="Curso_tablaCursosEstudiantes">
                           <AuxValues>
                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                           </AuxValues>
@@ -1886,13 +1887,31 @@
                             <Component class="javax.swing.JTable" name="Curso_tablaCursoEstudiantes">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="2" rowCount="22">
+                                  <Table columnCount="5" rowCount="22">
                                     <Column editable="false" title="Curso" type="java.lang.Object"/>
                                     <Column editable="false" title="Asignatura" type="java.lang.Object"/>
+                                    <Column editable="false" title="C&#xe9;dula Docente" type="java.lang.Object"/>
+                                    <Column editable="false" title="Nombre Docente" type="java.lang.Object"/>
+                                    <Column editable="false" title="Apellido Docente" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                       <Title/>
                                       <Editor/>
@@ -1955,9 +1974,12 @@
                             <Component class="javax.swing.JTable" name="tablaEstudiante_Quitar">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="2" rowCount="26">
+                                  <Table columnCount="5" rowCount="26">
                                     <Column editable="true" title="Seleccionar" type="java.lang.Object"/>
                                     <Column editable="false" title="C&#xe9;dula Estudiante" type="java.lang.Object"/>
+                                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                                    <Column editable="true" title="Apellido" type="java.lang.Object"/>
+                                    <Column editable="true" title="Edad" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1968,6 +1990,21 @@
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
@@ -2023,7 +2060,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="pesta&#xf1;a2">
+            <Container class="javax.swing.JPanel" name="pesta&#xf1;a2_Actividades">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2040,15 +2077,73 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="958" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                          <Component id="Curso_tablaDocentes1" min="-2" pref="789" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="544" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                          <Component id="Curso_tablaDocentes1" min="-2" pref="145" max="-2" attributes="0"/>
+                          <EmptySpace pref="280" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="Curso_tablaDocentes1">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="Curso_tablaDocenteActividades">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="4" rowCount="10">
+                            <Column editable="false" title="C&#xe9;dula" type="java.lang.Object"/>
+                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                            <Column editable="false" title="Apellido" type="java.lang.Object"/>
+                            <Column editable="false" title="Asignatura" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pesta&#xf1;a3">
               <Properties>
