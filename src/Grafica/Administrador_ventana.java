@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import Entidades.Docente;
 import Entidades.Estudiante;
+import Logica.GestorActividades;
 import Logica.GestorAdministradores;
 import Logica.GestorAdscriptos;
 import Logica.GestorCursos;
@@ -27,6 +28,7 @@ import java.util.logging.Level;
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
@@ -43,21 +45,23 @@ public class Administrador_ventana extends javax.swing.JFrame
 {
    
     private DefaultTableModel model;   
-    private Integer docenteSeleccionadoAgregarACurso; //VARIABLE UTILIZADA EN MOUSELISTENNER MouseListenerDocentesPorAsignatura()
-    private String cursoSeleccionadoEliminarCurso_Curso, cursoSeleccionadoEliminarCurso_Asignatura; //VARIABLE UTILIZADA EN MOUSELISTENNER MouseListenerEliminarCurso()
-    private String cursoSeleccionadoAgregarEstudiante_Curso, cursoSeleccionadoAgregarEstudiante_Asignatura; //VARIABLE UTILIZADA EN MOUSELISTENNER MouseListenerSeleccionarCurso_AgregarEstudiante()
-    private String cursoSeleccionadoAgregarActividad_Curso, cursoSeleccionadoAgregarActividad_Asignatura; //VARIABLES UTILIZADAS PARA SELECCIONAR ESTUDAINTE AL AGREGAR ACTIVIDAD MouseListenerSeleccionarCurso_AgregarActividad();
-    private Integer cursoID;//VARIABLE DE CURSO       
+    private Integer docenteSeleccionadoAgregarACurso; //VARIABLE USADA EN MouseListenerDocentesPorAsignatura() PARA GUARDAR DOCENTE
+    private String cursoSeleccionadoEliminarCurso_Curso, cursoSeleccionadoEliminarCurso_Asignatura; //VARIABLES USADA EN MouseListenerEliminarCurso() PARA GUARDAR CURSO Y ASIGNATURA A BORRAR
+    private String cursoSeleccionadoAgregarEstudiante_Curso, cursoSeleccionadoAgregarEstudiante_Asignatura; //VARIABLE USADA EN MouseListenerSeleccionarCurso_AgregarEstudiante() PARA GUARDAR CURSO Y ASIGNATURA AL AGREGAR ESTUDIANTE A CURSO
+    private String cursoSeleccionadoAgregarActividad_Curso, cursoSeleccionadoAgregarActividad_Asignatura; //VARIABLES USADAS EN MouseListenerSeleccionarCurso_AgregarActividad(); PARA GUARDAR CURSO Y ASIGNATURA AL COMPLETAR TABLA ESTUDIANTES Y LUEGO AGREGAR ACTIVIDAD
+    private Integer cursoID;//VARIABLE GUARDA ID CURSO SELECCIONADO      
+    private Integer estudianteSeleccionado_Actividad; //VARIABLE ESTUDIANTE SELECCIONADO PARA ASIGNARLE ACTIVIDAD
     
     public Administrador_ventana() {
         initComponents();
         
         //Iniciamos todos los MouseListener para que se pueda interactuar con las JTable
-        MouseListenerUsuarios(); //tablaUsuarios
-        MouseListenerDocentesPorAsignatura(); //Seleccionar docentes por asignatura
-        MouseListenerEliminarCurso(); //Seleccionar curso para eliminarlo
+        MouseListener_DatosTablaUsuarios(); //tablaUsuarios
+        MouseListenerDatosDocentes_Asignatura(); //Seleccionar docentes por asignatura
+        MouseListenerEliminarCurso_tablaCurso(); //Seleccionar curso para eliminarlo
         MouseListenerSeleccionarCurso_AgregarEstudiante(); //Seleccionar curso para Agregar Estudiante
-        MouseListenerSeleccionarCurso_AgregarActividad(); //Seleccionar curso/estudiante para Actividad
+        MouseListenerSeleccionarCurso_ActividadEstudiante(); //Seleccionar Curso y cargar Estudiantes (para luego asignar actividad)
+        MouseListenerSeleccionarEstudiantes_Actividad(); //Seleccionar estudiantes para Actividad
                 
         //Precargamos tablaCursos
         GestorCursos gestorC = new GestorCursos();
@@ -224,7 +228,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
         indicadorCurso = new javax.swing.JLabel();
         indicadorCurso1 = new javax.swing.JLabel();
-        pestaña3 = new javax.swing.JPanel();
+        pestaña3_Actividades = new javax.swing.JPanel();
         opcionesActividades = new javax.swing.JTabbedPane();
         crearActividad = new javax.swing.JPanel();
         Actividad_textoSeleccionarCursoActividades = new javax.swing.JLabel();
@@ -240,8 +244,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         txtFecha = new com.toedter.calendar.JDateChooser();
         Actividad_textoDescripcion = new javax.swing.JLabel();
         Actividad_descripcion = new javax.swing.JScrollPane();
-        descripcion = new javax.swing.JTextPane();
+        descripcionActividad = new javax.swing.JTextPane();
         Actividad_crear_botonAgregarActividad = new javax.swing.JButton();
+        Actividad_textoCalificacion = new javax.swing.JLabel();
+        Actividad_calificacion = new javax.swing.JTextField();
         modificarActividad = new javax.swing.JPanel();
         nc = new javax.swing.JPanel();
 
@@ -1466,7 +1472,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         panelPestañas.addTab("tab2", pestaña1_Cursos);
 
-        pestaña3.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña3_Actividades.setBackground(new java.awt.Color(255, 255, 255));
 
         opcionesActividades.setBackground(new java.awt.Color(255, 255, 255));
         opcionesActividades.setForeground(new java.awt.Color(0, 0, 0));
@@ -1606,13 +1612,23 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_textoDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         Actividad_textoDescripcion.setText("Descripción");
 
-        Actividad_descripcion.setViewportView(descripcion);
+        Actividad_descripcion.setViewportView(descripcionActividad);
 
         Actividad_crear_botonAgregarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Actividad_crear_botonAgregarActividad.setText("Agregar");
         Actividad_crear_botonAgregarActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Actividad_crear_botonAgregarActividadActionPerformed(evt);
+            }
+        });
+
+        Actividad_textoCalificacion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoCalificacion.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoCalificacion.setText("Calificación");
+
+        Actividad_calificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_calificacionActionPerformed(evt);
             }
         });
 
@@ -1632,7 +1648,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearActividadLayout.createSequentialGroup()
+                                .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearActividadLayout.createSequentialGroup()
                                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Actividad_textoTipoActividad)
@@ -1671,7 +1692,11 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(crearActividadLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1715,22 +1740,22 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         opcionesActividades.addTab("Agregar/Quitar Estudiantes", nc);
 
-        javax.swing.GroupLayout pestaña3Layout = new javax.swing.GroupLayout(pestaña3);
-        pestaña3.setLayout(pestaña3Layout);
-        pestaña3Layout.setHorizontalGroup(
-            pestaña3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pestaña3_ActividadesLayout = new javax.swing.GroupLayout(pestaña3_Actividades);
+        pestaña3_Actividades.setLayout(pestaña3_ActividadesLayout);
+        pestaña3_ActividadesLayout.setHorizontalGroup(
+            pestaña3_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña3_ActividadesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(opcionesActividades))
         );
-        pestaña3Layout.setVerticalGroup(
-            pestaña3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3Layout.createSequentialGroup()
+        pestaña3_ActividadesLayout.setVerticalGroup(
+            pestaña3_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3_ActividadesLayout.createSequentialGroup()
                 .addGap(0, 14, Short.MAX_VALUE)
                 .addComponent(opcionesActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelPestañas.addTab("tab4", pestaña3);
+        panelPestañas.addTab("tab4", pestaña3_Actividades);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -2298,13 +2323,33 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_Actividad_crear_tipoActividadActionPerformed
 
     private void Actividad_crear_botonAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonAgregarActividadActionPerformed
-        // TODO add your handling code here:
+        int idEstudiante = estudianteSeleccionado_Actividad;
+        String tipo = Actividad_crear_tipoActividad.getSelectedItem().toString();
+        
+        //Conversión de util.Date a sql.Date
+        java.util.Date fechaUtil = txtFecha.getDate();
+        java.sql.Date fecha = new java.sql.Date(fechaUtil.getTime());
+        String descripcion = descripcionActividad.getText();
+        
+        //Conversión "," por "." si es necesario. PARA QUE NO DE PROBLEMAS EN LA BD
+        String calificacionTexto = Actividad_calificacion.getText();
+        calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
+        float calificacion = Float.parseFloat(calificacionTexto);
+
+        
+        GestorActividades actividades = new GestorActividades();
+        actividades.agregarActividad(idEstudiante, tipo, descripcion, calificacion, fecha);
+
     }//GEN-LAST:event_Actividad_crear_botonAgregarActividadActionPerformed
+
+    private void Actividad_calificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_calificacionActionPerformed
          
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
     
 //MOUSE LISTENER PARA TOMAR DATOS DE LA TABLA CUENTAS USUARIOS    
-    private void MouseListenerUsuarios() {
+    private void MouseListener_DatosTablaUsuarios() {
         Cuenta_tablaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2340,7 +2385,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
     
 //MOUSE LISTENER PARA TOMAR DATOS DE TABLA DOCENTES (PARA AGREGAR DOCENTE A CURSO)
-    private void MouseListenerDocentesPorAsignatura() {
+    private void MouseListenerDatosDocentes_Asignatura() {
         Curso_tablaDocente.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2354,7 +2399,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
 
 //MOUSE LISTENER PARA TOMAR DATOS DE TABLA CURSOS (PARA ELIMINAR CURSO)
-    private void MouseListenerEliminarCurso() {
+    private void MouseListenerEliminarCurso_tablaCurso() {
         Curso_tablaCurso.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2377,21 +2422,17 @@ public class Administrador_ventana extends javax.swing.JFrame
                 if (filaSeleccionada >= 0) {
                     //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
                     cursoSeleccionadoAgregarEstudiante_Curso = tablaCursoEstudiantes.getValueAt(filaSeleccionada, 0).toString();
-                    cursoSeleccionadoAgregarEstudiante_Asignatura = tablaCursoEstudiantes.getValueAt(filaSeleccionada, 1).toString(); 
-                    
+                    cursoSeleccionadoAgregarEstudiante_Asignatura = tablaCursoEstudiantes.getValueAt(filaSeleccionada, 1).toString();                    
                     //Tomo curso y asignatura de Curso_tablaCursoEstudiantes, le paso los valores, convierto el cursoID y completo la tabla tablaEstudiante_Quitar con estudiantes agregados a ese cursoEspecifico.
                     String curso = cursoSeleccionadoAgregarEstudiante_Curso;
                     String asignatura = cursoSeleccionadoAgregarEstudiante_Asignatura;
-
                     //Buscar curso por ID
                     GestorCursos gestorC = new GestorCursos();
                     gestorC.cargarCursosDesdeBD();
-                    Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);
-
-                    //Refrescamos la tabla tablaEstudiante_Quitar con los Estudiantes cargados a ese Curso.
+                    Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);                   
+                    //Refresco tabla de Estudiantes (quitar) con los estudiantes actuales en ese curso
                     GestorEstudiantes gestorE = new GestorEstudiantes();
                     gestorE.cargarTablaEstudiantesCursoEspecifico(cursoID, tablaEstudiante_Quitar);
-                    
                     //Indicador de Curso y Asignatura Seleccionado.
                     indicadorCurso.setText(curso+" "+asignatura);
                     indicadorCurso1.setText(curso+" "+asignatura);
@@ -2401,7 +2442,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }    
     
 //MOUSE LISTENER PARA SELECCIONAR DATOS DE TABLA CURSOS Y AGREGAR ALUMNOS A CURSO SELECCIONADO (EN ACTIVIDADES)
-    private void MouseListenerSeleccionarCurso_AgregarActividad() {
+    private void MouseListenerSeleccionarCurso_ActividadEstudiante() {
         tablaCursoActividades.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2410,27 +2451,35 @@ public class Administrador_ventana extends javax.swing.JFrame
                     //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
                     cursoSeleccionadoAgregarActividad_Curso = tablaCursoActividades.getValueAt(filaSeleccionada, 0).toString();
                     cursoSeleccionadoAgregarActividad_Asignatura = tablaCursoActividades.getValueAt(filaSeleccionada, 1).toString(); 
-                    
                     //Tomo curso y asignatura de Curso_tablaCursoEstudiantes, le paso los valores, convierto el cursoID y completo la tabla tablaEstudiante_Quitar con estudiantes agregados a ese cursoEspecifico.
                     String curso = cursoSeleccionadoAgregarActividad_Curso;
                     String asignatura = cursoSeleccionadoAgregarActividad_Asignatura;
-
                     //Buscar curso por ID
                     GestorCursos gestorC = new GestorCursos();
                     gestorC.cargarCursosDesdeBD();
                     Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);
-
-                    //Refrescamos la tabla tablaEstudiante_Quitar con los Estudiantes cargados a ese Curso.
+                    //Refresco la tabla tablaEstudiante_enCurso con los Estudiantes cargados a ese Curso.
                     GestorEstudiantes gestorE = new GestorEstudiantes();
-                    gestorE.cargarTablaEstudiantesEspecificoSimple(cursoID, tablaEstudiante_enCurso);
-                    
-                    //Indicador de Curso y Asignatura Seleccionado.
-                    /*indicadorCurso.setText(curso+" "+asignatura);
-                    indicadorCurso1.setText(curso+" "+asignatura);*/
+                    gestorE.cargarTablaEstudiantesCursoEspecifico_Simple(cursoID, tablaEstudiante_enCurso);
                 }
             }
         });
     }    
+
+//MOUSE LISTENER PARA SELECCIONAR DATOS DE TABLA CURSOS Y AGREGAR ALUMNOS A CURSO SELECCIONADO (EN ACTIVIDADES)
+    private void MouseListenerSeleccionarEstudiantes_Actividad() {
+        tablaEstudiante_enCurso.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = tablaEstudiante_enCurso.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
+                    estudianteSeleccionado_Actividad = Integer.parseInt(tablaEstudiante_enCurso.getValueAt(filaSeleccionada, 0).toString());
+                }
+            }
+        });
+    }     
+
 
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
@@ -2475,9 +2524,11 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Actividad_calificacion;
     private javax.swing.JButton Actividad_crear_botonAgregarActividad;
     private javax.swing.JComboBox<String> Actividad_crear_tipoActividad;
     private javax.swing.JScrollPane Actividad_descripcion;
+    private javax.swing.JLabel Actividad_textoCalificacion;
     private javax.swing.JLabel Actividad_textoDescripcion;
     private javax.swing.JLabel Actividad_textoFecha;
     private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades;
@@ -2556,7 +2607,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel crearCuenta;
     private javax.swing.JPanel crearCurso;
     private javax.swing.JLabel cursosRegistrados;
-    private javax.swing.JTextPane descripcion;
+    private javax.swing.JTextPane descripcionActividad;
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCurso1;
     private javax.swing.JSeparator jSeparator;
@@ -2575,7 +2626,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña0_Cuentas;
     private javax.swing.JPanel pestaña1_Cursos;
-    private javax.swing.JPanel pestaña3;
+    private javax.swing.JPanel pestaña3_Actividades;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
     private javax.swing.JTable tablaCursoActividades;

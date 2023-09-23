@@ -84,8 +84,8 @@ public class GestorEstudiantes {
         table.repaint(); // Actualizar la tabla
     }    
  
-//CARGAR LOS ESTUDIANTES EN EL JTable SIN checkbox   
-    public void cargarTablaEstudiantesEspecificoSimple(Integer cursoID, JTable table) {
+//CARGAR LOS ESTUDIANTES EN EL JTable - SIN Selector  
+    public void cargarTablaEstudiantesCursoEspecifico_Simple(Integer cursoID, JTable table) {
         GestorEstudiantes gestor = new GestorEstudiantes();
         Persistencia_SQL persistencia = new Persistencia_SQL();
         
@@ -106,7 +106,7 @@ public class GestorEstudiantes {
         table.repaint(); // Actualizar la tabla
     }      
 
-//CARGAR LOS ESTUDIANTES DE CURSO ESPECIFICO EN EL JTable    
+//CARGAR LOS ESTUDIANTES DE CURSO ESPECIFICO EN EL JTable - CON Selector   
     public void cargarTablaEstudiantesCursoEspecifico(Integer cursoID, JTable table) {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         List<Estudiante> listaEstudiantesEspecifico = persistencia.obtenerEstudiantesCursoEspecifico(cursoID);

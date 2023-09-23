@@ -1,5 +1,6 @@
 package Persistencia;
 
+import Entidades.Actividad;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -758,7 +759,73 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     } 
+ 
+// ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
+//MAPEAR INFORMES
+    public List<Actividad> mapearActividades_PorEstudiante() {
+        List<Actividad> listaActividades = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String query =  "SELECT * from actividad WHERE estudiante_id_estudiante = (?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Actividad actividad = new Actividad();
+                    actividad.setId_actividad(resultSet.getInt("id_actividad"));
+                    actividad.setId_estudiante(resultSet.getInt("estudiante_id_estudiante"));
+                    actividad.setTipo(resultSet.getString("tipo"));
+                    actividad.setDescripcion(resultSet.getString("descripcion"));
+                    actividad.setFecha(resultSet.getDate("fecha"));
+
+                    listaActividades.add(actividad);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los informes.");
+            }
+        }
+        return listaActividades;
+    }
+    
+    //AGREGAR INFORME
+    public void agregarActividad(Estudiante estudiante, Actividad actividad) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idEstudiante = estudiante.getId_estudiante();
+        String tipo = actividad.getTipo();
+        String descripcion = actividad.getDescripcion();
+        float calificacion = actividad.getCalificacion();
+        java.sql.Date fecha = actividad.getFecha();
+  
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO actividad (estudiante_id_estudiante, tipo, descripcion, calificacion, fecha) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idEstudiante);
+                preparedStatement.setString(2, tipo);
+                preparedStatement.setString(3, descripcion);
+                preparedStatement.setFloat(4, calificacion);
+                preparedStatement.setDate(5, fecha);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }        
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 //     TABLAS INTERMEDIAS RELACIONADAS CON CURSO    
