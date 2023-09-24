@@ -763,7 +763,7 @@ public class Persistencia_SQL {
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
 //MAPEAR INFORMES
-    public List<Actividad> mapearActividades_PorEstudiante() {
+    public List<Actividad> mapearActividades_PorEstudiante(Estudiante estudiante) {
         List<Actividad> listaActividades = new ArrayList<>();
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -772,6 +772,7 @@ public class Persistencia_SQL {
             try {
                 String query =  "SELECT * from actividad WHERE estudiante_id_estudiante = (?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, estudiante.getId_estudiante()); // Establece el ID del estudiante en la consulta
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
@@ -780,6 +781,7 @@ public class Persistencia_SQL {
                     actividad.setId_estudiante(resultSet.getInt("estudiante_id_estudiante"));
                     actividad.setTipo(resultSet.getString("tipo"));
                     actividad.setDescripcion(resultSet.getString("descripcion"));
+                    actividad.setCalificacion(resultSet.getFloat("calificacion"));
                     actividad.setFecha(resultSet.getDate("fecha"));
 
                     listaActividades.add(actividad);
