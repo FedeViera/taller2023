@@ -1,5 +1,6 @@
 package Persistencia;
 
+import Entidades.Actividad;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -758,7 +759,75 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     } 
+ 
+// ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
+//MAPEAR INFORMES
+    public List<Actividad> mapearActividades_PorEstudiante(Estudiante estudiante) {
+        List<Actividad> listaActividades = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String query =  "SELECT * from actividad WHERE estudiante_id_estudiante = (?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, estudiante.getId_estudiante()); // Establece el ID del estudiante en la consulta
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Actividad actividad = new Actividad();
+                    actividad.setId_actividad(resultSet.getInt("id_actividad"));
+                    actividad.setId_estudiante(resultSet.getInt("estudiante_id_estudiante"));
+                    actividad.setTipo(resultSet.getString("tipo"));
+                    actividad.setDescripcion(resultSet.getString("descripcion"));
+                    actividad.setCalificacion(resultSet.getFloat("calificacion"));
+                    actividad.setFecha(resultSet.getDate("fecha"));
+
+                    listaActividades.add(actividad);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los informes.");
+            }
+        }
+        return listaActividades;
+    }
+    
+    //AGREGAR INFORME
+    public void agregarActividad(Estudiante estudiante, Actividad actividad) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idEstudiante = estudiante.getId_estudiante();
+        String tipo = actividad.getTipo();
+        String descripcion = actividad.getDescripcion();
+        float calificacion = actividad.getCalificacion();
+        java.sql.Date fecha = actividad.getFecha();
+  
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO actividad (estudiante_id_estudiante, tipo, descripcion, calificacion, fecha) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idEstudiante);
+                preparedStatement.setString(2, tipo);
+                preparedStatement.setString(3, descripcion);
+                preparedStatement.setFloat(4, calificacion);
+                preparedStatement.setDate(5, fecha);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }        
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 //     TABLAS INTERMEDIAS RELACIONADAS CON CURSO    
@@ -918,48 +987,6 @@ public class Persistencia_SQL {
         }
     }     
     
-    public Docente obtenerDocenteParaCurso(Integer cursoID) {
-        Docente docente = new Docente();
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                // Query SQL para obtener los datos del docente para un curso específico
-                String query =  "SELECT u.cedula, u.nombre, u.apellido\n" +
-                                "FROM usuario u\n" +
-                                "INNER JOIN docente d ON u.cedula = d.usuario_cedula\n" +
-                                "INNER JOIN curso_has_docente cd ON u.cedula = cd.docente_usuario_cedula\n" +
-                                "WHERE cd.curso_id_curso = ?;"; // Ajusta la consulta según tu esquema de base de datos
-
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setInt(1, cursoID); // Suponiendo que tienes un método getId() en la clase Curso
-
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()) {
-                    int cedula = resultSet.getInt("cedula");
-                    String nombre = resultSet.getString("nombre");
-                    String apellido = resultSet.getString("apellido");
-
-                    // Crea un objeto Docente con los datos obtenidos de la base de datos
-                    docente.setCedula(cedula);
-                    docente.setNombre(nombre);
-                    docente.setApellido(apellido);
-                }
-                resultSet.close();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Ocurrió un error al obtener el docente para el curso.");
-            }
-        }
-        return docente;
-    }
-
-    
-    
 //AGREGAR INFORME A CURSO (TABLA curso_has_informe)
     public void agregarInformeACurso(Curso curso, Informe informe) {
         Conexion conexion = new Conexion();
@@ -1030,7 +1057,7 @@ public class Persistencia_SQL {
         }
     }
     
-//MAPEAR ESTUDIANTES
+//MAPEAR ESTUDIANTES DE UN CURSO ESPECIFICO (PARA LLENAR TABLA tablaEstudiante_Quitar)
     public List<Estudiante> obtenerEstudiantesCursoEspecifico(Integer cursoID) {
         List<Estudiante> listaEstudiantesCursoEspecifico = new ArrayList<>();
         Conexion conexion = new Conexion();
@@ -1038,18 +1065,27 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                String query = "SELECT estudiante_id_estudiante FROM curso_has_estudiante WHERE curso_id_curso = ?";
+                String query = "SELECT e.id_estudiante, e.nombre, e.apellido, e.edad\n" +
+                                "FROM estudiante e\n" +
+                                "INNER JOIN curso_has_estudiante ce ON e.id_estudiante = ce.estudiante_id_estudiante\n" +
+                                "WHERE ce.curso_id_curso = ?;";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setInt(1, cursoID); // Establecer el valor del parámetro curso_id_curso
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    int idEstudiante = resultSet.getInt("estudiante_id_estudiante");
+                    int idEstudiante = resultSet.getInt("id_estudiante");
+                    String nombre = resultSet.getString("nombre");
+                    String apellido = resultSet.getString("apellido");
+                    int edad = resultSet.getInt("edad");
 
                     // Crear un objeto Estudiante y establecer solo el id_estudiante
                     Estudiante estudiante = new Estudiante();
                     estudiante.setId_estudiante(idEstudiante);
+                    estudiante.setNombre(nombre);
+                    estudiante.setApellido(apellido);
+                    estudiante.setEdad(edad);
 
                     listaEstudiantesCursoEspecifico.add(estudiante);
                 }
@@ -1090,8 +1126,48 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+//OBTENER DATOS DEL DOCENTE VINCULADO A DETERMINADO CURSO (PARA LLENAR TABLA Curso_tablaCurso)    
+    public Docente obtenerDatosDocenteParaCurso(Integer cursoID) {
+        Docente docente = new Docente();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
 
-   
+        if (conn != null) {
+            try {
+                // Query SQL para obtener los datos del docente para un curso específico
+                String query =  "SELECT u.cedula, u.nombre, u.apellido\n" +
+                                "FROM usuario u\n" +
+                                "INNER JOIN docente d ON u.cedula = d.usuario_cedula\n" +
+                                "INNER JOIN curso_has_docente cd ON u.cedula = cd.docente_usuario_cedula\n" +
+                                "WHERE cd.curso_id_curso = ?;"; // Ajusta la consulta según tu esquema de base de datos
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cursoID); // Suponiendo que tienes un método getId() en la clase Curso
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    int cedula = resultSet.getInt("cedula");
+                    String nombre = resultSet.getString("nombre");
+                    String apellido = resultSet.getString("apellido");
+
+                    // Crea un objeto Docente con los datos obtenidos de la base de datos
+                    docente.setCedula(cedula);
+                    docente.setNombre(nombre);
+                    docente.setApellido(apellido);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al obtener el docente para el curso.");
+            }
+        }
+        return docente;
+    }    
+  
         
     
     

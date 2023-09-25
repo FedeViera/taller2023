@@ -55,7 +55,7 @@ public class GestorEstudiantes {
         }
     }    
 
-//CARGAR LOS DOCENTES EN EL JTable    
+//CARGAR LOS ESTUDIANTES EN EL JTable con checkbox   
     public void cargarTablaEstudiantes(JTable table) {
         GestorEstudiantes gestor = new GestorEstudiantes();
         
@@ -83,10 +83,31 @@ public class GestorEstudiantes {
 
         table.repaint(); // Actualizar la tabla
     }    
-
-//CARGAR LOS DOCENTES EN EL JTable    
-    public void cargarTablaEstudiantesCursoEspecifico(Integer cursoID, JTable table) {
+ 
+//CARGAR LOS ESTUDIANTES EN EL JTable - SIN Selector  
+    public void cargarTablaEstudiantesCursoEspecifico_Simple(Integer cursoID, JTable table) {
+        GestorEstudiantes gestor = new GestorEstudiantes();
+        Persistencia_SQL persistencia = new Persistencia_SQL();
         
+        List<Estudiante> listaEstudiantes = persistencia.obtenerEstudiantesCursoEspecifico(cursoID);
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        // Agregar datos de la lista de estudiantes al modelo de la tabla
+        for (Estudiante estudiante : listaEstudiantes) {
+            model.addRow(new Object[]{
+                estudiante.getId_estudiante(),
+                estudiante.getNombre(),
+                estudiante.getApellido(),
+                estudiante.getEdad()
+            });
+        }
+        table.repaint(); // Actualizar la tabla
+    }      
+
+//CARGAR LOS ESTUDIANTES DE CURSO ESPECIFICO EN EL JTable - CON Selector   
+    public void cargarTablaEstudiantesCursoEspecifico(Integer cursoID, JTable table) {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         List<Estudiante> listaEstudiantesEspecifico = persistencia.obtenerEstudiantesCursoEspecifico(cursoID);
 
@@ -99,7 +120,9 @@ public class GestorEstudiantes {
             model.addRow(new Object[]{
                 Boolean.FALSE, // Inicialmente, la casilla de verificación está desmarcada
                 estudiante.getId_estudiante(),
-
+                estudiante.getNombre(),
+                estudiante.getApellido(),
+                estudiante.getEdad(),
             });
         }
 
@@ -120,10 +143,10 @@ public class GestorEstudiantes {
         for (int i = 0; i < rowCount; i++) {
             Boolean seleccionado = (Boolean) model.getValueAt(i, 0); // La primera columna es la de casillas de verificación
             if (seleccionado) {
-                int idEstudiante = (int) model.getValueAt(i, 1); // Obtén el ID del estudiante
-                String nombre = (String) model.getValueAt(i, 2); // Obtén el nombre del estudiante
-                String apellido = (String) model.getValueAt(i, 3); // Obtén el apellido del estudiante
-                int edad = (int) model.getValueAt(i, 4); // Obtén la edad del estudiante
+                int idEstudiante = (int) model.getValueAt(i, 1); // Obtener el ID del estudiante
+                String nombre = (String) model.getValueAt(i, 2); // Obtener el nombre del estudiante
+                String apellido = (String) model.getValueAt(i, 3); // Obtener el apellido del estudiante
+                int edad = (int) model.getValueAt(i, 4); // Obtener la edad del estudiante
 
                 Estudiante estudiante = new Estudiante(idEstudiante, nombre, apellido, edad);
                 estudiantesSeleccionados_agregar.add(estudiante);
@@ -141,9 +164,7 @@ public class GestorEstudiantes {
         for (int i = 0; i < rowCount; i++) {
             Boolean seleccionado = (Boolean) model.getValueAt(i, 0); // La primera columna es la de casillas de verificación
             if (seleccionado) {
-                int idEstudiante = (int) model.getValueAt(i, 1); // Obtén el ID del estudiante
-
-
+                int idEstudiante = (int) model.getValueAt(i, 1); // Obtener el ID del estudiante
                 Estudiante estudiante = new Estudiante();
                 estudiante.setId_estudiante(idEstudiante);
                 estudiantesSeleccionados_quitar.add(estudiante);

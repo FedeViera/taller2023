@@ -1,17 +1,26 @@
 package Entidades;
 
+import java.sql.Date;
+
 public class Actividad 
 {
     private int id_actividad;
-    private String nombre;
+    private int id_estudiante;
+    private String tipo;
     private String descripcion;
-    private int cedula_docente;
+    private float calificacion;
+    private Date fecha;
 
-    public Actividad(int id_actividad, String nombre, String descripcion, int cedula_docente) {
+    public Actividad() {
+    }
+
+    public Actividad(int id_actividad, int id_estudiante, String tipo, String descripcion, float calificacion, Date fecha) {
         this.id_actividad = id_actividad;
-        this.nombre = nombre;
+        this.id_estudiante = id_estudiante;
+        this.tipo = tipo;
         this.descripcion = descripcion;
-        this.cedula_docente = cedula_docente;
+        this.calificacion = calificacion;
+        this.fecha = fecha;
     }
 
     public int getId_actividad() {
@@ -22,29 +31,52 @@ public class Actividad
         this.id_actividad = id_actividad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public int getId_estudiante() {
+        return id_estudiante;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setId_estudiante(int id_estudiante) {
+        this.id_estudiante = id_estudiante;
     }
 
-    public void setCedula_docente(int cedula_docente) {
-        this.cedula_docente = cedula_docente;
+    public String getTipo() {
+        return tipo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public int getCedula_docente() {
-        return cedula_docente;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+
+    public float getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(float calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    
+    
+    
+    
+
+    
     
     
 }
