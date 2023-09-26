@@ -73,7 +73,8 @@ public class GestorUsuarios {
 
         return nombreApellido;
     }
-    
+
+//TRAER TODOS LOS USUARIOS DE TODOS LOS CARGOS A LA listaGeneral    
     public List<Object> obtenerTodosUsuarios() {
         List<Object> listaGeneral = new ArrayList<>();     
 
