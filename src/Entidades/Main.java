@@ -30,7 +30,7 @@ public class Main {
        /*
         Administrador_ventana adm = new Administrador_ventana();
         adm.setVisible(true);
-        adm.setLocationRelativeTo(null);
+        adm.setLocationRelativeTo(null);*/
         
         */
         
