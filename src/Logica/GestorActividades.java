@@ -21,6 +21,7 @@ public class GestorActividades {
         this.listaActividades = listaActividades;
     }
     
+//AGREGAR ACTIVIDAD    
     public void agregarActividad(Integer idEstudiante, String tipo, String descripcion, float calificacion, java.sql.Date fecha){
         Estudiante nuevoEstudiante = new Estudiante();
         nuevoEstudiante.setId_estudiante(idEstudiante);
@@ -34,6 +35,29 @@ public class GestorActividades {
         
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.agregarActividad(nuevoEstudiante, nuevaActividad);
+    }
+    
+//MODIFICAR ACTIVIDAD    
+    public void modificarActividad(Integer id_actividad, String nuevoTipo, String nuevaDescripcion, float nuevaCalificacion, java.sql.Date nuevaFecha){
+        
+        Actividad actividad = new Actividad();
+        actividad.setId_actividad(id_actividad);
+        actividad.setTipo(nuevoTipo);
+        actividad.setDescripcion(nuevaDescripcion);
+        actividad.setCalificacion(nuevaCalificacion);
+        actividad.setFecha(nuevaFecha);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.modificarActividad(actividad);
+    }    
+    
+//ELIMINAR ACTIVIDAD
+    public void eliminarActividad(Integer id_actividad){
+        Actividad actividad = new Actividad();
+        actividad.setId_actividad(id_actividad);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarActividad(actividad);
     }
     
     public void cargarTablaActividades_porEstudiantes(Integer idEstudiante, JTable table) {

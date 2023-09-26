@@ -797,7 +797,7 @@ public class Persistencia_SQL {
         return listaActividades;
     }
     
-    //AGREGAR INFORME
+//AGREGAR INFORME
     public void agregarActividad(Estudiante estudiante, Actividad actividad) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -819,6 +819,7 @@ public class Persistencia_SQL {
                 preparedStatement.setDate(5, fecha);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La actividad fue correctamente agregada.", "Actividad agregada", JOptionPane.INFORMATION_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -828,6 +829,72 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }        
+ 
+//ELIMINAR ACTIVIDAD
+    public void eliminarActividad(Actividad actividad) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idActividad = actividad.getId_actividad();
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM actividad WHERE id_actividad = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, idActividad);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La actividad fue correctamente eliminada.", "Actividad eliminada", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    } 
+
+//ELIMINAR ACTIVIDAD
+    public void modificarActividad(Actividad actividad) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        int idActividad = actividad.getId_actividad();
+        String tipo = actividad.getTipo();
+        String descripcion = actividad.getDescripcion();
+        float calificacion = actividad.getCalificacion();
+        java.sql.Date fecha = actividad.getFecha();
+
+        if (conn != null) {
+            try {
+                String updateQuery = "UPDATE actividad SET tipo = ?, descripcion = ?, calificacion = ?, fecha = ? WHERE id_actividad = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(updateQuery);
+                preparedStatement.setString(1, tipo);
+                preparedStatement.setString(2, descripcion);
+                preparedStatement.setFloat(3, calificacion);
+                preparedStatement.setDate(4, fecha);
+                preparedStatement.setInt(5, idActividad);
+
+                int rowCount = preparedStatement.executeUpdate();
+                preparedStatement.close();
+
+                if (rowCount > 0) {
+                    JOptionPane.showMessageDialog(null, "La actividad fue correctamente actualizada.", "Actividad actualizada", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la actividad con el ID especificado.", "Actividad no encontrada", JOptionPane.WARNING_MESSAGE);
+                }
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al actualizar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 //     TABLAS INTERMEDIAS RELACIONADAS CON CURSO    

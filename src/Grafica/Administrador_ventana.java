@@ -22,12 +22,15 @@ import Logica.GestorEstudiantes;
 import Logica.GestorRelacional;
 
 import java.lang.System.Logger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 
 
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
@@ -54,19 +57,21 @@ public class Administrador_ventana extends javax.swing.JFrame
     private String cursoSeleccionadoModificarActividad_Curso; //VARIABLE CURSO SELECCIONADO PARA MODIFICAR ACTIVIDAD
     private String cursoSeleccionadoModificarActividad_Asignatura; //VARIABLE ASIGNATURA SELECCIONADO PARA MODIFICAR ACTIVIDAD
     private Integer estudianteSeleccionado_cargarActividades; //VARIABLE ESTUDIANTE SELECCIONADO PARA TRAER ACTIVIDADES
+    private Integer idActividad_modificarActividad;
     
     public Administrador_ventana() {
         initComponents();
         
         //Iniciamos todos los MouseListener para que se pueda interactuar con las JTable
-        MouseListenerSeleccionarUsuario_Usuario();
-        MouseListenerSeleccionarDocente_Asignatura(); //Seleccionar docentes por asignatura
+        MouseListenerSeleccionarUsuario_verUsuario();
+        MouseListenerSeleccionarDocente_paraCrearCurso(); //Seleccionar docentes por asignatura
         MouseListenerSeleccionarCurso_Eliminar(); //Seleccionar curso para eliminarlo
-        MouseListenerSeleccionarCurso_AgregarEstudiante(); //Seleccionar curso para Agregar Estudiante a un Curso
-        MouseListenerSeleccionarActividad_seleccionarEstudiantes(); //Seleccionar Curso y cargar Estudiantes (para luego asignar actividad)
-        MouseListenerSeleccionarEstudiantes_Actividad(); //Seleccionar estudiantes para Agregar Actividad
+        MouseListenerSeleccionarCurso_verEstudiantes_Curso(); //Seleccionar curso para Agregar Estudiante a un Curso
+        MouseListenerSeleccionarCurso_verEstudiantes_Actividades(); //Seleccionar Curso y cargar Estudiantes (para luego asignar actividad)
+        MouseListenerSeleccionarEstudiantes_crearActividad(); //Seleccionar estudiantes para Agregar Actividad
         MouseListenerSeleccionarEstudiantes_ModificarActividad(); //Seleccionar estudiantes para Modificar Actividad
-        MouseListenerSeleccionarActividades_deEstudiante();
+        MouseListenerSeleccionarEstudiantes_verActividades();
+        MouseListenerSeleccionarActividades();
         
         //Precargamos tablaCursos
         GestorCursos gestorC = new GestorCursos();
@@ -263,7 +268,21 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificarActividad_TablaEstudiantes = new javax.swing.JTable();
         tabla11 = new javax.swing.JScrollPane();
         modificarActividad_TablaActividades = new javax.swing.JTable();
-        nc = new javax.swing.JPanel();
+        Actividad_crear_botonModificarActividad = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        Actividad_textoSeleccionarCursoActividades_modificar = new javax.swing.JLabel();
+        Actividad_textoSeleccionarActividad_modificar = new javax.swing.JLabel();
+        Actividad_textoSeleccionarEstudianteActividad_modificar1 = new javax.swing.JLabel();
+        Actividad_textoTipoActividad1 = new javax.swing.JLabel();
+        Actividad_textoFecha1 = new javax.swing.JLabel();
+        txtFecha_modificar = new com.toedter.calendar.JDateChooser();
+        Actividad_textoDescripcion1 = new javax.swing.JLabel();
+        Actividad_descripcion1 = new javax.swing.JScrollPane();
+        DescripcionActividad_modificar = new javax.swing.JTextPane();
+        Actividad_crear_botonEliminarActividad = new javax.swing.JButton();
+        Actividad_calificacion_modificar = new javax.swing.JTextField();
+        Actividad_textoCalificacion_miodificar = new javax.swing.JLabel();
+        Actividad_modificar_tipoActividad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -1633,7 +1652,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_descripcion.setViewportView(descripcionActividad);
 
         Actividad_crear_botonAgregarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        Actividad_crear_botonAgregarActividad.setText("Agregar actividad");
+        Actividad_crear_botonAgregarActividad.setText("Agregar");
         Actividad_crear_botonAgregarActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Actividad_crear_botonAgregarActividadActionPerformed(evt);
@@ -1662,7 +1681,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearActividadLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Actividad_textoSeleccionarCursoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(crearActividadLayout.createSequentialGroup()
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Actividad_textoSeleccionarEstudianteActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1676,23 +1694,30 @@ public class Administrador_ventana extends javax.swing.JFrame
                                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Actividad_textoTipoActividad))
-                                .addGap(53, 53, 53)
                                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(crearActividadLayout.createSequentialGroup()
+                                        .addGap(52, 52, 52)
+                                        .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(crearActividadLayout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearActividadLayout.createSequentialGroup()
                                     .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearActividadLayout.createSequentialGroup()
                                     .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                                    .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(23, 23, 23))
+                    .addGroup(crearActividadLayout.createSequentialGroup()
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoSeleccionarCursoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))))
         );
         crearActividadLayout.setVerticalGroup(
             crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1703,35 +1728,42 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2)
                     .addGroup(crearActividadLayout.createSequentialGroup()
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2)
                             .addGroup(crearActividadLayout.createSequentialGroup()
                                 .addComponent(Actividad_textoSeleccionarEstudianteActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(indicadorCurso2A, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tabla8, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tabla8, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 12, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(crearActividadLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(crearActividadLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(17, 17, 17)
+                                .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(crearActividadLayout.createSequentialGroup()
+                                .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(crearActividadLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 10, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearActividadLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16))))))
         );
 
         opcionesActividades.addTab("Crear Actividad", crearActividad);
@@ -1869,7 +1901,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1879,11 +1911,78 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificarActividad_TablaActividades.getTableHeader().setReorderingAllowed(false);
         tabla11.setViewportView(modificarActividad_TablaActividades);
         if (modificarActividad_TablaActividades.getColumnModel().getColumnCount() > 0) {
+            modificarActividad_TablaActividades.getColumnModel().getColumn(0).setResizable(false);
             modificarActividad_TablaActividades.getColumnModel().getColumn(1).setResizable(false);
             modificarActividad_TablaActividades.getColumnModel().getColumn(2).setResizable(false);
             modificarActividad_TablaActividades.getColumnModel().getColumn(3).setResizable(false);
             modificarActividad_TablaActividades.getColumnModel().getColumn(4).setResizable(false);
+            modificarActividad_TablaActividades.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        Actividad_crear_botonModificarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_crear_botonModificarActividad.setText("Modificar");
+        Actividad_crear_botonModificarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_crear_botonModificarActividadActionPerformed(evt);
+            }
+        });
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        Actividad_textoSeleccionarCursoActividades_modificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarCursoActividades_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarCursoActividades_modificar.setText("Seleccionar curso:");
+
+        Actividad_textoSeleccionarActividad_modificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarActividad_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarActividad_modificar.setText("Seleccionar actividad:");
+
+        Actividad_textoSeleccionarEstudianteActividad_modificar1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarEstudianteActividad_modificar1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarEstudianteActividad_modificar1.setText("Seleccionar un estudiante:");
+
+        Actividad_textoTipoActividad1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoTipoActividad1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoTipoActividad1.setText("Tipo ");
+
+        Actividad_textoFecha1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoFecha1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoFecha1.setText("Fecha");
+
+        txtFecha_modificar.setDateFormatString("yyyy-MM-dd");
+
+        Actividad_textoDescripcion1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoDescripcion1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoDescripcion1.setText("Descripción");
+
+        Actividad_descripcion1.setViewportView(DescripcionActividad_modificar);
+
+        Actividad_crear_botonEliminarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_crear_botonEliminarActividad.setText("Eliminar");
+        Actividad_crear_botonEliminarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_crear_botonEliminarActividadActionPerformed(evt);
+            }
+        });
+
+        Actividad_calificacion_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_calificacion_modificarActionPerformed(evt);
+            }
+        });
+
+        Actividad_textoCalificacion_miodificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoCalificacion_miodificar.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoCalificacion_miodificar.setText("Calificación");
+
+        Actividad_modificar_tipoActividad.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Actividad_modificar_tipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actividad", "Evaluación", "Orales" }));
+        Actividad_modificar_tipoActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Actividad_modificar_tipoActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_modificar_tipoActividadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout modificarActividadLayout = new javax.swing.GroupLayout(modificarActividad);
         modificarActividad.setLayout(modificarActividadLayout);
@@ -1891,42 +1990,90 @@ public class Administrador_ventana extends javax.swing.JFrame
             modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modificarActividadLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
+                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tabla10, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabla9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Actividad_textoSeleccionarCursoActividades_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Actividad_textoSeleccionarEstudianteActividad_modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tabla9, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificarActividadLayout.createSequentialGroup()
-                        .addComponent(tabla10, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tabla11, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoSeleccionarActividad_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(modificarActividadLayout.createSequentialGroup()
+                                .addComponent(Actividad_textoCalificacion_miodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Actividad_calificacion_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(modificarActividadLayout.createSequentialGroup()
+                                    .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Actividad_textoFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Actividad_textoTipoActividad1)
+                                        .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Actividad_descripcion1)
+                                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(Actividad_modificar_tipoActividad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtFecha_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))))
+                                .addGroup(modificarActividadLayout.createSequentialGroup()
+                                    .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         modificarActividadLayout.setVerticalGroup(
             modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modificarActividadLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(tabla9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(12, 12, 12)
+                .addComponent(Actividad_textoSeleccionarCursoActividades_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Actividad_textoSeleccionarEstudianteActividad_modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabla10, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+            .addGroup(modificarActividadLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabla10, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabla11, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addComponent(jSeparator3)
+                        .addContainerGap())
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addComponent(Actividad_textoSeleccionarActividad_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tabla11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_textoTipoActividad1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_modificar_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFecha_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_descripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_calificacion_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoCalificacion_miodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
         );
 
         opcionesActividades.addTab("Modificar Actividad", modificarActividad);
-
-        nc.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout ncLayout = new javax.swing.GroupLayout(nc);
-        nc.setLayout(ncLayout);
-        ncLayout.setHorizontalGroup(
-            ncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        ncLayout.setVerticalGroup(
-            ncLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        opcionesActividades.addTab("Agregar/Quitar Estudiantes", nc);
 
         javax.swing.GroupLayout pestaña2_ActividadesLayout = new javax.swing.GroupLayout(pestaña2_Actividades);
         pestaña2_Actividades.setLayout(pestaña2_ActividadesLayout);
@@ -2517,6 +2664,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         //Conversión de util.Date a sql.Date
         java.util.Date fechaUtil = txtFecha.getDate();
         java.sql.Date fecha = new java.sql.Date(fechaUtil.getTime());
+        
         String descripcion = descripcionActividad.getText();
         
         //Conversión "," por "." si es necesario. PARA QUE NO DE PROBLEMAS EN LA BD
@@ -2533,11 +2681,54 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void Actividad_calificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Actividad_calificacionActionPerformed
+
+    private void Actividad_crear_botonModificarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonModificarActividadActionPerformed
+        Integer idActividad = idActividad_modificarActividad;
+        String nuevoTipo = Actividad_modificar_tipoActividad.getSelectedItem().toString();
+        String nuevaDescripcion = DescripcionActividad_modificar.getText();
+        
+        String calificacionTexto = Actividad_calificacion_modificar.getText();
+        calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
+        float nuevaCalificacion = Float.parseFloat(calificacionTexto);
+        
+        //Conversión de util.Date a sql.Date
+        java.util.Date fechaUtil = txtFecha_modificar.getDate();
+        java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
+
+        GestorActividades gestorAct = new GestorActividades();
+        gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
+        
+        Integer idEstudiante = estudianteSeleccionado_cargarActividades;
+        gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+    }//GEN-LAST:event_Actividad_crear_botonModificarActividadActionPerformed
+
+    private void Actividad_crear_botonEliminarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonEliminarActividadActionPerformed
+
+        int respuesta = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea eliminar la Actividad "+idActividad_modificarActividad+" ?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION){
+                GestorActividades gestorAct = new GestorActividades();
+                gestorAct.eliminarActividad(idActividad_modificarActividad); //Eliminamos actividad
+                Integer idEstudiante = estudianteSeleccionado_cargarActividades;
+                gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+            }else{
+                System.out.println("Eliminación cancelada.");
+            }   
+    }//GEN-LAST:event_Actividad_crear_botonEliminarActividadActionPerformed
+
+    private void Actividad_calificacion_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacion_modificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_calificacion_modificarActionPerformed
+
+    private void Actividad_modificar_tipoActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_modificar_tipoActividadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_modificar_tipoActividadActionPerformed
          
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
     
 //TOMA DATOS DE TABLA USUARIO PARA RELLENAR LOS CAMPOS AL MODIFICAR UNA CUENTA  
-    private void MouseListenerSeleccionarUsuario_Usuario() {
+    private void MouseListenerSeleccionarUsuario_verUsuario() {
         modificarCuenta_TablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2573,7 +2764,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
     
 //PERMITE SELECCIONAR UN DOCENTE DE LA TABLA DOCENTES PARA CREAR UN CURSO
-    private void MouseListenerSeleccionarDocente_Asignatura() {
+    private void MouseListenerSeleccionarDocente_paraCrearCurso() {
         crearCurso_TablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2602,7 +2793,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }    
     
 //AL ASIGNAR ESTUDIANTE A CURSO, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
-    private void MouseListenerSeleccionarCurso_AgregarEstudiante() {
+    private void MouseListenerSeleccionarCurso_verEstudiantes_Curso() {
         modificarEstudiantes_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2629,7 +2820,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }    
     
 //AL AGREGAR ACTIVIDAD, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
-    private void MouseListenerSeleccionarActividad_seleccionarEstudiantes() {
+    private void MouseListenerSeleccionarCurso_verEstudiantes_Actividades() {
         crearActividad_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2656,7 +2847,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }    
 
 //AL AGREGAR UNA ACTIVIDAD PERMITE SELECCIONAR UN ESTUDIANTE PARA USARLO EN EL BOTON AGREGAR ACTIVIDAD
-    private void MouseListenerSeleccionarEstudiantes_Actividad() {
+    private void MouseListenerSeleccionarEstudiantes_crearActividad() {
         CrearActividad_tablaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2697,7 +2888,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }     
 
 //AL MODIFICAR ACTIVIDAD, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
-    private void MouseListenerSeleccionarActividades_deEstudiante() {
+    private void MouseListenerSeleccionarEstudiantes_verActividades() {
         modificarActividad_TablaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2711,7 +2902,43 @@ public class Administrador_ventana extends javax.swing.JFrame
                 }
             }
         });
-    }      
+    } 
+    
+//PERMITE SELECCIONAR UNA ACTIVIDAD PARA MODIFICAR O ELIMINAR
+    private void MouseListenerSeleccionarActividades() {
+        modificarActividad_TablaActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = modificarActividad_TablaActividades.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    idActividad_modificarActividad = Integer.parseInt(modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 0).toString());  
+                    String tipo = modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 2).toString();
+                    String descripcion = modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 3).toString(); 
+                    float calificacion = Float.parseFloat(modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 4).toString());
+                    String fecha = modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 5).toString();
+                    
+                    Actividad_modificar_tipoActividad.setSelectedItem(tipo);
+                    DescripcionActividad_modificar.setText(descripcion);
+                    Actividad_calificacion_modificar.setText(String.valueOf(calificacion));
+                    
+                    try {
+                        // Creamos un objeto SimpleDateFormat para analizar la cadena de fecha
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date fechaDate = sdf.parse(fecha);
+                        // Convierte el objeto Date a un objeto Calendar
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fechaDate);
+                        // Configuramos el JCalendar con la fecha obtenida
+                        txtFecha_modificar.setDate(calendar.getTime());
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
+            }
+        });
+    }    
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
@@ -2756,15 +2983,27 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Actividad_calificacion;
+    private javax.swing.JTextField Actividad_calificacion_modificar;
     private javax.swing.JButton Actividad_crear_botonAgregarActividad;
+    private javax.swing.JButton Actividad_crear_botonEliminarActividad;
+    private javax.swing.JButton Actividad_crear_botonModificarActividad;
     private javax.swing.JComboBox<String> Actividad_crear_tipoActividad;
     private javax.swing.JScrollPane Actividad_descripcion;
+    private javax.swing.JScrollPane Actividad_descripcion1;
+    private javax.swing.JComboBox<String> Actividad_modificar_tipoActividad;
     private javax.swing.JLabel Actividad_textoCalificacion;
+    private javax.swing.JLabel Actividad_textoCalificacion_miodificar;
     private javax.swing.JLabel Actividad_textoDescripcion;
+    private javax.swing.JLabel Actividad_textoDescripcion1;
     private javax.swing.JLabel Actividad_textoFecha;
+    private javax.swing.JLabel Actividad_textoFecha1;
+    private javax.swing.JLabel Actividad_textoSeleccionarActividad_modificar;
     private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades;
+    private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades_modificar;
     private javax.swing.JLabel Actividad_textoSeleccionarEstudianteActividad;
+    private javax.swing.JLabel Actividad_textoSeleccionarEstudianteActividad_modificar1;
     private javax.swing.JLabel Actividad_textoTipoActividad;
+    private javax.swing.JLabel Actividad_textoTipoActividad1;
     private javax.swing.JTable CrearActividad_tablaEstudiantes;
     private javax.swing.JButton Cuenta_botonBuscar;
     private javax.swing.JButton Cuenta_botonEliminar;
@@ -2818,6 +3057,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel Curso_crear_textoEstudiantes1;
     private javax.swing.JLabel Curso_crear_textoSeleccionarCursoEstudiantes;
     private javax.swing.JButton Curso_modificar_botonEliminarCurso;
+    private javax.swing.JTextPane DescripcionActividad_modificar;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
@@ -2836,6 +3076,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel indicadorCurso2A;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel modificarActividad;
     private javax.swing.JTable modificarActividad_TablaActividades;
@@ -2847,7 +3088,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTable modificarCurso_TablaCursos;
     private javax.swing.JPanel modificarEstudiantes;
     private javax.swing.JTable modificarEstudiantes_TablaCursos;
-    private javax.swing.JPanel nc;
     private javax.swing.JTabbedPane opcionesActividades;
     private javax.swing.JTabbedPane opcionesCuentas;
     private javax.swing.JTabbedPane opcionesCursos;
@@ -2873,5 +3113,6 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTable tablaEstudiante_Agregar;
     private javax.swing.JTable tablaEstudiante_Quitar;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private com.toedter.calendar.JDateChooser txtFecha_modificar;
     // End of variables declaration//GEN-END:variables
 }
