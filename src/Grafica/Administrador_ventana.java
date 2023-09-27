@@ -2658,24 +2658,36 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_Actividad_crear_tipoActividadActionPerformed
 
     private void Actividad_crear_botonAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonAgregarActividadActionPerformed
-        int idEstudiante = estudianteSeleccionadoAgregar_Actividad;
+        Integer estudianteSeleccionado = this.estudianteSeleccionadoAgregar_Actividad;
         String tipo = Actividad_crear_tipoActividad.getSelectedItem().toString();
-        
-        //Conversión de util.Date a sql.Date
         java.util.Date fechaUtil = txtFecha.getDate();
-        java.sql.Date fecha = new java.sql.Date(fechaUtil.getTime());
-        
         String descripcion = descripcionActividad.getText();
-        
-        //Conversión "," por "." si es necesario. PARA QUE NO DE PROBLEMAS EN LA BD
         String calificacionTexto = Actividad_calificacion.getText();
-        calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
-        float calificacion = Float.parseFloat(calificacionTexto);
 
-        
-        GestorActividades actividades = new GestorActividades();
-        actividades.agregarActividad(idEstudiante, tipo, descripcion, calificacion, fecha);
+        if (estudianteSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un estudiante.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (fechaUtil == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (calificacionTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una calificación.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                float calificacion = Float.parseFloat(calificacionTexto);
 
+                // Verifica que la calificación esté en el rango válido (1 - 12)
+                if (calificacion >= 1 && calificacion <= 12) {
+                    // Si llegas a este punto, todos los campos están completos y la calificación está dentro del rango válido.
+                    GestorActividades actividades = new GestorActividades();
+                    actividades.agregarActividad(estudianteSeleccionado.intValue(), tipo, descripcion, calificacion, new java.sql.Date(fechaUtil.getTime()));
+                } else {
+                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_Actividad_crear_botonAgregarActividadActionPerformed
 
     private void Actividad_calificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacionActionPerformed
@@ -2686,20 +2698,33 @@ public class Administrador_ventana extends javax.swing.JFrame
         Integer idActividad = idActividad_modificarActividad;
         String nuevoTipo = Actividad_modificar_tipoActividad.getSelectedItem().toString();
         String nuevaDescripcion = DescripcionActividad_modificar.getText();
-        
         String calificacionTexto = Actividad_calificacion_modificar.getText();
         calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
-        float nuevaCalificacion = Float.parseFloat(calificacionTexto);
-        
-        //Conversión de util.Date a sql.Date
-        java.util.Date fechaUtil = txtFecha_modificar.getDate();
-        java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
 
-        GestorActividades gestorAct = new GestorActividades();
-        gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
-        
-        Integer idEstudiante = estudianteSeleccionado_cargarActividades;
-        gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+        if (idActividad != null && !nuevaDescripcion.isEmpty() && !calificacionTexto.isEmpty() && txtFecha_modificar.getDate() != null) {
+            try {
+                float nuevaCalificacion = Float.parseFloat(calificacionTexto);
+
+                // Verifica que la calificación esté en el rango válido (1 - 12)
+                if (nuevaCalificacion >= 1 && nuevaCalificacion <= 12) {
+                    //Conversión de util.Date a sql.Date
+                    java.util.Date fechaUtil = txtFecha_modificar.getDate();
+                    java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
+
+                    GestorActividades gestorAct = new GestorActividades();
+                    gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
+
+                    Integer idEstudiante = estudianteSeleccionado_cargarActividades;
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+                } else {
+                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_Actividad_crear_botonModificarActividadActionPerformed
 
     private void Actividad_crear_botonEliminarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonEliminarActividadActionPerformed
