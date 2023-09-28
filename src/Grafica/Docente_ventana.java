@@ -32,9 +32,8 @@ public class Docente_ventana extends javax.swing.JFrame {
         logoSDFA = new javax.swing.JLabel();
         separador = new javax.swing.JSeparator();
         botonCursos = new javax.swing.JButton();
+        botonClases = new javax.swing.JButton();
         botonActividades = new javax.swing.JButton();
-        botonInasistencias = new javax.swing.JButton();
-        botonInformes = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
@@ -108,6 +107,39 @@ public class Docente_ventana extends javax.swing.JFrame {
             }
         });
 
+        botonClases.setBackground(new java.awt.Color(52, 80, 86));
+        botonClases.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonClases.setForeground(new java.awt.Color(204, 204, 204));
+        botonClases.setText("    Clases");
+        botonClases.setBorder(null);
+        botonClases.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonClases.setFocusPainted(false);
+        botonClases.setFocusable(false);
+        botonClases.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonClases.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonClases.setIconTextGap(10);
+        botonClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonClasesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonClasesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonClasesMouseExited(evt);
+            }
+        });
+        botonClases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonClasesActionPerformed(evt);
+            }
+        });
+        botonClases.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonClasesKeyPressed(evt);
+            }
+        });
+
         botonActividades.setBackground(new java.awt.Color(52, 80, 86));
         botonActividades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonActividades.setForeground(new java.awt.Color(204, 204, 204));
@@ -138,72 +170,6 @@ public class Docente_ventana extends javax.swing.JFrame {
         botonActividades.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 botonActividadesKeyPressed(evt);
-            }
-        });
-
-        botonInasistencias.setBackground(new java.awt.Color(52, 80, 86));
-        botonInasistencias.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonInasistencias.setForeground(new java.awt.Color(204, 204, 204));
-        botonInasistencias.setText("    Inasistencias");
-        botonInasistencias.setBorder(null);
-        botonInasistencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonInasistencias.setFocusPainted(false);
-        botonInasistencias.setFocusable(false);
-        botonInasistencias.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonInasistencias.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonInasistencias.setIconTextGap(10);
-        botonInasistencias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonInasistenciasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonInasistenciasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonInasistenciasMouseExited(evt);
-            }
-        });
-        botonInasistencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonInasistenciasActionPerformed(evt);
-            }
-        });
-        botonInasistencias.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonInasistenciasKeyPressed(evt);
-            }
-        });
-
-        botonInformes.setBackground(new java.awt.Color(52, 80, 86));
-        botonInformes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        botonInformes.setForeground(new java.awt.Color(204, 204, 204));
-        botonInformes.setText("    Informes");
-        botonInformes.setBorder(null);
-        botonInformes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonInformes.setFocusPainted(false);
-        botonInformes.setFocusable(false);
-        botonInformes.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        botonInformes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        botonInformes.setIconTextGap(10);
-        botonInformes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonInformesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonInformesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonInformesMouseExited(evt);
-            }
-        });
-        botonInformes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonInformesActionPerformed(evt);
-            }
-        });
-        botonInformes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                botonInformesKeyPressed(evt);
             }
         });
 
@@ -258,9 +224,8 @@ public class Docente_ventana extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonInasistencias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonInformes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botonClases, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,12 +237,10 @@ public class Docente_ventana extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(botonClases, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(botonActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(botonInasistencias, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(botonInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -296,7 +259,7 @@ public class Docente_ventana extends javax.swing.JFrame {
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        panelPestañas.addTab("tab5", pestañaBienvenida);
+        panelPestañas.addTab("intro", pestañaBienvenida);
 
         pestaña0.setBackground(new java.awt.Color(255, 255, 255));
         pestaña0.setForeground(new java.awt.Color(0, 0, 0));
@@ -313,7 +276,7 @@ public class Docente_ventana extends javax.swing.JFrame {
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        panelPestañas.addTab("tab1", pestaña0);
+        panelPestañas.addTab("tab0", pestaña0);
 
         pestaña1.setBackground(new java.awt.Color(255, 255, 255));
         pestaña1.setForeground(new java.awt.Color(0, 0, 0));
@@ -329,7 +292,7 @@ public class Docente_ventana extends javax.swing.JFrame {
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        panelPestañas.addTab("tab2", pestaña1);
+        panelPestañas.addTab("tab1", pestaña1);
 
         pestaña2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -344,7 +307,7 @@ public class Docente_ventana extends javax.swing.JFrame {
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        panelPestañas.addTab("tab3", pestaña2);
+        panelPestañas.addTab("tab2", pestaña2);
 
         pestaña4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -359,7 +322,7 @@ public class Docente_ventana extends javax.swing.JFrame {
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        panelPestañas.addTab("tab4", pestaña4);
+        panelPestañas.addTab("tab3", pestaña4);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -403,21 +366,21 @@ public class Docente_ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonCerrarSesionKeyPressed
 
-    private void botonInasistenciasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonInasistenciasKeyPressed
+    private void botonActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonActividadesKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonInasistenciasKeyPressed
+    }//GEN-LAST:event_botonActividadesKeyPressed
 
-    private void botonInasistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInasistenciasActionPerformed
+    private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonInasistenciasActionPerformed
+    }//GEN-LAST:event_botonActividadesActionPerformed
 
-    private void botonInasistenciasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseExited
+    private void botonActividadesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActividadesMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonInasistenciasMouseExited
+    }//GEN-LAST:event_botonActividadesMouseExited
 
-    private void botonInasistenciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseEntered
+    private void botonActividadesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActividadesMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonInasistenciasMouseEntered
+    }//GEN-LAST:event_botonActividadesMouseEntered
 
     private void cambiarEstadoBoton(JButton button, boolean isSelected) {
         if (isSelected) {
@@ -429,37 +392,35 @@ public class Docente_ventana extends javax.swing.JFrame {
         }
     }
     
-    private void botonInasistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInasistenciasMouseClicked
-        panelPestañas.setSelectedIndex(3);
-        cambiarEstadoBoton(botonInasistencias, true);
-        cambiarEstadoBoton(botonCursos, false);
-        cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonInformes, false);
-    }//GEN-LAST:event_botonInasistenciasMouseClicked
-
-    private void botonActividadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonActividadesKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonActividadesKeyPressed
-
-    private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonActividadesActionPerformed
-
-    private void botonActividadesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActividadesMouseExited
-        //botonGenerarAdscriptor.setBackground(new Color(45,196,181));
-    }//GEN-LAST:event_botonActividadesMouseExited
-
-    private void botonActividadesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActividadesMouseEntered
-        //botonGenerarAdscriptor.setBackground(new Color(55,208,193));
-    }//GEN-LAST:event_botonActividadesMouseEntered
-
     private void botonActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActividadesMouseClicked
-        panelPestañas.setSelectedIndex(2);
+        panelPestañas.setSelectedIndex(3);
         cambiarEstadoBoton(botonActividades, true);
         cambiarEstadoBoton(botonCursos, false);
-        cambiarEstadoBoton(botonInasistencias, false);
-        cambiarEstadoBoton(botonInformes, false);
+        cambiarEstadoBoton(botonClases, false);
     }//GEN-LAST:event_botonActividadesMouseClicked
+
+    private void botonClasesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonClasesKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonClasesKeyPressed
+
+    private void botonClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClasesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonClasesActionPerformed
+
+    private void botonClasesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClasesMouseExited
+        //botonGenerarAdscriptor.setBackground(new Color(45,196,181));
+    }//GEN-LAST:event_botonClasesMouseExited
+
+    private void botonClasesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClasesMouseEntered
+        //botonGenerarAdscriptor.setBackground(new Color(55,208,193));
+    }//GEN-LAST:event_botonClasesMouseEntered
+
+    private void botonClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClasesMouseClicked
+        panelPestañas.setSelectedIndex(2);
+        cambiarEstadoBoton(botonClases, true);
+        cambiarEstadoBoton(botonCursos, false);
+        cambiarEstadoBoton(botonActividades, false);
+    }//GEN-LAST:event_botonClasesMouseClicked
 
     private void botonCursosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonCursosKeyPressed
 
@@ -480,35 +441,9 @@ public class Docente_ventana extends javax.swing.JFrame {
     private void botonCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCursosMouseClicked
         panelPestañas.setSelectedIndex(1);
         cambiarEstadoBoton(botonCursos, true);
+        cambiarEstadoBoton(botonClases, false);
         cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonInasistencias, false);
-        cambiarEstadoBoton(botonInformes, false);
     }//GEN-LAST:event_botonCursosMouseClicked
-
-    private void botonInformesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInformesMouseClicked
-        panelPestañas.setSelectedIndex(4);
-        cambiarEstadoBoton(botonInformes, true);
-        cambiarEstadoBoton(botonCursos, false);
-        cambiarEstadoBoton(botonActividades, false);
-        cambiarEstadoBoton(botonInasistencias, false);
-        
-    }//GEN-LAST:event_botonInformesMouseClicked
-
-    private void botonInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInformesMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonInformesMouseEntered
-
-    private void botonInformesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInformesMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonInformesMouseExited
-
-    private void botonInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInformesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonInformesActionPerformed
-
-    private void botonInformesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonInformesKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonInformesKeyPressed
      
     //Bienvenida al usuario mostrando el cargo, nombre y apellido
     public void bienvenidaUsuario(String nombreyapellidoUsuario) {
@@ -568,9 +503,8 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonActividades;
     private javax.swing.JButton botonCerrarSesion;
+    private javax.swing.JButton botonClases;
     private javax.swing.JButton botonCursos;
-    private javax.swing.JButton botonInasistencias;
-    private javax.swing.JButton botonInformes;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;

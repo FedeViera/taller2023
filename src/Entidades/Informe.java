@@ -3,8 +3,15 @@ package Entidades;
 public class Informe 
 {
     private int id_informe;
-    private String descripcion;
-    private String fecha;
+    private String diagnostico;
+
+    public Informe() {
+    }
+
+    public Informe(int id_informe, String diagnostico) {
+        this.id_informe = id_informe;
+        this.diagnostico = diagnostico;
+    }
 
     public int getId_informe() {
         return id_informe;
@@ -14,31 +21,14 @@ public class Informe
         this.id_informe = id_informe;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDiagnostico() {
+        return diagnostico;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public Informe() {
-    }
-
-    public Informe(int id_informe, String descripcion, String fecha) {
-        this.id_informe = id_informe;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-    }
-    
     
 
     

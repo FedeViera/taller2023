@@ -161,6 +161,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         botonGestionCursos = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
         botonGestionActividades = new javax.swing.JButton();
+        botonGestionClases = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
         pestaña0_Cuentas = new javax.swing.JPanel();
@@ -240,7 +241,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
         indicadorCurso = new javax.swing.JLabel();
         indicadorCurso1A = new javax.swing.JLabel();
-        pestaña2_Actividades = new javax.swing.JPanel();
+        pestaña3_Actividades = new javax.swing.JPanel();
         opcionesActividades = new javax.swing.JTabbedPane();
         crearActividad = new javax.swing.JPanel();
         Actividad_textoSeleccionarCursoActividades = new javax.swing.JLabel();
@@ -283,6 +284,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_calificacion_modificar = new javax.swing.JTextField();
         Actividad_textoCalificacion_miodificar = new javax.swing.JLabel();
         Actividad_modificar_tipoActividad = new javax.swing.JComboBox<>();
+        pestaña2_Clases = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -448,6 +450,39 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
+        botonGestionClases.setBackground(new java.awt.Color(52, 80, 86));
+        botonGestionClases.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botonGestionClases.setForeground(new java.awt.Color(204, 204, 204));
+        botonGestionClases.setText("    Gestión de Clases");
+        botonGestionClases.setBorder(null);
+        botonGestionClases.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGestionClases.setFocusPainted(false);
+        botonGestionClases.setFocusable(false);
+        botonGestionClases.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        botonGestionClases.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        botonGestionClases.setIconTextGap(10);
+        botonGestionClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonGestionClasesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonGestionClasesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonGestionClasesMouseExited(evt);
+            }
+        });
+        botonGestionClases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGestionClasesActionPerformed(evt);
+            }
+        });
+        botonGestionClases.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonGestionClasesKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelOpcionesLayout = new javax.swing.GroupLayout(panelOpciones);
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
@@ -466,7 +501,8 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonGestionCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(botonGestionActividades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonGestionClases, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,7 +517,9 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addComponent(botonGestionCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(botonGestionActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(botonGestionClases, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -500,7 +538,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             .addGap(0, 544, Short.MAX_VALUE)
         );
 
-        panelPestañas.addTab("tab5", pestañaBienvenida);
+        panelPestañas.addTab("tab0", pestañaBienvenida);
 
         pestaña0_Cuentas.setBackground(new java.awt.Color(255, 255, 255));
         pestaña0_Cuentas.setToolTipText("");
@@ -1509,7 +1547,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         panelPestañas.addTab("tab2", pestaña1_Cursos);
 
-        pestaña2_Actividades.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña3_Actividades.setBackground(new java.awt.Color(255, 255, 255));
 
         opcionesActividades.setBackground(new java.awt.Color(255, 255, 255));
         opcionesActividades.setForeground(new java.awt.Color(0, 0, 0));
@@ -1613,7 +1651,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1624,6 +1662,9 @@ public class Administrador_ventana extends javax.swing.JFrame
         tabla8.setViewportView(CrearActividad_tablaEstudiantes);
         if (CrearActividad_tablaEstudiantes.getColumnModel().getColumnCount() > 0) {
             CrearActividad_tablaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
+            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(1).setResizable(false);
+            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(2).setResizable(false);
+            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(3).setResizable(false);
         }
 
         Actividad_crear_tipoActividad.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -2075,22 +2116,37 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         opcionesActividades.addTab("Modificar Actividad", modificarActividad);
 
-        javax.swing.GroupLayout pestaña2_ActividadesLayout = new javax.swing.GroupLayout(pestaña2_Actividades);
-        pestaña2_Actividades.setLayout(pestaña2_ActividadesLayout);
-        pestaña2_ActividadesLayout.setHorizontalGroup(
-            pestaña2_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña2_ActividadesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pestaña3_ActividadesLayout = new javax.swing.GroupLayout(pestaña3_Actividades);
+        pestaña3_Actividades.setLayout(pestaña3_ActividadesLayout);
+        pestaña3_ActividadesLayout.setHorizontalGroup(
+            pestaña3_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña3_ActividadesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(opcionesActividades))
         );
-        pestaña2_ActividadesLayout.setVerticalGroup(
-            pestaña2_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2_ActividadesLayout.createSequentialGroup()
+        pestaña3_ActividadesLayout.setVerticalGroup(
+            pestaña3_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3_ActividadesLayout.createSequentialGroup()
                 .addGap(0, 14, Short.MAX_VALUE)
                 .addComponent(opcionesActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelPestañas.addTab("tab4", pestaña2_Actividades);
+        panelPestañas.addTab("tab3", pestaña3_Actividades);
+
+        pestaña2_Clases.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pestaña2_ClasesLayout = new javax.swing.GroupLayout(pestaña2_Clases);
+        pestaña2_Clases.setLayout(pestaña2_ClasesLayout);
+        pestaña2_ClasesLayout.setHorizontalGroup(
+            pestaña2_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 958, Short.MAX_VALUE)
+        );
+        pestaña2_ClasesLayout.setVerticalGroup(
+            pestaña2_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 544, Short.MAX_VALUE)
+        );
+
+        panelPestañas.addTab("tab4", pestaña2_Clases);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -2137,9 +2193,10 @@ public class Administrador_ventana extends javax.swing.JFrame
     
     private void botonGestionCuentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCuentasMouseClicked
         panelPestañas.setSelectedIndex(1);
+        cambiarEstadoBoton(botonGestionCuentas, true);
         cambiarEstadoBoton(botonGestionCursos, false);
         cambiarEstadoBoton(botonGestionActividades, false);
-        cambiarEstadoBoton(botonGestionCuentas, true);
+        cambiarEstadoBoton(botonGestionClases, false);
     }//GEN-LAST:event_botonGestionCuentasMouseClicked
 
     private void botonGestionCursosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionCursosKeyPressed
@@ -2160,9 +2217,10 @@ public class Administrador_ventana extends javax.swing.JFrame
 
     private void botonGestionCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionCursosMouseClicked
         panelPestañas.setSelectedIndex(2);
+                cambiarEstadoBoton(botonGestionCuentas, false);
         cambiarEstadoBoton(botonGestionCursos, true);
         cambiarEstadoBoton(botonGestionActividades, false);
-        cambiarEstadoBoton(botonGestionCuentas, false);
+        cambiarEstadoBoton(botonGestionClases, false);
     }//GEN-LAST:event_botonGestionCursosMouseClicked
 
     private void botonCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarSesionMouseClicked
@@ -2195,10 +2253,10 @@ public class Administrador_ventana extends javax.swing.JFrame
 //Boton Gestion de Actividades
     private void botonGestionActividadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseClicked
         panelPestañas.setSelectedIndex(3);
-        panelPestañas.setSelectedIndex(3);
+        cambiarEstadoBoton(botonGestionCuentas, false);
         cambiarEstadoBoton(botonGestionCursos, false);
         cambiarEstadoBoton(botonGestionActividades, true);
-        cambiarEstadoBoton(botonGestionCuentas, false);
+        cambiarEstadoBoton(botonGestionClases, false);
     }//GEN-LAST:event_botonGestionActividadesMouseClicked
 
     private void botonGestionActividadesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionActividadesMouseEntered
@@ -2535,6 +2593,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             gestorC.cargarTablaCursosFull(modificarCurso_TablaCursos);
             gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
             gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+            gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
             
         } else {
             JOptionPane.showMessageDialog(null, "No se selecciono ningun docente para el curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -2595,6 +2654,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
                 gestorC.cargarTablaCursosFull(tablaEstudiante_Quitar);
                 gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+                gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
             }else{
                 System.out.println("Eliminación cancelada.");
             }  
@@ -2665,13 +2725,13 @@ public class Administrador_ventana extends javax.swing.JFrame
         String calificacionTexto = Actividad_calificacion.getText();
 
         if (estudianteSeleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un estudiante.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un estudiante.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (fechaUtil == null) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (calificacionTexto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese una calificación.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una calificación.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 float calificacion = Float.parseFloat(calificacionTexto);
@@ -2679,13 +2739,17 @@ public class Administrador_ventana extends javax.swing.JFrame
                 // Verifica que la calificación esté en el rango válido (1 - 12)
                 if (calificacion >= 1 && calificacion <= 12) {
                     // Si llegas a este punto, todos los campos están completos y la calificación está dentro del rango válido.
-                    GestorActividades actividades = new GestorActividades();
-                    actividades.agregarActividad(estudianteSeleccionado.intValue(), tipo, descripcion, calificacion, new java.sql.Date(fechaUtil.getTime()));
+                    GestorActividades gestorAct = new GestorActividades();
+                    gestorAct.agregarActividad(estudianteSeleccionado.intValue(), tipo, descripcion, calificacion, new java.sql.Date(fechaUtil.getTime()));
+                    
+                    
+                    Integer idEstudiante = estudianteSeleccionado_cargarActividades;
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla actividades
                 } else {
-                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_Actividad_crear_botonAgregarActividadActionPerformed
@@ -2717,19 +2781,19 @@ public class Administrador_ventana extends javax.swing.JFrame
                     Integer idEstudiante = estudianteSeleccionado_cargarActividades;
                     gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
                 } else {
-                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad a modificar.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_Actividad_crear_botonModificarActividadActionPerformed
 
     private void Actividad_crear_botonEliminarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonEliminarActividadActionPerformed
-
-        int respuesta = JOptionPane.showConfirmDialog(
+        if(idActividad_modificarActividad != null){
+            int respuesta = JOptionPane.showConfirmDialog(
                 null,
                 "¿Está seguro que desea eliminar la Actividad "+idActividad_modificarActividad+" ?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
             if (respuesta == JOptionPane.YES_OPTION){
@@ -2739,7 +2803,11 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
             }else{
                 System.out.println("Eliminación cancelada.");
-            }   
+            }  
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor, selecione una actividad a eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+         
     }//GEN-LAST:event_Actividad_crear_botonEliminarActividadActionPerformed
 
     private void Actividad_calificacion_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacion_modificarActionPerformed
@@ -2749,10 +2817,34 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void Actividad_modificar_tipoActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_modificar_tipoActividadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Actividad_modificar_tipoActividadActionPerformed
+
+    private void botonGestionClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionClasesMouseClicked
+        panelPestañas.setSelectedIndex(4);
+        cambiarEstadoBoton(botonGestionCuentas, false);
+        cambiarEstadoBoton(botonGestionCursos, false);
+        cambiarEstadoBoton(botonGestionActividades, false);
+        cambiarEstadoBoton(botonGestionClases, true);
+    }//GEN-LAST:event_botonGestionClasesMouseClicked
+
+    private void botonGestionClasesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionClasesMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionClasesMouseEntered
+
+    private void botonGestionClasesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGestionClasesMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionClasesMouseExited
+
+    private void botonGestionClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionClasesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionClasesActionPerformed
+
+    private void botonGestionClasesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionClasesKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonGestionClasesKeyPressed
          
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
     
-//TOMA DATOS DE TABLA USUARIO PARA RELLENAR LOS CAMPOS AL MODIFICAR UNA CUENTA  
+//Gest. Cuenta: "Modificar Cuenta" - TOMA DATOS DE TABLA USUARIO PARA RELLENAR LOS CAMPOS AL MODIFICAR UNA CUENTA  
     private void MouseListenerSeleccionarUsuario_verUsuario() {
         modificarCuenta_TablaCuentas.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2788,7 +2880,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }
     
-//PERMITE SELECCIONAR UN DOCENTE DE LA TABLA DOCENTES PARA CREAR UN CURSO
+//Gest. Curso: "Crear Curso" - SELECCIONAR UN DOCENTE DE LA TABLA DOCENTES PARA CREAR UN CURSO
     private void MouseListenerSeleccionarDocente_paraCrearCurso() {
         crearCurso_TablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2802,7 +2894,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }
 
-//TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA USARLOS EN EL BOTON ELIMINAR
+//Gest. Curso: "MODIFICAR CURSO" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA USARLOS EN EL BOTON ELIMINAR CURSO
     private void MouseListenerSeleccionarCurso_Eliminar() {
         modificarCurso_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2817,7 +2909,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }    
     
-//AL ASIGNAR ESTUDIANTE A CURSO, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+//Gest. Curso: "Agregar/Quitar Estudiantes" - PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
     private void MouseListenerSeleccionarCurso_verEstudiantes_Curso() {
         modificarEstudiantes_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2844,7 +2936,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }    
     
-//AL AGREGAR ACTIVIDAD, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+//Gest. Act: "Crear Actividad", SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
     private void MouseListenerSeleccionarCurso_verEstudiantes_Actividades() {
         crearActividad_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2871,7 +2963,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }    
 
-//AL AGREGAR UNA ACTIVIDAD PERMITE SELECCIONAR UN ESTUDIANTE PARA USARLO EN EL BOTON AGREGAR ACTIVIDAD
+//Gest. Act: "Crear actividad" - SELECCIONAR UN ESTUDIANTE PARA USARLO EN EL BOTON AGREGAR ACTIVIDAD
     private void MouseListenerSeleccionarEstudiantes_crearActividad() {
         CrearActividad_tablaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2885,7 +2977,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }     
 
-//AL MODIFICAR ACTIVIDAD, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+//Gest. Act: "Modificar Actividad" - SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
     private void MouseListenerSeleccionarEstudiantes_ModificarActividad() {
         modificarActividad_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2912,7 +3004,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }     
 
-//AL MODIFICAR ACTIVIDAD, PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+//Gest. Act: "Modificar Actividad" - SELECCIONAR UN ESTUDIANTE, CARGAR SUS ACTIVIDADES
     private void MouseListenerSeleccionarEstudiantes_verActividades() {
         modificarActividad_TablaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2929,7 +3021,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     } 
     
-//PERMITE SELECCIONAR UNA ACTIVIDAD PARA MODIFICAR O ELIMINAR
+//Gest. Act: "Modificar Actividad" - SELECCIONAR UNA ACTIVIDAD PARA MODIFICAR O ELIMINAR
     private void MouseListenerSeleccionarActividades() {
         modificarActividad_TablaActividades.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -2959,7 +3051,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                     }
-
                 }
             }
         });
@@ -3087,6 +3178,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonGestionActividades;
+    private javax.swing.JButton botonGestionClases;
     private javax.swing.JButton botonGestionCuentas;
     private javax.swing.JButton botonGestionCursos;
     private javax.swing.JPanel crearActividad;
@@ -3121,7 +3213,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña0_Cuentas;
     private javax.swing.JPanel pestaña1_Cursos;
-    private javax.swing.JPanel pestaña2_Actividades;
+    private javax.swing.JPanel pestaña2_Clases;
+    private javax.swing.JPanel pestaña3_Actividades;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
     private javax.swing.JScrollPane tabla1;

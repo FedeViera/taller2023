@@ -15,7 +15,7 @@ public class GestorInformes {
     }
 
 //BUSCAR ADMINISTRADOR    
-    public Informe buscarAdministradorPorCedula(int idInforme) {
+    public Informe buscarInforme(int idInforme) {
         for (Informe informe : listaInformes) {
             if (informe.getId_informe() == idInforme) {
                 return informe;
@@ -37,7 +37,7 @@ public class GestorInformes {
 //LISTAR ADMINISTRADORES DESDE BD
     public List<Informe>  cargarInformesDesdeBD() {
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        //listaInformes = persistencia.mapearAdministradores(); //Falta mapeoInformes
+        listaInformes = persistencia.mapearInformes();
         return listaInformes;
     }
     
@@ -46,19 +46,17 @@ public class GestorInformes {
     public void mostrarInformes() {
         for (Informe informe : listaInformes) {
             System.out.println("idInforme: "+informe.getId_informe());
-            System.out.println("Descripcion: "+informe.getDescripcion());
-            System.out.println("Fecha: "+informe.getFecha());
+            System.out.println("Diagnostico: "+informe.getDiagnostico());
         }
     }
     
 //LOGICA AGREGAR ADMINISTRADOR    
     public void agregarInforme(String descripcion, String fecha) {
         Informe nuevoInforme = new Informe();
-        nuevoInforme.setDescripcion(descripcion);
-        nuevoInforme.setFecha(fecha);
+        nuevoInforme.setDiagnostico(descripcion);
 
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        //persistencia.agregarAdministrador(nuevoAdministrador); //Falta implementar agregarInforme en SQL
+        persistencia.agregarInforme(nuevoInforme);
     }
     
 /*

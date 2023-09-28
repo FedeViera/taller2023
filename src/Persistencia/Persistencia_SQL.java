@@ -691,8 +691,7 @@ public class Persistencia_SQL {
                 while (resultSet.next()) {
                     Informe informe = new Informe();
                     informe.setId_informe(resultSet.getInt("id_informe"));
-                    informe.setDescripcion(resultSet.getString("descripcion"));
-                    informe.setFecha(resultSet.getString("fecha"));
+                    informe.setDiagnostico(resultSet.getString("diagnostico"));
 
                     listaInformes.add(informe);
                 }
@@ -713,16 +712,14 @@ public class Persistencia_SQL {
         Connection conn = conexion.conectarMySQL();
         
         int idInforme = informe.getId_informe();
-        String descripcionInforme = informe.getDescripcion();
-        String fechaInforme = informe.getFecha();
+        String diagnosticoInforme = informe.getDiagnostico();
 
         if (conn != null) {
             try {
-                String insertQuery = "INSERT INTO informe (descripcion, fecha) VALUES (?, ?)";
+                String insertQuery = "INSERT INTO informe (diagnostico) VALUES (?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
                 preparedStatement.setInt(1, idInforme);
-                preparedStatement.setString(2, descripcionInforme);
-                preparedStatement.setString(3, fechaInforme);
+                preparedStatement.setString(2, diagnosticoInforme);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
                 conn.close();

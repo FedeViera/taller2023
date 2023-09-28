@@ -47,11 +47,11 @@ String pass = "";
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
             conn.setCatalog(database);
-            System.out.print("Conexion establecida");
+            //System.out.print("Conexion establecida");
         } 
         catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            System.out.print("Conexion No establecida");
+            //System.out.print("Conexion No establecida");
         }
 
         return conn;
