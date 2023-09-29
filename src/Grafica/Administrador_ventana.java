@@ -284,6 +284,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_calificacion_modificar = new javax.swing.JTextField();
         Actividad_textoCalificacion_miodificar = new javax.swing.JLabel();
         Actividad_modificar_tipoActividad = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
         pestaña2_Clases = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -882,16 +883,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         modificarCuenta_TablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Nombre", "Apellido", "Usuario", "Contraseña", "Cargo", "Grado", "Asignatura"
@@ -907,16 +899,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         modificarCuenta_TablaCuentas.getTableHeader().setReorderingAllowed(false);
         tabla1.setViewportView(modificarCuenta_TablaCuentas);
-        if (modificarCuenta_TablaCuentas.getColumnModel().getColumnCount() > 0) {
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(0).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(1).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(2).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(3).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(4).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(5).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(6).setResizable(false);
-            modificarCuenta_TablaCuentas.getColumnModel().getColumn(7).setResizable(false);
-        }
 
         javax.swing.GroupLayout modificarCuentaLayout = new javax.swing.GroupLayout(modificarCuenta);
         modificarCuenta.setLayout(modificarCuentaLayout);
@@ -1105,16 +1087,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         crearCurso_TablaDocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Nombre", "Apellido", "Asignatura"
@@ -1129,12 +1102,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
         tabla2.setViewportView(crearCurso_TablaDocentes);
-        if (crearCurso_TablaDocentes.getColumnModel().getColumnCount() > 0) {
-            crearCurso_TablaDocentes.getColumnModel().getColumn(0).setResizable(false);
-            crearCurso_TablaDocentes.getColumnModel().getColumn(1).setResizable(false);
-            crearCurso_TablaDocentes.getColumnModel().getColumn(2).setResizable(false);
-            crearCurso_TablaDocentes.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         Curso_crear_textoAsignarDocente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         Curso_crear_textoAsignarDocente.setForeground(new java.awt.Color(0, 0, 0));
@@ -1198,28 +1165,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         modificarCurso_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Curso", "Asignatura", "Cédula Docente", "Nombre Docente", "Apellido Docente"
@@ -1234,13 +1180,6 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
         tabla3.setViewportView(modificarCurso_TablaCursos);
-        if (modificarCurso_TablaCursos.getColumnModel().getColumnCount() > 0) {
-            modificarCurso_TablaCursos.getColumnModel().getColumn(0).setResizable(false);
-            modificarCurso_TablaCursos.getColumnModel().getColumn(1).setResizable(false);
-            modificarCurso_TablaCursos.getColumnModel().getColumn(2).setResizable(false);
-            modificarCurso_TablaCursos.getColumnModel().getColumn(3).setResizable(false);
-            modificarCurso_TablaCursos.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         Curso_modificar_botonEliminarCurso.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Curso_modificar_botonEliminarCurso.setText("Eliminar curso");
@@ -1285,28 +1224,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         modificarEstudiantes_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Curso", "Asignatura", "Cédula Docente", "Nombre Docente", "Apellido Docente"
@@ -1322,42 +1240,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         modificarEstudiantes_TablaCursos.getTableHeader().setReorderingAllowed(false);
         tabla4.setViewportView(modificarEstudiantes_TablaCursos);
-        if (modificarEstudiantes_TablaCursos.getColumnModel().getColumnCount() > 0) {
-            modificarEstudiantes_TablaCursos.getColumnModel().getColumn(0).setResizable(false);
-            modificarEstudiantes_TablaCursos.getColumnModel().getColumn(1).setResizable(false);
-            modificarEstudiantes_TablaCursos.getColumnModel().getColumn(2).setResizable(false);
-            modificarEstudiantes_TablaCursos.getColumnModel().getColumn(3).setResizable(false);
-            modificarEstudiantes_TablaCursos.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         tablaEstudiante_Agregar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Seleccionar", "Cédula", "Nombre", "Apellido", "Edad"
@@ -1373,48 +1259,17 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         tablaEstudiante_Agregar.getTableHeader().setReorderingAllowed(false);
         tabla5.setViewportView(tablaEstudiante_Agregar);
-        if (tablaEstudiante_Agregar.getColumnModel().getColumnCount() > 0) {
-            tablaEstudiante_Agregar.getColumnModel().getColumn(1).setResizable(false);
-            tablaEstudiante_Agregar.getColumnModel().getColumn(2).setResizable(false);
-            tablaEstudiante_Agregar.getColumnModel().getColumn(3).setResizable(false);
-            tablaEstudiante_Agregar.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         tablaEstudiante_Quitar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Seleccionar", "Cédula", "Nombre", "Apellido", "Edad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1423,11 +1278,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         tablaEstudiante_Quitar.getTableHeader().setReorderingAllowed(false);
         tabla6.setViewportView(tablaEstudiante_Quitar);
-        if (tablaEstudiante_Quitar.getColumnModel().getColumnCount() > 0) {
-            tablaEstudiante_Quitar.getColumnModel().getColumn(1).setResizable(false);
-            tablaEstudiante_Quitar.getColumnModel().getColumn(2).setResizable(false);
-            tablaEstudiante_Quitar.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         Curso_crear_textoSeleccionarCursoEstudiantes.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Curso_crear_textoSeleccionarCursoEstudiantes.setForeground(new java.awt.Color(0, 0, 0));
@@ -1568,28 +1418,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         crearActividad_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Curso", "Asignatura", "Cédula Docente", "Nombre", "Apellido"
@@ -1605,13 +1434,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         crearActividad_TablaCursos.getTableHeader().setReorderingAllowed(false);
         tabla7.setViewportView(crearActividad_TablaCursos);
-        if (crearActividad_TablaCursos.getColumnModel().getColumnCount() > 0) {
-            crearActividad_TablaCursos.getColumnModel().getColumn(0).setResizable(false);
-            crearActividad_TablaCursos.getColumnModel().getColumn(1).setResizable(false);
-            crearActividad_TablaCursos.getColumnModel().getColumn(2).setResizable(false);
-            crearActividad_TablaCursos.getColumnModel().getColumn(3).setResizable(false);
-            crearActividad_TablaCursos.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         Actividad_textoTipoActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Actividad_textoTipoActividad.setForeground(new java.awt.Color(0, 0, 0));
@@ -1619,32 +1441,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         CrearActividad_tablaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Nombre", "Apellido", "Edad"
@@ -1660,12 +1457,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         CrearActividad_tablaEstudiantes.getTableHeader().setReorderingAllowed(false);
         tabla8.setViewportView(CrearActividad_tablaEstudiantes);
-        if (CrearActividad_tablaEstudiantes.getColumnModel().getColumnCount() > 0) {
-            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
-            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(1).setResizable(false);
-            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(2).setResizable(false);
-            CrearActividad_tablaEstudiantes.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         Actividad_crear_tipoActividad.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Actividad_crear_tipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actividad", "Evaluación", "Orales" }));
@@ -1732,27 +1523,24 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(crearActividadLayout.createSequentialGroup()
-                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Actividad_textoTipoActividad))
-                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(crearActividadLayout.createSequentialGroup()
-                                        .addGap(52, 52, 52)
-                                        .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(crearActividadLayout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(72, 72, 72)
+                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearActividadLayout.createSequentialGroup()
+                                    .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(Actividad_descripcion))
+                                .addGroup(crearActividadLayout.createSequentialGroup()
                                     .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearActividadLayout.createSequentialGroup()
-                                    .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(89, 89, 89)
+                                    .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(23, 23, 23))
                     .addGroup(crearActividadLayout.createSequentialGroup()
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1787,17 +1575,15 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(crearActividadLayout.createSequentialGroup()
-                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(crearActividadLayout.createSequentialGroup()
-                                .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(crearActividadLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
+                                .addGap(15, 15, 15)
                                 .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1813,28 +1599,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         modificarActividad_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Curso", "Asignatura", "Cédula", "Nombre", "Apellido"
@@ -1850,42 +1615,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         modificarActividad_TablaCursos.getTableHeader().setReorderingAllowed(false);
         tabla9.setViewportView(modificarActividad_TablaCursos);
-        if (modificarActividad_TablaCursos.getColumnModel().getColumnCount() > 0) {
-            modificarActividad_TablaCursos.getColumnModel().getColumn(0).setResizable(false);
-            modificarActividad_TablaCursos.getColumnModel().getColumn(1).setResizable(false);
-            modificarActividad_TablaCursos.getColumnModel().getColumn(2).setResizable(false);
-            modificarActividad_TablaCursos.getColumnModel().getColumn(3).setResizable(false);
-            modificarActividad_TablaCursos.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         modificarActividad_TablaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cédula", "Nombre", "Apellido", "Edad"
@@ -1901,41 +1634,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
         modificarActividad_TablaEstudiantes.getTableHeader().setReorderingAllowed(false);
         tabla10.setViewportView(modificarActividad_TablaEstudiantes);
-        if (modificarActividad_TablaEstudiantes.getColumnModel().getColumnCount() > 0) {
-            modificarActividad_TablaEstudiantes.getColumnModel().getColumn(0).setResizable(false);
-            modificarActividad_TablaEstudiantes.getColumnModel().getColumn(1).setResizable(false);
-            modificarActividad_TablaEstudiantes.getColumnModel().getColumn(2).setResizable(false);
-            modificarActividad_TablaEstudiantes.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         modificarActividad_TablaActividades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Estudiante", "Tipo", "Descripción", "Calificación", "Fecha"
@@ -1952,10 +1654,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificarActividad_TablaActividades.getTableHeader().setReorderingAllowed(false);
         tabla11.setViewportView(modificarActividad_TablaActividades);
         if (modificarActividad_TablaActividades.getColumnModel().getColumnCount() > 0) {
-            modificarActividad_TablaActividades.getColumnModel().getColumn(0).setResizable(false);
-            modificarActividad_TablaActividades.getColumnModel().getColumn(1).setResizable(false);
-            modificarActividad_TablaActividades.getColumnModel().getColumn(2).setResizable(false);
-            modificarActividad_TablaActividades.getColumnModel().getColumn(3).setResizable(false);
             modificarActividad_TablaActividades.getColumnModel().getColumn(4).setResizable(false);
             modificarActividad_TablaActividades.getColumnModel().getColumn(5).setResizable(false);
         }
@@ -2067,7 +1765,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                                     .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         modificarActividadLayout.setVerticalGroup(
             modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2115,6 +1813,21 @@ public class Administrador_ventana extends javax.swing.JFrame
         );
 
         opcionesActividades.addTab("Modificar Actividad", modificarActividad);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 950, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+        );
+
+        opcionesActividades.addTab("tab3", jPanel1);
 
         javax.swing.GroupLayout pestaña3_ActividadesLayout = new javax.swing.GroupLayout(pestaña3_Actividades);
         pestaña3_Actividades.setLayout(pestaña3_ActividadesLayout);
@@ -2970,8 +2683,10 @@ public class Administrador_ventana extends javax.swing.JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int filaSeleccionada = CrearActividad_tablaEstudiantes.getSelectedRow();
                 if (filaSeleccionada >= 0) {
-                    //variables declaradas arriba fuera del metodo para usarla luego.
-                    estudianteSeleccionadoAgregar_Actividad = Integer.parseInt(CrearActividad_tablaEstudiantes.getValueAt(filaSeleccionada, 0).toString());
+                    Object valorCelda = CrearActividad_tablaEstudiantes.getValueAt(filaSeleccionada, 0);
+                    if (valorCelda != null) {
+                        estudianteSeleccionadoAgregar_Actividad = Integer.parseInt(valorCelda.toString());
+                    }
                 }
             }
         });
@@ -3191,6 +2906,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCurso1A;
     private javax.swing.JLabel indicadorCurso2A;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
