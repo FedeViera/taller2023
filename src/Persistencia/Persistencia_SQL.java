@@ -793,6 +793,54 @@ public class Persistencia_SQL {
         }
         return listaActividades;
     }
+
+    public List<Object[]> mapearCalificacionesCurso(int cursoId) {
+        List<Object[]> datosEstudiantesCalificaciones = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String query =  "SELECT\n" +
+                            "    e.nombre AS Nombre,\n" +
+                            "    e.apellido AS Apellido,\n" +
+                            "    GROUP_CONCAT(a.calificacion SEPARATOR ' | ') AS Calificaciones\n" +
+                            "FROM\n" +
+                            "    estudiante e\n" +
+                            "JOIN\n" +
+                            "    actividad a ON e.id_estudiante = a.estudiante_id_estudiante\n" +
+                            "JOIN\n" +
+                            "    curso_has_estudiante ce ON e.id_estudiante = ce.estudiante_id_estudiante\n" +
+                            "WHERE\n" +
+                            "    ce.curso_id_curso = ?\n" +
+                            "GROUP BY\n" +
+                            "    e.nombre, e.apellido;";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cursoId);  // Establecemos el valor del cursoId en el marcador de posición
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    String nombre = resultSet.getString("Nombre");
+                    String apellido = resultSet.getString("Apellido");
+                    String calificaciones = resultSet.getString("Calificaciones");  // Ahora es una cadena de texto
+
+                    datosEstudiantesCalificaciones.add(new Object[]{nombre, apellido, calificaciones});
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al obtener los datos de estudiantes y calificaciones.");
+            }
+        }
+        return datosEstudiantesCalificaciones;
+    }
+
+    
+
     
 //AGREGAR INFORME
     public void agregarActividad(Estudiante estudiante, Actividad actividad) {

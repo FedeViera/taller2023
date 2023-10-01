@@ -86,5 +86,20 @@ public class GestorActividades {
         }
         table.repaint(); // Actualizar la tabla
     }    
+    
+    public void llenarTablaEstudiantesCalificaciones(Integer cursoID, JTable table) {
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+
+        List<Object[]> datosEstudiantesCalificaciones = persistencia.mapearCalificacionesCurso(cursoID);
+        
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        for (Object[] datos : datosEstudiantesCalificaciones) {
+            model.addRow(datos);
+        }
+        table.setModel(model);
+    }
+
  
 }
