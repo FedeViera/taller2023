@@ -52,12 +52,12 @@ public class Administrador_ventana extends javax.swing.JFrame
     private String cursoSeleccionadoEliminarCurso_Curso, cursoSeleccionadoEliminarCurso_Asignatura; //VARIABLES USADA EN MouseListenerEliminarCurso() PARA GUARDAR CURSO Y ASIGNATURA A BORRAR
     private String cursoSeleccionadoAgregarEstudiante_Curso, cursoSeleccionadoAgregarEstudiante_Asignatura; //VARIABLE USADA EN MouseListenerSeleccionarCurso_AgregarEstudiante() PARA GUARDAR CURSO Y ASIGNATURA AL AGREGAR ESTUDIANTE A CURSO
     private String cursoSeleccionadoAgregarActividad_Curso, cursoSeleccionadoAgregarActividad_Asignatura; //VARIABLES USADAS EN MouseListenerSeleccionarCurso_AgregarActividad(); PARA GUARDAR CURSO Y ASIGNATURA AL COMPLETAR TABLA ESTUDIANTES Y LUEGO AGREGAR ACTIVIDAD
-    private Integer cursoID;//VARIABLE GUARDA ID CURSO SELECCIONADO      
+    private Integer cursoID = 0;//VARIABLE GUARDA ID CURSO SELECCIONADO      
     private Integer estudianteSeleccionadoAgregar_Actividad; //VARIABLE ESTUDIANTE SELECCIONADO PARA ASIGNARLE ACTIVIDAD
-    private String cursoSeleccionadoModificarActividad_Curso; //VARIABLE CURSO SELECCIONADO PARA MODIFICAR ACTIVIDAD
-    private String cursoSeleccionadoModificarActividad_Asignatura; //VARIABLE ASIGNATURA SELECCIONADO PARA MODIFICAR ACTIVIDAD
+    private String cursoSeleccionadoModificarActividad_Curso, cursoSeleccionadoModificarActividad_Asignatura; //VARIABLE CURSO SELECCIONADO PARA MODIFICAR ACTIVIDAD
     private Integer estudianteSeleccionado_cargarActividades; //VARIABLE ESTUDIANTE SELECCIONADO PARA TRAER ACTIVIDADES
     private Integer idActividad_modificarActividad;
+    private String cursoSeleccionadoAgregarClase_Curso, cursoSeleccionadoAgregarClase_Asignatura; //VARIABLE CURSO SELECCIONADO PARA CREAR CLASE
     
     public Administrador_ventana() {
         initComponents();
@@ -70,9 +70,9 @@ public class Administrador_ventana extends javax.swing.JFrame
         MouseListenerSeleccionarCurso_verEstudiantes_Actividades(); //Seleccionar Curso y cargar Estudiantes (para luego asignar actividad)
         MouseListenerSeleccionarEstudiantes_crearActividad(); //Seleccionar estudiantes para Agregar Actividad
         MouseListenerSeleccionarEstudiantes_ModificarActividad(); //Seleccionar estudiantes para Modificar Actividad
-        MouseListenerSeleccionarEstudiantes_verActividades();
-        MouseListenerSeleccionarActividades();
-        MouseListenerSeleccionarEstudiantes_Calificaciones();
+        MouseListenerSeleccionarEstudiantes_verActividades(); //Seleccionar estudiantes para Ver sus Actividades
+        MouseListenerSeleccionarActividades(); //Seleccionar Actividades
+        MouseListenerSeleccionarEstudiantes_Calificaciones(); //Seleccionar estudiantes para Ver Calificaciones
         
         
         //Precargamos tablaCursos
@@ -84,6 +84,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
         gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
         gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
+        gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
         
         //Precargamos tablaEstudiantes
         GestorEstudiantes gestorE = new GestorEstudiantes();
@@ -245,7 +246,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JSeparator();
         indicadorCurso = new javax.swing.JLabel();
         indicadorCurso1A = new javax.swing.JLabel();
-        pestaña3_Actividades = new javax.swing.JPanel();
+        pestaña2_Actividades = new javax.swing.JPanel();
         opcionesActividades = new javax.swing.JTabbedPane();
         crearActividad = new javax.swing.JPanel();
         Actividad_textoSeleccionarCursoActividades = new javax.swing.JLabel();
@@ -259,13 +260,13 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_textoFecha = new javax.swing.JLabel();
         txtFecha = new com.toedter.calendar.JDateChooser();
         Actividad_textoDescripcion = new javax.swing.JLabel();
-        Actividad_descripcion = new javax.swing.JScrollPane();
-        descripcionActividad = new javax.swing.JTextPane();
         Actividad_crear_botonAgregarActividad = new javax.swing.JButton();
         Actividad_textoCalificacion = new javax.swing.JLabel();
         Actividad_calificacion = new javax.swing.JTextField();
         indicadorCurso2A = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        descripcionActividad = new javax.swing.JTextArea();
         modificarActividad = new javax.swing.JPanel();
         tabla9 = new javax.swing.JScrollPane();
         modificarActividad_TablaCursos = new javax.swing.JTable();
@@ -282,12 +283,12 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_textoFecha1 = new javax.swing.JLabel();
         txtFecha_modificar = new com.toedter.calendar.JDateChooser();
         Actividad_textoDescripcion1 = new javax.swing.JLabel();
-        Actividad_descripcion1 = new javax.swing.JScrollPane();
-        DescripcionActividad_modificar = new javax.swing.JTextPane();
         Actividad_crear_botonEliminarActividad = new javax.swing.JButton();
         Actividad_calificacion_modificar = new javax.swing.JTextField();
         Actividad_textoCalificacion_miodificar = new javax.swing.JLabel();
         Actividad_modificar_tipoActividad = new javax.swing.JComboBox<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        DescripcionActividad_modificar = new javax.swing.JTextArea();
         verActividades = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCalificaciones = new javax.swing.JTable();
@@ -296,7 +297,18 @@ public class Administrador_ventana extends javax.swing.JFrame
         calificaciones_TablaCursos = new javax.swing.JTable();
         Actividad_textoSeleccionarCursoActividades_calificaciones1 = new javax.swing.JLabel();
         indicadorCusoB = new javax.swing.JLabel();
-        pestaña2_Clases = new javax.swing.JPanel();
+        pestaña3_Clases = new javax.swing.JPanel();
+        opcionesClases = new javax.swing.JTabbedPane();
+        crearClase = new javax.swing.JPanel();
+        Clase_textoFecha = new javax.swing.JLabel();
+        txtFecha_Clase = new com.toedter.calendar.JDateChooser();
+        ActividadClase_textoDescripcion = new javax.swing.JLabel();
+        Clase_crear_botonCrearClase = new javax.swing.JButton();
+        Clase_textoSeleccionarCursoClases = new javax.swing.JLabel();
+        tabla13 = new javax.swing.JScrollPane();
+        crearClase_TablaCursos = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        desarrolloClase = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -1397,7 +1409,7 @@ public class Administrador_ventana extends javax.swing.JFrame
             pestaña1_CursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pestaña1_CursosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(opcionesCursos, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE))
+                .addComponent(opcionesCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 952, Short.MAX_VALUE))
         );
         pestaña1_CursosLayout.setVerticalGroup(
             pestaña1_CursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1408,7 +1420,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         panelPestañas.addTab("tab2", pestaña1_Cursos);
 
-        pestaña3_Actividades.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña2_Actividades.setBackground(new java.awt.Color(255, 255, 255));
 
         opcionesActividades.setBackground(new java.awt.Color(255, 255, 255));
         opcionesActividades.setForeground(new java.awt.Color(0, 0, 0));
@@ -1492,8 +1504,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_textoDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         Actividad_textoDescripcion.setText("Descripción");
 
-        Actividad_descripcion.setViewportView(descripcionActividad);
-
         Actividad_crear_botonAgregarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Actividad_crear_botonAgregarActividad.setText("Agregar");
         Actividad_crear_botonAgregarActividad.addActionListener(new java.awt.event.ActionListener() {
@@ -1516,6 +1526,11 @@ public class Administrador_ventana extends javax.swing.JFrame
         indicadorCurso2A.setForeground(new java.awt.Color(102, 102, 102));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        descripcionActividad.setColumns(20);
+        descripcionActividad.setLineWrap(true);
+        descripcionActividad.setRows(5);
+        jScrollPane3.setViewportView(descripcionActividad);
 
         javax.swing.GroupLayout crearActividadLayout = new javax.swing.GroupLayout(crearActividad);
         crearActividad.setLayout(crearActividadLayout);
@@ -1542,16 +1557,17 @@ public class Administrador_ventana extends javax.swing.JFrame
                                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearActividadLayout.createSequentialGroup()
-                                    .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(Actividad_descripcion))
                                 .addGroup(crearActividadLayout.createSequentialGroup()
-                                    .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(89, 89, 89)
-                                    .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(127, 127, 127)
+                                    .addComponent(jScrollPane3))
+                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(crearActividadLayout.createSequentialGroup()
+                                        .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(89, 89, 89)
+                                        .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(23, 23, 23))
                     .addGroup(crearActividadLayout.createSequentialGroup()
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1588,20 +1604,19 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Actividad_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(crearActividadLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearActividadLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(crearActividadLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5))))
         );
 
         opcionesActividades.addTab("Crear Actividad", crearActividad);
@@ -1705,8 +1720,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         Actividad_textoDescripcion1.setForeground(new java.awt.Color(0, 0, 0));
         Actividad_textoDescripcion1.setText("Descripción");
 
-        Actividad_descripcion1.setViewportView(DescripcionActividad_modificar);
-
         Actividad_crear_botonEliminarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Actividad_crear_botonEliminarActividad.setText("Eliminar");
         Actividad_crear_botonEliminarActividad.addActionListener(new java.awt.event.ActionListener() {
@@ -1734,6 +1747,11 @@ public class Administrador_ventana extends javax.swing.JFrame
             }
         });
 
+        DescripcionActividad_modificar.setColumns(20);
+        DescripcionActividad_modificar.setLineWrap(true);
+        DescripcionActividad_modificar.setRows(5);
+        jScrollPane4.setViewportView(DescripcionActividad_modificar);
+
         javax.swing.GroupLayout modificarActividadLayout = new javax.swing.GroupLayout(modificarActividad);
         modificarActividad.setLayout(modificarActividadLayout);
         modificarActividadLayout.setHorizontalGroup(
@@ -1757,6 +1775,10 @@ public class Administrador_ventana extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(modificarActividadLayout.createSequentialGroup()
+                                .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(modificarActividadLayout.createSequentialGroup()
                                 .addComponent(Actividad_textoCalificacion_miodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Actividad_calificacion_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1766,16 +1788,14 @@ public class Administrador_ventana extends javax.swing.JFrame
                                     .addComponent(Actividad_textoTipoActividad1)
                                     .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Actividad_descripcion1)
-                                    .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(Actividad_modificar_tipoActividad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtFecha_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))))
-                            .addGroup(modificarActividadLayout.createSequentialGroup()
-                                .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modificarActividadLayout.createSequentialGroup()
+                                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(Actividad_modificar_tipoActividad, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE)
+                                            .addComponent(txtFecha_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         modificarActividadLayout.setVerticalGroup(
             modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1809,8 +1829,8 @@ public class Administrador_ventana extends javax.swing.JFrame
                             .addComponent(Actividad_textoFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Actividad_descripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Actividad_calificacion_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1914,37 +1934,139 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         opcionesActividades.addTab("Calificaciones", verActividades);
 
-        javax.swing.GroupLayout pestaña3_ActividadesLayout = new javax.swing.GroupLayout(pestaña3_Actividades);
-        pestaña3_Actividades.setLayout(pestaña3_ActividadesLayout);
-        pestaña3_ActividadesLayout.setHorizontalGroup(
-            pestaña3_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña3_ActividadesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pestaña2_ActividadesLayout = new javax.swing.GroupLayout(pestaña2_Actividades);
+        pestaña2_Actividades.setLayout(pestaña2_ActividadesLayout);
+        pestaña2_ActividadesLayout.setHorizontalGroup(
+            pestaña2_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña2_ActividadesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(opcionesActividades))
         );
-        pestaña3_ActividadesLayout.setVerticalGroup(
-            pestaña3_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3_ActividadesLayout.createSequentialGroup()
+        pestaña2_ActividadesLayout.setVerticalGroup(
+            pestaña2_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2_ActividadesLayout.createSequentialGroup()
                 .addGap(0, 14, Short.MAX_VALUE)
                 .addComponent(opcionesActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelPestañas.addTab("tab3", pestaña3_Actividades);
+        panelPestañas.addTab("tab3", pestaña2_Actividades);
 
-        pestaña2_Clases.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña3_Clases.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pestaña2_ClasesLayout = new javax.swing.GroupLayout(pestaña2_Clases);
-        pestaña2_Clases.setLayout(pestaña2_ClasesLayout);
-        pestaña2_ClasesLayout.setHorizontalGroup(
-            pestaña2_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+        opcionesClases.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        crearClase.setBackground(new java.awt.Color(255, 255, 255));
+
+        Clase_textoFecha.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoFecha.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoFecha.setText("Fecha");
+
+        txtFecha_Clase.setDateFormatString("yyyy-MM-dd");
+
+        ActividadClase_textoDescripcion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        ActividadClase_textoDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        ActividadClase_textoDescripcion.setText("Desarrollo");
+
+        Clase_crear_botonCrearClase.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_crear_botonCrearClase.setText("Agregar");
+        Clase_crear_botonCrearClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clase_crear_botonCrearClaseActionPerformed(evt);
+            }
+        });
+
+        Clase_textoSeleccionarCursoClases.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoSeleccionarCursoClases.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoSeleccionarCursoClases.setText("Seleccionar curso:");
+
+        crearClase_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura", "Cédula Docente", "Nombre", "Apellido"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        crearClase_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla13.setViewportView(crearClase_TablaCursos);
+
+        desarrolloClase.setColumns(20);
+        desarrolloClase.setLineWrap(true);
+        desarrolloClase.setRows(5);
+        jScrollPane2.setViewportView(desarrolloClase);
+
+        javax.swing.GroupLayout crearClaseLayout = new javax.swing.GroupLayout(crearClase);
+        crearClase.setLayout(crearClaseLayout);
+        crearClaseLayout.setHorizontalGroup(
+            crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crearClaseLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Clase_textoSeleccionarCursoClases, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabla13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, crearClaseLayout.createSequentialGroup()
+                        .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearClaseLayout.createSequentialGroup()
+                                .addComponent(ActividadClase_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addGroup(crearClaseLayout.createSequentialGroup()
+                                .addComponent(Clase_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)))
+                        .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFecha_Clase, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Clase_crear_botonCrearClase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-        pestaña2_ClasesLayout.setVerticalGroup(
-            pestaña2_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+        crearClaseLayout.setVerticalGroup(
+            crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearClaseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Clase_textoSeleccionarCursoClases, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla13, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFecha_Clase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Clase_textoFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearClaseLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(ActividadClase_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(crearClaseLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(Clase_crear_botonCrearClase, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
-        panelPestañas.addTab("tab4", pestaña2_Clases);
+        opcionesClases.addTab("Crear clase", crearClase);
+
+        javax.swing.GroupLayout pestaña3_ClasesLayout = new javax.swing.GroupLayout(pestaña3_Clases);
+        pestaña3_Clases.setLayout(pestaña3_ClasesLayout);
+        pestaña3_ClasesLayout.setHorizontalGroup(
+            pestaña3_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña3_ClasesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(opcionesClases))
+        );
+        pestaña3_ClasesLayout.setVerticalGroup(
+            pestaña3_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña3_ClasesLayout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addComponent(opcionesClases, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        panelPestañas.addTab("tab4", pestaña3_Clases);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -2541,7 +2663,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                     gestorAct.agregarActividad(estudianteSeleccionado.intValue(), tipo, descripcion, calificacion, new java.sql.Date(fechaUtil.getTime()));
 
                     gestorAct.cargarTablaActividades_porEstudiantes(estudianteSeleccionado.intValue(), modificarActividad_TablaActividades); //Refresco tabla actividades
-                    gestorAct.llenarTablaEstudiantesCalificaciones(estudianteSeleccionado, tablaCalificaciones);
                 } else {
                     JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
@@ -2578,7 +2699,6 @@ public class Administrador_ventana extends javax.swing.JFrame
 
                     Integer idEstudiante = estudianteSeleccionado_cargarActividades;
                     gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
-                    gestorAct.llenarTablaEstudiantesCalificaciones(estudianteSeleccionado, tablaCalificaciones);
                 } else {
                     JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
@@ -2601,7 +2721,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorAct.eliminarActividad(idActividad_modificarActividad); //Eliminamos actividad
                 Integer idEstudiante = estudianteSeleccionado_cargarActividades;
                 gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
-                gestorAct.llenarTablaEstudiantesCalificaciones(estudianteSeleccionado, tablaCalificaciones); //Refresco tabla calificaciones
             }else{
                 System.out.println("Eliminación cancelada.");
             }  
@@ -2642,7 +2761,12 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void botonGestionClasesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonGestionClasesKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGestionClasesKeyPressed
-         
+
+    private void Clase_crear_botonCrearClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_crear_botonCrearClaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Clase_crear_botonCrearClaseActionPerformed
+
+    
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
     
 //Gest. Cuenta: "Modificar Cuenta" - TOMA DATOS DE TABLA USUARIO PARA RELLENAR LOS CAMPOS AL MODIFICAR UNA CUENTA  
@@ -2800,6 +2924,10 @@ public class Administrador_ventana extends javax.swing.JFrame
                     //Refresco la tabla tablaEstudiante_enCurso con los Estudiantes cargados a ese Curso.
                     GestorEstudiantes gestorE = new GestorEstudiantes();
                     gestorE.cargarTablaEstudiantesCursoEspecifico_Simple(cursoID, modificarActividad_TablaEstudiantes);
+                    
+                    DefaultTableModel model = (DefaultTableModel) modificarActividad_TablaActividades.getModel();
+                    model.setRowCount(0);
+                    
                     //Indicador de Curso y Asignatura Seleccionado.
                     indicadorCurso2A.setText(curso+" "+asignatura);
                 }
@@ -2886,6 +3014,22 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }    
     
+    
+//Gest. Clases: "MODIFICAR CLASE" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA CREAR UNA CLASE
+    private void MouseListenerSeleccionarCurso_crearClase() {
+        crearClase_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = crearClase_TablaCursos.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    cursoSeleccionadoAgregarClase_Curso = crearClase_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
+                    cursoSeleccionadoAgregarClase_Asignatura = crearClase_TablaCursos.getValueAt(filaSeleccionada, 1).toString();                   
+                }
+            }
+        });
+    }    
+    
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
 
@@ -2928,14 +3072,13 @@ public class Administrador_ventana extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ActividadClase_textoDescripcion;
     private javax.swing.JTextField Actividad_calificacion;
     private javax.swing.JTextField Actividad_calificacion_modificar;
     private javax.swing.JButton Actividad_crear_botonAgregarActividad;
     private javax.swing.JButton Actividad_crear_botonEliminarActividad;
     private javax.swing.JButton Actividad_crear_botonModificarActividad;
     private javax.swing.JComboBox<String> Actividad_crear_tipoActividad;
-    private javax.swing.JScrollPane Actividad_descripcion;
-    private javax.swing.JScrollPane Actividad_descripcion1;
     private javax.swing.JComboBox<String> Actividad_modificar_tipoActividad;
     private javax.swing.JLabel Actividad_textoCalificacion;
     private javax.swing.JLabel Actividad_textoCalificacion_miodificar;
@@ -2952,6 +3095,9 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel Actividad_textoSeleccionarEstudianteActividad_modificar1;
     private javax.swing.JLabel Actividad_textoTipoActividad;
     private javax.swing.JLabel Actividad_textoTipoActividad1;
+    private javax.swing.JButton Clase_crear_botonCrearClase;
+    private javax.swing.JLabel Clase_textoFecha;
+    private javax.swing.JLabel Clase_textoSeleccionarCursoClases;
     private javax.swing.JTable CrearActividad_tablaEstudiantes;
     private javax.swing.JButton Cuenta_botonBuscar;
     private javax.swing.JButton Cuenta_botonEliminar;
@@ -3005,7 +3151,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel Curso_crear_textoEstudiantes1;
     private javax.swing.JLabel Curso_crear_textoSeleccionarCursoEstudiantes;
     private javax.swing.JButton Curso_modificar_botonEliminarCurso;
-    private javax.swing.JTextPane DescripcionActividad_modificar;
+    private javax.swing.JTextArea DescripcionActividad_modificar;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
@@ -3016,16 +3162,22 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTable calificaciones_TablaCursos;
     private javax.swing.JPanel crearActividad;
     private javax.swing.JTable crearActividad_TablaCursos;
+    private javax.swing.JPanel crearClase;
+    private javax.swing.JTable crearClase_TablaCursos;
     private javax.swing.JPanel crearCuenta;
     private javax.swing.JPanel crearCurso;
     private javax.swing.JTable crearCurso_TablaDocentes;
     private javax.swing.JLabel cursosRegistrados;
-    private javax.swing.JTextPane descripcionActividad;
+    private javax.swing.JTextArea desarrolloClase;
+    private javax.swing.JTextArea descripcionActividad;
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCurso1A;
     private javax.swing.JLabel indicadorCurso2A;
     private javax.swing.JLabel indicadorCusoB;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -3041,6 +3193,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JPanel modificarEstudiantes;
     private javax.swing.JTable modificarEstudiantes_TablaCursos;
     private javax.swing.JTabbedPane opcionesActividades;
+    private javax.swing.JTabbedPane opcionesClases;
     private javax.swing.JTabbedPane opcionesCuentas;
     private javax.swing.JTabbedPane opcionesCursos;
     private javax.swing.JPanel panelAdministrador;
@@ -3048,14 +3201,15 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña0_Cuentas;
     private javax.swing.JPanel pestaña1_Cursos;
-    private javax.swing.JPanel pestaña2_Clases;
-    private javax.swing.JPanel pestaña3_Actividades;
+    private javax.swing.JPanel pestaña2_Actividades;
+    private javax.swing.JPanel pestaña3_Clases;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
     private javax.swing.JScrollPane tabla1;
     private javax.swing.JScrollPane tabla10;
     private javax.swing.JScrollPane tabla11;
     private javax.swing.JScrollPane tabla12;
+    private javax.swing.JScrollPane tabla13;
     private javax.swing.JScrollPane tabla2;
     private javax.swing.JScrollPane tabla3;
     private javax.swing.JScrollPane tabla4;
@@ -3068,6 +3222,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JTable tablaEstudiante_Agregar;
     private javax.swing.JTable tablaEstudiante_Quitar;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private com.toedter.calendar.JDateChooser txtFecha_Clase;
     private com.toedter.calendar.JDateChooser txtFecha_modificar;
     private javax.swing.JPanel verActividades;
     // End of variables declaration//GEN-END:variables

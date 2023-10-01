@@ -14,7 +14,7 @@ import Entidades.Adscripto;
 import Entidades.Docente;
 import Entidades.Curso;
 import Entidades.Estudiante;
-import Entidades.Informe;
+import Entidades.Clase;
 import Grafica.Login_ventana;
 import java.util.ArrayList;
 import java.util.List;
@@ -675,57 +675,64 @@ public class Persistencia_SQL {
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 
     
-//MAPEAR INFORMES
-    public List<Informe> mapearInformes() {
-        List<Informe> listaInformes = new ArrayList<>();
+//MAPEAR CURSOS
+    public List<Clase> mapearClases() {
+        List<Clase> listaClases = new ArrayList<>();
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
         if (conn != null) {
             try {
-                String query =  "SELECT * from informes";
+                String query =  "SELECT * from clase";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    Informe informe = new Informe();
-                    informe.setId_informe(resultSet.getInt("id_informe"));
-                    informe.setDiagnostico(resultSet.getString("diagnostico"));
+                    Clase clase = new Clase();
+                    clase.setId_clase(resultSet.getInt("id_clase"));
+                    clase.setFecha(resultSet.getDate("fecha clase"));
+                    clase.setDesarrollo(resultSet.getString("desarrollo"));
+                    clase.setId_curso(resultSet.getInt("curso_id_curso"));
 
-                    listaInformes.add(informe);
+                    listaClases.add(clase);
                 }
                 resultSet.close();
                 preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                System.out.println("Ocurrió un error al mapear los informes.");
+                System.out.println("Ocurrió un error al mapear las clases.");
             }
         }
-        return listaInformes;
+        return listaClases;
     }    
 
 //AGREGAR INFORME
-    public void agregarInforme(Informe informe) {
+    public void agregarClase(Clase clase) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        int idInforme = informe.getId_informe();
-        String diagnosticoInforme = informe.getDiagnostico();
+        Integer idClase = clase.getId_clase();
+        java.sql.Date fecha = clase.getFecha();
+        String desarrollo = clase.getDesarrollo();
+        Integer idCurso = clase.getId_curso();
+        
 
         if (conn != null) {
             try {
-                String insertQuery = "INSERT INTO informe (diagnostico) VALUES (?)";
+                String insertQuery = "INSERT INTO clase (fecha_clase, desarrollo, curso_id_curso) VALUES (?, ?, ?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
-                preparedStatement.setInt(1, idInforme);
-                preparedStatement.setString(2, diagnosticoInforme);
+                preparedStatement.setInt(1, idClase);
+                preparedStatement.setDate(2, fecha);
+                preparedStatement.setString(3, desarrollo);
+                preparedStatement.setInt(4, idCurso);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar el informe.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al agregar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
@@ -733,24 +740,25 @@ public class Persistencia_SQL {
     }        
     
 //ELIMINAR INFORME
-    public void eliminarInforme(Informe informe) {
+    public void eliminarClase(Clase clase) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         
-        int idInforme = informe.getId_informe();
+        int idClase = clase.getId_clase();
+        
 
         if (conn != null) {
             try {
-                String deleteQuery = "DELETE FROM informe WHERE id_informe = ?";
+                String deleteQuery = "DELETE FROM clase WHERE id_clase = ?";
                 PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
-                preparedStatement.setInt(1, idInforme);
+                preparedStatement.setInt(1, idClase);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "El informe fue correctamente eliminado", "Informe eliminado", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La clase fue correctamente eliminada", "Clase eliminada", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al eliminar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
@@ -759,7 +767,7 @@ public class Persistencia_SQL {
  
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
-//MAPEAR INFORMES
+//MAPEAR ACTIVIDADES POR ESTUDIANTE
     public List<Actividad> mapearActividades_PorEstudiante(Estudiante estudiante) {
         List<Actividad> listaActividades = new ArrayList<>();
         Conexion conexion = new Conexion();
@@ -794,6 +802,7 @@ public class Persistencia_SQL {
         return listaActividades;
     }
 
+//MAPEAR NOMBRE, APELLIDO Y TODAS LAS CALIFICACIONES DE UN ESTUDIANTE EN DETERMINADO CURSO    
     public List<Object[]> mapearCalificacionesCurso(int cursoId) {
         List<Object[]> datosEstudiantesCalificaciones = new ArrayList<>();
         Conexion conexion = new Conexion();
@@ -873,34 +882,9 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }        
- 
-//ELIMINAR ACTIVIDAD
-    public void eliminarActividad(Actividad actividad) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        
-        int idActividad = actividad.getId_actividad();
+    }         
 
-        if (conn != null) {
-            try {
-                String deleteQuery = "DELETE FROM actividad WHERE id_actividad = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
-                preparedStatement.setInt(1, idActividad);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "La actividad fue correctamente eliminada.", "Actividad eliminada", JOptionPane.WARNING_MESSAGE);
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al eliminar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    } 
-
-//ELIMINAR ACTIVIDAD
+//MODIFICAR ACTIVIDAD
     public void modificarActividad(Actividad actividad) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -938,6 +922,31 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+//ELIMINAR ACTIVIDAD
+    public void eliminarActividad(Actividad actividad) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idActividad = actividad.getId_actividad();
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM actividad WHERE id_actividad = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, idActividad);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La actividad fue correctamente eliminada.", "Actividad eliminada", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar la actividad.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
     
     
     
@@ -1098,32 +1107,7 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }     
-    
-//AGREGAR INFORME A CURSO (TABLA curso_has_informe)
-    public void agregarInformeACurso(Curso curso, Informe informe) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        
-        int idCurso = curso.getId_curso();
-        int idInforme = informe.getId_informe();
-
-        if (conn != null) {
-            try {
-                String insertQuery = "INSERT INTO curso_has_informe (curso_id_curso, informe_id_informe) VALUES (?, ?)";
-                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
-                preparedStatement.setInt(1, idCurso);
-                preparedStatement.setInt(2, idInforme);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar el informe al curso.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }        
+   
   
 //VERIFICAR SI ESTUDIANTE EXISTE    
     private boolean existeEstudiante(Connection conn, int idCurso, int idEstudiante) throws SQLException {
