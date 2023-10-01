@@ -723,12 +723,12 @@ public class Persistencia_SQL {
             try {
                 String insertQuery = "INSERT INTO clase (fecha_clase, desarrollo, curso_id_curso) VALUES (?, ?, ?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
-                preparedStatement.setInt(1, idClase);
-                preparedStatement.setDate(2, fecha);
-                preparedStatement.setString(3, desarrollo);
-                preparedStatement.setInt(4, idCurso);
+                preparedStatement.setDate(1, fecha);
+                preparedStatement.setString(2, desarrollo);
+                preparedStatement.setInt(3, idCurso);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La clase se agrego correctamente.", "Agregar clase", JOptionPane.INFORMATION_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();

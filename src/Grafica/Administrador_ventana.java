@@ -15,6 +15,7 @@ import Entidades.Estudiante;
 import Logica.GestorActividades;
 import Logica.GestorAdministradores;
 import Logica.GestorAdscriptos;
+import Logica.GestorClases;
 import Logica.GestorCursos;
 import Logica.GestorDocentes;
 import Logica.GestorUsuarios;
@@ -73,6 +74,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         MouseListenerSeleccionarEstudiantes_verActividades(); //Seleccionar estudiantes para Ver sus Actividades
         MouseListenerSeleccionarActividades(); //Seleccionar Actividades
         MouseListenerSeleccionarEstudiantes_Calificaciones(); //Seleccionar estudiantes para Ver Calificaciones
+        MouseListenerSeleccionarCurso_crearClase();
         
         
         //Precargamos tablaCursos
@@ -2584,12 +2586,12 @@ public class Administrador_ventana extends javax.swing.JFrame
 //AGREGAR ESTUDIANTES A CURSO    
     private void Curso_crear_botonAgregarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_crear_botonAgregarEstudianteActionPerformed
         //Traemos seleccion de curso desde MouseListener - MouseListenerSeleccionarCurso_AgregarEstudiante()
-        String curso_ClaseyGrupo = cursoSeleccionadoAgregarEstudiante_Curso;
+        String curso = cursoSeleccionadoAgregarEstudiante_Curso;
         String asignatura = cursoSeleccionadoAgregarEstudiante_Asignatura;
 
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
-        int cursoID = gestorC.buscarIDCurso(curso_ClaseyGrupo, asignatura);
+        int cursoID = gestorC.buscarIDCurso(curso, asignatura);
         
             if(cursoID!=-1){
                 GestorEstudiantes gestorE = new GestorEstudiantes();
@@ -2608,12 +2610,12 @@ public class Administrador_ventana extends javax.swing.JFrame
 
 //QUITAR ESTUDIANTES DE CURSO    
     private void Curso_crear_botonQuitarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_crear_botonQuitarEstudianteActionPerformed
-        String curso_ClaseyGrupo = cursoSeleccionadoAgregarEstudiante_Curso;
+        String curso = cursoSeleccionadoAgregarEstudiante_Curso;
         String asignatura = cursoSeleccionadoAgregarEstudiante_Asignatura;
                        
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
-        int cursoID = gestorC.buscarIDCurso(curso_ClaseyGrupo, asignatura);
+        int cursoID = gestorC.buscarIDCurso(curso, asignatura);
         
         if(cursoID!=-1){
             GestorEstudiantes gestorE = new GestorEstudiantes();
@@ -2763,7 +2765,18 @@ public class Administrador_ventana extends javax.swing.JFrame
     }//GEN-LAST:event_botonGestionClasesKeyPressed
 
     private void Clase_crear_botonCrearClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_crear_botonCrearClaseActionPerformed
-        // TODO add your handling code here:
+        String curso = cursoSeleccionadoAgregarClase_Curso;
+        String asignatura = cursoSeleccionadoAgregarClase_Asignatura;
+               
+        GestorCursos gestorC = new GestorCursos();
+        gestorC.cargarCursosDesdeBD();
+        
+        int cursoID = gestorC.buscarIDCurso(curso, asignatura);        
+        java.util.Date fechaUtil = txtFecha_Clase.getDate();
+        String desarrollo = desarrolloClase.getText();
+        
+        GestorClases gestorClases = new GestorClases();
+        gestorClases.agregarClase(new java.sql.Date(fechaUtil.getTime()), desarrollo, cursoID);
     }//GEN-LAST:event_Clase_crear_botonCrearClaseActionPerformed
 
     
@@ -3024,7 +3037,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 if (filaSeleccionada >= 0) {
                     //variables declaradas arriba fuera del metodo para usarla luego.
                     cursoSeleccionadoAgregarClase_Curso = crearClase_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
-                    cursoSeleccionadoAgregarClase_Asignatura = crearClase_TablaCursos.getValueAt(filaSeleccionada, 1).toString();                   
+                    cursoSeleccionadoAgregarClase_Asignatura = crearClase_TablaCursos.getValueAt(filaSeleccionada, 1).toString();  
                 }
             }
         });
