@@ -2966,23 +2966,29 @@ public class Administrador_ventana extends javax.swing.JFrame
         }else{
             GestorClases gestorClases = new GestorClases();
             gestorClases.agregarClase(new java.sql.Date(fechaUtil.getTime()), desarrollo, cursoID);
+            DefaultTableModel model = (DefaultTableModel) tablaClases.getModel();
+            model.setRowCount(0); // Limpiar el modelo de la tabla
         }
        
         
     }//GEN-LAST:event_Clase_crear_botonCrearClaseActionPerformed
 
     private void Clase_eliminar_botonEliminarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_eliminar_botonEliminarClaseActionPerformed
-        
-        
-        
+
         Integer idClase = claseSeleccionadaEliminarClase_ID;
         
-        Clase clase = new Clase();
-        clase.setId_clase(idClase);
         
-        Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.eliminarClaseIndividual(clase);
         
+        if(idClase == null){
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una clase.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Clase clase = new Clase();
+            clase.setId_clase(idClase);
+            Persistencia_SQL persistencia = new Persistencia_SQL();
+            persistencia.eliminarClaseIndividual(clase);
+            DefaultTableModel model = (DefaultTableModel) tablaClases.getModel();
+            model.setRowCount(0); // Limpiar el modelo de la tabla
+        }
         
     }//GEN-LAST:event_Clase_eliminar_botonEliminarClaseActionPerformed
 
