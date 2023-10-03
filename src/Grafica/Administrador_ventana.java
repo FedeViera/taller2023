@@ -2986,8 +2986,17 @@ public class Administrador_ventana extends javax.swing.JFrame
             clase.setId_clase(idClase);
             Persistencia_SQL persistencia = new Persistencia_SQL();
             persistencia.eliminarClaseIndividual(clase);
-            DefaultTableModel model = (DefaultTableModel) tablaClases.getModel();
-            model.setRowCount(0); // Limpiar el modelo de la tabla
+            
+            String curso = cursoSeleccionadoEliminarClase_Curso;
+            String asignatura = cursoSeleccionadoEliminarClase_Asignatura;
+                    
+            GestorCursos gestorC = new GestorCursos();
+            gestorC.cargarCursosDesdeBD();
+                    
+            Integer idCurso = gestorC.buscarIDCurso(curso, asignatura);
+
+            GestorClases gestorClases = new GestorClases();
+            gestorClases.cargarTablaClases(tablaClases, idCurso);
         }
         
     }//GEN-LAST:event_Clase_eliminar_botonEliminarClaseActionPerformed
