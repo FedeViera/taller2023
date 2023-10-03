@@ -59,6 +59,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private Integer estudianteSeleccionado_cargarActividades; //VARIABLE ESTUDIANTE SELECCIONADO PARA TRAER ACTIVIDADES
     private Integer idActividad_modificarActividad;
     private String cursoSeleccionadoAgregarClase_Curso, cursoSeleccionadoAgregarClase_Asignatura; //VARIABLE CURSO SELECCIONADO PARA CREAR CLASE
+    private String cursoSeleccionadoEliminarClase_Curso, cursoSeleccionadoEliminarClase_Asignatura; //VARIABLE CURSO SELECCIONADO PARA ELIMINAR CLASE
     
     public Administrador_ventana() {
         initComponents();
@@ -87,6 +88,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
         gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
         gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
+        gestorC.cargarTablaCursosFull(eliminarClase_TablaCursos);
         
         //Precargamos tablaEstudiantes
         GestorEstudiantes gestorE = new GestorEstudiantes();
@@ -311,6 +313,15 @@ public class Administrador_ventana extends javax.swing.JFrame
         crearClase_TablaCursos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         desarrolloClase = new javax.swing.JTextArea();
+        eliminarClase = new javax.swing.JPanel();
+        tablaClase = new javax.swing.JScrollPane();
+        tablaClases = new javax.swing.JTable();
+        Clase_eliminar_botonEliminarClase = new javax.swing.JButton();
+        Clase_textoSeleccionarClases = new javax.swing.JLabel();
+        tabla14 = new javax.swing.JScrollPane();
+        eliminarClase_TablaCursos = new javax.swing.JTable();
+        Clase_textoSeleccionarCursoClases1 = new javax.swing.JLabel();
+        asistencia = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -2053,6 +2064,121 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         opcionesClases.addTab("Crear clase", crearClase);
 
+        eliminarClase.setBackground(new java.awt.Color(255, 255, 255));
+
+        tablaClases.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Clase ID", "Fecha", "Desarrollo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaClase.setViewportView(tablaClases);
+        if (tablaClases.getColumnModel().getColumnCount() > 0) {
+            tablaClases.getColumnModel().getColumn(0).setResizable(false);
+            tablaClases.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tablaClases.getColumnModel().getColumn(1).setResizable(false);
+            tablaClases.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tablaClases.getColumnModel().getColumn(2).setResizable(false);
+            tablaClases.getColumnModel().getColumn(2).setPreferredWidth(400);
+        }
+
+        Clase_eliminar_botonEliminarClase.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_eliminar_botonEliminarClase.setText("Eliminar");
+        Clase_eliminar_botonEliminarClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clase_eliminar_botonEliminarClaseActionPerformed(evt);
+            }
+        });
+
+        Clase_textoSeleccionarClases.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoSeleccionarClases.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoSeleccionarClases.setText("Seleccionar clase:");
+
+        eliminarClase_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura", "Cédula Docente", "Nombre", "Apellido"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        eliminarClase_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla14.setViewportView(eliminarClase_TablaCursos);
+
+        Clase_textoSeleccionarCursoClases1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoSeleccionarCursoClases1.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoSeleccionarCursoClases1.setText("Seleccionar curso:");
+
+        javax.swing.GroupLayout eliminarClaseLayout = new javax.swing.GroupLayout(eliminarClase);
+        eliminarClase.setLayout(eliminarClaseLayout);
+        eliminarClaseLayout.setHorizontalGroup(
+            eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eliminarClaseLayout.createSequentialGroup()
+                .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(eliminarClaseLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Clase_eliminar_botonEliminarClase, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, eliminarClaseLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tablaClase)
+                            .addComponent(Clase_textoSeleccionarCursoClases1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Clase_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla14, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19))
+        );
+        eliminarClaseLayout.setVerticalGroup(
+            eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eliminarClaseLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(Clase_textoSeleccionarCursoClases1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabla14, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(Clase_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tablaClase, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Clase_eliminar_botonEliminarClase, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+
+        opcionesClases.addTab("Eliminar clase", eliminarClase);
+
+        asistencia.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout asistenciaLayout = new javax.swing.GroupLayout(asistencia);
+        asistencia.setLayout(asistenciaLayout);
+        asistenciaLayout.setHorizontalGroup(
+            asistenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 950, Short.MAX_VALUE)
+        );
+        asistenciaLayout.setVerticalGroup(
+            asistenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        opcionesClases.addTab("Asistencia", asistencia);
+
         javax.swing.GroupLayout pestaña3_ClasesLayout = new javax.swing.GroupLayout(pestaña3_Clases);
         pestaña3_Clases.setLayout(pestaña3_ClasesLayout);
         pestaña3_ClasesLayout.setHorizontalGroup(
@@ -2516,6 +2642,12 @@ public class Administrador_ventana extends javax.swing.JFrame
             gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
             gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
             gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
+            gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
+            
+            /*DefaultTableModel model = (DefaultTableModel) tablaCalificaciones.getModel();
+            model.setRowCount(0);*/
+            
+            tablaCalificaciones.repaint();
             
         } else {
             JOptionPane.showMessageDialog(null, "No se selecciono ningun docente para el curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -2565,10 +2697,15 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorC.cargarCursosDesdeBD();
                 int cursoID = gestorC.buscarIDCurso(curso_ClaseyGrupo, asignatura);
                 
+                GestorClases gestorClases = new GestorClases();
+                gestorClases.eliminarClaseDeCurso(cursoID);//Eliminar priero las clases vinculadas ese curso
+                
                 GestorRelacional gestorR = new GestorRelacional();
-                gestorR.eliminarCursoConDocente(cursoID);
-                gestorR.eliminarCursoConEstudiantes(cursoID);
+                gestorR.eliminarCursoConDocente(cursoID); 
+                gestorR.eliminarCursoConEstudiantes(cursoID); 
                 gestorC.eliminarCurso(cursoID);
+                
+                
 
                 //Refrescar tablas luego de eliminar
                 gestorC.cargarCursosDesdeBD();
@@ -2577,6 +2714,11 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorC.cargarTablaCursosFull(tablaEstudiante_Quitar);
                 gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
                 gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
+                gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
+                
+                DefaultTableModel model = (DefaultTableModel) tablaCalificaciones.getModel();
+                model.setRowCount(0);
+                
             }else{
                 System.out.println("Eliminación cancelada.");
             }  
@@ -2626,6 +2768,10 @@ public class Administrador_ventana extends javax.swing.JFrame
 
             //Actualizo la tabla tablaEstudiante_Quitar con los nuevos estudiantes quitados.
             gestorE.cargarTablaEstudiantesCursoEspecifico(cursoID, tablaEstudiante_Quitar);
+            
+            DefaultTableModel model = (DefaultTableModel) tablaCalificaciones.getModel();
+            model.setRowCount(0);
+            
         }else{
             JOptionPane.showMessageDialog(null, "Para quitar Estudiantes primero debe seleccionar un Curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
@@ -2775,9 +2921,23 @@ public class Administrador_ventana extends javax.swing.JFrame
         java.util.Date fechaUtil = txtFecha_Clase.getDate();
         String desarrollo = desarrolloClase.getText();
         
-        GestorClases gestorClases = new GestorClases();
-        gestorClases.agregarClase(new java.sql.Date(fechaUtil.getTime()), desarrollo, cursoID);
+        if (cursoID == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (fechaUtil == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (desarrollo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }else{
+            GestorClases gestorClases = new GestorClases();
+            gestorClases.agregarClase(new java.sql.Date(fechaUtil.getTime()), desarrollo, cursoID);
+        }
+       
+        
     }//GEN-LAST:event_Clase_crear_botonCrearClaseActionPerformed
+
+    private void Clase_eliminar_botonEliminarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_eliminar_botonEliminarClaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Clase_eliminar_botonEliminarClaseActionPerformed
 
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
@@ -3043,6 +3203,22 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }    
     
+//Gest. Clases: "MODIFICAR CLASE" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA ELIMINAR UNA CLASE
+    private void MouseListenerSeleccionarCurso_eliminarClase() {
+        eliminarClase_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = eliminarClase_TablaCursos.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    cursoSeleccionadoEliminarClase_Curso = eliminarClase_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
+                    cursoSeleccionadoEliminarClase_Asignatura = eliminarClase_TablaCursos.getValueAt(filaSeleccionada, 1).toString();  
+                }
+            }
+        });
+    }    
+    
+    
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
 
@@ -3109,8 +3285,11 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel Actividad_textoTipoActividad;
     private javax.swing.JLabel Actividad_textoTipoActividad1;
     private javax.swing.JButton Clase_crear_botonCrearClase;
+    private javax.swing.JButton Clase_eliminar_botonEliminarClase;
     private javax.swing.JLabel Clase_textoFecha;
+    private javax.swing.JLabel Clase_textoSeleccionarClases;
     private javax.swing.JLabel Clase_textoSeleccionarCursoClases;
+    private javax.swing.JLabel Clase_textoSeleccionarCursoClases1;
     private javax.swing.JTable CrearActividad_tablaEstudiantes;
     private javax.swing.JButton Cuenta_botonBuscar;
     private javax.swing.JButton Cuenta_botonEliminar;
@@ -3165,6 +3344,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel Curso_crear_textoSeleccionarCursoEstudiantes;
     private javax.swing.JButton Curso_modificar_botonEliminarCurso;
     private javax.swing.JTextArea DescripcionActividad_modificar;
+    private javax.swing.JPanel asistencia;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonCerrarSesion;
@@ -3183,6 +3363,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JLabel cursosRegistrados;
     private javax.swing.JTextArea desarrolloClase;
     private javax.swing.JTextArea descripcionActividad;
+    private javax.swing.JPanel eliminarClase;
+    private javax.swing.JTable eliminarClase_TablaCursos;
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCurso1A;
     private javax.swing.JLabel indicadorCurso2A;
@@ -3223,6 +3405,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JScrollPane tabla11;
     private javax.swing.JScrollPane tabla12;
     private javax.swing.JScrollPane tabla13;
+    private javax.swing.JScrollPane tabla14;
     private javax.swing.JScrollPane tabla2;
     private javax.swing.JScrollPane tabla3;
     private javax.swing.JScrollPane tabla4;
@@ -3232,6 +3415,8 @@ public class Administrador_ventana extends javax.swing.JFrame
     private javax.swing.JScrollPane tabla8;
     private javax.swing.JScrollPane tabla9;
     private javax.swing.JTable tablaCalificaciones;
+    private javax.swing.JScrollPane tablaClase;
+    private javax.swing.JTable tablaClases;
     private javax.swing.JTable tablaEstudiante_Agregar;
     private javax.swing.JTable tablaEstudiante_Quitar;
     private com.toedter.calendar.JDateChooser txtFecha;

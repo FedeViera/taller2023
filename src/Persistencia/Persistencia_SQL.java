@@ -672,98 +672,6 @@ public class Persistencia_SQL {
         }
     }    
     
-// ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
-
-    
-//MAPEAR CURSOS
-    public List<Clase> mapearClases() {
-        List<Clase> listaClases = new ArrayList<>();
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-
-        if (conn != null) {
-            try {
-                String query =  "SELECT * from clase";
-
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    Clase clase = new Clase();
-                    clase.setId_clase(resultSet.getInt("id_clase"));
-                    clase.setFecha(resultSet.getDate("fecha clase"));
-                    clase.setDesarrollo(resultSet.getString("desarrollo"));
-                    clase.setId_curso(resultSet.getInt("curso_id_curso"));
-
-                    listaClases.add(clase);
-                }
-                resultSet.close();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Ocurrió un error al mapear las clases.");
-            }
-        }
-        return listaClases;
-    }    
-
-//AGREGAR INFORME
-    public void agregarClase(Clase clase) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        
-        Integer idClase = clase.getId_clase();
-        java.sql.Date fecha = clase.getFecha();
-        String desarrollo = clase.getDesarrollo();
-        Integer idCurso = clase.getId_curso();
-        
-
-        if (conn != null) {
-            try {
-                String insertQuery = "INSERT INTO clase (fecha_clase, desarrollo, curso_id_curso) VALUES (?, ?, ?)";
-                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
-                preparedStatement.setDate(1, fecha);
-                preparedStatement.setString(2, desarrollo);
-                preparedStatement.setInt(3, idCurso);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "La clase se agrego correctamente.", "Agregar clase", JOptionPane.INFORMATION_MESSAGE);
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al agregar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    }        
-    
-//ELIMINAR INFORME
-    public void eliminarClase(Clase clase) {
-        Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
-        
-        int idClase = clase.getId_clase();
-        
-
-        if (conn != null) {
-            try {
-                String deleteQuery = "DELETE FROM clase WHERE id_clase = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
-                preparedStatement.setInt(1, idClase);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
-                JOptionPane.showMessageDialog(null, "La clase fue correctamente eliminada", "Clase eliminada", JOptionPane.WARNING_MESSAGE);
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al eliminar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
-        }
-    } 
  
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
@@ -849,9 +757,7 @@ public class Persistencia_SQL {
     }
 
     
-
-    
-//AGREGAR INFORME
+//AGREGAR ACTIVIDAD
     public void agregarActividad(Estudiante estudiante, Actividad actividad) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
@@ -947,8 +853,124 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }    
+
+// ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
+
+//MAPEAR CURSOS
+    public List<Clase> mapearClases() {
+        List<Clase> listaClases = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+
+        if (conn != null) {
+            try {
+                String query =  "SELECT * from clase";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Clase clase = new Clase();
+                    clase.setId_clase(resultSet.getInt("id_clase"));
+                    clase.setFecha(resultSet.getDate("fecha clase"));
+                    clase.setDesarrollo(resultSet.getString("desarrollo"));
+                    clase.setId_curso(resultSet.getInt("curso_id_curso"));
+
+                    listaClases.add(clase);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear las clases.");
+            }
+        }
+        return listaClases;
+    }    
+
+//AGREGAR CLASE
+    public void agregarClase(Clase clase) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        Integer idClase = clase.getId_clase();
+        java.sql.Date fecha = clase.getFecha();
+        String desarrollo = clase.getDesarrollo();
+        Integer idCurso = clase.getId_curso();
+        
+
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO clase (fecha_clase, desarrollo, curso_id_curso) VALUES (?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setDate(1, fecha);
+                preparedStatement.setString(2, desarrollo);
+                preparedStatement.setInt(3, idCurso);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La clase se agrego correctamente.", "Agregar clase", JOptionPane.INFORMATION_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al agregar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }        
     
-    
+//ELIMINAR CLASE INDIVIDUAL
+    public void eliminarClaseIndividual(Clase clase) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idClase = clase.getId_clase();
+        
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM clase WHERE id_clase = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, idClase);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La clase fue correctamente eliminada", "Clase eliminada", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    } 
+
+//ELIMINAR TODAS LAS CLASES DE UN CURSO
+    public void eliminarClaseDeCurso(Clase clase) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idCurso = clase.getId_curso();
+        
+
+        if (conn != null) {
+            try {
+                String deleteQuery = "DELETE FROM clase WHERE curso_id_curso = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+                preparedStatement.setInt(1, idCurso);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                JOptionPane.showMessageDialog(null, "La clase fue correctamente eliminada", "Clase eliminada", JOptionPane.WARNING_MESSAGE);
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al eliminar la clase.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }    
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 //     TABLAS INTERMEDIAS RELACIONADAS CON CURSO    

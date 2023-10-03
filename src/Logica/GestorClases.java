@@ -62,6 +62,24 @@ public class GestorClases {
         persistencia.agregarClase(clase);
     }
     
+//ELIMINAR CLASE INDIVIDUAL
+    public void eliminarClaseIndividual(Integer id_clase){
+        Clase clase = new Clase();
+        clase.setId_clase(id_clase);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarClaseIndividual(clase);
+    }    
+    
+//ELIMINAR TODAS LAS CLASES DE UN CURSO
+    public void eliminarClaseDeCurso(Integer id_curso){
+        Clase clase = new Clase();
+        clase.setId_curso(id_curso);
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        persistencia.eliminarClaseDeCurso(clase);
+    }      
+    
 /*
 //ELIMINAR ADMINISTRADOR (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)
     public void eliminarAdministrador(Integer cedula, String cargo){

@@ -87,6 +87,7 @@ public class GestorActividades {
         table.repaint(); // Actualizar la tabla
     }    
     
+
     public void llenarTablaEstudiantesCalificaciones(Integer cursoID, JTable table) {
         Persistencia_SQL persistencia = new Persistencia_SQL();
 
