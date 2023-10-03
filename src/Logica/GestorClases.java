@@ -1,9 +1,12 @@
 package Logica;
 
 import Entidades.Clase;
+import Entidades.Curso;
 import Persistencia.Persistencia_SQL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class GestorClases {
@@ -25,7 +28,7 @@ public class GestorClases {
     }
     
 //ADMINISTRADOR EXISTE
-    public boolean informeExiste(int idClase) {
+    public boolean claseExiste(int idClase) {
         for (Clase clase : listaClases) {
             if (clase.getId_clase()== idClase) {
                 return true; 
@@ -35,18 +38,20 @@ public class GestorClases {
     }
     
 //LISTAR ADMINISTRADORES DESDE BD
-    public List<Clase>  cargarInformesDesdeBD() {
+    public List<Clase>  cargarClasesDesdeBD(Integer idCurso) {
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        listaClases = persistencia.mapearClases();
+        listaClases = persistencia.mapearClasesEspecificos(idCurso);
         return listaClases;
     }
     
 
 //MOSTRAR INFORMES (PARA PRUEBAS)
-    public void mostrarClasess() {
+    public void mostrarClases() {
         for (Clase clase : listaClases) {
             System.out.println("idClase: "+clase.getId_clase());
             System.out.println("Desarrollo: "+clase.getDesarrollo());
+            System.out.println("Fecha: "+clase.getFecha());
+            System.out.println("idCurso: "+clase.getId_curso());
         }
     }
     
@@ -79,6 +84,43 @@ public class GestorClases {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         persistencia.eliminarClaseDeCurso(clase);
     }      
+    
+//CARGAR LOS DOCENTES EN EL JTable - Tabla Full (curso, asignatura, cedulaDocente, nombreDocente, apellidoDocente)   
+    public void cargarTablaClases(JTable table, Integer idCurso) {
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        GestorClases gestorClases = new GestorClases();
+
+        List<Clase> listaClases = gestorClases.cargarClasesDesdeBD(idCurso);
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0); // Limpiar el modelo de la tabla
+
+        // Agregar datos de la lista de clases al modelo de la tabla
+        for (Clase clase : listaClases) {
+            model.addRow(new Object[]{
+                clase.getId_clase(),
+                clase.getFecha(),
+                clase.getDesarrollo(),
+                clase.getId_curso(),
+            });
+        }
+
+        table.repaint(); // Actualizar la tabla visualmente
+    }   
+    
+    public Integer contarClasesDictadas(Integer idCurso){
+        Curso curso = new Curso();
+        curso.setId_curso(idCurso);
+        
+        Integer clasesDictadas = 0;
+        
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        clasesDictadas = persistencia.contarClasesDictadas(curso);
+        
+        return clasesDictadas;
+    }
+    
+    
     
 /*
 //ELIMINAR ADMINISTRADOR (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)

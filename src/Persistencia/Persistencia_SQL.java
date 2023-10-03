@@ -16,6 +16,7 @@ import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Clase;
 import Grafica.Login_ventana;
+import Logica.GestorClases;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -857,37 +858,35 @@ public class Persistencia_SQL {
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 
 //MAPEAR CURSOS
-    public List<Clase> mapearClases() {
+    public List<Clase> mapearClasesEspecificos(Integer idCurso) {
         List<Clase> listaClases = new ArrayList<>();
         Conexion conexion = new Conexion();
-        Connection conn = conexion.conectarMySQL();
+        
+        try (Connection conn = conexion.conectarMySQL();
+             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM clase WHERE curso_id_curso = ?")) {
+            
+            preparedStatement.setInt(1, idCurso);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        if (conn != null) {
-            try {
-                String query =  "SELECT * from clase";
-
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    Clase clase = new Clase();
-                    clase.setId_clase(resultSet.getInt("id_clase"));
-                    clase.setFecha(resultSet.getDate("fecha clase"));
-                    clase.setDesarrollo(resultSet.getString("desarrollo"));
-                    clase.setId_curso(resultSet.getInt("curso_id_curso"));
-
-                    listaClases.add(clase);
-                }
-                resultSet.close();
-                preparedStatement.close();
-                conn.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Ocurrió un error al mapear las clases.");
+            while (resultSet.next()) {
+                Clase clase = new Clase();
+                clase.setId_clase(resultSet.getInt("id_clase"));
+                clase.setFecha(resultSet.getDate("fecha_clase"));
+                clase.setDesarrollo(resultSet.getString("desarrollo"));
+                clase.setId_curso(resultSet.getInt("curso_id_curso"));
+                
+                listaClases.add(clase);
             }
+            
+            resultSet.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Ocurrió un error al mapear las clases.");
         }
+        
         return listaClases;
-    }    
+    }
+  
 
 //AGREGAR CLASE
     public void agregarClase(Clase clase) {
@@ -971,6 +970,32 @@ public class Persistencia_SQL {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
     }    
+    
+//CONTAR CLASES
+    public int contarClasesDictadas(Curso curso) {
+        int cantidad = 0;
+        Conexion conexion = new Conexion();
+
+        Integer idCurso = curso.getId_curso();
+
+        try (Connection conn = conexion.conectarMySQL();
+             PreparedStatement preparedStatement = conn.prepareStatement("SELECT COUNT(*) FROM clase WHERE curso_id_curso = ?")) {
+            preparedStatement.setInt(1, idCurso);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                cantidad = resultSet.getInt(1); // Obtener el valor directamente sin un nombre de columna
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Ocurrió un error al contar las clases dictadas.");
+        }
+        return cantidad;
+    }
+
+   
+  
+    
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 //     TABLAS INTERMEDIAS RELACIONADAS CON CURSO    
