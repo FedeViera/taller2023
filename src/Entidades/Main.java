@@ -29,15 +29,15 @@ public class Main {
         login.setVisible(true);
         login.setLocationRelativeTo(null);*/
         
-       
+       /*
         Administrador_ventana adm = new Administrador_ventana();
         adm.setVisible(true);
-        adm.setLocationRelativeTo(null);
+        adm.setLocationRelativeTo(null);*/
         
-        /*
+        
         Adscripto_ventana ads = new Adscripto_ventana();
         ads.setVisible(true);
-        ads.setLocationRelativeTo(null);*/
+        ads.setLocationRelativeTo(null);
         
         /*
         Docente_ventana doc = new Docente_ventana();

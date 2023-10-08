@@ -1889,7 +1889,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         if (tablaCalificaciones.getColumnModel().getColumnCount() > 0) {
             tablaCalificaciones.getColumnModel().getColumn(0).setPreferredWidth(50);
             tablaCalificaciones.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(500);
+            tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(700);
         }
 
         Actividad_textoSeleccionarCursoActividades_calificaciones.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -2100,12 +2100,13 @@ public class Administrador_ventana extends javax.swing.JFrame
         tablaClase.setViewportView(tablaClases);
         if (tablaClases.getColumnModel().getColumnCount() > 0) {
             tablaClases.getColumnModel().getColumn(0).setResizable(false);
-            tablaClases.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tablaClases.getColumnModel().getColumn(0).setPreferredWidth(20);
             tablaClases.getColumnModel().getColumn(1).setResizable(false);
-            tablaClases.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tablaClases.getColumnModel().getColumn(1).setPreferredWidth(20);
             tablaClases.getColumnModel().getColumn(2).setResizable(false);
-            tablaClases.getColumnModel().getColumn(2).setPreferredWidth(400);
+            tablaClases.getColumnModel().getColumn(2).setPreferredWidth(500);
             tablaClases.getColumnModel().getColumn(3).setResizable(false);
+            tablaClases.getColumnModel().getColumn(3).setPreferredWidth(10);
         }
 
         Clase_eliminar_botonEliminarClase.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -2149,11 +2150,11 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         clasesDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         clasesDictadas.setForeground(new java.awt.Color(0, 0, 255));
-        clasesDictadas.setText("Clases Dictadas: ");
+        clasesDictadas.setText("Clases dictadas: ");
 
         clasesNoDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         clasesNoDictadas.setForeground(new java.awt.Color(0, 0, 255));
-        clasesNoDictadas.setText("Clases No Dictadas: ");
+        clasesNoDictadas.setText("Clases por dictar: ");
 
         numeroClasesNoDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         numeroClasesNoDictadas.setForeground(new java.awt.Color(0, 0, 255));

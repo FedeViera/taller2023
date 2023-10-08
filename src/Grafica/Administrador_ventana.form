@@ -3043,7 +3043,7 @@
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="500" resizable="true">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="700" resizable="true">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
@@ -3491,22 +3491,22 @@
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="50" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="400" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="500" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="false">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>
@@ -3626,7 +3626,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Clases Dictadas: "/>
+                            <Property name="text" type="java.lang.String" value="Clases dictadas: "/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="clasesNoDictadas">
@@ -3637,7 +3637,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Clases No Dictadas: "/>
+                            <Property name="text" type="java.lang.String" value="Clases por dictar: "/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="numeroClasesNoDictadas">
