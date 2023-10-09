@@ -24,15 +24,15 @@ public class Main {
         //Mostrar Login
         Conexion cx=new Conexion();
         cx.conectarMySQL();
-       /*
+       
         Login_ventana login = new Login_ventana();
         login.setVisible(true);
-        login.setLocationRelativeTo(null);*/
-        
-       /*
+        login.setLocationRelativeTo(null);
+        /*
+       
         Administrador_ventana adm = new Administrador_ventana();
         adm.setVisible(true);
-        adm.setLocationRelativeTo(null);*/
+        adm.setLocationRelativeTo(null);
         
         
         Adscripto_ventana ads = new Adscripto_ventana();

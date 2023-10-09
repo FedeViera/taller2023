@@ -22,6 +22,7 @@ import Logica.GestorDocentes;
 import Logica.GestorUsuarios;
 import Logica.GestorEstudiantes;
 import Logica.GestorRelacional;
+import java.awt.event.MouseEvent;
 
 import java.lang.System.Logger;
 import java.text.ParseException;
@@ -40,6 +41,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -82,6 +84,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         MouseListenerSeleccionarCurso_crearClase();
         MouseListenerSeleccionarCurso_eliminarClase();
         MouseListenerSeleccionarClase_eliminarClase();
+        
+        MouseListenerDesarrollo();
         
         
         
@@ -1205,7 +1209,7 @@ public class Administrador_ventana extends javax.swing.JFrame
 
         modificarCurso.setBackground(new java.awt.Color(255, 255, 255));
 
-        cursosRegistrados.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        cursosRegistrados.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         cursosRegistrados.setForeground(new java.awt.Color(0, 0, 0));
         cursosRegistrados.setText("Cursos registrados:");
 
@@ -1703,8 +1707,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         modificarActividad_TablaActividades.getTableHeader().setReorderingAllowed(false);
         tabla11.setViewportView(modificarActividad_TablaActividades);
         if (modificarActividad_TablaActividades.getColumnModel().getColumnCount() > 0) {
-            modificarActividad_TablaActividades.getColumnModel().getColumn(4).setResizable(false);
-            modificarActividad_TablaActividades.getColumnModel().getColumn(5).setResizable(false);
+            modificarActividad_TablaActividades.getColumnModel().getColumn(0).setPreferredWidth(25);
+            modificarActividad_TablaActividades.getColumnModel().getColumn(3).setPreferredWidth(120);
         }
 
         Actividad_crear_botonModificarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -1947,12 +1951,12 @@ public class Administrador_ventana extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabla12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addGroup(verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Actividad_textoSeleccionarCursoActividades_calificaciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(indicadorCusoB))
+                    .addComponent(indicadorCusoB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         opcionesActividades.addTab("Calificaciones", verActividades);
@@ -2095,6 +2099,11 @@ public class Administrador_ventana extends javax.swing.JFrame
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tablaClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClasesMouseClicked(evt);
             }
         });
         tablaClase.setViewportView(tablaClases);
@@ -3020,6 +3029,10 @@ public class Administrador_ventana extends javax.swing.JFrame
         numeroClasesNoDictadas.setText(String.valueOf(resultado));
     }//GEN-LAST:event_opcionesClasesStateChanged
 
+    private void tablaClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClasesMouseClicked
+        
+    }//GEN-LAST:event_tablaClasesMouseClicked
+    
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===
     
@@ -3269,7 +3282,7 @@ public class Administrador_ventana extends javax.swing.JFrame
     }    
     
     
-//Gest. Clases: "MODIFICAR CLASE" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA CREAR UNA CLASE
+//Gest. Clases: "CREAR CLASE" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA CREAR UNA CLASE
     private void MouseListenerSeleccionarCurso_crearClase() {
         crearClase_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -3331,18 +3344,45 @@ public class Administrador_ventana extends javax.swing.JFrame
                 if (filaSeleccionada >= 0) {
                     //variables declaradas arriba fuera del metodo para usarla luego.
                     claseSeleccionadaEliminarClase_ID = Integer.parseInt(tablaClases.getValueAt(filaSeleccionada, 0).toString()); 
+                    Integer idCurso = Integer.parseInt(tablaClases.getValueAt(filaSeleccionada, 3).toString()); 
                     
                     int idClase = claseSeleccionadaEliminarClase_ID;
-                    String curso = cursoSeleccionadoEliminarClase_Curso;
+                    
+                    GestorClases gestorClases = new GestorClases();
+                    Integer dictadas = gestorClases.contarClasesDictadas(idCurso);
+
+                    int resultado = DebenDictar-dictadas;
+
+                    numeroClasesDictadas.setText(String.valueOf(dictadas));
+                    numeroClasesNoDictadas.setText(String.valueOf(resultado));
+                    
                 }
             }
         });
     }    
+
+//Gest. Clases: "ELIMINAR CLASE" - CLICK DERECHO SE VE DESARROLLO COMPLETO    
+    private void MouseListenerDesarrollo() {
+        tablaClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getButton() == MouseEvent.BUTTON3) { // Doble clic
+                    int column = tablaClases.getSelectedColumn();
+                    int row = tablaClases.getSelectedRow();
+                    
+                    if (column == 2) { // Si se hace doble clic en la columna "Desarrollo"
+                        String desarrollo = (String) tablaClases.getValueAt(row, column);
+                        // Muestra el contenido completo en un cuadro de diálogo
+                        JOptionPane.showMessageDialog(null, desarrollo, "Desarrollo completo", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+
+            }
+        });
+    }    
+    
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
-    
-
-
 
 
 
