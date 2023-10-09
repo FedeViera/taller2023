@@ -7,9 +7,10 @@ import javax.swing.JOptionPane;
 
 public class Docente_ventana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    
+    
+    
+    
     public Docente_ventana() {
         initComponents();
         this.setTitle("SDFA - Panel Docente");
@@ -38,6 +39,11 @@ public class Docente_ventana extends javax.swing.JFrame {
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
         pestaña0 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        Docente_textoSeleccionarCursoEstudiantes = new javax.swing.JLabel();
+        tabla4 = new javax.swing.JScrollPane();
+        Docente_TablaCursos = new javax.swing.JTable();
         pestaña1 = new javax.swing.JPanel();
         pestaña2 = new javax.swing.JPanel();
         pestaña4 = new javax.swing.JPanel();
@@ -265,15 +271,69 @@ public class Docente_ventana extends javax.swing.JFrame {
         pestaña0.setForeground(new java.awt.Color(0, 0, 0));
         pestaña0.setToolTipText("");
 
+        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        Docente_textoSeleccionarCursoEstudiantes.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Docente_textoSeleccionarCursoEstudiantes.setForeground(new java.awt.Color(0, 0, 0));
+        Docente_textoSeleccionarCursoEstudiantes.setText("Seleccionar curso:");
+
+        Docente_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura", "Cédula Docente", "Nombre Docente", "Apellido Docente"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Docente_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla4.setViewportView(Docente_TablaCursos);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Docente_textoSeleccionarCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabla4, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Docente_textoSeleccionarCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(349, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Cursos", jPanel1);
+
         javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
         pestaña0.setLayout(pestaña0Layout);
         pestaña0Layout.setHorizontalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+            .addGroup(pestaña0Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1))
         );
         pestaña0Layout.setVerticalGroup(
             pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelPestañas.addTab("tab0", pestaña0);
@@ -499,12 +559,16 @@ public class Docente_ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Docente_TablaCursos;
+    private javax.swing.JLabel Docente_textoSeleccionarCursoEstudiantes;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonActividades;
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonClases;
     private javax.swing.JButton botonCursos;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
@@ -515,5 +579,6 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JPanel pestaña4;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
+    private javax.swing.JScrollPane tabla4;
     // End of variables declaration//GEN-END:variables
 }
