@@ -24,6 +24,13 @@ public class GestorCursos {
         listaCursos = persistencia.mapearCursos();
         return listaCursos;
     }
+
+//LISTAR CURSOS DE UN DOCENTE DESDE BD   
+    public List<Curso>  cargarCursosDeDocenteEspecificoDesdeBD(Integer cedula) {
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        listaCursos = persistencia.mapearCursosDeDocenteEspecifico(cedula);
+        return listaCursos;
+    }    
     
     public int buscarIDCurso(String claseYgrupo, String asignatura) {
         for (Curso curso : listaCursos) {
@@ -135,6 +142,35 @@ public class GestorCursos {
         table.repaint(); // Actualizar la tabla
     }
 
+//CARGAR LOS DOCENTES EN EL JTable - Tabla Full (curso, asignatura)   
+    public void cargarTablaCursosSimpleDeDocenteEspecifico(JTable table, Integer cedula) {
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        GestorCursos gestorCursos = new GestorCursos();
+        Docente docente = new Docente();
+
+        List<Curso> listaCursos = gestorCursos.cargarCursosDeDocenteEspecificoDesdeBD(cedula);
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+
+        // Eliminar todas las filas vacías del modelo
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        // Agregar datos de la lista de cursos al modelo de la tabla
+        for (Curso curso : listaCursos) {
+            // Obtener los datos del docente para el curso actual
+            //docente = persistencia.obtenerDatosDocenteParaCurso(curso.getId_curso());
+            // Agregar una fila con los datos del curso y del docente.
+            model.addRow(new Object[]{
+                curso.getClaseYgrupo(),
+                curso.getAsignatura(),
+            });
+        }
+
+        table.repaint(); // Actualizar la tabla
+    }    
 
 
 

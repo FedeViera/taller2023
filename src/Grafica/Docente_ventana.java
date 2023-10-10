@@ -1,5 +1,9 @@
 package Grafica;
 
+import Grafica.Login_ventana;
+import Logica.GestorActividades;
+import Logica.GestorCursos;
+import Logica.GestorEstudiantes;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -8,11 +12,33 @@ import javax.swing.JOptionPane;
 public class Docente_ventana extends javax.swing.JFrame {
 
     
-    
-    
+    public static Integer cedulaDocente;
+
+    private String Docente_cursoSeleccionadoAgregarEstudiante_Curso, Docente_cursoSeleccionadoAgregarEstudiante_Asignatura;
+    private String Docente_cursoSeleccionadoAgregarActividad_Curso, Docente_cursoSeleccionadoAgregarActividad_Asignatura;
+    private Integer Docente_estudianteSeleccionadoAgregar_Actividad;
     
     public Docente_ventana() {
         initComponents();
+        
+        //Iniciamos todos los MouseListener para que se pueda interactuar con las JTable
+        MouseListenerSeleccionarCurso_verEstudiantes_Curso();
+        MouseListenerSeleccionarCurso_verEstudiantes_Actividades();
+        MouseListenerSeleccionarEstudiantes_crearActividad();
+        
+        GestorCursos gestorC = new GestorCursos();
+        gestorC.cargarCursosDesdeBD();
+        gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+        
+        
+        Integer cedula = Login_ventana.cedulaDocente;
+        //System.out.println(cedula);
+        
+        
+        //Precargamos tablaCursos
+        gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursos, cedula);
+        
+        
         this.setTitle("SDFA - Panel Docente");
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/logoPNG.png")).getImage());
     }
@@ -38,13 +64,35 @@ public class Docente_ventana extends javax.swing.JFrame {
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
-        pestaña0 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        pestaña0_Cursos = new javax.swing.JPanel();
         Docente_textoSeleccionarCursoEstudiantes = new javax.swing.JLabel();
         tabla4 = new javax.swing.JScrollPane();
         Docente_TablaCursos = new javax.swing.JTable();
-        pestaña1 = new javax.swing.JPanel();
+        Curso_crear_textoEstudiantes1 = new javax.swing.JLabel();
+        tabla6 = new javax.swing.JScrollPane();
+        Adscripto_tablaEstudiante = new javax.swing.JTable();
+        indicadorCurso = new javax.swing.JLabel();
+        pestaña1_Actividades = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        Actividad_textoSeleccionarCursoActividades = new javax.swing.JLabel();
+        tabla7 = new javax.swing.JScrollPane();
+        crearActividad_TablaCursos = new javax.swing.JTable();
+        Actividad_textoTipoActividad = new javax.swing.JLabel();
+        tabla8 = new javax.swing.JScrollPane();
+        CrearActividad_tablaEstudiantes = new javax.swing.JTable();
+        Actividad_crear_tipoActividad = new javax.swing.JComboBox<>();
+        Actividad_textoSeleccionarEstudianteActividad = new javax.swing.JLabel();
+        Actividad_textoFecha = new javax.swing.JLabel();
+        txtFecha = new com.toedter.calendar.JDateChooser();
+        Actividad_textoDescripcion = new javax.swing.JLabel();
+        Actividad_crear_botonAgregarActividad = new javax.swing.JButton();
+        Actividad_textoCalificacion = new javax.swing.JLabel();
+        Actividad_calificacion = new javax.swing.JTextField();
+        indicadorCurso2A = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        descripcionActividad = new javax.swing.JTextArea();
         pestaña2 = new javax.swing.JPanel();
         pestaña4 = new javax.swing.JPanel();
 
@@ -267,24 +315,111 @@ public class Docente_ventana extends javax.swing.JFrame {
 
         panelPestañas.addTab("intro", pestañaBienvenida);
 
-        pestaña0.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña0.setForeground(new java.awt.Color(0, 0, 0));
-        pestaña0.setToolTipText("");
-
-        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña0_Cursos.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña0_Cursos.setForeground(new java.awt.Color(0, 0, 0));
+        pestaña0_Cursos.setToolTipText("");
 
         Docente_textoSeleccionarCursoEstudiantes.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Docente_textoSeleccionarCursoEstudiantes.setForeground(new java.awt.Color(0, 0, 0));
-        Docente_textoSeleccionarCursoEstudiantes.setText("Seleccionar curso:");
+        Docente_textoSeleccionarCursoEstudiantes.setText("Mis cursos:");
 
         Docente_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Curso", "Asignatura", "Cédula Docente", "Nombre Docente", "Apellido Docente"
+                "Curso", "Asignatura"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Docente_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla4.setViewportView(Docente_TablaCursos);
+
+        Curso_crear_textoEstudiantes1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Curso_crear_textoEstudiantes1.setForeground(new java.awt.Color(0, 0, 0));
+        Curso_crear_textoEstudiantes1.setText("Lista de estudiantes que integran:");
+
+        Adscripto_tablaEstudiante.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Edad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Adscripto_tablaEstudiante.getTableHeader().setReorderingAllowed(false);
+        tabla6.setViewportView(Adscripto_tablaEstudiante);
+
+        indicadorCurso.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        indicadorCurso.setForeground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout pestaña0_CursosLayout = new javax.swing.GroupLayout(pestaña0_Cursos);
+        pestaña0_Cursos.setLayout(pestaña0_CursosLayout);
+        pestaña0_CursosLayout.setHorizontalGroup(
+            pestaña0_CursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña0_CursosLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(pestaña0_CursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pestaña0_CursosLayout.createSequentialGroup()
+                        .addComponent(Curso_crear_textoEstudiantes1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(indicadorCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tabla4, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
+                    .addComponent(Docente_textoSeleccionarCursoEstudiantes)
+                    .addComponent(tabla6))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        pestaña0_CursosLayout.setVerticalGroup(
+            pestaña0_CursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña0_CursosLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(Docente_textoSeleccionarCursoEstudiantes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabla4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pestaña0_CursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pestaña0_CursosLayout.createSequentialGroup()
+                        .addComponent(Curso_crear_textoEstudiantes1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tabla6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(indicadorCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        panelPestañas.addTab("tab0", pestaña0_Cursos);
+
+        pestaña1_Actividades.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña1_Actividades.setForeground(new java.awt.Color(0, 0, 0));
+
+        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        Actividad_textoSeleccionarCursoActividades.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarCursoActividades.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarCursoActividades.setText("Seleccionar curso:");
+
+        crearActividad_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura", "Cédula Docente", "Nombre", "Apellido"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -295,64 +430,188 @@ public class Docente_ventana extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Docente_TablaCursos.getTableHeader().setReorderingAllowed(false);
-        tabla4.setViewportView(Docente_TablaCursos);
+        crearActividad_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla7.setViewportView(crearActividad_TablaCursos);
+
+        Actividad_textoTipoActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoTipoActividad.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoTipoActividad.setText("Tipo ");
+
+        CrearActividad_tablaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Edad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CrearActividad_tablaEstudiantes.getTableHeader().setReorderingAllowed(false);
+        tabla8.setViewportView(CrearActividad_tablaEstudiantes);
+
+        Actividad_crear_tipoActividad.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Actividad_crear_tipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actividad", "Evaluación", "Orales" }));
+        Actividad_crear_tipoActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Actividad_crear_tipoActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_crear_tipoActividadActionPerformed(evt);
+            }
+        });
+
+        Actividad_textoSeleccionarEstudianteActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarEstudianteActividad.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarEstudianteActividad.setText("Seleccionar un estudiante:");
+
+        Actividad_textoFecha.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoFecha.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoFecha.setText("Fecha");
+
+        txtFecha.setDateFormatString("yyyy-MM-dd");
+
+        Actividad_textoDescripcion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoDescripcion.setText("Descripción");
+
+        Actividad_crear_botonAgregarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_crear_botonAgregarActividad.setText("Agregar");
+        Actividad_crear_botonAgregarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_crear_botonAgregarActividadActionPerformed(evt);
+            }
+        });
+
+        Actividad_textoCalificacion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoCalificacion.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoCalificacion.setText("Calificación");
+
+        Actividad_calificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_calificacionActionPerformed(evt);
+            }
+        });
+
+        indicadorCurso2A.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        indicadorCurso2A.setForeground(new java.awt.Color(102, 102, 102));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        descripcionActividad.setColumns(20);
+        descripcionActividad.setLineWrap(true);
+        descripcionActividad.setRows(5);
+        jScrollPane3.setViewportView(descripcionActividad);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Docente_textoSeleccionarCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tabla4, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoSeleccionarEstudianteActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(indicadorCurso2A, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(72, 72, 72)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(127, 127, 127)
+                                    .addComponent(jScrollPane3))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(89, 89, 89)
+                                        .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoSeleccionarCursoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Docente_textoSeleccionarCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Actividad_textoSeleccionarCursoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabla4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Actividad_textoSeleccionarEstudianteActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(indicadorCurso2A, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tabla8, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 11, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5))))
         );
 
-        jTabbedPane1.addTab("Cursos", jPanel1);
+        jTabbedPane1.addTab("Crear Actividad", jPanel1);
 
-        javax.swing.GroupLayout pestaña0Layout = new javax.swing.GroupLayout(pestaña0);
-        pestaña0.setLayout(pestaña0Layout);
-        pestaña0Layout.setHorizontalGroup(
-            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pestaña0Layout.createSequentialGroup()
+        javax.swing.GroupLayout pestaña1_ActividadesLayout = new javax.swing.GroupLayout(pestaña1_Actividades);
+        pestaña1_Actividades.setLayout(pestaña1_ActividadesLayout);
+        pestaña1_ActividadesLayout.setHorizontalGroup(
+            pestaña1_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña1_ActividadesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1))
         );
-        pestaña0Layout.setVerticalGroup(
-            pestaña0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña0Layout.createSequentialGroup()
+        pestaña1_ActividadesLayout.setVerticalGroup(
+            pestaña1_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1_ActividadesLayout.createSequentialGroup()
                 .addGap(0, 15, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelPestañas.addTab("tab0", pestaña0);
-
-        pestaña1.setBackground(new java.awt.Color(255, 255, 255));
-        pestaña1.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout pestaña1Layout = new javax.swing.GroupLayout(pestaña1);
-        pestaña1.setLayout(pestaña1Layout);
-        pestaña1Layout.setHorizontalGroup(
-            pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
-        );
-        pestaña1Layout.setVerticalGroup(
-            pestaña1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
-        );
-
-        panelPestañas.addTab("tab1", pestaña1);
+        panelPestañas.addTab("tab1", pestaña1_Actividades);
 
         pestaña2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -504,6 +763,49 @@ public class Docente_ventana extends javax.swing.JFrame {
         cambiarEstadoBoton(botonActividades, false);
         cambiarEstadoBoton(botonClases, false);
     }//GEN-LAST:event_botonCursosMouseClicked
+
+    private void Actividad_crear_tipoActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_tipoActividadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_crear_tipoActividadActionPerformed
+
+    private void Actividad_crear_botonAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonAgregarActividadActionPerformed
+        Integer estudianteSeleccionado = this.Docente_estudianteSeleccionadoAgregar_Actividad;
+        String tipo = Actividad_crear_tipoActividad.getSelectedItem().toString();
+        java.util.Date fechaUtil = txtFecha.getDate();
+        String descripcion = descripcionActividad.getText();
+        String calificacionTexto = Actividad_calificacion.getText();
+
+        if (estudianteSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un estudiante.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (fechaUtil == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (calificacionTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una calificación.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                float calificacion = Float.parseFloat(calificacionTexto);
+
+                // Verifica que la calificación esté en el rango válido (1 - 12)
+                if (calificacion >= 1 && calificacion <= 12) {
+                    // Si llegas a este punto, todos los campos están completos y la calificación está dentro del rango válido.
+                    GestorActividades gestorAct = new GestorActividades();
+                    gestorAct.agregarActividad(estudianteSeleccionado.intValue(), tipo, descripcion, calificacion, new java.sql.Date(fechaUtil.getTime()));
+
+                    //gestorAct.cargarTablaActividades_porEstudiantes(estudianteSeleccionado.intValue(), modificarActividad_TablaActividades); //Refresco tabla actividades
+                } else {
+                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_Actividad_crear_botonAgregarActividadActionPerformed
+
+    private void Actividad_calificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_calificacionActionPerformed
      
     //Bienvenida al usuario mostrando el cargo, nombre y apellido
     public void bienvenidaUsuario(String nombreyapellidoUsuario) {
@@ -511,10 +813,76 @@ public class Docente_ventana extends javax.swing.JFrame {
     }
 
     
+//Curso: "Ver Estudiantes" - PERMITE SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+    private void MouseListenerSeleccionarCurso_verEstudiantes_Curso() {
+        Docente_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = Docente_TablaCursos.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
+                    Docente_cursoSeleccionadoAgregarEstudiante_Curso = Docente_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
+                    Docente_cursoSeleccionadoAgregarEstudiante_Asignatura = Docente_TablaCursos.getValueAt(filaSeleccionada, 1).toString();                    
+                    //Tomo curso y asignatura de Curso_tablaCursoEstudiantes, le paso los valores, convierto el cursoID y completo la tabla tablaEstudiante_Quitar con estudiantes agregados a ese cursoEspecifico.
+                    String curso = Docente_cursoSeleccionadoAgregarEstudiante_Curso;
+                    String asignatura = Docente_cursoSeleccionadoAgregarEstudiante_Asignatura;
+                    //Buscar curso por ID
+                    GestorCursos gestorC = new GestorCursos();
+                    gestorC.cargarCursosDesdeBD();
+                    Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);                   
+                    //Refresco tabla de Estudiantes (quitar) con los estudiantes actuales en ese curso
+                    GestorEstudiantes gestorE = new GestorEstudiantes();
+                    gestorE.cargarTablaEstudiantesCursoEspecifico_Simple(cursoID, Adscripto_tablaEstudiante);
+                    //Indicador de Curso y Asignatura Seleccionado.
+                    indicadorCurso.setText(curso+" "+asignatura);
+                }
+            }
+        });
+    }    
+
+//Actividades: "Crear Actividad", SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+    private void MouseListenerSeleccionarCurso_verEstudiantes_Actividades() {
+        crearActividad_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = crearActividad_TablaCursos.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
+                    Docente_cursoSeleccionadoAgregarActividad_Curso = crearActividad_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
+                    Docente_cursoSeleccionadoAgregarActividad_Asignatura = crearActividad_TablaCursos.getValueAt(filaSeleccionada, 1).toString(); 
+                    //Tomo curso y asignatura de Curso_tablaCursoEstudiantes, le paso los valores, convierto el cursoID y completo la tabla tablaEstudiante_Quitar con estudiantes agregados a ese cursoEspecifico.
+                    String curso = Docente_cursoSeleccionadoAgregarActividad_Curso;
+                    String asignatura = Docente_cursoSeleccionadoAgregarActividad_Asignatura;
+                    //Buscar curso por ID
+                    GestorCursos gestorC = new GestorCursos();
+                    gestorC.cargarCursosDesdeBD();
+                    Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);
+                    //Refresco la tabla tablaEstudiante_enCurso con los Estudiantes cargados a ese Curso.
+                    GestorEstudiantes gestorE = new GestorEstudiantes();
+                    gestorE.cargarTablaEstudiantesCursoEspecifico_Simple(cursoID, CrearActividad_tablaEstudiantes);
+                    //Indicador de Curso y Asignatura Seleccionado.
+                    indicadorCurso2A.setText(curso+" "+asignatura);
+                }
+            }
+        });
+    }        
+
+//Actividades: "Crear actividad" - SELECCIONAR UN ESTUDIANTE PARA USARLO EN EL BOTON AGREGAR ACTIVIDAD
+    private void MouseListenerSeleccionarEstudiantes_crearActividad() {
+        CrearActividad_tablaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = CrearActividad_tablaEstudiantes.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    Object valorCelda = CrearActividad_tablaEstudiantes.getValueAt(filaSeleccionada, 0);
+                    if (valorCelda != null) {
+                        Docente_estudianteSeleccionadoAgregar_Actividad = Integer.parseInt(valorCelda.toString());
+                    }
+                }
+            }
+        });
+    }         
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -559,6 +927,18 @@ public class Docente_ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Actividad_calificacion;
+    private javax.swing.JButton Actividad_crear_botonAgregarActividad;
+    private javax.swing.JComboBox<String> Actividad_crear_tipoActividad;
+    private javax.swing.JLabel Actividad_textoCalificacion;
+    private javax.swing.JLabel Actividad_textoDescripcion;
+    private javax.swing.JLabel Actividad_textoFecha;
+    private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades;
+    private javax.swing.JLabel Actividad_textoSeleccionarEstudianteActividad;
+    private javax.swing.JLabel Actividad_textoTipoActividad;
+    private javax.swing.JTable Adscripto_tablaEstudiante;
+    private javax.swing.JTable CrearActividad_tablaEstudiantes;
+    private javax.swing.JLabel Curso_crear_textoEstudiantes1;
     private javax.swing.JTable Docente_TablaCursos;
     private javax.swing.JLabel Docente_textoSeleccionarCursoEstudiantes;
     private javax.swing.JPanel banner;
@@ -567,18 +947,28 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonClases;
     private javax.swing.JButton botonCursos;
+    private javax.swing.JTable crearActividad_TablaCursos;
+    private javax.swing.JTextArea descripcionActividad;
+    private javax.swing.JLabel indicadorCurso;
+    private javax.swing.JLabel indicadorCurso2A;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel logoSDFA;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
-    private javax.swing.JPanel pestaña0;
-    private javax.swing.JPanel pestaña1;
+    private javax.swing.JPanel pestaña0_Cursos;
+    private javax.swing.JPanel pestaña1_Actividades;
     private javax.swing.JPanel pestaña2;
     private javax.swing.JPanel pestaña4;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
     private javax.swing.JScrollPane tabla4;
+    private javax.swing.JScrollPane tabla6;
+    private javax.swing.JScrollPane tabla7;
+    private javax.swing.JScrollPane tabla8;
+    private com.toedter.calendar.JDateChooser txtFecha;
     // End of variables declaration//GEN-END:variables
 }

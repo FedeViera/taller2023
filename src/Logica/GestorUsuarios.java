@@ -58,6 +58,18 @@ public class GestorUsuarios {
 
         return cargo;
     }
+    
+//OBTENER CEDULA
+    public Integer obtenerCedula(String usuario, String contrasenia) {
+        Integer cedula = null;
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        Usuario cedulaUsuario = persistencia.mapearUsuario(usuario, contrasenia);
+
+        if (cedulaUsuario != null) {
+            cedula = cedulaUsuario.getCedula();
+        }
+        return cedula;
+    }    
 
 
 //OBTENER NOMBRE Y APELLIDO    

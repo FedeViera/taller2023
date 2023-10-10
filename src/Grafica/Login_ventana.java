@@ -14,6 +14,7 @@ import javax.swing.JTable;
 public class Login_ventana extends javax.swing.JFrame {
 
     private JTable tablaCuentas;
+    public static Integer cedulaDocente;
     
     public Login_ventana() {
         initComponents();
@@ -215,6 +216,8 @@ public class Login_ventana extends javax.swing.JFrame {
             // Obtener el cargo del usuario
             String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
             String nombreyApellido = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+            
+            cedulaDocente = control.obtenerCedula(nickUsuario, contraseniaUsuario);
 
             if (cargo != null) {
                 int x = getLocation().x;
@@ -229,7 +232,7 @@ public class Login_ventana extends javax.swing.JFrame {
                         admin.setLocationRelativeTo(null);
                         admin.setLocation(x, y);
                         break;
-                    case "Docente":
+                    case "Adscripto":
                         // Abre la ventana de Adscripto
                         Adscripto_ventana adscripto = new Adscripto_ventana();
                         adscripto.bienvenidaUsuario(nombreyApellido);
@@ -237,7 +240,7 @@ public class Login_ventana extends javax.swing.JFrame {
                         adscripto.setLocationRelativeTo(null);
                         adscripto.setLocation(x, y);
                         break;
-                    case "Adscripto":
+                    case "Docente":
                         // Abre la ventana de Docente
                         Docente_ventana docente = new Docente_ventana();
                         docente.bienvenidaUsuario(nombreyApellido);

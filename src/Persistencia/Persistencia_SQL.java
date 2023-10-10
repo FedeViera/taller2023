@@ -527,7 +527,42 @@ public class Persistencia_SQL {
         }
         return listaCursos;
     }
-    
+
+//MAPEAR CURSOS
+    public List<Curso> mapearCursosDeDocenteEspecifico(int cedula) {
+        List<Curso> listaCursosDoc = new ArrayList<>();
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        if (conn != null) {
+            try {
+                String query =  "SELECT c.id_curso, c.claseYgrupo, asignatura\n" +
+                                "FROM curso c\n" +
+                                "INNER JOIN curso_has_docente cd ON c.id_curso = cd.curso_id_curso\n" +
+                                "WHERE cd.docente_usuario_cedula = (?);";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, cedula);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Curso curso = new Curso();
+                    curso.setId_curso(resultSet.getInt("id_curso"));
+                    curso.setClaseYgrupo(resultSet.getString("claseYgrupo"));
+                    curso.setAsignatura(resultSet.getString("asignatura"));
+
+                    listaCursosDoc.add(curso);
+                }
+                resultSet.close();
+                preparedStatement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Ocurrió un error al mapear los cursos.");
+            }
+        }
+        return listaCursosDoc;
+    }    
     
 //AGREGAR CURSO
     public void agregarCurso(Curso curso) {
