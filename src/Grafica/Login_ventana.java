@@ -249,7 +249,6 @@ public class Login_ventana extends javax.swing.JFrame {
                         docente.setLocation(x, y);
                         break;
                     default:
-                        // Cargo desconocido o inválido
                         JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                 }

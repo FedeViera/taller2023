@@ -96,7 +96,6 @@ public class Administrador_ventana extends javax.swing.JFrame
         gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
         gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
         gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
-        gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
         gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
         gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
         gestorC.cargarTablaCursosFull(eliminarClase_TablaCursos);

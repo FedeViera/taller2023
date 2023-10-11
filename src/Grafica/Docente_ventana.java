@@ -5,9 +5,14 @@ import Logica.GestorActividades;
 import Logica.GestorCursos;
 import Logica.GestorEstudiantes;
 import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Docente_ventana extends javax.swing.JFrame {
 
@@ -17,6 +22,9 @@ public class Docente_ventana extends javax.swing.JFrame {
     private String Docente_cursoSeleccionadoAgregarEstudiante_Curso, Docente_cursoSeleccionadoAgregarEstudiante_Asignatura;
     private String Docente_cursoSeleccionadoAgregarActividad_Curso, Docente_cursoSeleccionadoAgregarActividad_Asignatura;
     private Integer Docente_estudianteSeleccionadoAgregar_Actividad;
+    private String Docente_cursoSeleccionadoModificarActividad_Curso, Docente_cursoSeleccionadoModificarActividad_Asignatura;
+    private Integer Docente_estudianteSeleccionado_cargarActividades;
+    private Integer Docente_idActividad_modificarActividad;
     
     public Docente_ventana() {
         initComponents();
@@ -25,10 +33,15 @@ public class Docente_ventana extends javax.swing.JFrame {
         MouseListenerSeleccionarCurso_verEstudiantes_Curso();
         MouseListenerSeleccionarCurso_verEstudiantes_Actividades();
         MouseListenerSeleccionarEstudiantes_crearActividad();
+        MouseListenerSeleccionarEstudiantes_ModificarActividad();
+        MouseListenerSeleccionarEstudiantes_verActividades();
+        MouseListenerSeleccionarActividades();
         
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
         gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+        gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
+        
         
         
         Integer cedula = Login_ventana.cedulaDocente;
@@ -73,8 +86,8 @@ public class Docente_ventana extends javax.swing.JFrame {
         Adscripto_tablaEstudiante = new javax.swing.JTable();
         indicadorCurso = new javax.swing.JLabel();
         pestaña1_Actividades = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        opcionesActividades = new javax.swing.JTabbedPane();
+        crearActividad = new javax.swing.JPanel();
         Actividad_textoSeleccionarCursoActividades = new javax.swing.JLabel();
         tabla7 = new javax.swing.JScrollPane();
         crearActividad_TablaCursos = new javax.swing.JTable();
@@ -93,6 +106,36 @@ public class Docente_ventana extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
         descripcionActividad = new javax.swing.JTextArea();
+        modificarActividad = new javax.swing.JPanel();
+        tabla9 = new javax.swing.JScrollPane();
+        modificarActividad_TablaCursos = new javax.swing.JTable();
+        tabla10 = new javax.swing.JScrollPane();
+        modificarActividad_TablaEstudiantes = new javax.swing.JTable();
+        tabla11 = new javax.swing.JScrollPane();
+        modificarActividad_TablaActividades = new javax.swing.JTable();
+        Actividad_crear_botonModificarActividad = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        Actividad_textoSeleccionarCursoActividades_modificar = new javax.swing.JLabel();
+        Actividad_textoSeleccionarActividad_modificar = new javax.swing.JLabel();
+        Actividad_textoSeleccionarEstudianteActividad_modificar1 = new javax.swing.JLabel();
+        Actividad_textoTipoActividad1 = new javax.swing.JLabel();
+        Actividad_textoFecha1 = new javax.swing.JLabel();
+        txtFecha_modificar = new com.toedter.calendar.JDateChooser();
+        Actividad_textoDescripcion1 = new javax.swing.JLabel();
+        Actividad_crear_botonEliminarActividad = new javax.swing.JButton();
+        Actividad_calificacion_modificar = new javax.swing.JTextField();
+        Actividad_textoCalificacion_miodificar = new javax.swing.JLabel();
+        Actividad_modificar_tipoActividad = new javax.swing.JComboBox<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        DescripcionActividad_modificar = new javax.swing.JTextArea();
+        verActividades = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCalificaciones = new javax.swing.JTable();
+        Actividad_textoSeleccionarCursoActividades_calificaciones = new javax.swing.JLabel();
+        tabla12 = new javax.swing.JScrollPane();
+        calificaciones_TablaCursos = new javax.swing.JTable();
+        Actividad_textoSeleccionarCursoActividades_calificaciones1 = new javax.swing.JLabel();
+        indicadorCusoB = new javax.swing.JLabel();
         pestaña2 = new javax.swing.JPanel();
         pestaña4 = new javax.swing.JPanel();
 
@@ -406,9 +449,9 @@ public class Docente_ventana extends javax.swing.JFrame {
         pestaña1_Actividades.setBackground(new java.awt.Color(255, 255, 255));
         pestaña1_Actividades.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        opcionesActividades.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        crearActividad.setBackground(new java.awt.Color(255, 255, 255));
 
         Actividad_textoSeleccionarCursoActividades.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Actividad_textoSeleccionarCursoActividades.setForeground(new java.awt.Color(0, 0, 0));
@@ -507,62 +550,62 @@ public class Docente_ventana extends javax.swing.JFrame {
         descripcionActividad.setRows(5);
         jScrollPane3.setViewportView(descripcionActividad);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout crearActividadLayout = new javax.swing.GroupLayout(crearActividad);
+        crearActividad.setLayout(crearActividadLayout);
+        crearActividadLayout.setHorizontalGroup(
+            crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearActividadLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearActividadLayout.createSequentialGroup()
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Actividad_textoSeleccionarEstudianteActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(indicadorCurso2A, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tabla8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(crearActividadLayout.createSequentialGroup()
+                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(72, 72, 72)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(crearActividadLayout.createSequentialGroup()
                                     .addGap(127, 127, 127)
                                     .addComponent(jScrollPane3))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(crearActividadLayout.createSequentialGroup()
                                         .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(89, 89, 89)
                                         .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(23, 23, 23))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearActividadLayout.createSequentialGroup()
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Actividad_textoSeleccionarCursoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        crearActividadLayout.setVerticalGroup(
+            crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crearActividadLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Actividad_textoSeleccionarCursoActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabla7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearActividadLayout.createSequentialGroup()
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(crearActividadLayout.createSequentialGroup()
                                 .addComponent(Actividad_textoSeleccionarEstudianteActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(indicadorCurso2A, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -570,31 +613,338 @@ public class Docente_ventana extends javax.swing.JFrame {
                                 .addComponent(tabla8, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 11, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(crearActividadLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Actividad_crear_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Actividad_textoTipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Actividad_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(crearActividadLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Actividad_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(crearActividadLayout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(crearActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Actividad_calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Actividad_textoCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Actividad_crear_botonAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(5, 5, 5))))
         );
 
-        jTabbedPane1.addTab("Crear Actividad", jPanel1);
+        opcionesActividades.addTab("Crear Actividad", crearActividad);
+
+        modificarActividad.setBackground(new java.awt.Color(255, 255, 255));
+
+        modificarActividad_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura", "Cédula", "Nombre", "Apellido"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        modificarActividad_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla9.setViewportView(modificarActividad_TablaCursos);
+
+        modificarActividad_TablaEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Edad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        modificarActividad_TablaEstudiantes.getTableHeader().setReorderingAllowed(false);
+        tabla10.setViewportView(modificarActividad_TablaEstudiantes);
+
+        modificarActividad_TablaActividades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Estudiante", "Tipo", "Descripción", "Calificación", "Fecha"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        modificarActividad_TablaActividades.getTableHeader().setReorderingAllowed(false);
+        tabla11.setViewportView(modificarActividad_TablaActividades);
+        if (modificarActividad_TablaActividades.getColumnModel().getColumnCount() > 0) {
+            modificarActividad_TablaActividades.getColumnModel().getColumn(0).setPreferredWidth(25);
+        }
+
+        Actividad_crear_botonModificarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_crear_botonModificarActividad.setText("Modificar");
+        Actividad_crear_botonModificarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_crear_botonModificarActividadActionPerformed(evt);
+            }
+        });
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        Actividad_textoSeleccionarCursoActividades_modificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarCursoActividades_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarCursoActividades_modificar.setText("Seleccionar curso:");
+
+        Actividad_textoSeleccionarActividad_modificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarActividad_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarActividad_modificar.setText("Seleccionar actividad:");
+
+        Actividad_textoSeleccionarEstudianteActividad_modificar1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarEstudianteActividad_modificar1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarEstudianteActividad_modificar1.setText("Seleccionar un estudiante:");
+
+        Actividad_textoTipoActividad1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoTipoActividad1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoTipoActividad1.setText("Tipo ");
+
+        Actividad_textoFecha1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoFecha1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoFecha1.setText("Fecha");
+
+        txtFecha_modificar.setDateFormatString("yyyy-MM-dd");
+
+        Actividad_textoDescripcion1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoDescripcion1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoDescripcion1.setText("Descripción");
+
+        Actividad_crear_botonEliminarActividad.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_crear_botonEliminarActividad.setText("Eliminar");
+        Actividad_crear_botonEliminarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_crear_botonEliminarActividadActionPerformed(evt);
+            }
+        });
+
+        Actividad_calificacion_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_calificacion_modificarActionPerformed(evt);
+            }
+        });
+
+        Actividad_textoCalificacion_miodificar.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoCalificacion_miodificar.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoCalificacion_miodificar.setText("Calificación");
+
+        Actividad_modificar_tipoActividad.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Actividad_modificar_tipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actividad", "Evaluación", "Orales" }));
+        Actividad_modificar_tipoActividad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Actividad_modificar_tipoActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Actividad_modificar_tipoActividadActionPerformed(evt);
+            }
+        });
+
+        DescripcionActividad_modificar.setColumns(20);
+        DescripcionActividad_modificar.setLineWrap(true);
+        DescripcionActividad_modificar.setRows(5);
+        jScrollPane4.setViewportView(DescripcionActividad_modificar);
+
+        javax.swing.GroupLayout modificarActividadLayout = new javax.swing.GroupLayout(modificarActividad);
+        modificarActividad.setLayout(modificarActividadLayout);
+        modificarActividadLayout.setHorizontalGroup(
+            modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modificarActividadLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tabla10, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabla9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Actividad_textoSeleccionarCursoActividades_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Actividad_textoSeleccionarEstudianteActividad_modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoSeleccionarActividad_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(modificarActividadLayout.createSequentialGroup()
+                                .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(modificarActividadLayout.createSequentialGroup()
+                                .addComponent(Actividad_textoCalificacion_miodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Actividad_calificacion_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(modificarActividadLayout.createSequentialGroup()
+                                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Actividad_textoFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Actividad_textoTipoActividad1)
+                                    .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modificarActividadLayout.createSequentialGroup()
+                                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(Actividad_modificar_tipoActividad, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE)
+                                            .addComponent(txtFecha_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        modificarActividadLayout.setVerticalGroup(
+            modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modificarActividadLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Actividad_textoSeleccionarCursoActividades_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Actividad_textoSeleccionarEstudianteActividad_modificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabla10, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+            .addGroup(modificarActividadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addComponent(jSeparator3)
+                        .addContainerGap())
+                    .addGroup(modificarActividadLayout.createSequentialGroup()
+                        .addComponent(Actividad_textoSeleccionarActividad_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tabla11, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_textoTipoActividad1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_modificar_tipoActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFecha_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Actividad_textoDescripcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_calificacion_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_textoCalificacion_miodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(modificarActividadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Actividad_crear_botonEliminarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Actividad_crear_botonModificarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
+        );
+
+        opcionesActividades.addTab("Modificar Actividad", modificarActividad);
+
+        verActividades.setBackground(new java.awt.Color(255, 255, 255));
+
+        tablaCalificaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Calificaciones"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaCalificaciones);
+
+        Actividad_textoSeleccionarCursoActividades_calificaciones.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarCursoActividades_calificaciones.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarCursoActividades_calificaciones.setText("Seleccionar curso:");
+
+        calificaciones_TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura", "Cédula", "Nombre", "Apellido"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        calificaciones_TablaCursos.getTableHeader().setReorderingAllowed(false);
+        tabla12.setViewportView(calificaciones_TablaCursos);
+
+        Actividad_textoSeleccionarCursoActividades_calificaciones1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Actividad_textoSeleccionarCursoActividades_calificaciones1.setForeground(new java.awt.Color(0, 0, 0));
+        Actividad_textoSeleccionarCursoActividades_calificaciones1.setText("Calificaciones de:");
+
+        indicadorCusoB.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        indicadorCusoB.setForeground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout verActividadesLayout = new javax.swing.GroupLayout(verActividades);
+        verActividades.setLayout(verActividadesLayout);
+        verActividadesLayout.setHorizontalGroup(
+            verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(verActividadesLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(verActividadesLayout.createSequentialGroup()
+                        .addComponent(Actividad_textoSeleccionarCursoActividades_calificaciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(indicadorCusoB, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tabla12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Actividad_textoSeleccionarCursoActividades_calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        verActividadesLayout.setVerticalGroup(
+            verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(verActividadesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Actividad_textoSeleccionarCursoActividades_calificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabla12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(verActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Actividad_textoSeleccionarCursoActividades_calificaciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(indicadorCusoB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+
+        opcionesActividades.addTab("Calificaciones", verActividades);
 
         javax.swing.GroupLayout pestaña1_ActividadesLayout = new javax.swing.GroupLayout(pestaña1_Actividades);
         pestaña1_Actividades.setLayout(pestaña1_ActividadesLayout);
@@ -602,13 +952,13 @@ public class Docente_ventana extends javax.swing.JFrame {
             pestaña1_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pestaña1_ActividadesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1))
+                .addComponent(opcionesActividades))
         );
         pestaña1_ActividadesLayout.setVerticalGroup(
             pestaña1_ActividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña1_ActividadesLayout.createSequentialGroup()
                 .addGap(0, 15, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(opcionesActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelPestañas.addTab("tab1", pestaña1_Actividades);
@@ -806,6 +1156,68 @@ public class Docente_ventana extends javax.swing.JFrame {
     private void Actividad_calificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Actividad_calificacionActionPerformed
+
+    private void Actividad_crear_botonModificarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonModificarActividadActionPerformed
+        Integer estudianteSeleccionado = this.Docente_estudianteSeleccionadoAgregar_Actividad;
+        Integer idActividad = Docente_idActividad_modificarActividad;
+        String nuevoTipo = Actividad_modificar_tipoActividad.getSelectedItem().toString();
+        String nuevaDescripcion = DescripcionActividad_modificar.getText();
+        String calificacionTexto = Actividad_calificacion_modificar.getText();
+        calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
+
+        if (idActividad != null && !nuevaDescripcion.isEmpty() && !calificacionTexto.isEmpty() && txtFecha_modificar.getDate() != null) {
+            try {
+                float nuevaCalificacion = Float.parseFloat(calificacionTexto);
+
+                // Verifica que la calificación esté en el rango válido (1 - 12)
+                if (nuevaCalificacion >= 1 && nuevaCalificacion <= 12) {
+                    //Conversión de util.Date a sql.Date
+                    java.util.Date fechaUtil = txtFecha_modificar.getDate();
+                    java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
+
+                    GestorActividades gestorAct = new GestorActividades();
+                    gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
+
+                    Integer idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+                } else {
+                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad a modificar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_Actividad_crear_botonModificarActividadActionPerformed
+
+    private void Actividad_crear_botonEliminarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonEliminarActividadActionPerformed
+        Integer estudianteSeleccionado = this.Docente_estudianteSeleccionadoAgregar_Actividad;
+        if(Docente_idActividad_modificarActividad != null){
+            int respuesta = JOptionPane.showConfirmDialog(
+                null,
+                "¿Está seguro que desea eliminar la Actividad "+Docente_idActividad_modificarActividad+" ?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION){
+                GestorActividades gestorAct = new GestorActividades();
+                gestorAct.eliminarActividad(Docente_idActividad_modificarActividad); //Eliminamos actividad
+                Integer idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
+                gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+            }else{
+                System.out.println("Eliminación cancelada.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor, selecione una actividad a eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_Actividad_crear_botonEliminarActividadActionPerformed
+
+    private void Actividad_calificacion_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_calificacion_modificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_calificacion_modificarActionPerformed
+
+    private void Actividad_modificar_tipoActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_modificar_tipoActividadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Actividad_modificar_tipoActividadActionPerformed
      
     //Bienvenida al usuario mostrando el cargo, nombre y apellido
     public void bienvenidaUsuario(String nombreyapellidoUsuario) {
@@ -883,6 +1295,92 @@ public class Docente_ventana extends javax.swing.JFrame {
         });
     }         
     
+//Gest. Act: "Modificar Actividad" - SELECCIONAR UN CURSO Y VER LOS ESTUDIANTES QUE CONFORMAN ESE GRUPO SELECCIONADO 
+    private void MouseListenerSeleccionarEstudiantes_ModificarActividad() {
+        modificarActividad_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = modificarActividad_TablaCursos.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
+                    Docente_cursoSeleccionadoModificarActividad_Curso = modificarActividad_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
+                    Docente_cursoSeleccionadoModificarActividad_Asignatura = modificarActividad_TablaCursos.getValueAt(filaSeleccionada, 1).toString(); 
+                    //Tomo curso y asignatura de Curso_tablaCursoEstudiantes, le paso los valores, convierto el cursoID y completo la tabla tablaEstudiante_Quitar con estudiantes agregados a ese cursoEspecifico.
+                    String curso = Docente_cursoSeleccionadoModificarActividad_Curso;
+                    String asignatura = Docente_cursoSeleccionadoModificarActividad_Asignatura;
+                    //Buscar curso por ID
+                    GestorCursos gestorC = new GestorCursos();
+                    gestorC.cargarCursosDesdeBD();
+                    Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);
+                    //Refresco la tabla tablaEstudiante_enCurso con los Estudiantes cargados a ese Curso.
+                    GestorEstudiantes gestorE = new GestorEstudiantes();
+                    gestorE.cargarTablaEstudiantesCursoEspecifico_Simple(cursoID, modificarActividad_TablaEstudiantes);
+                    
+                    DefaultTableModel model = (DefaultTableModel) modificarActividad_TablaActividades.getModel();
+                    model.setRowCount(0);
+                    
+                    //Indicador de Curso y Asignatura Seleccionado.
+                    indicadorCurso2A.setText(curso+" "+asignatura);
+                }
+            }
+        });
+    }         
+ 
+//Gest. Act: "Modificar Actividad" - SELECCIONAR UN ESTUDIANTE, CARGAR SUS ACTIVIDADES
+    private void MouseListenerSeleccionarEstudiantes_verActividades() {
+        modificarActividad_TablaEstudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = modificarActividad_TablaEstudiantes.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    Docente_estudianteSeleccionado_cargarActividades = Integer.parseInt(modificarActividad_TablaEstudiantes.getValueAt(filaSeleccionada, 0).toString());
+                    int idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
+                    GestorActividades gestorAct = new GestorActividades();
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades);
+                }
+            }
+        });
+    }     
+    
+//Gest. Act: "Modificar Actividad" - SELECCIONAR UNA ACTIVIDAD PARA MODIFICAR O ELIMINAR
+    private void MouseListenerSeleccionarActividades() {
+        modificarActividad_TablaActividades.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = modificarActividad_TablaActividades.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    Docente_idActividad_modificarActividad = Integer.parseInt(modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 0).toString());  
+                    String tipo = modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 2).toString();
+                    String descripcion = modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 3).toString(); 
+                    float calificacion = Float.parseFloat(modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 4).toString());
+                    String fecha = modificarActividad_TablaActividades.getValueAt(filaSeleccionada, 5).toString();
+                    
+                    Actividad_modificar_tipoActividad.setSelectedItem(tipo);
+                    DescripcionActividad_modificar.setText(descripcion);
+                    Actividad_calificacion_modificar.setText(String.valueOf(calificacion));
+                    
+                    try {
+                        // Creamos un objeto SimpleDateFormat para analizar la cadena de fecha
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date fechaDate = sdf.parse(fecha);
+                        // Convierte el objeto Date a un objeto Calendar
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fechaDate);
+                        // Configuramos el JCalendar con la fecha obtenida
+                        txtFecha_modificar.setDate(calendar.getTime());
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+    }    
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -928,17 +1426,31 @@ public class Docente_ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Actividad_calificacion;
+    private javax.swing.JTextField Actividad_calificacion_modificar;
     private javax.swing.JButton Actividad_crear_botonAgregarActividad;
+    private javax.swing.JButton Actividad_crear_botonEliminarActividad;
+    private javax.swing.JButton Actividad_crear_botonModificarActividad;
     private javax.swing.JComboBox<String> Actividad_crear_tipoActividad;
+    private javax.swing.JComboBox<String> Actividad_modificar_tipoActividad;
     private javax.swing.JLabel Actividad_textoCalificacion;
+    private javax.swing.JLabel Actividad_textoCalificacion_miodificar;
     private javax.swing.JLabel Actividad_textoDescripcion;
+    private javax.swing.JLabel Actividad_textoDescripcion1;
     private javax.swing.JLabel Actividad_textoFecha;
+    private javax.swing.JLabel Actividad_textoFecha1;
+    private javax.swing.JLabel Actividad_textoSeleccionarActividad_modificar;
     private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades;
+    private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades_calificaciones;
+    private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades_calificaciones1;
+    private javax.swing.JLabel Actividad_textoSeleccionarCursoActividades_modificar;
     private javax.swing.JLabel Actividad_textoSeleccionarEstudianteActividad;
+    private javax.swing.JLabel Actividad_textoSeleccionarEstudianteActividad_modificar1;
     private javax.swing.JLabel Actividad_textoTipoActividad;
+    private javax.swing.JLabel Actividad_textoTipoActividad1;
     private javax.swing.JTable Adscripto_tablaEstudiante;
     private javax.swing.JTable CrearActividad_tablaEstudiantes;
     private javax.swing.JLabel Curso_crear_textoEstudiantes1;
+    private javax.swing.JTextArea DescripcionActividad_modificar;
     private javax.swing.JTable Docente_TablaCursos;
     private javax.swing.JLabel Docente_textoSeleccionarCursoEstudiantes;
     private javax.swing.JPanel banner;
@@ -947,15 +1459,24 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonClases;
     private javax.swing.JButton botonCursos;
+    private javax.swing.JTable calificaciones_TablaCursos;
+    private javax.swing.JPanel crearActividad;
     private javax.swing.JTable crearActividad_TablaCursos;
     private javax.swing.JTextArea descripcionActividad;
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCurso2A;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel indicadorCusoB;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel logoSDFA;
+    private javax.swing.JPanel modificarActividad;
+    private javax.swing.JTable modificarActividad_TablaActividades;
+    private javax.swing.JTable modificarActividad_TablaCursos;
+    private javax.swing.JTable modificarActividad_TablaEstudiantes;
+    private javax.swing.JTabbedPane opcionesActividades;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
@@ -965,10 +1486,17 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JPanel pestaña4;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
+    private javax.swing.JScrollPane tabla10;
+    private javax.swing.JScrollPane tabla11;
+    private javax.swing.JScrollPane tabla12;
     private javax.swing.JScrollPane tabla4;
     private javax.swing.JScrollPane tabla6;
     private javax.swing.JScrollPane tabla7;
     private javax.swing.JScrollPane tabla8;
+    private javax.swing.JScrollPane tabla9;
+    private javax.swing.JTable tablaCalificaciones;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private com.toedter.calendar.JDateChooser txtFecha_modificar;
+    private javax.swing.JPanel verActividades;
     // End of variables declaration//GEN-END:variables
 }

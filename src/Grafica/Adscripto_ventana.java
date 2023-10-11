@@ -751,13 +751,11 @@ public class Adscripto_ventana extends javax.swing.JFrame {
                             .addGap(13, 13, 13)
                             .addGroup(pestaña4_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(Adscripto_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Adscripto_textoSeleccionarCursoClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(748, Short.MAX_VALUE))
-                        .addGroup(pestaña4_ClasesLayout.createSequentialGroup()
-                            .addGroup(pestaña4_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(tablaClase, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tabla14, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(23, Short.MAX_VALUE)))))
+                                .addComponent(Adscripto_textoSeleccionarCursoClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pestaña4_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tablaClase, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tabla14, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(23, Short.MAX_VALUE)))
         );
         pestaña4_ClasesLayout.setVerticalGroup(
             pestaña4_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
