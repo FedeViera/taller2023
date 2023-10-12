@@ -16,6 +16,10 @@ public class GestorClases {
     public GestorClases() {
         this.listaClases = new ArrayList<>();
     }
+    
+     public GestorClases(List<Clase> listaClases) {
+        this.listaClases = listaClases;
+    }
 
 //BUSCAR ADMINISTRADOR    
     public Clase buscarClase(int idClase) {
@@ -27,7 +31,7 @@ public class GestorClases {
         return null;
     }
     
-//ADMINISTRADOR EXISTE
+//CLASE EXISTE
     public boolean claseExiste(int idClase) {
         for (Clase clase : listaClases) {
             if (clase.getId_clase()== idClase) {
@@ -36,8 +40,19 @@ public class GestorClases {
         }
         return false;
     }
+
+//CLASE EXISTE CON FECHA
+    public boolean existeClaseConFecha(java.sql.Date fecha, Integer curso) {
+        Clase clase = new Clase();
+        clase.setId_curso(curso);
+        clase.setFecha(fecha);
+
+        Persistencia_SQL persistencia = new Persistencia_SQL();
+        return persistencia.fechaExiste(clase); // Devolver el resultado del método en la capa de persistencia.
+    }
+
     
-//LISTAR ADMINISTRADORES DESDE BD
+//LISTAR CLASES DESDE BD
     public List<Clase>  cargarClasesDesdeBD(Integer idCurso) {
         Persistencia_SQL persistencia = new Persistencia_SQL();
         listaClases = persistencia.mapearClasesEspecificos(idCurso);
@@ -121,17 +136,6 @@ public class GestorClases {
     }
     
     
-    
-/*
-//ELIMINAR ADMINISTRADOR (NO LO USAMOS POR AHORA, ELIMINAMOS DIRECTAMENTE CON USUARIO YA QUE TODOS LOS "CARGOS" SON USUARIOS)
-    public void eliminarAdministrador(Integer cedula, String cargo){
-        Administrador administrador = new Administrador();
-        administrador.setCedula(cedula);
-        administrador.setCargo(cargo);
-        
-        Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.eliminarUsuario(administrador.getCedula(), administrador.getCargo());    
-    }
-*/  
+
     
 }

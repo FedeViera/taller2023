@@ -1,9 +1,12 @@
 package Grafica;
 
+import Entidades.Clase;
 import Grafica.Login_ventana;
 import Logica.GestorActividades;
+import Logica.GestorClases;
 import Logica.GestorCursos;
 import Logica.GestorEstudiantes;
+import Persistencia.Persistencia_SQL;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Docente_ventana extends javax.swing.JFrame {
 
+    final Integer DebenDictar = 80;
     
     public static Integer cedulaDocente;
 
@@ -25,6 +29,10 @@ public class Docente_ventana extends javax.swing.JFrame {
     private String Docente_cursoSeleccionadoModificarActividad_Curso, Docente_cursoSeleccionadoModificarActividad_Asignatura;
     private Integer Docente_estudianteSeleccionado_cargarActividades;
     private Integer Docente_idActividad_modificarActividad;
+    private String Docente_cursoSeleccionadoActividad_Curso, Docente_cursoSeleccionadoActividad_Asignatura;
+    private String Docente_cursoSeleccionadoAgregarClase_Curso, Docente_cursoSeleccionadoAgregarClase_Asignatura;
+    private String Docente_cursoSeleccionadoEliminarClase_Curso, Docente_cursoSeleccionadoEliminarClase_Asignatura;
+    private Integer Docente_claseSeleccionadaEliminarClase_ID;
     
     public Docente_ventana() {
         initComponents();
@@ -36,20 +44,23 @@ public class Docente_ventana extends javax.swing.JFrame {
         MouseListenerSeleccionarEstudiantes_ModificarActividad();
         MouseListenerSeleccionarEstudiantes_verActividades();
         MouseListenerSeleccionarActividades();
+        MouseListenerSeleccionarEstudiantes_Calificaciones();
+        MouseListenerSeleccionarCurso_crearClase();
+        MouseListenerSeleccionarCurso_eliminarClase();
+        MouseListenerSeleccionarClase_eliminarClase();
         
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
         gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
         gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
-        
-        
+        gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
         
         Integer cedula = Login_ventana.cedulaDocente;
-        //System.out.println(cedula);
-        
         
         //Precargamos tablaCursos
         gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursos, cedula);
+        gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursosClase, cedula);
+        gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursosClase1, cedula);
         
         
         this.setTitle("SDFA - Panel Docente");
@@ -136,8 +147,30 @@ public class Docente_ventana extends javax.swing.JFrame {
         calificaciones_TablaCursos = new javax.swing.JTable();
         Actividad_textoSeleccionarCursoActividades_calificaciones1 = new javax.swing.JLabel();
         indicadorCusoB = new javax.swing.JLabel();
-        pestaña2 = new javax.swing.JPanel();
-        pestaña4 = new javax.swing.JPanel();
+        pestaña2_Clases = new javax.swing.JPanel();
+        opcionesClases = new javax.swing.JTabbedPane();
+        crearClase = new javax.swing.JPanel();
+        Docente_textoSeleccionarCursoEstudiantes1 = new javax.swing.JLabel();
+        tabla5 = new javax.swing.JScrollPane();
+        Docente_TablaCursosClase = new javax.swing.JTable();
+        Clase_textoFecha = new javax.swing.JLabel();
+        txtFecha_Clase = new com.toedter.calendar.JDateChooser();
+        ActividadClase_textoDescripcion = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        desarrolloClase = new javax.swing.JTextArea();
+        Clase_crear_botonCrearClase = new javax.swing.JButton();
+        eliminarClase = new javax.swing.JPanel();
+        tablaClase = new javax.swing.JScrollPane();
+        tablaClases = new javax.swing.JTable();
+        Clase_eliminar_botonEliminarClase = new javax.swing.JButton();
+        Clase_textoSeleccionarClases = new javax.swing.JLabel();
+        Clase_textoSeleccionarCursoClases1 = new javax.swing.JLabel();
+        numeroClasesDictadas = new javax.swing.JLabel();
+        clasesDictadas = new javax.swing.JLabel();
+        clasesNoDictadas = new javax.swing.JLabel();
+        numeroClasesNoDictadas = new javax.swing.JLabel();
+        tabla13 = new javax.swing.JScrollPane();
+        Docente_TablaCursosClase1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -880,6 +913,11 @@ public class Docente_ventana extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablaCalificaciones);
+        if (tablaCalificaciones.getColumnModel().getColumnCount() > 0) {
+            tablaCalificaciones.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tablaCalificaciones.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(700);
+        }
 
         Actividad_textoSeleccionarCursoActividades_calificaciones.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Actividad_textoSeleccionarCursoActividades_calificaciones.setForeground(new java.awt.Color(0, 0, 0));
@@ -963,35 +1001,250 @@ public class Docente_ventana extends javax.swing.JFrame {
 
         panelPestañas.addTab("tab1", pestaña1_Actividades);
 
-        pestaña2.setBackground(new java.awt.Color(255, 255, 255));
+        pestaña2_Clases.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pestaña2Layout = new javax.swing.GroupLayout(pestaña2);
-        pestaña2.setLayout(pestaña2Layout);
-        pestaña2Layout.setHorizontalGroup(
-            pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+        opcionesClases.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        crearClase.setBackground(new java.awt.Color(255, 255, 255));
+
+        Docente_textoSeleccionarCursoEstudiantes1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Docente_textoSeleccionarCursoEstudiantes1.setForeground(new java.awt.Color(0, 0, 0));
+        Docente_textoSeleccionarCursoEstudiantes1.setText("Mis cursos:");
+
+        Docente_TablaCursosClase.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Docente_TablaCursosClase.getTableHeader().setReorderingAllowed(false);
+        tabla5.setViewportView(Docente_TablaCursosClase);
+
+        Clase_textoFecha.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoFecha.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoFecha.setText("Fecha");
+
+        txtFecha_Clase.setDateFormatString("yyyy-MM-dd");
+
+        ActividadClase_textoDescripcion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        ActividadClase_textoDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        ActividadClase_textoDescripcion.setText("Desarrollo");
+
+        desarrolloClase.setColumns(20);
+        desarrolloClase.setLineWrap(true);
+        desarrolloClase.setRows(5);
+        jScrollPane2.setViewportView(desarrolloClase);
+
+        Clase_crear_botonCrearClase.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_crear_botonCrearClase.setText("Agregar");
+        Clase_crear_botonCrearClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clase_crear_botonCrearClaseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout crearClaseLayout = new javax.swing.GroupLayout(crearClase);
+        crearClase.setLayout(crearClaseLayout);
+        crearClaseLayout.setHorizontalGroup(
+            crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crearClaseLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearClaseLayout.createSequentialGroup()
+                        .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crearClaseLayout.createSequentialGroup()
+                                .addComponent(ActividadClase_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addGroup(crearClaseLayout.createSequentialGroup()
+                                .addComponent(Clase_textoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)))
+                        .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFecha_Clase, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Clase_crear_botonCrearClase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Docente_textoSeleccionarCursoEstudiantes1)
+                    .addComponent(tabla5, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-        pestaña2Layout.setVerticalGroup(
-            pestaña2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+        crearClaseLayout.setVerticalGroup(
+            crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crearClaseLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(Docente_textoSeleccionarCursoEstudiantes1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabla5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFecha_Clase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Clase_textoFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(crearClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(crearClaseLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(ActividadClase_textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(crearClaseLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(Clase_crear_botonCrearClase, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        panelPestañas.addTab("tab2", pestaña2);
+        opcionesClases.addTab("Crear clase", crearClase);
 
-        pestaña4.setBackground(new java.awt.Color(255, 255, 255));
+        eliminarClase.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pestaña4Layout = new javax.swing.GroupLayout(pestaña4);
-        pestaña4.setLayout(pestaña4Layout);
-        pestaña4Layout.setHorizontalGroup(
-            pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+        tablaClases.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Clase ID", "Fecha", "Desarrollo", "Curso ID"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClasesMouseClicked(evt);
+            }
+        });
+        tablaClase.setViewportView(tablaClases);
+
+        Clase_eliminar_botonEliminarClase.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_eliminar_botonEliminarClase.setText("Eliminar");
+        Clase_eliminar_botonEliminarClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clase_eliminar_botonEliminarClaseActionPerformed(evt);
+            }
+        });
+
+        Clase_textoSeleccionarClases.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoSeleccionarClases.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoSeleccionarClases.setText("Seleccionar clase:");
+
+        Clase_textoSeleccionarCursoClases1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        Clase_textoSeleccionarCursoClases1.setForeground(new java.awt.Color(0, 0, 0));
+        Clase_textoSeleccionarCursoClases1.setText("Seleccionar curso:");
+
+        numeroClasesDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        numeroClasesDictadas.setForeground(new java.awt.Color(0, 0, 255));
+        numeroClasesDictadas.setText("0");
+
+        clasesDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        clasesDictadas.setForeground(new java.awt.Color(0, 0, 255));
+        clasesDictadas.setText("Clases dictadas: ");
+
+        clasesNoDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        clasesNoDictadas.setForeground(new java.awt.Color(0, 0, 255));
+        clasesNoDictadas.setText("Clases por dictar: ");
+
+        numeroClasesNoDictadas.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        numeroClasesNoDictadas.setForeground(new java.awt.Color(0, 0, 255));
+        numeroClasesNoDictadas.setText("0");
+
+        Docente_TablaCursosClase1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Curso", "Asignatura"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Docente_TablaCursosClase1.getTableHeader().setReorderingAllowed(false);
+        tabla13.setViewportView(Docente_TablaCursosClase1);
+
+        javax.swing.GroupLayout eliminarClaseLayout = new javax.swing.GroupLayout(eliminarClase);
+        eliminarClase.setLayout(eliminarClaseLayout);
+        eliminarClaseLayout.setHorizontalGroup(
+            eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eliminarClaseLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tablaClase, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(eliminarClaseLayout.createSequentialGroup()
+                            .addComponent(clasesDictadas)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(numeroClasesDictadas)
+                            .addGap(63, 63, 63)
+                            .addComponent(clasesNoDictadas)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(numeroClasesNoDictadas))
+                        .addGroup(eliminarClaseLayout.createSequentialGroup()
+                            .addGap(735, 735, 735)
+                            .addComponent(Clase_eliminar_botonEliminarClase, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Clase_textoSeleccionarCursoClases1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Clase_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tabla13, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(15, 15, 15))
         );
-        pestaña4Layout.setVerticalGroup(
-            pestaña4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+        eliminarClaseLayout.setVerticalGroup(
+            eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eliminarClaseLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(Clase_textoSeleccionarCursoClases1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabla13, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Clase_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tablaClase, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(eliminarClaseLayout.createSequentialGroup()
+                        .addComponent(Clase_eliminar_botonEliminarClase, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eliminarClaseLayout.createSequentialGroup()
+                        .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clasesDictadas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numeroClasesDictadas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clasesNoDictadas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numeroClasesNoDictadas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))))
         );
 
-        panelPestañas.addTab("tab3", pestaña4);
+        opcionesClases.addTab("Eliminar clase", eliminarClase);
+
+        javax.swing.GroupLayout pestaña2_ClasesLayout = new javax.swing.GroupLayout(pestaña2_Clases);
+        pestaña2_Clases.setLayout(pestaña2_ClasesLayout);
+        pestaña2_ClasesLayout.setHorizontalGroup(
+            pestaña2_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pestaña2_ClasesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(opcionesClases))
+        );
+        pestaña2_ClasesLayout.setVerticalGroup(
+            pestaña2_ClasesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestaña2_ClasesLayout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(opcionesClases, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        panelPestañas.addTab("tab2", pestaña2_Clases);
 
         panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
@@ -1218,6 +1471,70 @@ public class Docente_ventana extends javax.swing.JFrame {
     private void Actividad_modificar_tipoActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_modificar_tipoActividadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Actividad_modificar_tipoActividadActionPerformed
+
+    private void Clase_crear_botonCrearClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_crear_botonCrearClaseActionPerformed
+        String curso = Docente_cursoSeleccionadoAgregarClase_Curso;
+        String asignatura = Docente_cursoSeleccionadoAgregarClase_Asignatura;
+
+        GestorCursos gestorC = new GestorCursos();
+        gestorC.cargarCursosDesdeBD();
+
+        int cursoID = gestorC.buscarIDCurso(curso, asignatura);
+        java.util.Date fechaUtil = txtFecha_Clase.getDate();
+        String desarrollo = desarrolloClase.getText();
+
+        if (cursoID == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (fechaUtil == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (desarrollo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+            GestorClases gestorClases = new GestorClases();
+            gestorClases.cargarClasesDesdeBD(cursoID);
+
+            // Crear un objeto java.sql.Date a partir de la fechaUtil
+            java.sql.Date fechaSQL = new java.sql.Date(fechaUtil.getTime());
+
+            // Utilizar el nuevo método existeClaseConFecha en la capa lógica
+            if (gestorClases.existeClaseConFecha(fechaSQL, cursoID)) {
+                JOptionPane.showMessageDialog(this, "Ya existe una clase con la misma fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                gestorClases.agregarClase(fechaSQL, desarrollo, cursoID);
+                DefaultTableModel model = (DefaultTableModel) tablaClases.getModel();
+                model.setRowCount(0); // Limpiar el modelo de la tabla
+            }
+        }
+
+    }//GEN-LAST:event_Clase_crear_botonCrearClaseActionPerformed
+
+    private void tablaClasesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClasesMouseClicked
+
+    }//GEN-LAST:event_tablaClasesMouseClicked
+
+    private void Clase_eliminar_botonEliminarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_eliminar_botonEliminarClaseActionPerformed
+
+        Integer idClase = Docente_claseSeleccionadaEliminarClase_ID;
+
+        if(idClase == null){
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una clase.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }else{
+            GestorClases gestorClases = new GestorClases();
+            gestorClases.eliminarClaseIndividual(idClase);
+
+            String curso = Docente_cursoSeleccionadoEliminarClase_Curso;
+            String asignatura = Docente_cursoSeleccionadoEliminarClase_Asignatura;
+
+            GestorCursos gestorC = new GestorCursos();
+            gestorC.cargarCursosDesdeBD();
+
+            Integer idCurso = gestorC.buscarIDCurso(curso, asignatura);
+
+            
+            gestorClases.cargarTablaClases(tablaClases, idCurso);
+        }
+
+    }//GEN-LAST:event_Clase_eliminar_botonEliminarClaseActionPerformed
      
     //Bienvenida al usuario mostrando el cargo, nombre y apellido
     public void bienvenidaUsuario(String nombreyapellidoUsuario) {
@@ -1378,7 +1695,109 @@ public class Docente_ventana extends javax.swing.JFrame {
         });
     }    
     
+//Actividades: "Calificaciones" - SELECCIONAR UN CURSO Y VER LAS CALIFICACIONES DE TODOS LOS ESTUDIANTES DEL CURSO
+    private void MouseListenerSeleccionarEstudiantes_Calificaciones() {
+        calificaciones_TablaCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = calificaciones_TablaCursos.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego. GUARDA EL CURSO SELECCIONADO
+                    Docente_cursoSeleccionadoActividad_Curso = calificaciones_TablaCursos.getValueAt(filaSeleccionada, 0).toString();
+                    Docente_cursoSeleccionadoActividad_Asignatura = calificaciones_TablaCursos.getValueAt(filaSeleccionada, 1).toString(); 
+                    //Tomo curso y asignatura de Curso_tablaCursoEstudiantes, le paso los valores, convierto el cursoID y completo la tabla tablaEstudiante_Quitar con estudiantes agregados a ese cursoEspecifico.
+                    String curso = Docente_cursoSeleccionadoActividad_Curso;
+                    String asignatura = Docente_cursoSeleccionadoActividad_Asignatura;
+                    //Buscar curso por ID
+                    GestorCursos gestorC = new GestorCursos();
+                    gestorC.cargarCursosDesdeBD();
+                    Integer cursoID = gestorC.buscarIDCurso(curso, asignatura);
+                    //Refresco la tabla tablaEstudiante_enCurso con los Estudiantes cargados a ese Curso.
+                    GestorActividades gestorAct = new GestorActividades();
+                    gestorAct.llenarTablaEstudiantesCalificaciones(cursoID, tablaCalificaciones);
+                    //Indicador de Curso y Asignatura Seleccionado
+                    indicadorCusoB.setText(curso+" "+asignatura);
+                }
+            }
+        });
+    }        
     
+//Clases: "CREAR CLASE" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA CREAR UNA CLASE
+    private void MouseListenerSeleccionarCurso_crearClase() {
+        Docente_TablaCursosClase.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = Docente_TablaCursosClase.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    Docente_cursoSeleccionadoAgregarClase_Curso = Docente_TablaCursosClase.getValueAt(filaSeleccionada, 0).toString();
+                    Docente_cursoSeleccionadoAgregarClase_Asignatura = Docente_TablaCursosClase.getValueAt(filaSeleccionada, 1).toString();  
+                }
+            }
+        });
+    }     
+    
+//Clases: "ELIMINAR CLASE" - TOMA LOS DATOS (CURSO Y ASIGNATURA) DE LA TABLA CURSO PARA ELIMINAR UNA CLASE
+    private void MouseListenerSeleccionarCurso_eliminarClase() {
+        Docente_TablaCursosClase1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = Docente_TablaCursosClase1.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    Docente_cursoSeleccionadoEliminarClase_Curso = Docente_TablaCursosClase1.getValueAt(filaSeleccionada, 0).toString();
+                    Docente_cursoSeleccionadoEliminarClase_Asignatura = Docente_TablaCursosClase1.getValueAt(filaSeleccionada, 1).toString();  
+                    
+                    String curso = Docente_cursoSeleccionadoEliminarClase_Curso;
+                    String asignatura = Docente_cursoSeleccionadoEliminarClase_Asignatura;
+                    
+                    GestorCursos gestorC = new GestorCursos();
+                    gestorC.cargarCursosDesdeBD();
+                    
+                    Integer idCurso = gestorC.buscarIDCurso(curso, asignatura);
+                    
+                    GestorClases gestorClases = new GestorClases();
+                    gestorClases.cargarTablaClases(tablaClases, idCurso);     
+                   
+                    GestorCursos gestorCursos = new GestorCursos();
+                    gestorCursos.cargarCursosDesdeBD();
+    
+                    Integer dictadas = gestorClases.contarClasesDictadas(idCurso);
+
+                    int resultado = DebenDictar-dictadas;
+
+                    numeroClasesDictadas.setText(String.valueOf(dictadas));
+                    numeroClasesNoDictadas.setText(String.valueOf(resultado));
+                }
+            }
+        });
+    }    
+
+//Clases: "ELIMINAR CLASE" - TOMA EL ID DE CLASE PARA ELIMINAR
+    private void MouseListenerSeleccionarClase_eliminarClase() {
+        tablaClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int filaSeleccionada = tablaClases.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    //variables declaradas arriba fuera del metodo para usarla luego.
+                    Docente_claseSeleccionadaEliminarClase_ID = Integer.parseInt(tablaClases.getValueAt(filaSeleccionada, 0).toString()); 
+                    Integer idCurso = Integer.parseInt(tablaClases.getValueAt(filaSeleccionada, 3).toString()); 
+                    
+                    int idClase = Docente_claseSeleccionadaEliminarClase_ID;
+                    
+                    GestorClases gestorClases = new GestorClases();
+                    Integer dictadas = gestorClases.contarClasesDictadas(idCurso);
+
+                    int resultado = DebenDictar-dictadas;
+
+                    numeroClasesDictadas.setText(String.valueOf(dictadas));
+                    numeroClasesNoDictadas.setText(String.valueOf(resultado));
+                    
+                }
+            }
+        });
+    }        
     
     
     public static void main(String args[]) {
@@ -1425,6 +1844,7 @@ public class Docente_ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ActividadClase_textoDescripcion;
     private javax.swing.JTextField Actividad_calificacion;
     private javax.swing.JTextField Actividad_calificacion_modificar;
     private javax.swing.JButton Actividad_crear_botonAgregarActividad;
@@ -1448,11 +1868,19 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JLabel Actividad_textoTipoActividad;
     private javax.swing.JLabel Actividad_textoTipoActividad1;
     private javax.swing.JTable Adscripto_tablaEstudiante;
+    private javax.swing.JButton Clase_crear_botonCrearClase;
+    private javax.swing.JButton Clase_eliminar_botonEliminarClase;
+    private javax.swing.JLabel Clase_textoFecha;
+    private javax.swing.JLabel Clase_textoSeleccionarClases;
+    private javax.swing.JLabel Clase_textoSeleccionarCursoClases1;
     private javax.swing.JTable CrearActividad_tablaEstudiantes;
     private javax.swing.JLabel Curso_crear_textoEstudiantes1;
     private javax.swing.JTextArea DescripcionActividad_modificar;
     private javax.swing.JTable Docente_TablaCursos;
+    private javax.swing.JTable Docente_TablaCursosClase;
+    private javax.swing.JTable Docente_TablaCursosClase1;
     private javax.swing.JLabel Docente_textoSeleccionarCursoEstudiantes;
+    private javax.swing.JLabel Docente_textoSeleccionarCursoEstudiantes1;
     private javax.swing.JPanel banner;
     private javax.swing.JLabel bienvenidaUsuario;
     private javax.swing.JButton botonActividades;
@@ -1460,13 +1888,19 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JButton botonClases;
     private javax.swing.JButton botonCursos;
     private javax.swing.JTable calificaciones_TablaCursos;
+    private javax.swing.JLabel clasesDictadas;
+    private javax.swing.JLabel clasesNoDictadas;
     private javax.swing.JPanel crearActividad;
     private javax.swing.JTable crearActividad_TablaCursos;
+    private javax.swing.JPanel crearClase;
+    private javax.swing.JTextArea desarrolloClase;
     private javax.swing.JTextArea descripcionActividad;
+    private javax.swing.JPanel eliminarClase;
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCurso2A;
     private javax.swing.JLabel indicadorCusoB;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
@@ -1476,26 +1910,33 @@ public class Docente_ventana extends javax.swing.JFrame {
     private javax.swing.JTable modificarActividad_TablaActividades;
     private javax.swing.JTable modificarActividad_TablaCursos;
     private javax.swing.JTable modificarActividad_TablaEstudiantes;
+    private javax.swing.JLabel numeroClasesDictadas;
+    private javax.swing.JLabel numeroClasesNoDictadas;
     private javax.swing.JTabbedPane opcionesActividades;
+    private javax.swing.JTabbedPane opcionesClases;
     private javax.swing.JPanel panelAdministrador;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña0_Cursos;
     private javax.swing.JPanel pestaña1_Actividades;
-    private javax.swing.JPanel pestaña2;
-    private javax.swing.JPanel pestaña4;
+    private javax.swing.JPanel pestaña2_Clases;
     private javax.swing.JPanel pestañaBienvenida;
     private javax.swing.JSeparator separador;
     private javax.swing.JScrollPane tabla10;
     private javax.swing.JScrollPane tabla11;
     private javax.swing.JScrollPane tabla12;
+    private javax.swing.JScrollPane tabla13;
     private javax.swing.JScrollPane tabla4;
+    private javax.swing.JScrollPane tabla5;
     private javax.swing.JScrollPane tabla6;
     private javax.swing.JScrollPane tabla7;
     private javax.swing.JScrollPane tabla8;
     private javax.swing.JScrollPane tabla9;
     private javax.swing.JTable tablaCalificaciones;
+    private javax.swing.JScrollPane tablaClase;
+    private javax.swing.JTable tablaClases;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private com.toedter.calendar.JDateChooser txtFecha_Clase;
     private com.toedter.calendar.JDateChooser txtFecha_modificar;
     private javax.swing.JPanel verActividades;
     // End of variables declaration//GEN-END:variables

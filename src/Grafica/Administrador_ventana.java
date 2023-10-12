@@ -2175,27 +2175,21 @@ public class Administrador_ventana extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eliminarClaseLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(eliminarClaseLayout.createSequentialGroup()
-                            .addComponent(clasesDictadas)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numeroClasesDictadas)
-                            .addGap(63, 63, 63)
-                            .addComponent(clasesNoDictadas)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(numeroClasesNoDictadas))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eliminarClaseLayout.createSequentialGroup()
-                            .addGap(13, 13, 13)
-                            .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Clase_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Clase_textoSeleccionarCursoClases1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(725, 725, 725)))
                     .addGroup(eliminarClaseLayout.createSequentialGroup()
-                        .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tablaClase, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tabla14, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Clase_eliminar_botonEliminarClase, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))))
+                        .addComponent(clasesDictadas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numeroClasesDictadas)
+                        .addGap(63, 63, 63)
+                        .addComponent(clasesNoDictadas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(numeroClasesNoDictadas))
+                    .addGroup(eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(tablaClase, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tabla14, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Clase_eliminar_botonEliminarClase, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Clase_textoSeleccionarCursoClases1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Clase_textoSeleccionarClases, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
         eliminarClaseLayout.setVerticalGroup(
             eliminarClaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2410,10 +2404,15 @@ public class Administrador_ventana extends javax.swing.JFrame
             return; // Detener la ejecución si la cédula no es válida
         }
         Integer cedula = Integer.parseInt(cedulaText);
-
+        
+        if (nombre.length() > 30 || apellido.length() > 30 || usuario.length() > 30 || contrasenia.length() > 30) {
+            JOptionPane.showMessageDialog(this, "Los campos de nombre, apellido, usuario y contraseña no pueden tener más de 30 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return; // Detiene la ejecución si la longitud es demasiado larga
+        }
+        
         // Validar nombre y apellido
         if (!nombre.matches("^[a-zA-Z]+$") || !apellido.matches("^[a-zA-Z]+$")) {
-            JOptionPane.showMessageDialog(this, "El nombre y el apellido solo pueden contener letras.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El nombre y el apellido solo pueden contener letras y ser menores a 30 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return; // Detener la ejecución si el nombre o el apellido no son válidos
         }
         
@@ -2842,7 +2841,9 @@ public class Administrador_ventana extends javax.swing.JFrame
         } else if (fechaUtil == null) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción que no supere los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (descripcion.length() > 300){
+            JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (calificacionTexto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una calificación.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -2877,30 +2878,35 @@ public class Administrador_ventana extends javax.swing.JFrame
         String calificacionTexto = Actividad_calificacion_modificar.getText();
         calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
 
-        if (idActividad != null && !nuevaDescripcion.isEmpty() && !calificacionTexto.isEmpty() && txtFecha_modificar.getDate() != null) {
-            try {
-                float nuevaCalificacion = Float.parseFloat(calificacionTexto);
+            if (idActividad != null && !nuevaDescripcion.isEmpty() && !calificacionTexto.isEmpty() && txtFecha_modificar.getDate() != null) {
+        try {
+            float nuevaCalificacion = Float.parseFloat(calificacionTexto);
 
-                // Verifica que la calificación esté en el rango válido (1 - 12)
-                if (nuevaCalificacion >= 1 && nuevaCalificacion <= 12) {
-                    //Conversión de util.Date a sql.Date
-                    java.util.Date fechaUtil = txtFecha_modificar.getDate();
-                    java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
+            // Verifica que la calificación esté en el rango válido (1 - 12)
+            if (nuevaCalificacion >= 1 && nuevaCalificacion <= 12) {
+                // Conversión de util.Date a sql.Date
+                java.util.Date fechaUtil = txtFecha_modificar.getDate();
+                java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
 
+                if (nuevaDescripcion.length() > 300) { // Corregir la condición
+                    JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                } else {
                     GestorActividades gestorAct = new GestorActividades();
                     gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
 
                     Integer idEstudiante = estudianteSeleccionado_cargarActividades;
-                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
-                } else {
-                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); // Refrescar tabla
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad a modificar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad a modificar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+    }
+
     }//GEN-LAST:event_Actividad_crear_botonModificarActividadActionPerformed
 
     private void Actividad_crear_botonEliminarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actividad_crear_botonEliminarActividadActionPerformed
@@ -2958,43 +2964,46 @@ public class Administrador_ventana extends javax.swing.JFrame
     private void Clase_crear_botonCrearClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_crear_botonCrearClaseActionPerformed
         String curso = cursoSeleccionadoAgregarClase_Curso;
         String asignatura = cursoSeleccionadoAgregarClase_Asignatura;
-               
+
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
-        
-        int cursoID = gestorC.buscarIDCurso(curso, asignatura);        
+
+        int cursoID = gestorC.buscarIDCurso(curso, asignatura);
         java.util.Date fechaUtil = txtFecha_Clase.getDate();
         String desarrollo = desarrolloClase.getText();
-        
+
         if (cursoID == -1) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione un curso.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (fechaUtil == null) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (desarrollo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        }else{
+        } else {
             GestorClases gestorClases = new GestorClases();
-            gestorClases.agregarClase(new java.sql.Date(fechaUtil.getTime()), desarrollo, cursoID);
-            DefaultTableModel model = (DefaultTableModel) tablaClases.getModel();
-            model.setRowCount(0); // Limpiar el modelo de la tabla
+            gestorClases.cargarClasesDesdeBD(cursoID);
+
+            // Crear un objeto java.sql.Date a partir de la fechaUtil
+            java.sql.Date fechaSQL = new java.sql.Date(fechaUtil.getTime());
+
+            // Utilizar el nuevo método existeClaseConFecha en la capa lógica
+            if (gestorClases.existeClaseConFecha(fechaSQL, cursoID)) {
+                JOptionPane.showMessageDialog(this, "Ya existe una clase con la misma fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                gestorClases.agregarClase(fechaSQL, desarrollo, cursoID);
+                DefaultTableModel model = (DefaultTableModel) tablaClases.getModel();
+                model.setRowCount(0); // Limpiar el modelo de la tabla
+            }
         }
-       
-        
     }//GEN-LAST:event_Clase_crear_botonCrearClaseActionPerformed
 
     private void Clase_eliminar_botonEliminarClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clase_eliminar_botonEliminarClaseActionPerformed
-
         Integer idClase = claseSeleccionadaEliminarClase_ID;
-        
-        
-        
+
         if(idClase == null){
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una clase.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }else{
-            Clase clase = new Clase();
-            clase.setId_clase(idClase);
-            Persistencia_SQL persistencia = new Persistencia_SQL();
-            persistencia.eliminarClaseIndividual(clase);
+            GestorClases gestorClases = new GestorClases();
+            gestorClases.eliminarClaseIndividual(idClase);
             
             String curso = cursoSeleccionadoEliminarClase_Curso;
             String asignatura = cursoSeleccionadoEliminarClase_Asignatura;
@@ -3004,7 +3013,6 @@ public class Administrador_ventana extends javax.swing.JFrame
                     
             Integer idCurso = gestorC.buscarIDCurso(curso, asignatura);
 
-            GestorClases gestorClases = new GestorClases();
             gestorClases.cargarTablaClases(tablaClases, idCurso);
         }
         

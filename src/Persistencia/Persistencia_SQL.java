@@ -18,6 +18,7 @@ import Entidades.Clase;
 import Grafica.Login_ventana;
 import Logica.GestorClases;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -1028,6 +1029,26 @@ public class Persistencia_SQL {
         return cantidad;
     }
 
+    
+    public boolean fechaExiste(Clase clase) {
+        Conexion conexion = new Conexion();
+        Integer idCurso = clase.getId_curso();
+        java.sql.Date fecha = clase.getFecha();
+
+        try (Connection conn = conexion.conectarMySQL();
+             PreparedStatement preparedStatement = conn.prepareStatement("SELECT 1 FROM clase WHERE curso_id_curso = ? AND fecha_clase = ? LIMIT 1")) {
+            preparedStatement.setInt(1, idCurso);
+            preparedStatement.setDate(2, new java.sql.Date(fecha.getTime()));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next(); // Devuelve true si hay al menos una fila, es decir, la fecha existe.
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Ocurrió un error al verificar si la fecha existe.");
+        }
+        return false;
+    }
+
+    
    
   
     
