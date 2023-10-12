@@ -8,6 +8,7 @@ import Logica.GestorCursos;
 import Logica.GestorEstudiantes;
 import Persistencia.Persistencia_SQL;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,6 +49,8 @@ public class Docente_ventana extends javax.swing.JFrame {
         MouseListenerSeleccionarCurso_crearClase();
         MouseListenerSeleccionarCurso_eliminarClase();
         MouseListenerSeleccionarClase_eliminarClase();
+        MouseListenerVerCalificacionesCompleto();
+        MouseListenerVerDesarrolloCompleto();
         
         GestorCursos gestorC = new GestorCursos();
         gestorC.cargarCursosDesdeBD();
@@ -1125,6 +1128,12 @@ public class Docente_ventana extends javax.swing.JFrame {
             }
         });
         tablaClase.setViewportView(tablaClases);
+        if (tablaClases.getColumnModel().getColumnCount() > 0) {
+            tablaClases.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaClases.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tablaClases.getColumnModel().getColumn(2).setPreferredWidth(500);
+            tablaClases.getColumnModel().getColumn(3).setPreferredWidth(10);
+        }
 
         Clase_eliminar_botonEliminarClase.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         Clase_eliminar_botonEliminarClase.setText("Eliminar");
@@ -1384,6 +1393,8 @@ public class Docente_ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else if (descripcion.length() > 300){
+            JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (calificacionTexto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una calificación.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -1427,13 +1438,15 @@ public class Docente_ventana extends javax.swing.JFrame {
                     //Conversión de util.Date a sql.Date
                     java.util.Date fechaUtil = txtFecha_modificar.getDate();
                     java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
-
+                if (nuevaDescripcion.length() > 300) { // Corregir la condición
+                    JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                } else {           
                     GestorActividades gestorAct = new GestorActividades();
                     gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
 
                     Integer idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
                     gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
-                } else {
+                }
                     JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
             } catch (NumberFormatException e) {
@@ -1489,6 +1502,8 @@ public class Docente_ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (desarrollo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }else if (desarrollo.length() > 300){
+            JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             GestorClases gestorClases = new GestorClases();
             gestorClases.cargarClasesDesdeBD(cursoID);
@@ -1799,7 +1814,43 @@ public class Docente_ventana extends javax.swing.JFrame {
         });
     }        
     
+//Clases: "CALIFICACIONES" - CLICK DERECHO SE VE DESARROLLO COMPLETO    
+    private void MouseListenerVerCalificacionesCompleto() {
+        tablaCalificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getButton() == MouseEvent.BUTTON3) { // Doble clic
+                    int column = tablaCalificaciones.getSelectedColumn();
+                    int row = tablaCalificaciones.getSelectedRow();
+                    
+                    if (column == 2) { // Si se hace doble clic en la columna "Desarrollo"
+                        String desarrollo = (String) tablaCalificaciones.getValueAt(row, column);
+                        // Muestra el contenido completo en un cuadro de diálogo
+                        JOptionPane.showMessageDialog(null, desarrollo, "Calificaciones", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+    }     
     
+//Clases: "CALIFICACIONES" - CLICK DERECHO SE VE DESARROLLO COMPLETO    
+    private void MouseListenerVerDesarrolloCompleto() {
+        tablaClases.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getButton() == MouseEvent.BUTTON3) { // Doble clic
+                    int column = tablaClases.getSelectedColumn();
+                    int row = tablaClases.getSelectedRow();
+                    
+                    if (column == 2) { // Si se hace doble clic en la columna "Desarrollo"
+                        String desarrollo = (String) tablaClases.getValueAt(row, column);
+                        // Muestra el contenido completo en un cuadro de diálogo
+                        JOptionPane.showMessageDialog(null, desarrollo, "Desarrollo", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+    }    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

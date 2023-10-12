@@ -85,7 +85,8 @@ public class Administrador_ventana extends javax.swing.JFrame
         MouseListenerSeleccionarCurso_eliminarClase();
         MouseListenerSeleccionarClase_eliminarClase();
         
-        MouseListenerDesarrollo();
+        MouseListenerVerCalificacionesCompleto();
+        MouseListenerVerDesarrolloCompleto();
         
         
         
@@ -2841,7 +2842,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         } else if (fechaUtil == null) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción que no supere los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (descripcion.length() > 300){
             JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (calificacionTexto.isEmpty()) {
@@ -2978,7 +2979,9 @@ public class Administrador_ventana extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (desarrollo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una descripción.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        } else {
+        } else if (desarrollo.length() > 300){
+            JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }else{
             GestorClases gestorClases = new GestorClases();
             gestorClases.cargarClasesDesdeBD(cursoID);
 
@@ -3368,8 +3371,27 @@ public class Administrador_ventana extends javax.swing.JFrame
         });
     }    
 
-//Gest. Clases: "ELIMINAR CLASE" - CLICK DERECHO SE VE DESARROLLO COMPLETO    
-    private void MouseListenerDesarrollo() {
+//Gest. Clases: "CALIFICACIONES" - CLICK DERECHO SE VE DESARROLLO COMPLETO    
+    private void MouseListenerVerCalificacionesCompleto() {
+        tablaCalificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                if (evt.getButton() == MouseEvent.BUTTON3) { // Doble clic
+                    int column = tablaCalificaciones.getSelectedColumn();
+                    int row = tablaCalificaciones.getSelectedRow();
+                    
+                    if (column == 2) { // Si se hace doble clic en la columna "Desarrollo"
+                        String desarrollo = (String) tablaCalificaciones.getValueAt(row, column);
+                        // Muestra el contenido completo en un cuadro de diálogo
+                        JOptionPane.showMessageDialog(null, desarrollo, "Calificaciones", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+    }     
+    
+//Gest. Clases: "CALIFICACIONES" - CLICK DERECHO SE VE DESARROLLO COMPLETO    
+    private void MouseListenerVerDesarrolloCompleto() {
         tablaClases.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3380,13 +3402,14 @@ public class Administrador_ventana extends javax.swing.JFrame
                     if (column == 2) { // Si se hace doble clic en la columna "Desarrollo"
                         String desarrollo = (String) tablaClases.getValueAt(row, column);
                         // Muestra el contenido completo en un cuadro de diálogo
-                        JOptionPane.showMessageDialog(null, desarrollo, "Desarrollo completo", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, desarrollo, "Desarrollo", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
-
             }
         });
-    }    
+    }  
+    
+    
     
     
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
