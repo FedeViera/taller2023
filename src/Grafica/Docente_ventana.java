@@ -53,17 +53,15 @@ public class Docente_ventana extends javax.swing.JFrame {
         MouseListenerVerDesarrolloCompleto();
         
         GestorCursos gestorC = new GestorCursos();
-        gestorC.cargarCursosDesdeBD();
-        gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
-        gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
-        gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
-        
         Integer cedula = Login_ventana.cedulaDocente;
         
         //Precargamos tablaCursos
         gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursos, cedula);
         gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursosClase, cedula);
         gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(Docente_TablaCursosClase1, cedula);
+        gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(crearActividad_TablaCursos, cedula);
+        gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(modificarActividad_TablaCursos, cedula);
+        gestorC.cargarTablaCursosSimpleDeDocenteEspecifico(calificaciones_TablaCursos, cedula);
         
         
         this.setTitle("SDFA - Panel Docente");
@@ -498,11 +496,11 @@ public class Docente_ventana extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Curso", "Asignatura", "Cédula Docente", "Nombre", "Apellido"
+                "Curso", "Asignatura"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -682,11 +680,11 @@ public class Docente_ventana extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Curso", "Asignatura", "Cédula", "Nombre", "Apellido"
+                "Curso", "Asignatura"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -931,11 +929,11 @@ public class Docente_ventana extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Curso", "Asignatura", "Cédula", "Nombre", "Apellido"
+                "Curso", "Asignatura"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
