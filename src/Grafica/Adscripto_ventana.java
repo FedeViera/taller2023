@@ -577,11 +577,11 @@ public class Adscripto_ventana extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Calificaciones"
+                "Nombre", "Apellido", "Calificaciones", "Promedio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -590,9 +590,9 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Adscripto_tablaCalificaciones);
         if (Adscripto_tablaCalificaciones.getColumnModel().getColumnCount() > 0) {
-            Adscripto_tablaCalificaciones.getColumnModel().getColumn(0).setPreferredWidth(50);
-            Adscripto_tablaCalificaciones.getColumnModel().getColumn(1).setPreferredWidth(50);
-            Adscripto_tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(700);
+            Adscripto_tablaCalificaciones.getColumnModel().getColumn(0).setPreferredWidth(90);
+            Adscripto_tablaCalificaciones.getColumnModel().getColumn(1).setPreferredWidth(90);
+            Adscripto_tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(600);
         }
 
         indicadorCusoB.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N

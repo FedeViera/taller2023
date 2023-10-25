@@ -37,7 +37,7 @@ public class Main {
         adm.setVisible(true);
         adm.setLocationRelativeTo(null);
         
-       
+       /*
         Adscripto_ventana ads = new Adscripto_ventana();
         ads.setVisible(true);
         ads.setLocationRelativeTo(null);

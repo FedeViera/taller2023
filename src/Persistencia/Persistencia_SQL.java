@@ -14,7 +14,7 @@ import Entidades.Docente;
 import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Clase;
-import Entidades.UsuarioConcreto;
+import Entidades.UsuarioLogeo;
 import Grafica.Login_ventana;
 import Logica.GestorClases;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class Persistencia_SQL {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    usuarioTemp = new UsuarioConcreto();
+                    usuarioTemp = new UsuarioLogeo();
                     usuarioTemp.setCedula(Integer.parseInt(resultSet.getString("cedula")));
                     usuarioTemp.setNombre(resultSet.getString("nombre"));
                     usuarioTemp.setApellido(resultSet.getString("apellido"));
@@ -756,19 +756,20 @@ public class Persistencia_SQL {
         if (conn != null) {
             try {
                 String query =  "SELECT\n" +
-                            "    e.nombre AS Nombre,\n" +
-                            "    e.apellido AS Apellido,\n" +
-                            "    GROUP_CONCAT(a.calificacion SEPARATOR ' | ') AS Calificaciones\n" +
-                            "FROM\n" +
-                            "    estudiante e\n" +
-                            "JOIN\n" +
-                            "    actividad a ON e.id_estudiante = a.estudiante_id_estudiante\n" +
-                            "JOIN\n" +
-                            "    curso_has_estudiante ce ON e.id_estudiante = ce.estudiante_id_estudiante\n" +
-                            "WHERE\n" +
-                            "    ce.curso_id_curso = ?\n" +
-                            "GROUP BY\n" +
-                            "    e.nombre, e.apellido;";
+                                "    e.nombre AS Nombre,\n" +
+                                "    e.apellido AS Apellido,\n" +
+                                "    GROUP_CONCAT(a.calificacion SEPARATOR ' | ') AS Calificaciones,\n" +
+                                "    ROUND(AVG(a.calificacion), 2) AS Promedios\n" +
+                                "FROM\n" +
+                                "    estudiante e\n" +
+                                "JOIN\n" +
+                                "    actividad a ON e.id_estudiante = a.estudiante_id_estudiante\n" +
+                                "JOIN\n" +
+                                "    curso_has_estudiante ce ON e.id_estudiante = ce.estudiante_id_estudiante\n" +
+                                "WHERE\n" +
+                                "    ce.curso_id_curso = ?\n" +
+                                "GROUP BY\n" +
+                                "    e.nombre, e.apellido;";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
                 preparedStatement.setInt(1, cursoId);  // Establecemos el valor del cursoId en el marcador de posición
@@ -779,8 +780,9 @@ public class Persistencia_SQL {
                     String nombre = resultSet.getString("Nombre");
                     String apellido = resultSet.getString("Apellido");
                     String calificaciones = resultSet.getString("Calificaciones");  // Ahora es una cadena de texto
+                    String promedios = resultSet.getString("Promedios");
 
-                    datosEstudiantesCalificaciones.add(new Object[]{nombre, apellido, calificaciones});
+                    datosEstudiantesCalificaciones.add(new Object[]{nombre, apellido, calificaciones, promedios});
                 }
                 resultSet.close();
                 preparedStatement.close();
@@ -893,7 +895,7 @@ public class Persistencia_SQL {
 
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 
-//MAPEAR CURSOS
+//MAPEAR CLASE
     public List<Clase> mapearClasesEspecificos(Integer idCurso) {
         List<Clase> listaClases = new ArrayList<>();
         Conexion conexion = new Conexion();

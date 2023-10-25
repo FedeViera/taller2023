@@ -1,11 +1,11 @@
 package Entidades;
 
-public class UsuarioConcreto extends Usuario {
-    public UsuarioConcreto() {
+public class UsuarioLogeo extends Usuario {
+    public UsuarioLogeo() {
         // Constructor por defecto de la subclase
     }
 
-    public UsuarioConcreto(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
+    public UsuarioLogeo(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
         // Constructor con parámetros de la subclase
         setCedula(cedula);
         setNombre(nombre);

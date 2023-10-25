@@ -902,11 +902,11 @@ public class Docente_ventana extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Calificaciones"
+                "Nombre", "Apellido", "Calificaciones", "Promedio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -915,9 +915,9 @@ public class Docente_ventana extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaCalificaciones);
         if (tablaCalificaciones.getColumnModel().getColumnCount() > 0) {
-            tablaCalificaciones.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tablaCalificaciones.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(700);
+            tablaCalificaciones.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tablaCalificaciones.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tablaCalificaciones.getColumnModel().getColumn(2).setPreferredWidth(600);
         }
 
         Actividad_textoSeleccionarCursoActividades_calificaciones.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N

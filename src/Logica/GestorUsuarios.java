@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import Entidades.Usuario;
-import Entidades.UsuarioConcreto;
+import Entidades.UsuarioLogeo;
 import javax.swing.JOptionPane;
 import Persistencia.Persistencia_SQL;
 
@@ -139,7 +139,7 @@ public class GestorUsuarios {
     public void agregarUsuario(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo){
         //Creo obj nuevoUsuario y asigna valores
         // Creo una instancia de UsuarioConcreto y asigna valores
-        UsuarioConcreto nuevoUsuario = new UsuarioConcreto(cedula, nombre, apellido, usuario, contrasenia, cargo);
+        UsuarioLogeo nuevoUsuario = new UsuarioLogeo(cedula, nombre, apellido, usuario, contrasenia, cargo);
 
         Persistencia_SQL persist = new Persistencia_SQL();
         persist.agregarUsuario(nuevoUsuario);         
