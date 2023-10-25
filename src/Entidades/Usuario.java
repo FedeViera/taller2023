@@ -2,7 +2,7 @@ package Entidades;
 
 import Persistencia.Persistencia_SQL;
 
-public class Usuario
+public abstract class Usuario
 {
     private int cedula;
     private String nombre;
@@ -11,6 +11,7 @@ public class Usuario
     private String contrasenia;
     private String cargo;
 
+    
     public int getCedula() {
         return cedula;
     }
@@ -58,7 +59,8 @@ public class Usuario
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-
+    
+    /*
     public Usuario(int cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -70,5 +72,5 @@ public class Usuario
 
     public Usuario() {
     } 
-   
+   */
 }

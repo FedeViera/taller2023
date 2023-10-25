@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import Entidades.Usuario;
+import Entidades.UsuarioConcreto;
 import javax.swing.JOptionPane;
 import Persistencia.Persistencia_SQL;
 
@@ -137,28 +138,17 @@ public class GestorUsuarios {
     
     public void agregarUsuario(Integer cedula, String nombre, String apellido, String usuario, String contrasenia, String cargo){
         //Creo obj nuevoUsuario y asigna valores
-        Usuario nuevoUsuario = new Usuario();
-        nuevoUsuario.setCedula(cedula);
-        nuevoUsuario.setNombre(nombre);
-        nuevoUsuario.setApellido(apellido);
-        nuevoUsuario.setUsuario(usuario);
-        nuevoUsuario.setContrasenia(contrasenia);
-        nuevoUsuario.setCargo(cargo);
-            
+        // Creo una instancia de UsuarioConcreto y asigna valores
+        UsuarioConcreto nuevoUsuario = new UsuarioConcreto(cedula, nombre, apellido, usuario, contrasenia, cargo);
+
         Persistencia_SQL persist = new Persistencia_SQL();
         persist.agregarUsuario(nuevoUsuario);         
         
     }
     
     public void eliminarUsuario(Integer cedula, String cargo){
-        
-        Usuario usuario = new Usuario();
-        usuario.setCedula(cedula);
-        usuario.setCargo(cargo);
-       
-        Persistencia_SQL persistencia = new Persistencia_SQL();
-        
-        persistencia.eliminarUsuario(usuario.getCedula(), usuario.getCargo());       
+    Persistencia_SQL persistencia = new Persistencia_SQL();
+    persistencia.eliminarUsuario(cedula, cargo); 
     }
 
     public void modificarUsuario(int cedula, String nuevaContrasenia, String nuevoCargo, int nuevoGrado, String nuevaAsignatura){

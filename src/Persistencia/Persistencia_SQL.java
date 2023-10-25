@@ -15,6 +15,7 @@ import Entidades.Docente;
 import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Clase;
+import Entidades.UsuarioConcreto;
 import Grafica.Login_ventana;
 import Logica.GestorClases;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class Persistencia_SQL {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 if (resultSet.next()) {
-                    usuarioTemp = new Usuario();
+                    usuarioTemp = new UsuarioConcreto();
                     usuarioTemp.setCedula(Integer.parseInt(resultSet.getString("cedula")));
                     usuarioTemp.setNombre(resultSet.getString("nombre"));
                     usuarioTemp.setApellido(resultSet.getString("apellido"));
