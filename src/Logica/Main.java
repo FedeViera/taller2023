@@ -1,5 +1,6 @@
-package Entidades;
+package Logica;
 
+import Persistencia.Conexion;
 import Logica.GestorAdministradores;
 import Logica.GestorDocentes;
 import Logica.GestorAdscriptos;

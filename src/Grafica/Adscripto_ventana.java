@@ -54,7 +54,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelAdministrador = new javax.swing.JPanel();
+        panelAdscripto = new javax.swing.JPanel();
         bienvenidaUsuario = new javax.swing.JLabel();
         banner = new javax.swing.JPanel();
         panelOpciones = new javax.swing.JPanel();
@@ -110,14 +110,14 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        panelAdministrador.setBackground(new java.awt.Color(255, 255, 255));
-        panelAdministrador.setMinimumSize(new java.awt.Dimension(1030, 670));
-        panelAdministrador.setPreferredSize(new java.awt.Dimension(1030, 670));
-        panelAdministrador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelAdscripto.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdscripto.setMinimumSize(new java.awt.Dimension(1030, 670));
+        panelAdscripto.setPreferredSize(new java.awt.Dimension(1030, 670));
+        panelAdscripto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bienvenidaUsuario.setFont(new java.awt.Font("Gadugi", 3, 18)); // NOI18N
         bienvenidaUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        panelAdministrador.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 470, 40));
+        panelAdscripto.add(bienvenidaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 470, 40));
 
         banner.setBackground(new java.awt.Color(0, 153, 51));
 
@@ -132,7 +132,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
             .addGap(0, 80, Short.MAX_VALUE)
         );
 
-        panelAdministrador.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 950, 80));
+        panelAdscripto.add(banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 950, 80));
 
         panelOpciones.setBackground(new java.awt.Color(38, 56, 63));
 
@@ -309,7 +309,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panelAdministrador.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
+        panelAdscripto.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 670));
 
         pestañaBienvenida.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -782,17 +782,17 @@ public class Adscripto_ventana extends javax.swing.JFrame {
 
         panelPestañas.addTab("tab3", pestaña4_Clases);
 
-        panelAdministrador.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
+        panelAdscripto.add(panelPestañas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 960, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addComponent(panelAdscripto, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelAdscripto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1209,7 +1209,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     private javax.swing.JLabel numeroClasesDictadas;
     private javax.swing.JLabel numeroClasesNoDictadas;
     private javax.swing.JTabbedPane opcionesActividades;
-    private javax.swing.JPanel panelAdministrador;
+    private javax.swing.JPanel panelAdscripto;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JPanel pestaña0_Cursos;
