@@ -52,7 +52,8 @@ public class Administrador_ventana extends javax.swing.JFrame
 {
     final Integer DebenDictar = 80;
    
-    private DefaultTableModel model;   
+    private DefaultTableModel model;  
+    private String asignaturaDocente, gradoDocente;
     private Integer docenteSeleccionadoAgregarACurso; //VARIABLE USADA EN MouseListenerDocentesPorAsignatura() PARA GUARDAR DOCENTE
     private String cursoSeleccionadoEliminarCurso_Curso, cursoSeleccionadoEliminarCurso_Asignatura; //VARIABLES USADA EN MouseListenerEliminarCurso() PARA GUARDAR CURSO Y ASIGNATURA A BORRAR
     private String cursoSeleccionadoAgregarEstudiante_Curso, cursoSeleccionadoAgregarEstudiante_Asignatura; //VARIABLE USADA EN MouseListenerSeleccionarCurso_AgregarEstudiante() PARA GUARDAR CURSO Y ASIGNATURA AL AGREGAR ESTUDIANTE A CURSO
@@ -2467,12 +2468,14 @@ public class Administrador_ventana extends javax.swing.JFrame
             if (respuesta == JOptionPane.YES_OPTION){
                 GestorRelacional gestorR = new GestorRelacional();
                 gestorR.eliminarDocenteACurso(cedula); //PRIMERO ELIMINAR EL DOCENTE RELACIONADO A LA CURSO
+     
                 GestorUsuarios gestorU = new GestorUsuarios();
                 gestorU.eliminarUsuario(cedula, cargo); //LUEGO ELIMINAR EL DOCENTE  
                 gestorU.cargarTablaUsuarios(modificarCuenta_TablaCuentas); // Después de eliminar, actualizar la tabla
                 
                 GestorCursos gestorC = new GestorCursos();
                 gestorC.cargarCursosDesdeBD();
+                
                 gestorC.cargarTablaCursosFull(modificarCurso_TablaCursos);
                 gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
             }else{
@@ -3057,6 +3060,8 @@ public class Administrador_ventana extends javax.swing.JFrame
                     String usuario = modificarCuenta_TablaCuentas.getValueAt(filaSeleccionada, 3).toString(); 
                     String contrasenia = modificarCuenta_TablaCuentas.getValueAt(filaSeleccionada, 4).toString();
                     String cargo = modificarCuenta_TablaCuentas.getValueAt(filaSeleccionada, 5).toString();
+                    gradoDocente = modificarCuenta_TablaCuentas.getValueAt(filaSeleccionada, 6).toString();
+                    asignaturaDocente = modificarCuenta_TablaCuentas.getValueAt(filaSeleccionada, 7).toString();
 
                     Cuenta_modificar_textoUsuario.setText(usuario);
                     Cuenta_modificar_textoContrasenia.setText(contrasenia);
