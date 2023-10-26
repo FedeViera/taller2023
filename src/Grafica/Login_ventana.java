@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import Persistencia.Persistencia_SQL;
-import Entidades.Usuario;
 import Logica.GestorUsuarios;
 import javax.swing.JTable;
 
