@@ -1,12 +1,9 @@
 package Grafica;
 
-import Entidades.Clase;
-import Grafica.Login_ventana;
 import Logica.GestorActividades;
 import Logica.GestorClases;
 import Logica.GestorCursos;
 import Logica.GestorEstudiantes;
-import Persistencia.Persistencia_SQL;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;

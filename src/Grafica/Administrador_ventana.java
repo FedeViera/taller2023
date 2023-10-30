@@ -1,17 +1,12 @@
 package Grafica;
 
-import Entidades.Administrador;
-import Entidades.Adscripto;
-import Entidades.Clase;
-import Entidades.Curso;
-import Persistencia.Persistencia_SQL;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import Entidades.Docente;
+
 import Entidades.Estudiante;
 import Logica.GestorActividades;
 import Logica.GestorAdministradores;
@@ -24,26 +19,18 @@ import Logica.GestorEstudiantes;
 import Logica.GestorRelacional;
 import java.awt.event.MouseEvent;
 
-import java.lang.System.Logger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
 
 
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 
 
@@ -104,6 +91,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
         gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
         gestorC.cargarTablaCursosFull(eliminarClase_TablaCursos);
+        
         
         //Precargamos tablaEstudiantes
         GestorEstudiantes gestorE = new GestorEstudiantes();
@@ -2451,7 +2439,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         }
         
         // Validar nombre y apellido
-        if (!nombre.matches("^[a-zA-Z]+$") || !apellido.matches("^[a-zA-Z]+$")) {
+        if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$") || !apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$")) {
             JOptionPane.showMessageDialog(this, "El nombre y el apellido solo pueden contener letras y ser menores a 30 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return; // Detener la ejecución si el nombre o el apellido no son válidos
         }
@@ -2516,6 +2504,11 @@ public class Administrador_ventana extends javax.swing.JFrame
                 
                 gestorC.cargarTablaCursosFull(modificarCurso_TablaCursos);
                 gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
+                gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+                gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
+                gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
+                gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
+                gestorC.cargarTablaCursosFull(eliminarClase_TablaCursos);
             }else{
                 System.out.println("Eliminación cancelada.");
             }   
@@ -2562,6 +2555,11 @@ public class Administrador_ventana extends javax.swing.JFrame
                 gestorC.cargarCursosDesdeBD();
                 gestorC.cargarTablaCursosFull(modificarCurso_TablaCursos);
                 gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
+                gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+                gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
+                gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
+                gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
+                gestorC.cargarTablaCursosFull(eliminarClase_TablaCursos);
               
                 
                 // Borra los campos de los JTextField
@@ -3107,6 +3105,16 @@ public class Administrador_ventana extends javax.swing.JFrame
             gestorR.agregarDocenteACurso(cedula, cursoID);
             //gestorCursos.cargarCursosDesdeBD();
             gestorCursos.cargarTablaCursosFull(modificarCurso_TablaCursos);
+            JOptionPane.showMessageDialog(this, "Se reasignó el docente correctamente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            
+            GestorCursos gestorC = new GestorCursos();
+            gestorC.cargarCursosDesdeBD();
+            gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
+            gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
+            gestorC.cargarTablaCursosFull(modificarActividad_TablaCursos);
+            gestorC.cargarTablaCursosFull(calificaciones_TablaCursos);
+            gestorC.cargarTablaCursosFull(crearClase_TablaCursos);
+            gestorC.cargarTablaCursosFull(eliminarClase_TablaCursos);
         }else{
             JOptionPane.showMessageDialog(this, "Por favor, seleccione un docente.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
