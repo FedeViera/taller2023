@@ -174,7 +174,7 @@ public class Persistencia_SQL {
     
     
 //ACTUALIZAR DATO EN BD
-    public void actualizarUsuario(Docente docente) {
+    public void actualizarUsuario(Docente docente) { //Usamos docente porque contiene todos los atributos
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
         

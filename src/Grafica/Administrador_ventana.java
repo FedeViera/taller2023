@@ -22,7 +22,6 @@ import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -2454,7 +2453,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         GestorUsuarios gestor = new GestorUsuarios();
         listaGeneral = gestor.obtenerTodosUsuarios();
         if(!gestor.usuarioExiste(listaGeneral, cedula, usuario)){
-            gestor.agregarUsuario(cedula, nombre, apellido, usuario, contrasenia, cargo);
+            gestor.agregarUsuario(cedula, nombre, apellido, usuario, contrasenia, cargo); //Agrega un usuario
             // Borra los campos de los JTextField
             Cuenta_crear_textoCedula.setText("");
             Cuenta_crear_textoNombre.setText("");
@@ -2501,7 +2500,7 @@ public class Administrador_ventana extends javax.swing.JFrame
                 
                 GestorCursos gestorC = new GestorCursos();
                 gestorC.cargarCursosDesdeBD();
-                
+                //Se recargan las tablas de curso con el docente Reasignado
                 gestorC.cargarTablaCursosFull(modificarCurso_TablaCursos);
                 gestorC.cargarTablaCursosFull(modificarEstudiantes_TablaCursos);
                 gestorC.cargarTablaCursosFull(crearActividad_TablaCursos);
@@ -3088,6 +3087,7 @@ public class Administrador_ventana extends javax.swing.JFrame
         
     }//GEN-LAST:event_tablaClasesMouseClicked
 
+//REASIGNAR DOCENTE A CURSO    
     private void Curso_modificar_botonModificarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Curso_modificar_botonModificarDocenteActionPerformed
 
         String curso = cursoSeleccionadoEliminarCurso_Curso;

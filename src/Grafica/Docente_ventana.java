@@ -1425,28 +1425,30 @@ public class Docente_ventana extends javax.swing.JFrame {
         calificacionTexto = calificacionTexto.replace(",", "."); // Reemplaza comas por puntos
 
         if (idActividad != null && !nuevaDescripcion.isEmpty() && !calificacionTexto.isEmpty() && txtFecha_modificar.getDate() != null) {
-            try {
-                float nuevaCalificacion = Float.parseFloat(calificacionTexto);
+         try {
+            float nuevaCalificacion = Float.parseFloat(calificacionTexto);
 
-                // Verifica que la calificación esté en el rango válido (1 - 12)
-                if (nuevaCalificacion >= 1 && nuevaCalificacion <= 12) {
-                    //Conversión de util.Date a sql.Date
-                    java.util.Date fechaUtil = txtFecha_modificar.getDate();
-                    java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
+            // Verifica que la calificación esté en el rango válido (1 - 12)
+            if (nuevaCalificacion >= 1 && nuevaCalificacion <= 12) {
+                // Conversión de util.Date a sql.Date
+                java.util.Date fechaUtil = txtFecha_modificar.getDate();
+                java.sql.Date nuevafecha = new java.sql.Date(fechaUtil.getTime());
+
                 if (nuevaDescripcion.length() > 300) { // Corregir la condición
                     JOptionPane.showMessageDialog(this, "La descripción no debe superar los 300 caracteres.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                } else {           
+                } else {
                     GestorActividades gestorAct = new GestorActividades();
                     gestorAct.modificarActividad(idActividad, nuevoTipo, nuevaDescripcion, nuevaCalificacion, nuevafecha);
 
                     Integer idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
-                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); //Refresco tabla
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, modificarActividad_TablaActividades); // Refrescar tabla
                 }
-                    JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La calificación no es un número válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una actividad a modificar.", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
