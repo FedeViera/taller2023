@@ -212,6 +212,7 @@ public class Login_ventana extends javax.swing.JFrame {
 
         if (usuarioValido) {
             // Obtener el cargo del usuario
+            
             String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
             String nombreyApellido = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
             
@@ -230,14 +231,6 @@ public class Login_ventana extends javax.swing.JFrame {
                         admin.setLocationRelativeTo(null);
                         admin.setLocation(x, y);
                         break;
-                    case "Adscripto":
-                        // Abre la ventana de Adscripto
-                        Adscripto_ventana adscripto = new Adscripto_ventana();
-                        adscripto.bienvenidaUsuario(nombreyApellido);
-                        adscripto.setVisible(true);
-                        adscripto.setLocationRelativeTo(null);
-                        adscripto.setLocation(x, y);
-                        break;
                     case "Docente":
                         // Abre la ventana de Docente
                         Docente_ventana docente = new Docente_ventana();
@@ -246,6 +239,14 @@ public class Login_ventana extends javax.swing.JFrame {
                         docente.setLocationRelativeTo(null);
                         docente.setLocation(x, y);
                         break;
+                    case "Adscripto":
+                        // Abre la ventana de Adscripto
+                        Adscripto_ventana adscripto = new Adscripto_ventana();
+                        adscripto.bienvenidaUsuario(nombreyApellido);
+                        adscripto.setVisible(true);
+                        adscripto.setLocationRelativeTo(null);
+                        adscripto.setLocation(x, y);
+                        break;    
                     default:
                         JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
@@ -304,8 +305,11 @@ public class Login_ventana extends javax.swing.JFrame {
 
             if (usuarioValido) {
                 // Obtener el cargo del usuario
+
                 String cargo = control.obtenerCargo(nickUsuario, contraseniaUsuario);
                 String nombreyApellido = control.obtenerNombreyApellido(nickUsuario, contraseniaUsuario);
+                
+                cedulaDocente = control.obtenerCedula(nickUsuario, contraseniaUsuario);
 
                 if (cargo != null) {
                     int x = getLocation().x;
@@ -321,14 +325,6 @@ public class Login_ventana extends javax.swing.JFrame {
                             admin.setLocation(x, y);
                             break;
                         case "Docente":
-                            // Abre la ventana de Adscripto
-                            Adscripto_ventana adscripto = new Adscripto_ventana();
-                            adscripto.bienvenidaUsuario(nombreyApellido);
-                            adscripto.setVisible(true);
-                            adscripto.setLocationRelativeTo(null);
-                            adscripto.setLocation(x, y);
-                            break;
-                        case "Adscripto":
                             // Abre la ventana de Docente
                             Docente_ventana docente = new Docente_ventana();
                             docente.bienvenidaUsuario(nombreyApellido);
@@ -336,8 +332,15 @@ public class Login_ventana extends javax.swing.JFrame {
                             docente.setLocationRelativeTo(null);
                             docente.setLocation(x, y);
                             break;
+                        case "Adscripto":
+                            // Abre la ventana de Adscripto
+                            Adscripto_ventana adscripto = new Adscripto_ventana();
+                            adscripto.bienvenidaUsuario(nombreyApellido);
+                            adscripto.setVisible(true);
+                            adscripto.setLocationRelativeTo(null);
+                            adscripto.setLocation(x, y);
+                            break;    
                         default:
-                            // Cargo desconocido o inválido
                             JOptionPane.showMessageDialog(this, "Cargo desconocido", "Error", JOptionPane.ERROR_MESSAGE);
                             break;
                     }

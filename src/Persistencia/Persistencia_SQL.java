@@ -713,16 +713,23 @@ public class Persistencia_SQL {
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
     
 //MAPEAR ACTIVIDADES POR ESTUDIANTE
-    public List<Actividad> mapearActividades_PorEstudiante(Estudiante estudiante) {
+    public List<Actividad> mapearActividades_PorEstudiante(Estudiante estudiante, Curso curso) {
         List<Actividad> listaActividades = new ArrayList<>();
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
 
         if (conn != null) {
             try {
-                String query =  "SELECT * from actividad WHERE estudiante_id_estudiante = (?)";
+                String query = "SELECT a.* " +
+                               "FROM actividad a " +
+                               "INNER JOIN actividad_has_curso ac ON a.id_actividad = ac.actividad_id_actividad " +
+                               "WHERE ac.curso_id_curso = ? " +
+                               "AND a.estudiante_id_estudiante = ?";
+
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setInt(1, estudiante.getId_estudiante()); // Establece el ID del estudiante en la consulta
+                preparedStatement.setInt(1, curso.getId_curso()); // Establece el ID del curso en la consulta
+                preparedStatement.setInt(2, estudiante.getId_estudiante()); // Establece el ID del estudiante en la consulta
+
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
@@ -747,6 +754,7 @@ public class Persistencia_SQL {
         return listaActividades;
     }
 
+
 //MAPEAR NOMBRE, APELLIDO Y TODAS LAS CALIFICACIONES DE UN ESTUDIANTE EN DETERMINADO CURSO    
     public List<Object[]> mapearCalificacionesCurso(int cursoId) {
         List<Object[]> datosEstudiantesCalificaciones = new ArrayList<>();
@@ -755,20 +763,20 @@ public class Persistencia_SQL {
 
         if (conn != null) {
             try {
-                String query =  "SELECT\n" +
-                                "    e.nombre AS Nombre,\n" +
-                                "    e.apellido AS Apellido,\n" +
-                                "    GROUP_CONCAT(a.calificacion SEPARATOR ' | ') AS Calificaciones,\n" +
-                                "    ROUND(AVG(a.calificacion), 2) AS Promedios\n" +
-                                "FROM\n" +
-                                "    estudiante e\n" +
-                                "JOIN\n" +
-                                "    actividad a ON e.id_estudiante = a.estudiante_id_estudiante\n" +
-                                "JOIN\n" +
-                                "    curso_has_estudiante ce ON e.id_estudiante = ce.estudiante_id_estudiante\n" +
-                                "WHERE\n" +
-                                "    ce.curso_id_curso = ?\n" +
-                                "GROUP BY\n" +
+                String query = "SELECT " +
+                                "    e.nombre AS Nombre, " +
+                                "    e.apellido AS Apellido, " +
+                                "    GROUP_CONCAT(a.calificacion SEPARATOR ' | ') AS Calificaciones, " +
+                                "    ROUND(AVG(a.calificacion), 2) AS Promedios " +
+                                "FROM " +
+                                "    estudiante e " +
+                                "JOIN " +
+                                "    actividad_has_curso ac ON e.id_estudiante = ac.actividad_estudiante_id_estudiante " +
+                                "JOIN " +
+                                "    actividad a ON a.id_actividad = ac.actividad_id_actividad " +
+                                "WHERE " +
+                                "    ac.curso_id_curso = ? " +
+                                "GROUP BY " +
                                 "    e.nombre, e.apellido;";
 
                 PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -794,29 +802,36 @@ public class Persistencia_SQL {
         }
         return datosEstudiantesCalificaciones;
     }
-
     
-//AGREGAR ACTIVIDAD
-    public void agregarActividad(Estudiante estudiante, Actividad actividad) {
+    
+// AGREGAR ACTIVIDAD y OBTENER EL ID GENERADO
+    public int agregarActividad(Estudiante estudiante, Actividad actividad) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
-        
+
         int idEstudiante = estudiante.getId_estudiante();
         String tipo = actividad.getTipo();
         String descripcion = actividad.getDescripcion();
         float calificacion = actividad.getCalificacion();
         java.sql.Date fecha = actividad.getFecha();
-  
+        int actividadID = -1; // Variable para almacenar el ID generado
+
         if (conn != null) {
             try {
                 String insertQuery = "INSERT INTO actividad (estudiante_id_estudiante, tipo, descripcion, calificacion, fecha) VALUES (?, ?, ?, ?, ?)";
-                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setInt(1, idEstudiante);
                 preparedStatement.setString(2, tipo);
                 preparedStatement.setString(3, descripcion);
                 preparedStatement.setFloat(4, calificacion);
                 preparedStatement.setDate(5, fecha);
                 preparedStatement.executeUpdate();
+
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    actividadID = generatedKeys.getInt(1); // Obtén el ID generado
+                }
+
                 preparedStatement.close();
                 JOptionPane.showMessageDialog(null, "La actividad fue correctamente agregada.", "Actividad agregada", JOptionPane.INFORMATION_MESSAGE);
                 conn.close();
@@ -827,8 +842,43 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }         
 
+        return actividadID; // Devuelve el ID generado
+    }
+        
+
+//RELACIONAR ACTIVIDAD CON UN CURSO    
+    public void asociarActividadACurso(Estudiante estudiante, Actividad actividad, Curso curso) {
+        Conexion conexion = new Conexion();
+        Connection conn = conexion.conectarMySQL();
+        
+        int idActividad = actividad.getId_actividad();
+        int idEstudiante = estudiante.getId_estudiante();
+        int idCurso = curso.getId_curso();
+
+
+        if (conn != null) {
+            try {
+                String insertQuery = "INSERT INTO actividad_has_curso (actividad_id_actividad, actividad_estudiante_id_estudiante, curso_id_curso) VALUES (?, ?, ?)";
+                PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                preparedStatement.setInt(1, idActividad);
+                preparedStatement.setInt(2, idEstudiante);
+                preparedStatement.setInt(3, idCurso);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                
+                conn.close();
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al asociar la actividad al curso.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
 //MODIFICAR ACTIVIDAD
     public void modificarActividad(Actividad actividad) {
         Conexion conexion = new Conexion();
@@ -872,16 +922,25 @@ public class Persistencia_SQL {
     public void eliminarActividad(Actividad actividad) {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectarMySQL();
-        
+
         int idActividad = actividad.getId_actividad();
 
         if (conn != null) {
             try {
-                String deleteQuery = "DELETE FROM actividad WHERE id_actividad = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
-                preparedStatement.setInt(1, idActividad);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
+                // Eliminar la relación en la tabla actividad_has_curso (tabla de relación)
+                String deleteRelationQuery = "DELETE FROM actividad_has_curso WHERE actividad_id_actividad = ?";
+                PreparedStatement relationStatement = conn.prepareStatement(deleteRelationQuery);
+                relationStatement.setInt(1, idActividad);
+                relationStatement.executeUpdate();
+                relationStatement.close();
+
+                // Luego, elimina la actividad en la tabla actividad
+                String deleteActivityQuery = "DELETE FROM actividad WHERE id_actividad = ?";
+                PreparedStatement activityStatement = conn.prepareStatement(deleteActivityQuery);
+                activityStatement.setInt(1, idActividad);
+                activityStatement.executeUpdate();
+                activityStatement.close();
+
                 JOptionPane.showMessageDialog(null, "La actividad fue correctamente eliminada.", "Actividad eliminada", JOptionPane.WARNING_MESSAGE);
                 conn.close();
             } catch (SQLException ex) {
@@ -891,7 +950,8 @@ public class Persistencia_SQL {
         } else {
             JOptionPane.showMessageDialog(null, "Fallo al conectar con la base de datos.", "Error de Conexión", JOptionPane.ERROR_MESSAGE);
         }
-    }    
+    }
+  
 
 // ===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===|===    
 

@@ -982,8 +982,13 @@ public class Adscripto_ventana extends javax.swing.JFrame {
                     //variables declaradas arriba fuera del metodo para usarla luego.
                     Adscripto_estudianteSeleccionado_cargarActividades = Integer.parseInt(Adscripto_TablaEstudiantes.getValueAt(filaSeleccionada, 0).toString());
                     int idEstudiante = Adscripto_estudianteSeleccionado_cargarActividades;
+                    
+                    GestorCursos gestorC = new GestorCursos();
+                    gestorC.cargarCursosDesdeBD();
+                    int cursoID = gestorC.buscarIDCurso(Adscripto_cursoSeleccionadoModificarActividad_Curso, Adscripto_cursoSeleccionadoModificarActividad_Asignatura);
+                    
                     GestorActividades gestorAct = new GestorActividades();
-                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, Adscripto_TablaActividades);
+                    gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, cursoID, Adscripto_TablaActividades);
                 }
             }
         });

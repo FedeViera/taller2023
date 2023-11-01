@@ -1,6 +1,7 @@
 package Logica;
 import Entidades.Actividad;
 import Entidades.Administrador;
+import Entidades.Curso;
 import Entidades.Estudiante;
 import Persistencia.Persistencia_SQL;
 import java.util.Date;
@@ -22,20 +23,30 @@ public class GestorActividades {
     }
     
 //AGREGAR ACTIVIDAD    
-    public void agregarActividad(Integer idEstudiante, String tipo, String descripcion, float calificacion, java.sql.Date fecha){
+    public int agregarActividad(Integer idEstudiante, String tipo, String descripcion, float calificacion, java.sql.Date fecha, Integer cursoID) {
         Estudiante nuevoEstudiante = new Estudiante();
         nuevoEstudiante.setId_estudiante(idEstudiante);
-        
+
         Actividad nuevaActividad = new Actividad();
         nuevaActividad.setTipo(tipo);
         nuevaActividad.setDescripcion(descripcion);
         nuevaActividad.setCalificacion(calificacion);
         nuevaActividad.setFecha(fecha);
-       
-        
+
+        Curso curso = new Curso();
+        curso.setId_curso(cursoID);
+
         Persistencia_SQL persistencia = new Persistencia_SQL();
-        persistencia.agregarActividad(nuevoEstudiante, nuevaActividad);
+        int actividadID = persistencia.agregarActividad(nuevoEstudiante, nuevaActividad);
+        
+        nuevaActividad.setId_actividad(actividadID);
+
+        // Asociar la actividad al curso utilizando el ID de la actividad generado
+        persistencia.asociarActividadACurso(nuevoEstudiante, nuevaActividad, curso);
+
+        return actividadID; // Devuelve el ID de la actividad agregada
     }
+
     
 //MODIFICAR ACTIVIDAD    
     public void modificarActividad(Integer id_actividad, String nuevoTipo, String nuevaDescripcion, float nuevaCalificacion, java.sql.Date nuevaFecha){
@@ -60,14 +71,17 @@ public class GestorActividades {
         persistencia.eliminarActividad(actividad);
     }
     
-    public void cargarTablaActividades_porEstudiantes(Integer idEstudiante, JTable table) {
+    public void cargarTablaActividades_porEstudiantes(Integer idEstudiante, Integer cursoID, JTable table) {
         GestorActividades actividades = new GestorActividades();
         Estudiante estudiante = new Estudiante();
         Persistencia_SQL persistencia = new Persistencia_SQL();
         
         estudiante.setId_estudiante(idEstudiante);
         
-        List<Actividad> listaActividades = persistencia.mapearActividades_PorEstudiante(estudiante);
+        Curso curso = new Curso();
+        curso.setId_curso(cursoID);
+        
+        List<Actividad> listaActividades = persistencia.mapearActividades_PorEstudiante(estudiante, curso);
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
