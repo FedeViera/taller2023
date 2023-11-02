@@ -257,7 +257,7 @@ public class Login_ventana extends javax.swing.JFrame {
             }
         } else {
             // Mostrar un mensaje de error en caso de que el usuario no sea válido.
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonEntrarActionPerformed
 

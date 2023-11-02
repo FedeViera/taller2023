@@ -305,7 +305,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         botonCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         botonCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Contacts.png"))); // NOI18N
-        botonCerrarSesion.setText("Cerrar Sesion");
+        botonCerrarSesion.setText("Cerrar Sesión");
         botonCerrarSesion.setBorder(null);
         botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCerrarSesion.setFocusPainted(false);
@@ -1386,7 +1386,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         gestorC.cargarCursosDesdeBD();
         int cursoID = gestorC.buscarIDCurso(Docente_cursoSeleccionadoAgregarActividad_Curso, Docente_cursoSeleccionadoAgregarActividad_Asignatura);
 
-        if (estudianteSeleccionado == 0) {
+        if (estudianteSeleccionado == null || estudianteSeleccionado == 0) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione un estudiante.", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else if (fechaUtil == null) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fecha.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -1449,6 +1449,7 @@ public class Docente_ventana extends javax.swing.JFrame {
 
                     Integer idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
                     gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, cursoID, modificarActividad_TablaActividades); // Refrescar tabla
+                    Docente_idActividad_modificarActividad = null;
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "La calificación debe estar en el rango de 1 a 12.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -1468,7 +1469,7 @@ public class Docente_ventana extends javax.swing.JFrame {
         gestorC.cargarCursosDesdeBD();
         int cursoID = gestorC.buscarIDCurso(Docente_cursoSeleccionadoAgregarActividad_Curso, Docente_cursoSeleccionadoAgregarActividad_Asignatura);
         
-        if(Docente_idActividad_modificarActividad != 0){
+        if(Docente_idActividad_modificarActividad != null){
             int respuesta = JOptionPane.showConfirmDialog(
                 null,
                 "¿Está seguro que desea eliminar la Actividad "+Docente_idActividad_modificarActividad+" ?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
@@ -1477,6 +1478,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                 gestorAct.eliminarActividad(Docente_idActividad_modificarActividad); //Eliminamos actividad
                 Integer idEstudiante = Docente_estudianteSeleccionado_cargarActividades;
                 gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, cursoID, modificarActividad_TablaActividades); //Refresco tabla
+                Docente_idActividad_modificarActividad = null;
             }else{
                 System.out.println("Eliminación cancelada.");
             }
@@ -1545,6 +1547,8 @@ public class Docente_ventana extends javax.swing.JFrame {
         }else{
             GestorClases gestorClases = new GestorClases();
             gestorClases.eliminarClaseIndividual(idClase);
+            
+            Docente_claseSeleccionadaEliminarClase_ID = null;
 
             String curso = Docente_cursoSeleccionadoEliminarClase_Curso;
             String asignatura = Docente_cursoSeleccionadoEliminarClase_Asignatura;
@@ -1666,7 +1670,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                     indicadorCurso2A.setText(curso+" "+asignatura);
                     
                     Docente_estudianteSeleccionado_cargarActividades = 0;
-                    Docente_idActividad_modificarActividad = 0;
+                    Docente_idActividad_modificarActividad = null;
                     
                 }
             }
@@ -1690,7 +1694,7 @@ public class Docente_ventana extends javax.swing.JFrame {
                     
                     GestorActividades gestorAct = new GestorActividades();
                     gestorAct.cargarTablaActividades_porEstudiantes(idEstudiante, cursoID, modificarActividad_TablaActividades);
-                    Docente_idActividad_modificarActividad = 0;
+                    Docente_idActividad_modificarActividad = null;
                 }
             }
         });

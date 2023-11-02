@@ -242,7 +242,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         botonCerrarSesion.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         botonCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Contacts.png"))); // NOI18N
-        botonCerrarSesion.setText("Cerrar Sesion");
+        botonCerrarSesion.setText("Cerrar Sesión");
         botonCerrarSesion.setBorder(null);
         botonCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCerrarSesion.setFocusPainted(false);
