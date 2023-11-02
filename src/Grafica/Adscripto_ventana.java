@@ -66,6 +66,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
         botonCerrarSesion = new javax.swing.JButton();
         panelPestañas = new javax.swing.JTabbedPane();
         pestañaBienvenida = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         pestaña0_Cursos = new javax.swing.JPanel();
         tabla3 = new javax.swing.JScrollPane();
         Adscripto_TablaCursos = new javax.swing.JTable();
@@ -313,15 +314,23 @@ public class Adscripto_ventana extends javax.swing.JFrame {
 
         pestañaBienvenida.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoPNG.png"))); // NOI18N
+
         javax.swing.GroupLayout pestañaBienvenidaLayout = new javax.swing.GroupLayout(pestañaBienvenida);
         pestañaBienvenida.setLayout(pestañaBienvenidaLayout);
         pestañaBienvenidaLayout.setHorizontalGroup(
             pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
+                .addGap(379, 379, 379)
+                .addComponent(jLabel1)
+                .addContainerGap(393, Short.MAX_VALUE))
         );
         pestañaBienvenidaLayout.setVerticalGroup(
             pestañaBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+            .addGroup(pestañaBienvenidaLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(jLabel1)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         panelPestañas.addTab("intro", pestañaBienvenida);
@@ -909,7 +918,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
      
     //Bienvenida al usuario mostrando el cargo, nombre y apellido
     public void bienvenidaUsuario(String nombreyapellidoUsuario) {
-        bienvenidaUsuario.setText("Bienvenido/a Adscripto " + nombreyapellidoUsuario);
+        bienvenidaUsuario.setText("Adscripto " + nombreyapellidoUsuario);
     }
 
 
@@ -1206,6 +1215,7 @@ public class Adscripto_ventana extends javax.swing.JFrame {
     private javax.swing.JLabel cursosRegistrados;
     private javax.swing.JLabel indicadorCurso;
     private javax.swing.JLabel indicadorCusoB;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
